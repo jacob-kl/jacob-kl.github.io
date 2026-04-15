@@ -7,48 +7,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0e0e0f;
-    --surface: #16171a;
-    --surface2: #1e1f24;
-    --border: #2a2b32;
-    --accent: #e8c547;
-    --accent2: #4fc3a1;
-    --accent3: #e85d47;
-    --text: #e8e6df;
-    --muted: #7a7870;
-    --meso1: #4fc3a1;
-    --meso2: #e8c547;
+    --bg: #0e0e0f; --surface: #16171a; --surface2: #1e1f24;
+    --border: #2a2b32; --accent: #e8c547; --accent2: #4fc3a1;
+    --accent3: #e85d47; --text: #e8e6df; --muted: #7a7870;
+    --meso1: #4fc3a1; --meso2: #e8c547;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; min-height: 100vh; }
 
-  /* ── LOGIN GATE ── */
-  #login-gate {
-    position: fixed; inset: 0; background: var(--bg); z-index: 9999;
-    display: flex; align-items: center; justify-content: center;
-  }
+  /* ── LOGIN ── */
+  #login-gate { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; }
   #login-gate.hidden { display: none; }
-  .login-box {
-    display: flex; flex-direction: column; align-items: center;
-    gap: 20px; width: 100%; max-width: 380px; padding: 0 28px;
-  }
+  .login-box { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 380px; padding: 0 28px; }
   .login-logo { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 2px; line-height: 1; color: var(--text); text-align: center; }
   .login-logo span { color: var(--accent); }
   .login-field { width: 100%; display: flex; flex-direction: column; gap: 5px; }
   .login-field label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-  .login-field input {
-    width: 100%; background: var(--surface); border: 1px solid var(--border);
-    color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px;
-    letter-spacing: 2px; padding: 12px 16px; border-radius: 2px; outline: none;
-    transition: border-color 0.2s;
-  }
+  .login-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 2px; padding: 12px 16px; border-radius: 2px; outline: none; transition: border-color 0.2s; }
   .login-field input:focus { border-color: var(--accent); }
   .login-field input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
-  #login-btn {
-    width: 100%; background: var(--accent); color: var(--bg);
-    font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
-    border: none; padding: 14px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s;
-  }
+  #login-btn { width: 100%; background: var(--accent); color: var(--bg); font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; border: none; padding: 14px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
   #login-btn:hover { opacity: 0.85; }
   #login-error { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent3); text-transform: uppercase; min-height: 16px; text-align: center; }
   @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
@@ -64,38 +42,23 @@
   .meta-pill strong { color: var(--text); }
 
   /* ── ADMIN BAR ── */
-  #admin-bar {
-    background: var(--surface2); border-bottom: 1px solid var(--border);
-    padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap;
-  }
+  #admin-bar { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap; }
   #admin-bar.visible { display: flex; }
   #admin-bar .admin-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
-  .view-toggle { display: flex; gap: 0; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
-  .view-btn {
-    font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    background: none; border: none; color: var(--muted); padding: 7px 16px; cursor: pointer; transition: all 0.15s;
-  }
+  .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+  .view-btn { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: none; color: var(--muted); padding: 7px 16px; cursor: pointer; transition: all 0.15s; }
   .view-btn.active { background: var(--accent); color: var(--bg); }
   .view-btn:not(.active):hover { color: var(--text); background: var(--surface); }
-  #logout-btn {
-    margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
-    text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted);
-    padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s;
-  }
+  #logout-btn { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
   #logout-btn:hover { border-color: var(--accent3); color: var(--accent3); }
 
-  /* ── CYCLE SELECTOR ── */
+  /* ── SELECTS ── */
   .cycle-select-wrap { display: flex; align-items: center; gap: 10px; }
   .cycle-select-wrap label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  #cycle-select {
-    background: var(--surface); border: 1px solid var(--accent); color: var(--text);
-    font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px;
-    padding: 6px 28px 6px 12px; border-radius: 2px; cursor: pointer; outline: none;
-    appearance: none; -webkit-appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 10px center;
-  }
+  #cycle-select { background: var(--surface); border: 1px solid var(--accent); color: var(--text); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; padding: 6px 28px 6px 12px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
   #cycle-select:focus { border-color: var(--accent2); }
+  #unit-select { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 28px 6px 10px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; transition: border-color 0.2s, color 0.2s; }
+  #unit-select:focus, #unit-select:hover { border-color: var(--accent2); color: var(--text); }
 
   /* ── 1RM PANEL ── */
   .rm-panel { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px; }
@@ -111,13 +74,11 @@
   .rm-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
   #rm-confirm { background: var(--accent); color: var(--bg); font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; border: none; padding: 10px 28px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
   #rm-confirm:hover { opacity: 0.85; }
-  #unit-select { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 28px 6px 10px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; transition: border-color 0.2s, color 0.2s; }
-  #unit-select:focus, #unit-select:hover { border-color: var(--accent2); color: var(--text); }
   #rm-status { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); opacity: 0; transition: opacity 0.3s; }
   #rm-status.visible { opacity: 1; }
   .rm-note { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-top: 10px; }
 
-  /* ── LOADING ── */
+  /* ── STATE MESSAGES ── */
   #program-body { min-height: 200px; }
   .state-message { padding: 60px 40px; font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
   .state-message.error { color: var(--accent3); }
@@ -128,8 +89,6 @@
   .overview-card h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .overview-card p { font-size: 14px; color: var(--text); line-height: 1.7; }
   .overview-card .big { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 4px; }
-
-  /* ── SCALING ── */
   .scaling-banner { background: var(--surface2); border-left: 3px solid var(--accent2); padding: 20px 32px; }
   .scaling-banner h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
   .scaling-banner p { font-size: 13px; color: var(--muted); }
@@ -157,7 +116,7 @@
 
   /* ── DAY CARD ── */
   .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
   .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
   .day-label.mon { color: var(--meso1); } .day-label.thu { color: var(--accent); }
   .day-focus { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
@@ -169,13 +128,26 @@
   .ex-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
   .ex-table tbody tr:hover { background: var(--surface2); }
   .ex-table tbody tr:last-child { border-bottom: none; }
-  .ex-table td { padding: 11px 12px; font-size: 13px; vertical-align: top; }
+  .ex-table td { padding: 11px 12px; font-size: 13px; vertical-align: middle; }
   .ex-name { color: var(--text); font-weight: 400; }
   .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); white-space: nowrap; }
   .ex-load { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); white-space: nowrap; }
   .ex-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
-  .ex-weight { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); white-space: nowrap; line-height: 1.8; }
-  .ex-weight.empty { color: var(--muted); font-size: 10px; letter-spacing: 1px; }
+  .ex-weight { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); white-space: nowrap; }
+  .ex-weight.empty { color: var(--muted); font-size: 10px; }
+
+  /* ── SUPERSET STYLING ── */
+  tr.superset-start td { border-bottom: none; padding-bottom: 4px; }
+  tr.superset-mid td { border-bottom: none; padding-top: 4px; padding-bottom: 4px; }
+  tr.superset-end td { padding-top: 4px; border-top: 1px dashed var(--border); }
+  tr.superset-start td:first-child, tr.superset-mid td:first-child { border-left: 3px solid var(--accent2); }
+  tr.superset-end td:first-child { border-left: 3px solid var(--accent2); }
+  .superset-label {
+    display: inline-block; font-family: 'DM Mono', monospace; font-size: 8px;
+    letter-spacing: 1px; text-transform: uppercase; color: var(--accent2);
+    background: rgba(79,195,161,0.1); border: 1px solid rgba(79,195,161,0.2);
+    padding: 1px 5px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
+  }
 
   /* ── TAGS ── */
   .tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-top: 3px; margin-right: 4px; }
@@ -191,6 +163,31 @@
   .week-intent h4.m1 { color: var(--meso1); } .week-intent h4.m2 { color: var(--meso2); }
   .week-intent h4.deload { color: var(--muted); } .week-intent h4.peak { color: var(--accent3); }
   .week-intent p { font-size: 13px; color: var(--muted); }
+
+  /* ── DAILY NOTES ── */
+  .day-notes-section { border-top: 1px solid var(--border); }
+  .day-notes-toggle {
+    width: 100%; background: none; border: none; padding: 10px 16px;
+    display: flex; align-items: center; justify-content: space-between;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .day-notes-toggle:hover { background: var(--surface2); }
+  .day-notes-toggle span {
+    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted);
+  }
+  .day-notes-toggle .arrow { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+  .day-notes-toggle.open .arrow { transform: rotate(180deg); }
+  .day-notes-body { display: none; padding: 12px 16px 16px; }
+  .day-notes-body.open { display: block; }
+  .day-notes-body textarea {
+    width: 100%; background: var(--surface2); border: 1px solid var(--border);
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
+    font-weight: 300; line-height: 1.6; padding: 10px 12px; border-radius: 2px;
+    outline: none; resize: vertical; min-height: 80px; transition: border-color 0.2s;
+  }
+  .day-notes-body textarea:focus { border-color: var(--accent2); }
+  .day-notes-body textarea::placeholder { color: var(--muted); }
 
   /* ── MISC ── */
   .section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
@@ -232,28 +229,26 @@
   </div>
 </div>
 
-<!-- ══ MAIN CONTENT ══ -->
+<!-- ══ MAIN ══ -->
 <div id="main-content">
 
-  <!-- ADMIN BAR (only visible to admin) -->
   <div id="admin-bar">
     <span class="admin-label">Admin</span>
     <div class="view-toggle">
       <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Member Lifts</button>
-      <button class="view-btn" id="btn-admin-view" onclick="switchView('admin')">My Lifts</button>
+      <button class="view-btn" id="btn-admin-view"  onclick="switchView('admin')">My Lifts</button>
     </div>
     <button id="logout-btn" onclick="doLogout()">Log Out</button>
   </div>
 
-  <!-- HERO -->
   <div class="hero">
     <img src="crumville_logo.png" class="hero-bg-logo" alt="">
     <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
     <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
     <div class="hero-meta">
       <div class="meta-pill"><strong>2</strong> Days / Week</div>
-      <div id="meta-days" class="meta-pill">—</div>
-      <div id="meta-goal" class="meta-pill">—</div>
+      <div id="meta-days"  class="meta-pill">—</div>
+      <div id="meta-goal"  class="meta-pill">—</div>
       <div id="meta-dates" class="meta-pill">—</div>
       <div class="cycle-select-wrap" id="cycle-select-wrap">
         <label for="cycle-select">Cycle</label>
@@ -264,15 +259,12 @@
     </div>
   </div>
 
-  <!-- 1RM PANEL -->
   <div class="rm-panel">
     <div class="rm-panel-header">
       <h3>Your 1RM Maxes</h3>
-      <p>Enter your maxes → hit confirm → weights auto-fill throughout the program</p>
+      <p>Enter your maxes → confirm → weights auto-fill throughout the program</p>
     </div>
-    <div class="rm-grid" id="rm-grid">
-      <!-- populated by JS based on view -->
-    </div>
+    <div class="rm-grid" id="rm-grid"></div>
     <div class="rm-actions">
       <button id="rm-confirm" onclick="confirmMaxes()">CONFIRM MAXES</button>
       <div class="cycle-select-wrap">
@@ -287,96 +279,71 @@
     <p class="rm-note">Maxes are saved in your browser and will be here next time you visit.</p>
   </div>
 
-  <!-- PROGRAM BODY -->
   <div id="program-body"><div class="state-message">Loading program…</div></div>
 
   <footer>
     <p id="footer-left">Kilo Club · Class Program</p>
     <p>Loads = % of individual 1RM · Scale as needed</p>
   </footer>
-
 </div>
 
 <script>
-// ─────────────────────────────────────────
-//  AUTH
-// ─────────────────────────────────────────
+// ── AUTH ──
 const USERS = {
-  admin:  { password: 'olylift',  role: 'admin'  },
-  member: { password: 'barbell',  role: 'member' }
+  admin:  { password: 'olylift', role: 'admin'  },
+  member: { password: 'barbell', role: 'member' }
 };
-
 let currentRole = null;
-let currentView = 'member'; // admin can toggle: 'member' | 'admin'
+let currentView = 'member';
 
 function doLogin() {
-  const uInput = document.getElementById('login-username');
-  const pInput = document.getElementById('login-password');
-  const error  = document.getElementById('login-error');
-  const username = uInput.value.trim().toLowerCase();
-  const password = pInput.value;
-
-  const user = USERS[username];
-  if (user && user.password === password) {
+  const uEl = document.getElementById('login-username');
+  const pEl = document.getElementById('login-password');
+  const err = document.getElementById('login-error');
+  const u = uEl.value.trim().toLowerCase();
+  const user = USERS[u];
+  if (user && user.password === pEl.value) {
     currentRole = user.role;
-    sessionStorage.setItem('kc_user', username);
+    sessionStorage.setItem('kc_user', u);
     sessionStorage.setItem('kc_role', currentRole);
     document.getElementById('login-gate').classList.add('hidden');
     initApp();
   } else {
-    error.textContent = 'Invalid username or password';
-    pInput.classList.add('error');
-    pInput.value = '';
-    setTimeout(() => pInput.classList.remove('error'), 400);
+    err.textContent = 'Invalid username or password';
+    pEl.classList.add('error');
+    pEl.value = '';
+    setTimeout(() => pEl.classList.remove('error'), 400);
   }
 }
 
 function doLogout() {
   sessionStorage.removeItem('kc_user');
   sessionStorage.removeItem('kc_role');
-  currentRole = null;
-  currentView = 'member';
+  currentRole = null; currentView = 'member';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Enter key on login fields
-  ['login-username','login-password'].forEach(id => {
-    document.getElementById(id).addEventListener('keydown', e => {
-      if (e.key === 'Enter') doLogin();
-    });
-  });
-
-  // Restore session
-  const savedRole = sessionStorage.getItem('kc_role');
-  if (savedRole) {
-    currentRole = savedRole;
-    document.getElementById('login-gate').classList.add('hidden');
-    initApp();
-  }
-
-  // Restore unit preference
+  ['login-username','login-password'].forEach(id =>
+    document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); })
+  );
+  const r = sessionStorage.getItem('kc_role');
+  if (r) { currentRole = r; document.getElementById('login-gate').classList.add('hidden'); initApp(); }
   try {
-    const savedUnit = localStorage.getItem('kiloclub_unit');
-    if (savedUnit) { const sel = document.getElementById('unit-select'); if (sel) sel.value = savedUnit; }
+    const u = localStorage.getItem('kiloclub_unit');
+    if (u) document.getElementById('unit-select').value = u;
   } catch(e) {}
 });
 
 function initApp() {
-  if (currentRole === 'admin') {
-    document.getElementById('admin-bar').classList.add('visible');
-  }
+  if (currentRole === 'admin') document.getElementById('admin-bar').classList.add('visible');
   currentView = 'member';
   updateViewButtons();
   loadView();
 }
 
-function switchView(view) {
-  currentView = view;
-  updateViewButtons();
-  loadView();
-}
+function switchView(v) { currentView = v; updateViewButtons(); loadView(); }
 
 function updateViewButtons() {
   document.getElementById('btn-member-view').classList.toggle('active', currentView === 'member');
@@ -386,65 +353,46 @@ function updateViewButtons() {
 function loadView() {
   buildRmPanel();
   loadSavedMaxes();
-
   if (currentView === 'admin') {
-    // Admin personal program — no cycle dropdown needed
     document.getElementById('cycle-select-wrap').style.display = 'none';
-    fetch('cycles/admin_2025-spring.json')
+    fetch('cycles/admin-program.json')
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => renderCycle(data))
-      .catch(() => {
-        document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program. Make sure cycles/admin_2025-spring.json exists.</div>';
-      });
+      .catch(() => { document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program.</div>'; });
   } else {
     document.getElementById('cycle-select-wrap').style.display = 'flex';
-    const cycleId = document.getElementById('cycle-select').value;
-    loadCycle(cycleId);
+    loadCycle(document.getElementById('cycle-select').value);
   }
 }
 
-function onCycleChange(val) {
-  if (currentView === 'member') loadCycle(val);
-}
+function onCycleChange(v) { if (currentView === 'member') loadCycle(v); }
 
 
-// ─────────────────────────────────────────
-//  1RM PANEL — DYNAMIC FIELDS
-// ─────────────────────────────────────────
+// ── 1RM PANEL ──
 const MEMBER_FIELDS = [
-  { id: 'rm-snatch',     label: 'Snatch' },
-  { id: 'rm-cj',        label: 'Clean & Jerk' },
-  { id: 'rm-backsquat', label: 'Back Squat' },
-  { id: 'rm-frontsquat',label: 'Front Squat' },
-  { id: 'rm-ohsquat',   label: 'Overhead Squat' },
-  { id: 'rm-goodmorning',label:'Good Morning' },
-  { id: 'rm-deadlift',  label: 'Deadlift' },
+  { id: 'rm-snatch', label: 'Snatch' }, { id: 'rm-cj', label: 'Clean & Jerk' },
+  { id: 'rm-backsquat', label: 'Back Squat' }, { id: 'rm-frontsquat', label: 'Front Squat' },
+  { id: 'rm-ohsquat', label: 'Overhead Squat' }, { id: 'rm-goodmorning', label: 'Good Morning' },
+  { id: 'rm-deadlift', label: 'Deadlift' }
 ];
-
 const ADMIN_FIELDS = [
-  { id: 'rm-snatch',     label: 'Snatch' },
-  { id: 'rm-cj',        label: 'Clean & Jerk' },
-  { id: 'rm-backsquat', label: 'Back Squat' },
-  { id: 'rm-frontsquat',label: 'Front Squat' },
-  { id: 'rm-ohsquat',   label: 'Overhead Squat' },
-  { id: 'rm-bench',     label: 'Bench Press' },
-  { id: 'rm-press',     label: 'Strict Press' },
-  { id: 'rm-deadlift',  label: 'Deadlift' },
-  { id: 'rm-goodmorning',label:'Good Morning' },
+  { id: 'rm-snatch', label: 'Snatch' }, { id: 'rm-cj', label: 'Clean & Jerk' },
+  { id: 'rm-backsquat', label: 'Back Squat' }, { id: 'rm-frontsquat', label: 'Front Squat' },
+  { id: 'rm-ohsquat', label: 'Overhead Squat' }, { id: 'rm-bench', label: 'Bench Press' },
+  { id: 'rm-press', label: 'Strict Press' }, { id: 'rm-deadlift', label: 'Deadlift' },
+  { id: 'rm-goodmorning', label: 'Good Morning' }
 ];
 
 function buildRmPanel() {
-  const fields = (currentView === 'admin') ? ADMIN_FIELDS : MEMBER_FIELDS;
-  const grid = document.getElementById('rm-grid');
-  grid.innerHTML = fields.map(f =>
+  const fields = currentView === 'admin' ? ADMIN_FIELDS : MEMBER_FIELDS;
+  document.getElementById('rm-grid').innerHTML = fields.map(f =>
     `<div class="rm-field"><label>${f.label}</label><input type="number" id="${f.id}" placeholder="lbs" min="0"></div>`
   ).join('');
 }
 
-// ── RM MAP — more specific first ──
 const RM_MAP = [
   { keys: ['snatch pull','snatch grip stage','front banded snatch','block snatch high pull','snatch high pull','snatch high hang high pull'], id: 'rm-snatch' },
-  { keys: ['clean pull','clean grip','front banded clean pull','block clean high pull','stage clean deadlift'], id: 'rm-cj' },
+  { keys: ['clean pull','front banded clean pull','block clean high pull','stage clean deadlift'], id: 'rm-cj' },
   { keys: ['strict press','push press','push jerk','split jerk','jerk dip','jerk from rack','jerk'], id: 'rm-cj' },
   { keys: ['overhead squat','ohs'], id: 'rm-ohsquat' },
   { keys: ['front squat','enderton front squat','pause front squat'], id: 'rm-frontsquat' },
@@ -453,76 +401,54 @@ const RM_MAP = [
   { keys: ['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','clean'], id: 'rm-cj' },
   { keys: ['mid hang snatch','hang snatch','deficit snatch','3 position snatch','power snatch','snatch balance','muscle snatch','snatch'], id: 'rm-snatch' },
   { keys: ['bench press','bench'], id: 'rm-bench' },
-  { keys: ['good morning'], id: 'rm-goodmorning' },
+  { keys: ['good morning','goblet'], id: 'rm-goodmorning' },
   { keys: ['deadlift'], id: 'rm-deadlift' },
 ];
 
 let currentMaxes = {};
-const STORAGE_KEY_MEMBER = 'kiloclub_maxes_member';
-const STORAGE_KEY_ADMIN  = 'kiloclub_maxes_admin';
-
-function storageKey() { return currentView === 'admin' ? STORAGE_KEY_ADMIN : STORAGE_KEY_MEMBER; }
+const SK_MEMBER = 'kiloclub_maxes_member';
+const SK_ADMIN  = 'kiloclub_maxes_admin';
+function storageKey() { return currentView === 'admin' ? SK_ADMIN : SK_MEMBER; }
 
 function loadSavedMaxes() {
   try {
-    const saved = localStorage.getItem(storageKey());
-    if (saved) {
-      currentMaxes = JSON.parse(saved);
-      Object.entries(currentMaxes).forEach(([id, val]) => {
-        const el = document.getElementById(id);
-        if (el && val) el.value = val;
-      });
-    } else {
-      currentMaxes = {};
-    }
+    const s = localStorage.getItem(storageKey());
+    currentMaxes = s ? JSON.parse(s) : {};
+    Object.entries(currentMaxes).forEach(([id, val]) => { const el = document.getElementById(id); if (el && val) el.value = val; });
   } catch(e) { currentMaxes = {}; }
 }
 
 function confirmMaxes() {
-  const allIds = [...MEMBER_FIELDS, ...ADMIN_FIELDS].map(f => f.id);
-  const unique = [...new Set(allIds)];
-  unique.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) currentMaxes[id] = el.value ? parseFloat(el.value) : null;
-  });
+  const all = [...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f => f.id))];
+  all.forEach(id => { const el = document.getElementById(id); if (el) currentMaxes[id] = el.value ? parseFloat(el.value) : null; });
   try { localStorage.setItem(storageKey(), JSON.stringify(currentMaxes)); } catch(e) {}
   updateAllWeightCells();
-  const status = document.getElementById('rm-status');
-  status.classList.add('visible');
-  setTimeout(() => status.classList.remove('visible'), 2500);
+  const s = document.getElementById('rm-status');
+  s.classList.add('visible');
+  setTimeout(() => s.classList.remove('visible'), 2500);
 }
 
-function getMaxForExercise(exerciseName) {
-  const name = exerciseName.toLowerCase();
-  for (const entry of RM_MAP) {
-    if (entry.keys.some(k => name.includes(k))) {
-      return currentMaxes[entry.id] || null;
-    }
-  }
+function getMaxForExercise(name) {
+  const n = name.toLowerCase();
+  for (const e of RM_MAP) { if (e.keys.some(k => n.includes(k))) return currentMaxes[e.id] || null; }
   return null;
 }
 
-function parsePercentages(loadStr) {
-  const matches = loadStr.match(/\d+\.?\d*/g);
-  if (!matches) return [];
-  return matches.map(Number).filter(n => n > 0 && n <= 140);
+function parsePercentages(s) {
+  const m = s.match(/\d+\.?\d*/g);
+  return m ? m.map(Number).filter(n => n > 0 && n <= 140) : [];
 }
 
 function getUnit() { const s = document.getElementById('unit-select'); return s ? s.value : 'lbs'; }
-
-function changeUnit(unit) {
-  try { localStorage.setItem('kiloclub_unit', unit); } catch(e) {}
-  updateAllWeightCells();
-}
+function changeUnit(u) { try { localStorage.setItem('kiloclub_unit', u); } catch(e) {} updateAllWeightCells(); }
 
 function calcWeight(loadStr, max) {
   if (!max || max <= 0) return null;
   const pcts = parsePercentages(loadStr);
   if (!pcts.length) return null;
-  const unit = getUnit();
-  const lo = pcts[0] / 100 * max;
-  const hi = pcts[pcts.length-1] / 100 * max;
-  if (unit === 'kg') {
+  const u = getUnit();
+  const lo = pcts[0] / 100 * max, hi = pcts[pcts.length-1] / 100 * max;
+  if (u === 'kg') {
     const a = Math.round(lo/2.205), b = Math.round(hi/2.205);
     return a === b ? `${a} kg` : `${a}–${b} kg`;
   } else {
@@ -534,64 +460,66 @@ function calcWeight(loadStr, max) {
 function updateAllWeightCells() {
   document.querySelectorAll('.weight-cell').forEach(cell => {
     const max = getMaxForExercise(cell.getAttribute('data-ex'));
-    const result = calcWeight(cell.getAttribute('data-load'), max);
-    if (result) { cell.innerHTML = result; cell.classList.remove('empty'); }
+    const r = calcWeight(cell.getAttribute('data-load'), max);
+    if (r) { cell.innerHTML = r; cell.classList.remove('empty'); }
     else { cell.innerHTML = '—'; cell.classList.add('empty'); }
   });
 }
 
-
-// ─────────────────────────────────────────
-//  CYCLE LOADER
-// ─────────────────────────────────────────
-function loadCycle(cycleId) {
-  const body = document.getElementById('program-body');
-  body.innerHTML = '<div class="state-message">Loading program…</div>';
-  fetch('cycles/' + cycleId + '.json')
-    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(data => renderCycle(data))
-    .catch(() => { body.innerHTML = '<div class="state-message error">Could not load cycle. Make sure cycles/' + cycleId + '.json exists.</div>'; });
+// ── Daily notes persistence ──
+function notesKey(phaseId, weekNum, dayIdx) {
+  const prefix = currentView === 'admin' ? 'admin' : 'member';
+  return `kc_notes_${prefix}_${phaseId}_w${weekNum}_d${dayIdx}`;
+}
+function saveNote(key, val) { try { localStorage.setItem(key, val); } catch(e) {} }
+function loadNote(key) { try { return localStorage.getItem(key) || ''; } catch(e) { return ''; } }
+function toggleNotes(btn, bodyId) {
+  const body = document.getElementById(bodyId);
+  const open = body.classList.toggle('open');
+  btn.classList.toggle('open', open);
 }
 
 
-// ─────────────────────────────────────────
-//  RENDERER
-// ─────────────────────────────────────────
+// ── CYCLE LOADER ──
+function loadCycle(id) {
+  document.getElementById('program-body').innerHTML = '<div class="state-message">Loading program…</div>';
+  fetch('cycles/' + id + '.json')
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(data => renderCycle(data))
+    .catch(() => { document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load cycle. Make sure cycles/' + id + '.json exists.</div>'; });
+}
+
+
+// ── RENDERER ──
 function renderCycle(cycle) {
   document.getElementById('meta-days').innerHTML  = '<strong>' + cycle.days + '</strong>';
   document.getElementById('meta-goal').innerHTML  = 'Goal: <strong>' + cycle.goal + '</strong>';
   document.getElementById('meta-dates').innerHTML = 'Dates: <strong>' + cycle.dates + '</strong>';
   document.getElementById('footer-left').textContent = 'Kilo Club · ' + cycle.name + ' · Class Program';
 
+  const isAdmin = currentView === 'admin';
   let html = '';
 
   // Overview
   html += '<div class="overview">';
   cycle.phases.forEach(phase => {
+    const label = phase.colorClass === 'm1' ? phase.title.split('—')[1]?.trim() || 'ACCUMULATION' : phase.title.split('—')[1]?.trim() || 'PEAK';
     html += `<div class="overview-card">
       <h3>${phase.title.split('—')[0].trim()}</h3>
-      <div class="big" style="color:var(--${phase.colorClass==='m1'?'meso1':'meso2'})">${phase.colorClass==='m1'?'ACCUMULATION':'PEAK'}</div>
-      <p>${phase.colorClass==='m1'
-        ? 'Accumulation & technical development. Higher volume, positional work, paused variations, strength base.'
-        : 'Intensification & competition prep. Volume drops, intensity climbs. Max attempts in the final week.'
-      }</p>
+      <div class="big" style="color:var(--${phase.colorClass==='m1'?'meso1':'meso2'})">${label}</div>
+      <p>${phase.subtitle}</p>
     </div>`;
   });
-  html += `<div class="overview-card"><h3>Day Structure</h3><p><strong>${cycle.days.split('/')[0].trim()}</strong> — Snatch focus + squat<br><strong>${cycle.days.split('/').slice(-1)[0].trim()}</strong> — Clean &amp; Jerk focus + squat + accessory</p></div>
-  <div class="overview-card"><h3>Load Notation</h3><p>All loads are <strong>% of athlete's 1RM</strong>. Enter your maxes above to see exact weights auto-filled throughout.</p></div>
-  </div>`;
+  html += `<div class="overview-card"><h3>Load Notation</h3><p>All loads are <strong>% of 1RM</strong>. Enter your maxes above to see exact weights.</p></div></div>`;
 
-  // Scaling banner — only for member view
-  if (currentView === 'member') {
-    html += `<div class="scaling-banner"><h3>Beginner Scaling Guide</h3><p><strong>No 1RM?</strong> Use a weight where you can maintain full technique for all sets. Add 2.5–5 lbs per week if form holds. <strong>Paused/tempo variations</strong> should feel slow and controlled — drop weight 10–15% from your normal working load.</p></div>`;
+  if (!isAdmin) {
+    html += `<div class="scaling-banner"><h3>Beginner Scaling Guide</h3><p><strong>No 1RM?</strong> Use a weight where you can maintain full technique. Add 2.5–5 lbs per week if form holds. <strong>Paused/tempo variations</strong> — drop 10–15% from normal working load.</p></div>`;
   }
 
-  // Phases
   cycle.phases.forEach((phase, pi) => {
     if (pi > 0) html += '<hr class="section-divider">';
     html += `<div class="meso-header"><div class="meso-num ${phase.colorClass}">${phase.number}</div><div class="meso-info"><h2 class="${phase.colorClass}">${phase.title}</h2><p>${phase.subtitle}</p></div></div>`;
 
-    // Week tabs
     html += `<div class="week-nav" id="nav-${phase.id}">`;
     phase.weeks.forEach(week => {
       const isFirst = week.number === phase.weeks[0].number;
@@ -599,42 +527,94 @@ function renderCycle(cycle) {
     });
     html += '</div>';
 
-    // Week panels
     phase.weeks.forEach((week, wi) => {
       html += `<div class="week-content ${wi===0?'visible':''}" id="${phase.id}-w${week.number}">`;
       html += `<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
 
       const dayCount = week.days.length;
-      const gridStyle = dayCount > 2 ? 'grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))' : '';
-      html += `<div class="days-grid" style="${gridStyle}">`;
+      const gs = dayCount > 2 ? 'grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))' : '';
+      html += `<div class="days-grid" style="${gs}">`;
 
-      week.days.forEach(day => {
-        const rawHeaders = day.tableHeaders || ['Exercise','Sets×Reps','Load','Notes'];
-        let headers = [...rawHeaders];
-        const loadIdx = headers.indexOf('Load');
-        if (loadIdx !== -1) headers.splice(loadIdx+1, 0, 'Weight');
+      week.days.forEach((day, di) => {
+        // Build headers
+        const rawH = day.tableHeaders || (isAdmin ? ['Exercise','Sets×Reps','Load'] : ['Exercise','Sets×Reps','Load','Notes']);
+        let headers = [...rawH];
+        const li = headers.indexOf('Load');
+        if (li !== -1) headers.splice(li+1, 0, 'Weight');
 
-        html += `<div class="day-card"><div class="day-header"><div class="day-label ${day.colorClass}">${day.label}</div><div class="day-focus">${day.focus}</div></div>
-        <table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+        // Day header — admin shows no focus label
+        const focusHtml = (!isAdmin || day.focus) ? `<div class="day-focus">${day.focus}</div>` : '';
+        html += `<div class="day-card">
+          <div class="day-header">
+            <div class="day-label ${day.colorClass}">${day.label}</div>
+            ${focusHtml}
+          </div>
+          <table class="ex-table">
+            <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+            <tbody>`;
 
-        day.exercises.forEach(ex => {
+        // Track superset grouping
+        let inSuperset = false;
+        day.exercises.forEach((ex, ei) => {
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
-          const safeEx = ex.name.replace(/"/g,'&quot;');
+          const safeEx   = ex.name.replace(/"/g,'&quot;');
           const safeLoad = ex.load.replace(/"/g,'&quot;');
           const wTD = wr
             ? `<td class="ex-weight weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${wr}</td>`
             : `<td class="ex-weight empty weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">—</td>`;
-          let note = ex.note || '';
-          if (ex.tag)  note += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
-          if (ex.tag2) note += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
-          html += `<tr><td class="ex-name">${ex.name}</td><td class="ex-sets">${ex.sets}</td><td class="ex-load">${ex.load}</td>${wTD}<td class="ex-note">${note}</td></tr>`;
+
+          // Determine superset row class
+          let ssClass = '';
+          const isSSStart = ex.superset === true;
+          const isSSEnd   = ex.supersetEnd === true;
+          if (isSSStart) { ssClass = 'superset-start'; inSuperset = true; }
+          else if (isSSEnd) { ssClass = 'superset-end'; inSuperset = false; }
+          else if (inSuperset) { ssClass = 'superset-mid'; }
+
+          // Name cell — show superset badge on first item
+          const ssBadge = isSSStart ? '<span class="superset-label">superset</span>' : '';
+
+          // Note cell (member only)
+          let noteHTML = ex.note || '';
+          if (ex.tag)  noteHTML += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
+          if (ex.tag2) noteHTML += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
+          const noteTD = !isAdmin ? `<td class="ex-note">${noteHTML}</td>` : '';
+
+          html += `<tr class="${ssClass}">
+            <td class="ex-name">${ex.name}${ssBadge}</td>
+            <td class="ex-sets">${ex.sets}</td>
+            <td class="ex-load">${ex.load}</td>
+            ${wTD}
+            ${noteTD}
+          </tr>`;
         });
 
-        html += '</tbody></table></div>';
+        html += '</tbody></table>';
+
+        // Daily notes section — admin only
+        if (isAdmin) {
+          const nKey  = notesKey(phase.id, week.number, di);
+          const nVal  = loadNote(nKey).replace(/"/g,'&quot;');
+          const nId   = `notes-body-${phase.id}-${week.number}-${di}`;
+          const btnId = `notes-btn-${phase.id}-${week.number}-${di}`;
+          html += `<div class="day-notes-section">
+            <button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')">
+              <span>Day Notes</span>
+              <span class="arrow">▼</span>
+            </button>
+            <div class="day-notes-body" id="${nId}">
+              <textarea placeholder="Notes for this session — programming thoughts, athlete feedback, anything…"
+                onchange="saveNote('${nKey}', this.value)"
+                oninput="saveNote('${nKey}', this.value)">${nVal}</textarea>
+            </div>
+          </div>`;
+        }
+
+        html += '</div>'; // close day-card
       });
 
-      html += '</div></div>';
+      html += '</div></div>'; // close days-grid + week-content
     });
   });
 
@@ -642,14 +622,12 @@ function renderCycle(cycle) {
 }
 
 
-// ─────────────────────────────────────────
-//  WEEK TAB SWITCHER
-// ─────────────────────────────────────────
+// ── WEEK TAB SWITCHER ──
 function showWeek(phaseId, weekNum, btn, colorClass) {
   document.querySelectorAll('[id^="'+phaseId+'-w"]').forEach(el => el.classList.remove('visible'));
   document.querySelectorAll('#nav-'+phaseId+' .week-btn').forEach(b => b.classList.remove('active','m1','m2'));
-  const panel = document.getElementById(phaseId+'-w'+weekNum);
-  if (panel) panel.classList.add('visible');
+  const p = document.getElementById(phaseId+'-w'+weekNum);
+  if (p) p.classList.add('visible');
   btn.classList.add('active', colorClass);
 }
 </script>
