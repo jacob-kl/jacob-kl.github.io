@@ -357,32 +357,38 @@
         },
         {
           "number": 12,
-          "label": "Week 12 — MAX OUT",
-          "intent": { "colorClass": "peak", "title": "Week 12 · MAX OUT WEEK 🏆", "text": "Thursday is Polish Day — snatch only, three competition attempts. Monday is Olympic Total Day — three attempts on Clean & Jerk. Warm up like a meet. Coach calls the weights. Celebrate your athletes." },
+          "label": "Week 12 — Polish + Total",
+          "intent": { "colorClass": "peak", "title": "Week 12 · Polish Day + Olympic Total 🏆", "text": "Thursday is Polish Day — light weight, perfect technique on both lifts. PVC pipe drills, body awareness, lock in your movement patterns. Monday is Olympic Total Day — three competition attempts on snatch and C&J. Coach calls the weights. Celebrate every athlete." },
           "days": [
             {
               "label": "THURSDAY",
               "colorClass": "mon",
-              "focus": "POLISH DAY — SNATCH",
-              "tableHeaders": ["Attempt", "Structure", "Target Load", "Notes"],
+              "focus": "POLISH DAY — Both Lifts",
               "exercises": [
-                { "name": "Warm-Up", "sets": "Singles building", "load": "50→70→80%", "note": "Take your time. Use competition timing — 2 min between attempts." },
-                { "name": "Opener (Attempt 1)", "sets": "1", "load": "87–90%", "note": "A lift you can make on your worst day. Confident, fast, clean.", "tag": "peak", "tagText": "Must make" },
-                { "name": "Second Attempt", "sets": "1", "load": "93–96%", "note": "Good lift = PR territory. Stay aggressive but technical." },
-                { "name": "Third Attempt", "sets": "1", "load": "98–103%", "note": "Max snatch. Coach calls it. This is what the 12 weeks were for.", "tag": "hard", "tagText": "PR attempt" }
+                { "name": "Snatch (light, perfect technique)", "sets": "6×1", "load": "65–70%", "note": "This is not about weight. Every rep should look textbook. Film each athlete.", "tag": "peak", "tagText": "Polish" },
+                { "name": "PVC Pipe Snatch Drill — Push Under", "sets": "3×5", "load": "PVC", "note": "Tie a PVC pipe across the j-hooks at catch height. Practice moving around it — feel the active push up and out as you receive. Bar path stays close, elbows fast." },
+                { "name": "Clean & Jerk (light, perfect technique)", "sets": "4×1", "load": "65–70%", "note": "Same intent as snatch. Clean the receipt, jerk with full commitment." },
+                { "name": "PVC Pipe Jerk Drill — Push Through", "sets": "3×5", "load": "PVC", "note": "Set PVC at dip depth. Feel the vertical drive and the active lockout against resistance. No re-bending." },
+                { "name": "Snatch Balance", "sets": "4×3", "load": "50–55%", "note": "Drill the drop under. Fast elbows, active overhead. The lightest weight = the most reps you can do perfectly." },
+                { "name": "Overhead Squat", "sets": "3×3", "load": "60%", "note": "Slow descent, feel every position. Polish the bottom." }
               ]
             },
             {
               "label": "MONDAY",
               "colorClass": "thu",
-              "focus": "OLYMPIC TOTAL DAY — C&J",
+              "focus": "OLYMPIC TOTAL DAY",
               "tableHeaders": ["Attempt", "Structure", "Target Load", "Notes"],
               "exercises": [
-                { "name": "Warm-Up", "sets": "Singles building", "load": "50→70→80%", "note": "Same competition warm-up as Thursday." },
-                { "name": "Opener (Attempt 1)", "sets": "1", "load": "87–90%", "note": "Make it look easy. Clean must be locked in before you think about the jerk.", "tag": "peak", "tagText": "Must make" },
-                { "name": "Second Attempt", "sets": "1", "load": "93–96%", "note": "Strong clean, aggressive drive into the jerk." },
-                { "name": "Third Attempt", "sets": "1", "load": "98–104%", "note": "Max C&J. Coach calls the weight after the 2nd. Complete the Total.", "tag": "hard", "tagText": "PR attempt" },
-                { "name": "Record your Total", "sets": "—", "load": "—", "note": "Snatch (Thu) + C&J (Mon) = your Olympic Total. Write it down.", "tag": "peak", "tagText": "Total" }
+                { "name": "Snatch Warm-Up", "sets": "Singles building", "load": "50→70→80%", "note": "Take your time. Use competition timing — 2 min between attempts. Work up methodically." },
+                { "name": "Snatch Opener", "sets": "1", "load": "87–90%", "note": "A lift you can make on your worst day. Set the tone.", "tag": "peak", "tagText": "Must make" },
+                { "name": "Snatch 2nd Attempt", "sets": "1", "load": "93–96%", "note": "Good lift = PR territory. Stay aggressive but technical." },
+                { "name": "Snatch 3rd Attempt", "sets": "1", "load": "98–103%", "note": "Max snatch. Coach calls it. This is what the 12 weeks were for.", "tag": "hard", "tagText": "PR attempt" },
+                { "name": "— Rest 15 min —", "sets": "—", "load": "—", "note": "Shake out, stay warm. Same day, now C&J." },
+                { "name": "C&J Warm-Up", "sets": "Singles building", "load": "50→70→80%", "note": "Rebuild your warm-up sequence from scratch." },
+                { "name": "C&J Opener", "sets": "1", "load": "87–90%", "note": "Make it look easy. Clean must be locked in before you think about the jerk.", "tag": "peak", "tagText": "Must make" },
+                { "name": "C&J 2nd Attempt", "sets": "1", "load": "93–96%", "note": "Strong clean, aggressive drive into the jerk." },
+                { "name": "C&J 3rd Attempt", "sets": "1", "load": "98–104%", "note": "Max C&J. Coach calls the weight after the 2nd. Complete the Total.", "tag": "hard", "tagText": "PR attempt" },
+                { "name": "Record Your Olympic Total", "sets": "—", "load": "—", "note": "Snatch + C&J = your Total. Write it down. That's your number to beat next cycle.", "tag": "peak", "tagText": "Total" }
               ]
             }
           ]
