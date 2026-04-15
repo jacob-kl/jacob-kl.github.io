@@ -556,33 +556,54 @@ function renderCycle(cycle) {
         // Track superset grouping
         let inSuperset = false;
         day.exercises.forEach((ex, ei) => {
+          // If this is a group to display together in one row
+          if (ex.group && ex.displayTogether && Array.isArray(ex.exercises)) {
+            // Build each cell's content as a multi-line string
+            const nameCell = ex.exercises.map(gex => gex.name).join('<br>');
+            const setsCell = ex.exercises.map(gex => gex.sets).join('<br>');
+            const loadCell = ex.exercises.map(gex => gex.load).join('<br>');
+            const weightCell = ex.exercises.map(gex => {
+              const max = getMaxForExercise(gex.name);
+              const wr = calcWeight(gex.load, max);
+              const safeEx   = gex.name.replace(/"/g,'"');
+              const safeLoad = gex.load.replace(/"/g,'"');
+              return wr
+                ? `<span class="weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${wr}</span>`
+                : `<span class="weight-cell empty" data-ex="${safeEx}" data-load="${safeLoad}">—</span>`;
+            }).join('<br>');
+            let noteCell = '';
+            if (!isAdmin) {
+              noteCell = ex.exercises.map(gex => {
+                let noteHTML = gex.note || '';
+                if (gex.tag)  noteHTML += `<div class="tag tag-${gex.tag}">${gex.tagText}</div>`;
+                if (gex.tag2) noteHTML += `<div class="tag tag-${gex.tag2}">${gex.tagText2}</div>`;
+                return noteHTML;
+              }).join('<br>');
+            }
+            html += `<tr>
+              <td class="ex-name">${nameCell}</td>
+              <td class="ex-sets">${setsCell}</td>
+              <td class="ex-load">${loadCell}</td>
+              <td class="ex-weight">${weightCell}</td>
+              ${!isAdmin ? `<td class="ex-note">${noteCell}</td>` : ''}
+            </tr>`;
+            return; // Skip to next exercise
+          }
+        
+          // ...existing code for normal (non-grouped) exercises...
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
-          const safeEx   = ex.name.replace(/"/g,'&quot;');
-          const safeLoad = ex.load.replace(/"/g,'&quot;');
+          const safeEx   = ex.name.replace(/"/g,'"');
+          const safeLoad = ex.load.replace(/"/g,'"');
           const wTD = wr
             ? `<td class="ex-weight weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${wr}</td>`
             : `<td class="ex-weight empty weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">—</td>`;
-
-          // Determine superset row class
-          let ssClass = '';
-          const isSSStart = ex.superset === true;
-          const isSSEnd   = ex.supersetEnd === true;
-          if (isSSStart) { ssClass = 'superset-start'; inSuperset = true; }
-          else if (isSSEnd) { ssClass = 'superset-end'; inSuperset = false; }
-          else if (inSuperset) { ssClass = 'superset-mid'; }
-
-          // Name cell — show superset badge on first item
-          const ssBadge = isSSStart ? '<span class="superset-label">superset</span>' : '';
-
-          // Note cell (member only)
           let noteHTML = ex.note || '';
           if (ex.tag)  noteHTML += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
           if (ex.tag2) noteHTML += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
           const noteTD = !isAdmin ? `<td class="ex-note">${noteHTML}</td>` : '';
-
-          html += `<tr class="${ssClass}">
-            <td class="ex-name">${ex.name}${ssBadge}</td>
+          html += `<tr>
+            <td class="ex-name">${ex.name}</td>
             <td class="ex-sets">${ex.sets}</td>
             <td class="ex-load">${ex.load}</td>
             ${wTD}
