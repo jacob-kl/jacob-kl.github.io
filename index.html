@@ -38,15 +38,13 @@
     position: relative;
     overflow: hidden;
   }
-  .hero::before {
-    content: 'LIFT';
+  .hero-bg-logo {
     position: absolute;
-    right: -20px; top: -30px;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 220px;
-    color: rgba(255,255,255,0.02);
+    right: -30px; top: -10px;
+    height: 320px;
+    opacity: 0.06;
     pointer-events: none;
-    letter-spacing: -5px;
+    user-select: none;
   }
   .hero-label {
     font-family: 'DM Mono', monospace;
@@ -423,6 +421,7 @@
 
   <!-- HERO -->
   <div class="hero">
+    <img src="crumville_logo.png" class="hero-bg-logo" alt="">
     <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
     <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
     <div class="hero-meta">
