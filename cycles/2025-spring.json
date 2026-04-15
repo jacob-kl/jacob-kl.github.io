@@ -1,1 +1,1073 @@
-
+{
+  "id": "2025-spring",
+  "name": "Spring 2025",
+  "dates": "March 15, 2025 – June 6, 2025",
+  "days": "Thursday + Monday",
+  "goal": "Max Snatch / Clean and Jerk",
+  "phases": [
+    {
+      "id": "m1",
+      "number": "01",
+      "colorClass": "m1",
+      "title": "WEEKS 1-6 — ACCUMULATION",
+      "subtitle": "Weeks 1–6 · Technical Volume · Building the Base · Thu + Mon",
+      "weeks": [
+        {
+          "number": 1,
+          "label": "Week 1",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 1 · Orientation",
+            "text": "Establish baseline loads. Focus is technique over weight. Athletes should feel comfortable and confident — not maxed out."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch High Hang + Hang Snatch",
+                  "sets": "4×(1+1)",
+                  "load": "65–70%",
+                  "note": "Pause 2s in hang. Beginners: hang snatch only",
+                  "tag": "beginner",
+                  "tagText": "Scale"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×3",
+                  "load": "90–95%",
+                  "note": "Focus on position at knee and hip"
+                },
+                {
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5×1",
+                  "load": "70%",
+                  "note": "Land in partial squat"
+                },
+                {
+                  "name": "Overhead Squat",
+                  "sets": "5×2",
+                  "load": "65%",
+                  "note": "3s descent. Bar must stay over mid-foot",
+                  "tag": "beginner",
+                  "tagText": "Core movement — all athletes"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "Bodyweight",
+                  "note": "Slow and controlled"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "High Hang Clean + Front Squat",
+                  "sets": "4×(1+2)",
+                  "load": "65%",
+                  "note": "Drop between reps. Pause in catch",
+                  "tag": "beginner",
+                  "tagText": "Scale"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×3",
+                  "load": "90–95%",
+                  "note": "Match snatch pull mechanics"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "4×3",
+                  "load": "65–70%",
+                  "note": "Dip = knee only, no torso. Beginners: strict press",
+                  "tag": "beginner",
+                  "tagText": "Scale to strict"
+                },
+                {
+                  "name": "Slow Pull Power Clean",
+                  "sets": "5×2",
+                  "load": "70%",
+                  "note": "Slow pull to mid-thigh. Feel weight even across feet, then explode."
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "70%",
+                  "note": "Controlled descent, full depth"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "label": "Week 2",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 2 · Building",
+            "text": "Add 3–5% to all working loads. Introduce first positional variation. Volume stays the same."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "3-Position Snatch (High Hang → Hang → Floor)",
+                  "sets": "5×1",
+                  "load": "65–68%",
+                  "note": "One rep from each position. Beginners: 2-position (hang + floor)",
+                  "tag": "beginner",
+                  "tagText": "Scale to 2-pos"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×3",
+                  "load": "95–100%",
+                  "note": "Full extension, shrug at top"
+                },
+                {
+                  "name": "Overhead Squat",
+                  "sets": "5×2",
+                  "load": "68–70%",
+                  "note": "Pause 2s at bottom"
+                },
+                {
+                  "name": "Snatch Balance",
+                  "sets": "4×2",
+                  "load": "50–60%",
+                  "note": "Aggressive drop under. Beginners: heaving snatch balance",
+                  "tag": "beginner",
+                  "tagText": "Scale"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "+light bar",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Hang Clean + Clean",
+                  "sets": "5×(1+1)",
+                  "load": "68–72%",
+                  "note": "Touch-and-go from hang",
+                  "tag": "beginner",
+                  "tagText": "Scale to clean only"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×3",
+                  "load": "95–100%",
+                  "note": ""
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "65–70%",
+                  "note": "Pause 2s in split. Check front foot alignment",
+                  "tag": "beginner",
+                  "tagText": "Focus on footwork"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "73–75%",
+                  "note": "+3% from week 1"
+                },
+                {
+                  "name": "Romanian Deadlift",
+                  "sets": "3×6",
+                  "load": "Moderate",
+                  "note": "Hamstring stretch at bottom"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "label": "Week 3",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 3 · Loading",
+            "text": "Highest volume week of meso 1. Loads bump again. Introduce pause work in the clean to reinforce positions."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch (Competition)",
+                  "sets": "6×1",
+                  "load": "72–76%",
+                  "note": "No variation — clean competition lift from floor"
+                },
+                {
+                  "name": "Hang Snatch (Below Knee)",
+                  "sets": "4×2",
+                  "load": "68%",
+                  "note": "Reinforce lam sweep position",
+                  "tag": "beginner",
+                  "tagText": "Scale to hang above knee"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "5×3",
+                  "load": "100–105%",
+                  "note": "Above max snatch — pure strength pull"
+                },
+                {
+                  "name": "Overhead Squat",
+                  "sets": "5×3",
+                  "load": "68–72%",
+                  "note": "Higher reps = more time under tension"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3×8",
+                  "load": "Light–Moderate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean w/ 2s Pause at Knee",
+                  "sets": "5×2",
+                  "load": "68–72%",
+                  "note": "Pause = feel lats, chest tall",
+                  "tag": "beginner",
+                  "tagText": "Great for all levels"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "5×3",
+                  "load": "100–105%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk (from rack)",
+                  "sets": "5×2",
+                  "load": "70–74%",
+                  "note": "Focus on receiving position depth"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "76–78%",
+                  "note": "Peak squat volume week"
+                },
+                {
+                  "name": "Bulgarian Split Squat",
+                  "sets": "3×8",
+                  "load": "Bodyweight–Light",
+                  "note": "Unilateral balance work"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "label": "Week 4",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 4 · Strength Push",
+            "text": "Continue building squat strength. Introduce first heavier singles on the competition lifts — still technical, not maximal."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "5×1 + 1×1",
+                  "load": "75% / 80%",
+                  "note": "5 sets at 75%, then one at 80%. Beginners: stay at 75% for all 6",
+                  "tag": "beginner",
+                  "tagText": "No extra set"
+                },
+                {
+                  "name": "Power Snatch + OHS",
+                  "sets": "4×(1+2)",
+                  "load": "65%",
+                  "note": "Land in power position, then squat the OHS"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×3",
+                  "load": "100–105%",
+                  "note": ""
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4×3",
+                  "load": "78–80%",
+                  "note": "Introduce front squat in place of OHS today"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "+light plate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "5×1 + 1×1",
+                  "load": "75% / 80%",
+                  "note": "First heavy C&J single of the cycle",
+                  "tag": "beginner",
+                  "tagText": "Stay at 75%"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×3",
+                  "load": "100–105%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk Dip + Drive (from rack)",
+                  "sets": "4×3",
+                  "load": "75%",
+                  "note": "No catch — focus on vertical dip and powerful drive",
+                  "tag": "beginner",
+                  "tagText": "Great drill for all"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "78–80%",
+                  "note": ""
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3×8",
+                  "load": "Moderate",
+                  "note": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "label": "Week 5",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 5 · Accumulation Peak",
+            "text": "Final loading week before deload. Push squat intensity. Athletes should feel challenged but not broken. Heavier optional singles for advanced athletes."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "4×1 + 2×1",
+                  "load": "76% / 82%",
+                  "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
+                  "tag": "hard",
+                  "tagText": "Advanced"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "4×2",
+                  "load": "70%",
+                  "note": ""
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "5×3",
+                  "load": "105–110%",
+                  "note": "Heaviest pulls of meso 1"
+                },
+                {
+                  "name": "Overhead Squat",
+                  "sets": "4×3",
+                  "load": "72–74%",
+                  "note": ""
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "Light plate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "4×1 + 2×1",
+                  "load": "77% / 83%",
+                  "note": "Advanced: attempt 83% singles",
+                  "tag": "hard",
+                  "tagText": "Advanced"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "5×3",
+                  "load": "105–110%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "5×2",
+                  "load": "74–76%",
+                  "note": "Crisp lockout each rep"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×2 + 1×1",
+                  "load": "80% / 85%",
+                  "note": "First heavy squat single",
+                  "tag": "beginner",
+                  "tagText": "Skip the single"
+                },
+                {
+                  "name": "Bulgarian Split Squat",
+                  "sets": "3×8",
+                  "load": "Moderate",
+                  "note": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "label": "Week 6 — Deload",
+          "intent": {
+            "colorClass": "deload",
+            "title": "Week 6 · Deload / Transition",
+            "text": "Drop volume by 40%, keep intensity moderate (65–70%). Goal is freshness heading into Phase 2. No new PRs this week. Great time to drill technique."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch / Technique",
+              "exercises": [
+                {
+                  "name": "Snatch (competition)",
+                  "sets": "4×1",
+                  "load": "68–72%",
+                  "note": "Feel the lift. No grinding"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "3×2",
+                  "load": "60–65%",
+                  "note": "Light and fast"
+                },
+                {
+                  "name": "Overhead Squat",
+                  "sets": "3×3",
+                  "load": "60–65%",
+                  "note": ""
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "2×10",
+                  "load": "Light",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "C&J / Technique",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "4×1",
+                  "load": "68–72%",
+                  "note": "Smooth. Video your athletes this week"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3×2",
+                  "load": "65%",
+                  "note": "Footwork drill focus"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3×3",
+                  "load": "65–68%",
+                  "note": "Easy and fluid"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "2×8",
+                  "load": "Light",
+                  "note": ""
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "number": "02",
+      "colorClass": "m2",
+      "title": "WEEKS 7-12 — INTENSIFICATION & PEAK",
+      "subtitle": "Weeks 7–12 · Heavy Singles · Competition Prep · Max Attempts Week 12",
+      "weeks": [
+        {
+          "number": 7,
+          "label": "Week 7",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 7 · Intensification Entry",
+            "text": "Volume drops ~20% from phase 1 peak. Singles get heavier (85%+). Squat work shifts toward heavier triples and doubles."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "5×1",
+                  "load": "80–82%",
+                  "note": "All competition lifts now. No variations as primary",
+                  "tag": "peak",
+                  "tagText": "Phase 2"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "3×2",
+                  "load": "70%",
+                  "note": "Warm-down / technique reinforcement"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×2",
+                  "load": "105%",
+                  "note": "Drop reps, keep intensity"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4×3",
+                  "load": "80–82%",
+                  "note": "Front squat becomes primary squat pattern Thu"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "Light plate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "5×1",
+                  "load": "80–82%",
+                  "note": "Competition C&J. Crisp jerk lockout",
+                  "tag": "peak",
+                  "tagText": "Phase 2"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×2",
+                  "load": "105%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4×2",
+                  "load": "78%",
+                  "note": "Volume jerk work for confidence"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×3",
+                  "load": "82–84%",
+                  "note": ""
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3×6",
+                  "load": "Moderate",
+                  "note": ""
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "label": "Week 8",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 8 · Building Intensity",
+            "text": "First 85%+ singles on snatch and C&J. Squat moves to heavy doubles. Athletes should feel the weight but move well."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "4×1 + 2×1",
+                  "load": "80% / 85%",
+                  "note": "4 at 80%, build to 2 singles at 85%",
+                  "tag": "peak",
+                  "tagText": "Phase 2"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "3×2",
+                  "load": "70%",
+                  "note": "Speed under the bar"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×2",
+                  "load": "105–108%",
+                  "note": ""
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4×2",
+                  "load": "83–85%",
+                  "note": "Doubles now"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "Light plate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "4×1 + 2×1",
+                  "load": "80% / 85–86%",
+                  "note": "Same structure as snatch day",
+                  "tag": "peak",
+                  "tagText": "Phase 2"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×2",
+                  "load": "105–108%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4×2",
+                  "load": "80%",
+                  "note": ""
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×2",
+                  "load": "85–87%",
+                  "note": "Heavy doubles"
+                },
+                {
+                  "name": "Bulgarian Split Squat",
+                  "sets": "3×6",
+                  "load": "Light–Moderate",
+                  "note": "Drop reps to 6 as squats get heavier"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "label": "Week 9",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 9 · Intensity Push",
+            "text": "Heaviest volume week of phase 2. Athletes hit 88–90% on competition lifts. Squat moves toward heavy singles for advanced, doubles for beginners."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "3×1 + 3×1",
+                  "load": "82% / 88–90%",
+                  "note": "3 at 82%, 3 heavy singles. Beginners cap at 85%",
+                  "tag": "hard",
+                  "tagText": "Advanced: 90%",
+                  "tag2": "beginner",
+                  "tagText2": "Cap at 85%"
+                },
+                {
+                  "name": "Hang Snatch",
+                  "sets": "3×2",
+                  "load": "72%",
+                  "note": "Back off set — feel the hip snap"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4×2",
+                  "load": "108–110%",
+                  "note": "Peak pull intensity"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "3×2 + 1×1",
+                  "load": "85% / 90%",
+                  "note": "Advanced: heavy single. Beginners: stay at doubles",
+                  "tag": "beginner",
+                  "tagText": "3×2 only"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "3×10",
+                  "load": "Moderate",
+                  "note": ""
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "3×1 + 3×1",
+                  "load": "82% / 88–90%",
+                  "note": "Most demanding session of the cycle",
+                  "tag": "hard",
+                  "tagText": "Advanced: 90%",
+                  "tag2": "beginner",
+                  "tagText2": "Cap at 85%"
+                },
+                {
+                  "name": "Clean Pull",
+                  "sets": "4×2",
+                  "load": "108–110%",
+                  "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4×1",
+                  "load": "83–85%",
+                  "note": "Heavy jerk singles from rack"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3×2 + 1×1",
+                  "load": "87% / 92%",
+                  "note": "Advanced: heavy single. Beginners: 3×2",
+                  "tag": "beginner",
+                  "tagText": "3×2 only"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "2×8",
+                  "load": "Moderate",
+                  "note": "Reduce volume heading into peak"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "label": "Week 10",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 10 · Competition Simulation",
+            "text": "Treat Thursday and Monday like a competition warm-up sequence. Build to a heavy single — not a true max, but as heavy as the athlete can move perfectly. Accessory work drops significantly."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch Focus",
+              "exercises": [
+                {
+                  "name": "Snatch — Build to Heavy Single",
+                  "sets": "~6–8 singles",
+                  "load": "70→90–93%",
+                  "note": "Competition-style warm-up. Stop when bar slows.",
+                  "tag": "peak",
+                  "tagText": "Simulate meet"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "3×2",
+                  "load": "65–68%",
+                  "note": "Back-off set after heavy work"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "3×2",
+                  "load": "82–85%",
+                  "note": "Reduced from last week — preserve legs"
+                },
+                {
+                  "name": "Back Extension",
+                  "sets": "2×10",
+                  "load": "Light",
+                  "note": "Recovery-minded"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "Clean & Jerk Focus",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk — Build to Heavy Single",
+                  "sets": "~6–8 singles",
+                  "load": "70→90–93%",
+                  "note": "Same competition simulation structure",
+                  "tag": "peak",
+                  "tagText": "Simulate meet"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3×1",
+                  "load": "80–83%",
+                  "note": "Back-off jerk singles"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3×2",
+                  "load": "82–85%",
+                  "note": "Reduced volume"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 11,
+          "label": "Week 11 — Taper",
+          "intent": {
+            "colorClass": "peak",
+            "title": "Week 11 · Taper",
+            "text": "Volume cuts by 50%. Intensity stays high but only 2–3 heavy singles per session. Body needs to absorb the training and feel fast. No new PRs. Get athletes feeling sharp and hungry."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "Snatch — Taper",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "4×1",
+                  "load": "80–85%",
+                  "note": "Feel the lift. No grinding. Should feel light.",
+                  "tag": "peak",
+                  "tagText": "Taper"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "3×1",
+                  "load": "70%",
+                  "note": "Fast and confident"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "3×1",
+                  "load": "83–85%",
+                  "note": "Just enough to keep legs primed"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "C&J — Taper",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk",
+                  "sets": "4×1",
+                  "load": "80–85%",
+                  "note": "Same — feel the rhythm, not the grind",
+                  "tag": "peak",
+                  "tagText": "Taper"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3×1",
+                  "load": "78–80%",
+                  "note": "Confidence builder"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "2×2",
+                  "load": "75–78%",
+                  "note": "Keep legs fresh. That's it."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "label": "Week 12 — MAX OUT",
+          "intent": {
+            "colorClass": "peak",
+            "title": "Week 12 · MAX OUT WEEK 🏆",
+            "text": "Both sessions this week are max attempt days. Warm up like a competition. Take 3 attempts on snatch Thursday, 3 attempts on C&J Monday. Record all results. Celebrate your athletes."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "mon",
+              "focus": "POLISH DAY",
+              "tableHeaders": [
+                "Attempt",
+                "Structure",
+                "Target Load",
+                "Notes"
+              ],
+              "exercises": [
+                {
+                  "name": "Warm-Up",
+                  "sets": "Singles building",
+                  "load": "50→70→80%",
+                  "note": "Take your time. Use competition timing (2 min between)."
+                },
+                {
+                  "name": "Opener (Attempt 1)",
+                  "sets": "1",
+                  "load": "87–90%",
+                  "note": "A lift you can make on your worst day. Confident and clean.",
+                  "tag": "peak",
+                  "tagText": "Must make"
+                },
+                {
+                  "name": "Second Attempt",
+                  "sets": "1",
+                  "load": "93–96%",
+                  "note": "Good lift = PR territory. Aggressive but technical."
+                },
+                {
+                  "name": "Third Attempt",
+                  "sets": "1",
+                  "load": "98–102%",
+                  "note": "Max attempt. Based on how 2nd felt. Coach calls it.",
+                  "tag": "hard",
+                  "tagText": "PR attempt"
+                },
+                {
+                  "name": "Front Squat (optional)",
+                  "sets": "2×2",
+                  "load": "75%",
+                  "note": "Only if athletes have energy. Skip for beginners."
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "thu",
+              "focus": "OLYMPIC TOTAL DAY",
+              "tableHeaders": [
+                "Attempt",
+                "Structure",
+                "Target Load",
+                "Notes"
+              ],
+              "exercises": [
+                {
+                  "name": "Warm-Up",
+                  "sets": "Singles building",
+                  "load": "50→70→80%",
+                  "note": "Same competition warm-up protocol as Thursday."
+                },
+                {
+                  "name": "Opener (Attempt 1)",
+                  "sets": "1",
+                  "load": "87–90%",
+                  "note": "Make it look easy. Build the room's energy.",
+                  "tag": "peak",
+                  "tagText": "Must make"
+                },
+                {
+                  "name": "Second Attempt",
+                  "sets": "1",
+                  "load": "93–96%",
+                  "note": "Strong clean, aggressive drive into the jerk."
+                },
+                {
+                  "name": "Third Attempt",
+                  "sets": "1",
+                  "load": "98–103%",
+                  "note": "Max C&J. Coach calls the weight after attempt 2.",
+                  "tag": "hard",
+                  "tagText": "PR attempt"
+                },
+                {
+                  "name": "Back Squat (optional)",
+                  "sets": "1×1",
+                  "load": "90%+",
+                  "note": "Optional squat max if athletes want it. Great way to close the cycle."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
