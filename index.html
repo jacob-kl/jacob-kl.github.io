@@ -40,8 +40,9 @@
   }
   .hero-bg-logo {
     position: absolute;
-    right: -30px; top: -50px;
-    height: 320px;
+    right: -20px;
+    top: 50px;
+    height: 280px;
     opacity: 0.75;
     pointer-events: none;
     user-select: none;
@@ -114,6 +115,92 @@
   }
   #cycle-select:focus { border-color: var(--accent2); }
 
+  /* ── 1RM PANEL ── */
+  .rm-panel {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 28px 40px;
+  }
+  .rm-panel-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .rm-panel-header h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--accent);
+  }
+  .rm-panel-header p {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rm-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .rm-field { display: flex; flex-direction: column; gap: 5px; }
+  .rm-field label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .rm-field input {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .rm-field input:focus { border-color: var(--accent); }
+  .rm-field input::placeholder { color: var(--muted); font-size: 12px; }
+  .rm-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  #rm-confirm {
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  #rm-confirm:hover { opacity: 0.85; }
+  #rm-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent2);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  #rm-status.visible { opacity: 1; }
+  .rm-note {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+
   /* ── LOADING / ERROR STATES ── */
   #program-body { min-height: 200px; }
   .state-message {
@@ -176,19 +263,10 @@
     gap: 20px;
     border-bottom: 1px solid var(--border);
   }
-  .meso-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 72px;
-    line-height: 1;
-    opacity: 0.15;
-  }
+  .meso-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; opacity: 0.15; }
   .meso-num.m1 { color: var(--meso1); }
   .meso-num.m2 { color: var(--meso2); }
-  .meso-info h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
-    letter-spacing: 1px;
-  }
+  .meso-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; }
   .meso-info h2.m1 { color: var(--meso1); }
   .meso-info h2.m2 { color: var(--meso2); }
   .meso-info p { font-size: 13px; color: var(--muted); max-width: 600px; margin-top: 4px; }
@@ -221,20 +299,10 @@
   /* ── WEEK CONTENT ── */
   .week-content { display: none; padding: 32px 40px; }
   .week-content.visible { display: block; }
-
-  .days-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-  }
+  .days-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
   /* ── DAY CARD ── */
-  .day-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
+  .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
   .day-header {
     display: flex;
     align-items: center;
@@ -242,11 +310,7 @@
     padding: 16px 20px;
     border-bottom: 1px solid var(--border);
   }
-  .day-label {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 1px;
-  }
+  .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
   .day-label.mon { color: var(--meso1); }
   .day-label.thu { color: var(--accent); }
   .day-focus {
@@ -270,10 +334,7 @@
     text-align: left;
     font-weight: 400;
   }
-  .ex-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.15s;
-  }
+  .ex-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
   .ex-table tbody tr:hover { background: var(--surface2); }
   .ex-table tbody tr:last-child { border-bottom: none; }
   .ex-table td { padding: 11px 12px; font-size: 13px; vertical-align: top; }
@@ -281,6 +342,15 @@
   .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); white-space: nowrap; }
   .ex-load { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); white-space: nowrap; }
   .ex-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .ex-weight {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text);
+    white-space: nowrap;
+    line-height: 1.8;
+  }
+  .ex-weight .kg { display: block; color: var(--muted); font-size: 10px; }
+  .ex-weight.empty { color: var(--muted); font-size: 10px; letter-spacing: 1px; }
 
   /* ── TAGS ── */
   .tag {
@@ -294,9 +364,9 @@
     margin-top: 3px;
     margin-right: 4px;
   }
-  .tag-beginner { background: rgba(79,195,161,0.12); color: var(--accent2); border: 1px solid rgba(79,195,161,0.25); }
-  .tag-peak     { background: rgba(232,197,71,0.12);  color: var(--accent);  border: 1px solid rgba(232,197,71,0.25); }
-  .tag-hard     { background: rgba(232,93,71,0.12);   color: var(--accent3); border: 1px solid rgba(232,93,71,0.25); }
+  .tag-beginner { background: rgba(79,195,161,0.12);  color: var(--accent2); border: 1px solid rgba(79,195,161,0.25); }
+  .tag-peak     { background: rgba(232,197,71,0.12);   color: var(--accent);  border: 1px solid rgba(232,197,71,0.25); }
+  .tag-hard     { background: rgba(232,93,71,0.12);    color: var(--accent3); border: 1px solid rgba(232,93,71,0.25); }
 
   /* ── WEEK INTENT ── */
   .week-intent {
@@ -306,10 +376,10 @@
     margin-bottom: 24px;
     border-radius: 0 4px 4px 0;
   }
-  .week-intent.m1   { border-left-color: var(--meso1); }
-  .week-intent.m2   { border-left-color: var(--meso2); }
+  .week-intent.m1     { border-left-color: var(--meso1); }
+  .week-intent.m2     { border-left-color: var(--meso2); }
   .week-intent.deload { border-left-color: var(--muted); }
-  .week-intent.peak { border-left-color: var(--accent3); }
+  .week-intent.peak   { border-left-color: var(--accent3); }
   .week-intent h4 {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
@@ -325,7 +395,6 @@
 
   /* ── MISC ── */
   .section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
-
   footer {
     padding: 32px 40px;
     border-top: 1px solid var(--border);
@@ -340,15 +409,17 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 860px) {
     .days-grid { grid-template-columns: 1fr; }
-    .hero, .week-nav, .week-content, .meso-header { padding-left: 20px; padding-right: 20px; }
+    .hero, .week-nav, .week-content, .meso-header, .rm-panel { padding-left: 20px; padding-right: 20px; }
     .overview-card, .scaling-banner { padding: 20px; }
+    .rm-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+    .hero-bg-logo { height: 160px; top: 40px; }
   }
 
   /* ── PRINT ── */
   @media print {
     body { background: white; color: black; }
     .week-content { display: block !important; }
-    .week-nav, #pw-gate { display: none; }
+    .week-nav, #pw-gate, .rm-panel { display: none; }
   }
 
   /* ── PASSWORD GATE ── */
@@ -365,8 +436,8 @@
   }
   .pw-logo {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 64px; letter-spacing: 2px; line-height: 1; color: var(--text);
-    text-align: center;
+    font-size: 64px; letter-spacing: 2px; line-height: 1;
+    color: var(--text); text-align: center;
   }
   .pw-logo span { color: var(--accent); }
   .pw-label {
@@ -397,9 +468,7 @@
     25%      { transform: translateX(-6px); }
     75%      { transform: translateX(6px); }
   }
-  #main-content {
-    filter: blur(8px); pointer-events: none; user-select: none; transition: filter 0.4s ease;
-  }
+  #main-content { filter: blur(8px); pointer-events: none; user-select: none; transition: filter 0.4s ease; }
   #main-content.unlocked { filter: none; pointer-events: auto; user-select: auto; }
 </style>
 </head>
@@ -429,21 +498,53 @@
       <div id="meta-days" class="meta-pill">—</div>
       <div id="meta-goal" class="meta-pill">—</div>
       <div id="meta-dates" class="meta-pill">—</div>
-      <!-- CYCLE DROPDOWN -->
       <div class="cycle-select-wrap">
         <label for="cycle-select">Cycle</label>
         <select id="cycle-select" onchange="loadCycle(this.value)">
           <option value="2025-spring">Spring 2025</option>
-          <!-- Add future cycles here — one line each:
+          <!-- Add future cycles here:
                <option value="2025-fall">Fall 2025</option>
-               <option value="2026-spring">Spring 2026</option>
           -->
         </select>
       </div>
     </div>
   </div>
 
-  <!-- PROGRAM BODY — populated by JavaScript -->
+  <!-- ══ 1RM PANEL ══ -->
+  <div class="rm-panel">
+    <div class="rm-panel-header">
+      <h3>Your 1RM Maxes</h3>
+      <p>Enter your maxes → hit confirm</p>
+    </div>
+    <div class="rm-grid">
+      <div class="rm-field"><label>Snatch</label><input type="number" id="rm-snatch" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Clean &amp; Jerk</label><input type="number" id="rm-cj" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Back Squat</label><input type="number" id="rm-backsquat" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Front Squat</label><input type="number" id="rm-frontsquat" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Overhead Squat</label><input type="number" id="rm-ohsquat" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Clean</label><input type="number" id="rm-clean" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Jerk</label><input type="number" id="rm-jerk" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Snatch Pull</label><input type="number" id="rm-snatchpull" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Clean Pull</label><input type="number" id="rm-cleanpull" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Strict / Push Press</label><input type="number" id="rm-press" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Good Morning</label><input type="number" id="rm-goodmorning" placeholder="lbs" min="0"></div>
+      <div class="rm-field"><label>Deadlift</label><input type="number" id="rm-deadlift" placeholder="lbs" min="0"></div>
+    </div>
+    <div class="rm-actions">
+      <button id="rm-confirm" onclick="confirmMaxes()">CONFIRM MAXES</button>
+      <div class="cycle-select-wrap">
+        <label for="unit-select">Units</label>
+        <select id="unit-select" onchange="changeUnit(this.value)">
+          <option value="lbs" selected>lbs</option>
+          <option value="kg">kg</option>
+        </select>
+      </div>
+      <span id="rm-status">✓ Saved</span>
+    </div>
+    <p class="rm-note">Maxes are saved in your browser and will still be here next time you visit.</p>
+  </div>
+
+  <!-- PROGRAM BODY -->
   <div id="program-body">
     <div class="state-message">Loading program…</div>
   </div>
@@ -477,83 +578,183 @@ function checkPassword() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Enter key on password input
   document.getElementById('pw-input').addEventListener('keydown', e => {
     if (e.key === 'Enter') checkPassword();
   });
-  // Stay unlocked in same session
   if (sessionStorage.getItem('unlocked') === 'true') {
     document.getElementById('pw-gate').classList.add('hidden');
     document.getElementById('main-content').classList.add('unlocked');
   }
-  // Load the default cycle (first option in the dropdown)
-  const select = document.getElementById('cycle-select');
-  loadCycle(select.value);
+  loadSavedMaxes();
+  try {
+    const savedUnit = localStorage.getItem('kiloclub_unit');
+    if (savedUnit) { const sel = document.getElementById('unit-select'); if (sel) sel.value = savedUnit; }
+  } catch(e) {}
+  loadCycle(document.getElementById('cycle-select').value);
 });
 
 
 // ─────────────────────────────────────────
+//  1RM MAXES
+// ─────────────────────────────────────────
+
+// Maps exercise name keywords to the right 1RM input
+// More specific entries must come before general ones
+const RM_MAP = [
+  { keys: ['snatch pull'],                      id: 'rm-snatchpull'  },
+  { keys: ['clean pull'],                       id: 'rm-cleanpull'   },
+  { keys: ['overhead squat', 'ohs'],            id: 'rm-ohsquat'     },
+  { keys: ['front squat'],                      id: 'rm-frontsquat'  },
+  { keys: ['back squat'],                       id: 'rm-backsquat'   },
+  { keys: ['clean & jerk', 'clean and jerk'],   id: 'rm-cj'          },
+  { keys: ['jerk'],                             id: 'rm-jerk'        },
+  { keys: ['clean'],                            id: 'rm-clean'       },
+  { keys: ['snatch'],                           id: 'rm-snatch'      },
+  { keys: ['strict press', 'push press', 'push jerk'], id: 'rm-press' },
+  { keys: ['good morning'],                     id: 'rm-goodmorning' },
+  { keys: ['deadlift'],                         id: 'rm-deadlift'    },
+];
+
+let currentMaxes = {};
+
+function loadSavedMaxes() {
+  try {
+    const saved = localStorage.getItem('kiloclub_maxes');
+    if (saved) {
+      currentMaxes = JSON.parse(saved);
+      Object.entries(currentMaxes).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el && val) el.value = val;
+      });
+    }
+  } catch(e) {}
+}
+
+function confirmMaxes() {
+  ['rm-snatch','rm-cj','rm-backsquat','rm-frontsquat','rm-ohsquat',
+   'rm-clean','rm-jerk','rm-snatchpull','rm-cleanpull','rm-press',
+   'rm-goodmorning','rm-deadlift'].forEach(id => {
+    const el = document.getElementById(id);
+    currentMaxes[id] = el && el.value ? parseFloat(el.value) : null;
+  });
+  try { localStorage.setItem('kiloclub_maxes', JSON.stringify(currentMaxes)); } catch(e) {}
+  updateAllWeightCells();
+  const status = document.getElementById('rm-status');
+  status.classList.add('visible');
+  setTimeout(() => status.classList.remove('visible'), 2500);
+}
+
+function getMaxForExercise(exerciseName) {
+  const name = exerciseName.toLowerCase();
+  for (const entry of RM_MAP) {
+    if (entry.keys.some(k => name.includes(k))) {
+      return currentMaxes[entry.id] || null;
+    }
+  }
+  return null;
+}
+
+function parsePercentages(loadStr) {
+  const matches = loadStr.match(/\d+\.?\d*/g);
+  if (!matches) return [];
+  return matches.map(Number).filter(n => n > 0 && n <= 120);
+}
+
+function getUnit() {
+  const sel = document.getElementById('unit-select');
+  return sel ? sel.value : 'lbs';
+}
+
+function changeUnit(unit) {
+  try { localStorage.setItem('kiloclub_unit', unit); } catch(e) {}
+  updateAllWeightCells();
+}
+
+function calcWeight(loadStr, max) {
+  if (!max || max <= 0) return null;
+  const pcts = parsePercentages(loadStr);
+  if (pcts.length === 0) return null;
+  const unit     = getUnit();
+  const low_lbs  = pcts[0] / 100 * max;
+  const high_lbs = pcts[pcts.length - 1] / 100 * max;
+  if (unit === 'kg') {
+    const low  = Math.round(low_lbs  / 2.205);
+    const high = Math.round(high_lbs / 2.205);
+    if (pcts.length === 1 || low === high) return `${low} kg`;
+    return `${low}–${high} kg`;
+  } else {
+    const low  = Math.round(low_lbs);
+    const high = Math.round(high_lbs);
+    if (pcts.length === 1 || low === high) return `${low} lbs`;
+    return `${low}–${high} lbs`;
+  }
+}
+
+function updateAllWeightCells() {
+  document.querySelectorAll('.weight-cell').forEach(cell => {
+    const max = getMaxForExercise(cell.getAttribute('data-ex'));
+    const result = calcWeight(cell.getAttribute('data-load'), max);
+    if (result) {
+      cell.innerHTML = result;
+      cell.classList.remove('empty');
+    } else {
+      cell.innerHTML = '—';
+      cell.classList.add('empty');
+    }
+  });
+}
+
+
+// ─────────────────────────────────────────
 //  CYCLE LOADER
-//  Fetches cycles/<id>.json and renders it
 // ─────────────────────────────────────────
 function loadCycle(cycleId) {
   const body = document.getElementById('program-body');
   body.innerHTML = '<div class="state-message">Loading program…</div>';
-
   fetch('cycles/' + cycleId + '.json')
-    .then(response => {
-      if (!response.ok) throw new Error('File not found');
-      return response.json();
-    })
-    .then(data => {
-      renderCycle(data);
-    })
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(data => renderCycle(data))
     .catch(() => {
-      body.innerHTML = '<div class="state-message error">Could not load cycle data. Make sure the file cycles/' + cycleId + '.json exists in your repo.</div>';
+      body.innerHTML = '<div class="state-message error">Could not load cycle. Make sure cycles/' + cycleId + '.json exists in your repo.</div>';
     });
 }
 
 
 // ─────────────────────────────────────────
 //  RENDERER
-//  Takes cycle JSON and builds the HTML
 // ─────────────────────────────────────────
 function renderCycle(cycle) {
-  // Update hero meta pills
-  document.getElementById('meta-days').innerHTML   = '<strong>' + cycle.days + '</strong>';
-  document.getElementById('meta-goal').innerHTML   = 'Goal: <strong>' + cycle.goal + '</strong>';
-  document.getElementById('meta-dates').innerHTML  = 'Dates: <strong>' + cycle.dates + '</strong>';
+  document.getElementById('meta-days').innerHTML  = '<strong>' + cycle.days + '</strong>';
+  document.getElementById('meta-goal').innerHTML  = 'Goal: <strong>' + cycle.goal + '</strong>';
+  document.getElementById('meta-dates').innerHTML = 'Dates: <strong>' + cycle.dates + '</strong>';
   document.getElementById('footer-left').textContent = 'Kilo Club · ' + cycle.name + ' · Class Program';
 
   let html = '';
 
-  // Overview cards (one per phase)
+  // Overview cards
   html += '<div class="overview">';
   cycle.phases.forEach(phase => {
-    html += `
-      <div class="overview-card">
-        <h3>${phase.title.split('—')[0].trim()}</h3>
-        <div class="big" style="color:var(--${phase.colorClass === 'm1' ? 'meso1' : 'meso2'})">${phase.colorClass === 'm1' ? 'ACCUMULATION' : 'PEAK'}</div>
-        <p>${phase.colorClass === 'm1'
-          ? 'Accumulation & technical development. Higher volume, positional pulls, paused variations, back squat base. Athletes learn movement patterns and build work capacity.'
-          : 'Intensification & competition prep. Volume drops, intensity climbs. Competition lifts dominate. Final week is max-out week — athletes attempt new 1RMs.'
-        }</p>
-      </div>`;
+    html += `<div class="overview-card">
+      <h3>${phase.title.split('—')[0].trim()}</h3>
+      <div class="big" style="color:var(--${phase.colorClass === 'm1' ? 'meso1' : 'meso2'})">${phase.colorClass === 'm1' ? 'ACCUMULATION' : 'PEAK'}</div>
+      <p>${phase.colorClass === 'm1'
+        ? 'Accumulation & technical development. Higher volume, positional pulls, paused variations, back squat base. Athletes learn movement patterns and build work capacity.'
+        : 'Intensification & competition prep. Volume drops, intensity climbs. Competition lifts dominate. Final week is max-out week — athletes attempt new 1RMs.'
+      }</p>
+    </div>`;
   });
-  html += `
-    <div class="overview-card">
-      <h3>Day Structure</h3>
-      <p><strong>Thursday</strong> — Snatch focus + front/overhead squat<br><strong>Monday</strong> — Clean &amp; Jerk focus + back squat + accessory</p>
-    </div>
-    <div class="overview-card">
-      <h3>Load Notation</h3>
-      <p>All loads are <strong>% of athlete's 1RM</strong>. Beginners without a true 1RM should use a challenging but technically clean working weight.</p>
-    </div>
+  html += `<div class="overview-card">
+    <h3>Day Structure</h3>
+    <p><strong>Thursday</strong> — Snatch focus + front/overhead squat<br><strong>Monday</strong> — Clean &amp; Jerk focus + back squat + accessory</p>
+  </div>
+  <div class="overview-card">
+    <h3>Load Notation</h3>
+    <p>All loads are <strong>% of athlete's 1RM</strong>. Enter your maxes above to see exact weights auto-filled throughout.</p>
+  </div>
   </div>`;
 
   // Scaling banner
-  html += `
-  <div class="scaling-banner">
+  html += `<div class="scaling-banner">
     <h3>Beginner Scaling Guide</h3>
     <p><strong>No 1RM?</strong> Use a weight where you can maintain full technique for all sets. Add 2.5–5 lbs per week if form holds. <strong>Paused/tempo variations</strong> should feel slow and controlled — drop weight 10–15% from your normal working load. <strong>Skip complex combinations</strong> (e.g. 3-position lifts) if new — do the competition lift instead at the same load.</p>
   </div>`;
@@ -561,9 +762,7 @@ function renderCycle(cycle) {
   // Each phase
   cycle.phases.forEach((phase, phaseIndex) => {
     if (phaseIndex > 0) html += '<hr class="section-divider">';
-
-    html += `
-    <div class="meso-header">
+    html += `<div class="meso-header">
       <div class="meso-num ${phase.colorClass}">${phase.number}</div>
       <div class="meso-info">
         <h2 class="${phase.colorClass}">${phase.title}</h2>
@@ -571,25 +770,28 @@ function renderCycle(cycle) {
       </div>
     </div>`;
 
-    // Week tab buttons
+    // Week tabs
     html += `<div class="week-nav" id="nav-${phase.id}">`;
     phase.weeks.forEach(week => {
       const isFirst = week.number === phase.weeks[0].number;
-      html += `<button class="week-btn ${isFirst ? 'active ' + phase.colorClass : ''}" onclick="showWeek('${phase.id}', ${week.number}, this, '${phase.colorClass}')">${week.label}</button>`;
+      html += `<button class="week-btn ${isFirst ? 'active ' + phase.colorClass : ''}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}</button>`;
     });
     html += '</div>';
 
-    // Week content panels
-    phase.weeks.forEach((week, weekIndex) => {
-      const isFirst = weekIndex === 0;
-      html += `<div class="week-content ${isFirst ? 'visible' : ''}" id="${phase.id}-w${week.number}">`;
+    // Week panels
+    phase.weeks.forEach((week, wi) => {
+      html += `<div class="week-content ${wi === 0 ? 'visible' : ''}" id="${phase.id}-w${week.number}">`;
       html += `<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
       html += '<div class="days-grid">';
 
       week.days.forEach(day => {
-        const headers = day.tableHeaders || ['Exercise', 'Sets×Reps', 'Load', 'Notes'];
-        html += `
-        <div class="day-card">
+        // Insert Weight column header between Load and Notes
+        const rawHeaders = day.tableHeaders || ['Exercise', 'Sets×Reps', 'Load', 'Notes'];
+        let headers = [...rawHeaders];
+        const loadIdx = headers.indexOf('Load');
+        if (loadIdx !== -1) headers.splice(loadIdx + 1, 0, 'Weight');
+
+        html += `<div class="day-card">
           <div class="day-header">
             <div class="day-label ${day.colorClass}">${day.label}</div>
             <div class="day-focus">${day.focus}</div>
@@ -599,21 +801,31 @@ function renderCycle(cycle) {
             <tbody>`;
 
         day.exercises.forEach(ex => {
-          let noteCells = ex.note || '';
-          if (ex.tag)  noteCells += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
-          if (ex.tag2) noteCells += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
+          const max = getMaxForExercise(ex.name);
+          const weightResult = calcWeight(ex.load, max);
+          const safeEx   = ex.name.replace(/"/g, '&quot;');
+          const safeLoad = ex.load.replace(/"/g, '&quot;');
+          const weightTD = weightResult
+            ? `<td class="ex-weight weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${weightResult}</td>`
+            : `<td class="ex-weight empty weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">—</td>`;
+
+          let noteHTML = ex.note || '';
+          if (ex.tag)  noteHTML += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
+          if (ex.tag2) noteHTML += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
+
           html += `<tr>
             <td class="ex-name">${ex.name}</td>
             <td class="ex-sets">${ex.sets}</td>
             <td class="ex-load">${ex.load}</td>
-            <td class="ex-note">${noteCells}</td>
+            ${weightTD}
+            <td class="ex-note">${noteHTML}</td>
           </tr>`;
         });
 
         html += '</tbody></table></div>';
       });
 
-      html += '</div></div>'; // close days-grid + week-content
+      html += '</div></div>';
     });
   });
 
@@ -625,11 +837,8 @@ function renderCycle(cycle) {
 //  WEEK TAB SWITCHER
 // ─────────────────────────────────────────
 function showWeek(phaseId, weekNum, btn, colorClass) {
-  // Hide all week panels for this phase
   document.querySelectorAll('[id^="' + phaseId + '-w"]').forEach(el => el.classList.remove('visible'));
-  // Deactivate all tab buttons for this phase
-  document.querySelectorAll('#nav-' + phaseId + ' .week-btn').forEach(b => b.classList.remove('active', 'm1', 'm2'));
-  // Show selected panel and activate button
+  document.querySelectorAll('#nav-' + phaseId + ' .week-btn').forEach(b => b.classList.remove('active','m1','m2'));
   const panel = document.getElementById(phaseId + '-w' + weekNum);
   if (panel) panel.classList.add('visible');
   btn.classList.add('active', colorClass);
