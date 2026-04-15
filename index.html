@@ -558,7 +558,6 @@ function renderCycle(cycle) {
         day.exercises.forEach((ex, ei) => {
           // If this is a group to display together in one row
           if (ex.group && ex.displayTogether && Array.isArray(ex.exercises)) {
-            // Build each cell's content as a multi-line string
             const nameCell = ex.exercises.map(gex => gex.name).join('<br>');
             const setsCell = ex.exercises.map(gex => gex.sets).join('<br>');
             const loadCell = ex.exercises.map(gex => gex.load).join('<br>');
@@ -587,10 +586,10 @@ function renderCycle(cycle) {
               <td class="ex-weight">${weightCell}</td>
               ${!isAdmin ? `<td class="ex-note">${noteCell}</td>` : ''}
             </tr>`;
-            return; // Skip to next exercise
+            return; // <--- THIS IS IMPORTANT!
           }
         
-          // ...existing code for normal (non-grouped) exercises...
+          // Only render normal rows for non-group exercises
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
           const safeEx   = ex.name.replace(/"/g,'"');
