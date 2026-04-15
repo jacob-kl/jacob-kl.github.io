@@ -390,11 +390,11 @@ function loadView() {
   if (currentView === 'admin') {
     // Admin personal program — no cycle dropdown needed
     document.getElementById('cycle-select-wrap').style.display = 'none';
-    fetch('cycles/admin-program.json')
+    fetch('cycles/admin_2025-spring.json')
       .then(r => { if (!r.ok) throw new Error(); return r.json(); })
       .then(data => renderCycle(data))
       .catch(() => {
-        document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program. Make sure cycles/admin-program.json exists.</div>';
+        document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program. Make sure cycles/admin_2025-spring.json exists.</div>';
       });
   } else {
     document.getElementById('cycle-select-wrap').style.display = 'flex';
