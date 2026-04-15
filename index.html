@@ -368,10 +368,130 @@
     .week-content { display: block !important; }
     .week-nav { display: none; }
   }
+
+  /* PASSWORD GATE */
+  #pw-gate {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  #pw-gate.hidden { display: none; }
+ 
+  .pw-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+    max-width: 360px;
+    padding: 0 24px;
+  }
+  .pw-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    letter-spacing: 2px;
+    line-height: 1;
+    color: var(--text);
+  }
+  .pw-logo span { color: var(--accent); }
+  .pw-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .pw-input-wrap {
+    width: 100%;
+    position: relative;
+  }
+  #pw-input {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'DM Mono', monospace;
+    font-size: 15px;
+    letter-spacing: 4px;
+    padding: 14px 48px 14px 18px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+    text-align: center;
+  }
+  #pw-input::placeholder {
+    letter-spacing: 2px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  #pw-input:focus { border-color: var(--accent); }
+  #pw-input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
+  #pw-btn {
+    width: 100%;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 3px;
+    border: none;
+    padding: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  #pw-btn:hover { opacity: 0.85; }
+  #pw-error {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--accent3);
+    text-transform: uppercase;
+    min-height: 16px;
+    text-align: center;
+  }
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    75% { transform: translateX(6px); }
+  }
+ 
+  /* Blur content while locked */
+  #main-content {
+    filter: blur(8px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.4s ease;
+  }
+  #main-content.unlocked {
+    filter: none;
+    pointer-events: auto;
+    user-select: auto;
+  }
 </style>
 </head>
 <body>
 
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo">12-WEEK<br><span>PEAK</span></div>
+    <div class="pw-label">Enter password to access</div>
+    <div class="pw-input-wrap">
+      <input type="password" id="pw-input" placeholder="password" autocomplete="off" />
+    </div>
+    <button id="pw-btn" onclick="checkPassword()">ENTER</button>
+    <div id="pw-error"></div>
+  </div>
+</div>
+ 
+<!-- MAIN CONTENT (blurred until unlocked) -->
+<div id="main-content">
+ 
 <div class="hero">
   <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
   <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
@@ -949,26 +1069,53 @@
   <p>Loads = % of individual 1RM · Scale as needed</p>
 </footer>
 
+</div><!-- end #main-content -->
+ 
 <script>
-function showWeek(meso, weekNum, btn) {
-  // Hide all week contents for this meso
-  const prefix = meso + '-w';
-  document.querySelectorAll('[id^="' + prefix + '"]').forEach(el => {
-    el.classList.remove('visible');
+  const PASSWORD = 'barbell';
+ 
+  function checkPassword() {
+    const input = document.getElementById('pw-input');
+    const error = document.getElementById('pw-error');
+    if (input.value === PASSWORD) {
+      document.getElementById('pw-gate').classList.add('hidden');
+      document.getElementById('main-content').classList.add('unlocked');
+      sessionStorage.setItem('unlocked', 'true');
+    } else {
+      error.textContent = 'Incorrect password';
+      input.classList.add('error');
+      input.value = '';
+      setTimeout(() => input.classList.remove('error'), 400);
+    }
+  }
+ 
+  // Allow Enter key
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('pw-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') checkPassword();
+    });
+    // Stay unlocked within the session
+    if (sessionStorage.getItem('unlocked') === 'true') {
+      document.getElementById('pw-gate').classList.add('hidden');
+      document.getElementById('main-content').classList.add('unlocked');
+    }
   });
-  // Deactivate all buttons in this nav
-  const navId = 'nav-' + meso;
-  document.querySelectorAll('#' + navId + ' .week-btn').forEach(b => {
-    b.classList.remove('active');
-  });
-  // Show target week
-  document.getElementById(meso + '-w' + weekNum).classList.add('visible');
-  // Activate button
-  btn.classList.add('active');
-  btn.classList.add(meso);
-}
+ 
+  function showWeek(meso, weekNum, btn) {
+    const prefix = meso + '-w';
+    document.querySelectorAll('[id^="' + prefix + '"]').forEach(el => {
+      el.classList.remove('visible');
+    });
+    const navId = 'nav-' + meso;
+    document.querySelectorAll('#' + navId + ' .week-btn').forEach(b => {
+      b.classList.remove('active');
+    });
+    document.getElementById(meso + '-w' + weekNum).classList.add('visible');
+    btn.classList.add('active');
+    btn.classList.add(meso);
+  }
 </script>
-
+ 
 </body>
 </html>
 
