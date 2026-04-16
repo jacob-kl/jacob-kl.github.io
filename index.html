@@ -789,9 +789,7 @@ function updateViewLabels() {
   const namePill  = document.getElementById('member-name-pill');
   const greeting  = document.getElementById('member-greeting');
   if (currentView === 'admin') {
-    if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Competitor Program';
-    if (namePill)  { namePill.classList.remove('visible'); }
-    if (greeting)  { greeting.innerHTML = ''; }
+
   } else {
     if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Class Program';
     if (namePill && memberName) {
