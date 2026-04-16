@@ -231,6 +231,7 @@ h1 span { color: var(--accent); }
    DAY CARD
 ══════════════════════════════════ */
 .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: var(--card-shadow); }
+.day-card .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .day-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
 .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
 .day-label.mon { color: var(--meso1); } .day-label.thu { color: var(--accent); }
@@ -286,13 +287,15 @@ tr[data-ss="3"] td:first-child { border-left-color: var(--ss3); }
 .ss-badge-3 { color: var(--ss3); background: var(--ss3a); border: 1px solid var(--ss3b); }
 
 /* ══════════════════════════════════
-   WAVE ROWS — grouped, multiline
+   WAVE ROWS — lift name left, waves right
 ══════════════════════════════════ */
 .wave-group { display: flex; flex-direction: column; gap: 2px; }
 .wave-line { display: flex; gap: 8px; align-items: baseline; }
 .wave-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
 .wave-sets  { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); }
 .wave-load  { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); }
+.wave-name-cell { display: flex; align-items: center; height: 100%; }
+.wave-base-name { color: var(--text); font-size: 13px; font-weight: 400; }
 
 /* ══════════════════════════════════
    LOG LIFT BUTTON
@@ -303,7 +306,13 @@ tr[data-ss="3"] td:first-child { border-left-color: var(--ss3); }
   color: var(--muted); border-radius: 3px; padding: 4px 8px;
   cursor: pointer; font-family: 'DM Mono', monospace; font-size: 10px;
   letter-spacing: 1px; text-transform: uppercase; gap: 4px;
-  transition: all 0.15s; white-space: nowrap;
+  transition: all 0.15s; white-space: nowrap; min-width: 60px;
+}
+/* Log column — never collapse */
+.ex-table th:last-child,
+.ex-table td:last-child {
+  min-width: 70px;
+  white-space: nowrap;
 }
 .log-btn:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(79,195,161,0.07); }
 .log-btn svg { width: 12px; height: 12px; }
@@ -493,7 +502,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
     <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
     <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
     <div class="hero-meta">
-      <div class="meta-pill"><strong>2</strong> Days / Week</div>
+      <div class="meta-pill" id="meta-days-per-week"><strong>2</strong> Days / Week</div>
       <div id="meta-days" class="meta-pill">—</div>
       <div id="meta-goal" class="meta-pill">—</div>
       <div id="meta-dates" class="meta-pill">—</div>
@@ -956,6 +965,10 @@ function renderCycle(cycle) {
   document.getElementById('meta-goal').innerHTML  = 'Goal: <strong>' + cycle.goal + '</strong>';
   document.getElementById('meta-dates').innerHTML = 'Dates: <strong>' + cycle.dates + '</strong>';
   document.getElementById('footer-left').textContent = 'Kilo Club · ' + cycle.name + ' · Class Program';
+  // Days per week — count slash-separated days
+  const daysPerWeek = cycle.days.split('/').length;
+  const dpwEl = document.getElementById('meta-days-per-week');
+  if (dpwEl) dpwEl.innerHTML = `<strong>${daysPerWeek}</strong> Days / Week`;
 
   const isAdmin = currentView === 'admin';
   let html = '';
@@ -1006,7 +1019,7 @@ function renderCycle(cycle) {
         const focusHtml = day.focus ? `<div class="day-focus">${day.focus}</div>` : '';
         html += `<div class="day-card">
           <div class="day-header"><div class="day-label ${day.colorClass}">${day.label}</div>${focusHtml}</div>
-          <table class="ex-table">
+          <div class="table-wrap"><table class="ex-table">
           <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
           <tbody>`;
 
@@ -1042,28 +1055,49 @@ function renderCycle(cycle) {
               ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`
               : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
 
-            // Build wave group display
-            const waveLines = waveGroup.map(w => {
-              const wLabel = w.name.match(/Wave \d+/)?.[0] || 'Wave';
+            // Build wave group display — lift name once on left (centered), waves stacked on right
+            const noteTD = !isAdmin ? `<td class="ex-note">${ex.note||''}</td>` : '';
+            const waveCount = waveGroup.length;
+
+            // Name cell: lift name once, vertically centered via CSS
+            const nameCellContent = `<div class="wave-name-cell"><span class="wave-base-name">${baseName || ex.name}</span></div>`;
+
+            // Sets cell: wave label + sets stacked
+            const setsCellContent = `<div class="wave-group">${waveGroup.map(w => {
+              const wl = w.name.match(/Wave \d+/)?.[0] || 'Wave';
+              return `<div class="wave-line"><span class="wave-label">${wl}</span><span class="wave-sets">${w.sets}</span></div>`;
+            }).join('')}</div>`;
+
+            // Load cell
+            const loadCellContent = `<div class="wave-group">${waveGroup.map(w =>
+              `<div class="wave-line"><span class="wave-load">${w.load}</span></div>`
+            ).join('')}</div>`;
+
+            // Weight cell
+            const weightCellContent = `<div class="wave-group">${waveGroup.map(w => {
               const max = getMaxForExercise(baseName || w.name);
               const wt = calcWeight(w.load, max) || '—';
-              return `<div class="wave-line"><span class="wave-label">${wLabel}</span><span class="wave-sets">${w.sets}</span><span class="wave-load">${w.load}</span>&nbsp;<span class="ex-weight ${wt==='—'?'empty':''} weight-cell" data-ex="${(baseName||w.name).replace(/"/g,'&quot;')}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;
-            }).join('');
+              return `<div class="wave-line"><span class="ex-weight ${wt==='—'?'empty':''} weight-cell" data-ex="${(baseName||w.name).replace(/"/g,'&quot;')}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;
+            }).join('')}</div>`;
 
-            const noteTD = !isAdmin ? `<td class="ex-note">${ex.note||''}</td>` : '';
             html += `<tr>
-              <td class="ex-name"><div class="wave-group">${waveGroup.map(w=>{const wl=w.name.match(/Wave \d+/)?.[0]||'Wave'; return `<div class="wave-line"><span class="wave-label">${wl}</span><span style="color:var(--text);font-size:13px">${baseName||w.name}</span></div>`;}).join('')}</div></td>
-              <td><div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`).join('')}</div></td>
-              <td><div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-load">${w.load}</span></div>`).join('')}</div></td>
-              <td><div class="wave-group">${waveGroup.map(w=>{const max=getMaxForExercise(baseName||w.name);const wt=calcWeight(w.load,max)||'—';return `<div class="wave-line"><span class="ex-weight ${wt==='—'?'empty':''} weight-cell" data-ex="${(baseName||w.name).replace(/"/g,'&quot;')}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;}).join('')}</div></td>
+              <td class="ex-name" style="vertical-align:middle">${nameCellContent}</td>
+              <td style="vertical-align:top">${setsCellContent}</td>
+              <td style="vertical-align:top">${loadCellContent}</td>
+              <td style="vertical-align:top">${weightCellContent}</td>
               ${noteTD}
-              <td><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${(baseName||ex.name).replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${getMaxIdForExercise(baseName||ex.name)||''}','${lk}')">${logBtnInner}</button></td>
+              <td style="vertical-align:middle"><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${(baseName||ex.name).replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${getMaxIdForExercise(baseName||ex.name)||''}','${lk}')">${logBtnInner}</button></td>
             </tr>`;
             continue;
           }
 
           // ── Normal row ──
-          const isSSStart = ex.superset === true;
+          // Superset logic:
+          // superset:true on first item of group = ss-start
+          // superset:true on subsequent items (while already in group) = ss-mid
+          // supersetEnd:true = ss-end, closes the group
+          const isSSStart = ex.superset === true && ssGroupIdx < 0;
+          const isSSMidFlag = ex.superset === true && ssGroupIdx >= 0; // continuation
           const isSSEnd   = ex.supersetEnd === true;
           let ssClass = '', ssAttr = '';
 
@@ -1074,13 +1108,15 @@ function renderCycle(cycle) {
           } else if (isSSEnd) {
             const ci = Math.max(0, ssGroupIdx) % 4;
             ssClass = 'ss-end'; ssAttr = `data-ss="${ci}"`;
-            ssGroupIdx = -1; // reset after group ends so next group increments
-          } else if (ssGroupIdx >= 0) {
-            const ci = ssGroupIdx % 4;
+            // don't reset yet — reset happens after we render this row
+          } else if (isSSMidFlag || ssGroupIdx >= 0) {
+            const ci = Math.max(0, ssGroupIdx) % 4;
             ssClass = 'ss-mid'; ssAttr = `data-ss="${ci}"`;
           }
 
-          const ssBadge = isSSStart ? `<span class="ss-badge ss-badge-${ssGroupIdx%4}">superset</span>` : '';
+          const ci = ssGroupIdx >= 0 ? ssGroupIdx % 4 : 0;
+          // Badge on start item only
+          const ssBadge = isSSStart ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
 
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
@@ -1115,10 +1151,11 @@ function renderCycle(cycle) {
             ${noteTD}
             <td><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${ex.name.replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${rmId}','${lk}')">${logBtnInner}</button></td>
           </tr>`;
+          if (isSSEnd) ssGroupIdx = -1; // reset after row is emitted
           i++;
         }
 
-        html += '</tbody></table>';
+        html += '</tbody></table></div>'; // close table-wrap
 
         // Daily notes — admin only
         if (isAdmin) {
