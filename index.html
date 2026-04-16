@@ -716,86 +716,59 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
 </div>
 
 <!-- ══ NUTRITION TRACKER ══ -->
-<div id="nutrition-panel" style="display:none; padding:32px 40px;">
-  <div style="max-width:900px;margin:0 auto;">
-    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
-      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--accent);">DAILY TRACKER</h2>
-      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Bodyweight · Calories · Macros</p>
-    </div>
-
-    <!-- Entry form -->
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:24px;">
-      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Log Today</div>
-      <div id="nut-date-display" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:16px;"></div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:16px;">
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Bodyweight</label>
-          <div style="display:flex;align-items:center;gap:6px;">
-            <input type="number" id="nut-bw" placeholder="lbs" step="0.1" min="0"
-              style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
-              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-            <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;" id="nut-bw-unit">lbs</span>
-          </div>
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Calories</label>
-          <input type="number" id="nut-cal" placeholder="kcal" min="0"
-            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Protein (g)</label>
-          <input type="number" id="nut-pro" placeholder="g" min="0"
-            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Carbs (g)</label>
-          <input type="number" id="nut-carb" placeholder="g" min="0"
-            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Fat (g)</label>
-          <input type="number" id="nut-fat" placeholder="g" min="0"
-            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
-        <div>
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Notes</label>
-          <input type="text" id="nut-note" placeholder="optional"
-            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 10px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
-        </div>
+<div id="nutrition-panel" style="display:none; padding:32px 40px 60px;">
+  <div style="max-width:960px;margin:0 auto;">
+    <!-- Header row -->
+    <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:baseline;gap:16px;">
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--accent);margin:0;">DAILY TRACKER</h2>
+        <span id="nut-date-display" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);"></span>
       </div>
-      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
-        <button onclick="saveNutritionEntry()" style="background:var(--accent);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;border:none;padding:10px 28px;border-radius:2px;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">LOG DAY</button>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Calorie Target</label>
-          <input type="number" id="nut-target" placeholder="e.g. 3200" min="0"
-            style="width:90px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:6px 8px;border-radius:2px;outline:none;"
-            onfocus="this.style.borderColor='var(--accent)'" onblur="saveNutTarget()">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Bodyweight</label>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <input type="number" id="nut-bw" placeholder="lbs" step="0.1" min="0" style="width:72px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:6px 8px;border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+          <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">lbs</span>
         </div>
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Target Cal</label>
+        <input type="number" id="nut-target" placeholder="3200" min="0" style="width:72px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:6px 8px;border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="saveNutTarget()">
         <span id="nut-save-status" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--accent2);opacity:0;transition:opacity 0.3s;"></span>
       </div>
     </div>
 
-    <!-- Charts -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Bodyweight (30 days)</div>
-        <canvas id="nut-bw-chart" style="width:100%;height:160px;"></canvas>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Calories (30 days)</div>
-        <canvas id="nut-cal-chart" style="width:100%;height:160px;"></canvas>
+    <!-- Daily totals bar -->
+    <div id="nut-totals-bar" style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 20px;margin-bottom:20px;display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Today's Total</div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap;">
+        <div style="text-align:center;"><div id="tot-cal" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--accent);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">kcal</div></div>
+        <div style="text-align:center;"><div id="tot-pro" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--accent2);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">protein g</div></div>
+        <div style="text-align:center;"><div id="tot-carb" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">carbs g</div></div>
+        <div style="text-align:center;"><div id="tot-fat" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">fat g</div></div>
       </div>
     </div>
 
-    <!-- Log table -->
+    <!-- Meals container -->
+    <div id="nut-meals-container" style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;"></div>
+
+    <!-- Add meal button -->
+    <button onclick="addMeal()" style="width:100%;background:none;border:1px dashed var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:14px;border-radius:4px;cursor:pointer;transition:all 0.2s;margin-bottom:28px;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">+ Add Meal / Snack</button>
+
+    <!-- Charts -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Bodyweight — 30 days</div>
+        <canvas id="nut-bw-chart" style="width:100%;height:160px;display:block;"></canvas>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Calories — 30 days</div>
+        <canvas id="nut-cal-chart" style="width:100%;height:160px;display:block;"></canvas>
+      </div>
+    </div>
+
+    <!-- History table -->
     <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
       <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Recent Entries</div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">History</div>
         <button onclick="clearNutritionLog()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Clear All</button>
       </div>
       <div id="nut-log-table" style="overflow-x:auto;"></div>
@@ -891,14 +864,13 @@ function doLogin() {
   const u = uEl.value.trim().toLowerCase();
   const pw = pEl.value;
 
-  // Check hardcoded users first, then registry
-  let userData = null;
   const hc = { admin:{password:'olylift',role:'admin'}, member:{password:'barbell',role:'member'} };
+  let userData = null;
   if (hc[u] && hc[u].password === pw) {
-    userData = { ...hc[u], username: u, name: u === 'admin' ? 'Admin' : '' };
+    userData = { role: hc[u].role, username: u, name: u === 'admin' ? 'Admin' : '' };
   } else {
     const reg = (() => { try { return JSON.parse(localStorage.getItem('kc_users')||'{}'); } catch(e) { return {}; } })();
-    if (reg[u] && reg[u].password === pw) userData = { ...reg[u], username: u };
+    if (reg[u] && reg[u].password === pw) userData = { role: 'member', username: u, name: reg[u].name || u };
   }
 
   if (userData) {
@@ -907,11 +879,16 @@ function doLogin() {
     sessionStorage.setItem('kc_username', u);
     document.getElementById('login-gate').classList.add('hidden');
     err.style.color = 'var(--accent3)';
+    if (currentRole === 'admin') {
+      // Admin always goes straight to app — never prompt for name
+      memberName = '';
+      requestAnimationFrame(() => requestAnimationFrame(() => initApp()));
+      return;
+    }
+    // Member: load name per-user, prompt if missing
+    try { memberName = localStorage.getItem('kc_name_' + u) || userData.name || ''; } catch(e) {}
     requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (currentRole === 'member') {
-        try { memberName = localStorage.getItem('kc_member_name') || userData.name || ''; } catch(e) {}
-        if (!memberName) { showNameModal(); return; }
-      }
+      if (!memberName) { showNameModal(); return; }
       initApp();
     }));
   } else {
@@ -924,7 +901,6 @@ function doLogin() {
 }
 
 function showNameModal() {
-  // Small delay ensures login gate display:none takes effect before modal opens
   setTimeout(() => {
     document.getElementById('name-modal-overlay').classList.add('open');
     setTimeout(() => document.getElementById('name-modal-input').focus(), 100);
@@ -933,9 +909,10 @@ function showNameModal() {
 
 function saveMemberName() {
   const val = document.getElementById('name-modal-input').value.trim();
+  const u = sessionStorage.getItem('kc_username') || 'member';
   if (val) {
     memberName = val;
-    try { localStorage.setItem('kc_member_name', val); } catch(e) {}
+    try { localStorage.setItem('kc_name_' + u, val); } catch(e) {}
   }
   document.getElementById('name-modal-overlay').classList.remove('open');
   initApp();
@@ -949,34 +926,46 @@ function skipMemberName() {
 
 function doLogout() {
   sessionStorage.removeItem('kc_role');
+  sessionStorage.removeItem('kc_username');
   currentRole = null; currentView = 'member'; memberName = '';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
-  document.getElementById('member-bar').classList.remove('visible');
-  // Clear name pill
   const pill = document.getElementById('member-name-pill');
   if (pill) { pill.classList.remove('visible'); pill.textContent = ''; }
 }
 
+// Single consolidated DOMContentLoaded — all setup here
 document.addEventListener('DOMContentLoaded', () => {
-  ['login-username','login-password'].forEach(id =>
-    document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); })
-  );
-  document.getElementById('name-modal-input').addEventListener('keydown', e => { if (e.key === 'Enter') saveMemberName(); });
+  // Login Enter key
+  ['login-username','login-password'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  });
+  // Name modal Enter key
+  const nmi = document.getElementById('name-modal-input');
+  if (nmi) nmi.addEventListener('keydown', e => { if (e.key === 'Enter') saveMemberName(); });
+  // Signup modal Enter key (openSignup defined further down in same script)
+  ['signup-username','signup-password','signup-name'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('keydown', e => { if (e.key === 'Enter') doSignup(); });
+  });
+  // Restore session
   const r = sessionStorage.getItem('kc_role');
+  const u = sessionStorage.getItem('kc_username') || '';
   if (r) {
     currentRole = r;
     document.getElementById('login-gate').classList.add('hidden');
-    if (currentRole === 'member') {
-      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+    if (currentRole === 'member' && u) {
+      try { memberName = localStorage.getItem('kc_name_' + u) || ''; } catch(e) {}
     }
     initApp();
   }
   try {
-    const u = localStorage.getItem('kiloclub_unit');
-    if (u) document.getElementById('unit-select').value = u;
+    const unit = localStorage.getItem('kiloclub_unit');
+    if (unit) document.getElementById('unit-select').value = unit;
   } catch(e) {}
 });
+
 
 function initApp() {
   if (currentRole === 'admin') {
@@ -2145,199 +2134,318 @@ function doSignup() {
   loginErr.style.color='var(--accent2)';
   document.getElementById('login-password').focus();
 }
-// Allow Enter key in signup
-document.addEventListener('DOMContentLoaded', ()=>{
-  ['signup-username','signup-password','signup-name'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.addEventListener('keydown',e=>{ if(e.key==='Enter') doSignup(); });
-  });
-});
+// Allow Enter key in signup — handled in consolidated DOMContentLoaded above
 
 
 // ══════════════════════════════════
-//  NUTRITION TRACKER
+//  NUTRITION TRACKER — Meal-based
 // ══════════════════════════════════
 const NUT_KEY        = 'kc_nutrition_log';
 const NUT_TARGET_KEY = 'kc_nut_target';
+const DEFAULT_MEALS  = ['Breakfast','Lunch','Dinner'];
+
+let nutTodayMeals = []; // array of {name, cal, pro, carb, fat, note}
 
 function loadNutLog() { try { return JSON.parse(localStorage.getItem(NUT_KEY)||'[]'); } catch(e) { return []; } }
 function saveNutLog(l) { try { localStorage.setItem(NUT_KEY, JSON.stringify(l)); } catch(e) {} }
 function saveNutTarget() {
-  const v=document.getElementById('nut-target').value;
-  if(v) try { localStorage.setItem(NUT_TARGET_KEY, v); } catch(e) {}
+  const v = document.getElementById('nut-target') && document.getElementById('nut-target').value;
+  if (v) try { localStorage.setItem(NUT_TARGET_KEY, v); } catch(e) {}
+  updateNutTotals();
 }
 
-function initNutritionPanel() {
-  const today=new Date();
-  const dateStr=today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
-  document.getElementById('nut-date-display').textContent=dateStr;
-  try { const t=localStorage.getItem(NUT_TARGET_KEY); if(t) document.getElementById('nut-target').value=t; } catch(e) {}
-  const todayKey=today.toISOString().split('T')[0];
-  const entry=loadNutLog().find(e=>e.date===todayKey);
-  if(entry) {
-    if(entry.bw)   document.getElementById('nut-bw').value=entry.bw;
-    if(entry.cal)  document.getElementById('nut-cal').value=entry.cal;
-    if(entry.pro)  document.getElementById('nut-pro').value=entry.pro;
-    if(entry.carb) document.getElementById('nut-carb').value=entry.carb;
-    if(entry.fat)  document.getElementById('nut-fat').value=entry.fat;
-    if(entry.note) document.getElementById('nut-note').value=entry.note;
-  }
+function inputStyle() {
+  return 'background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:12px;padding:6px 8px;border-radius:2px;outline:none;width:100%;transition:border-color 0.2s;';
+}
+
+function makeMealCard(meal, idx) {
+  const div = document.createElement('div');
+  div.id = 'meal-card-' + idx;
+  div.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;';
+  const isDefaultMeal = DEFAULT_MEALS.includes(meal.name);
+  div.innerHTML = `
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <input type="text" value="${meal.name}" onchange="nutUpdateMealName(${idx},this.value)"
+        style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--text);background:none;border:none;outline:none;width:auto;min-width:100px;cursor:text;"
+        onfocus="this.style.borderBottom='1px solid var(--accent)'" onblur="this.style.borderBottom='none'">
+      <button onclick="removeMeal(${idx})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:2px 6px;transition:color 0.15s;" onmouseover="this.style.color='var(--accent3)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:8px;align-items:end;">
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Description</div>
+        <input type="text" placeholder="e.g. chicken + rice" value="${meal.note||''}" onchange="nutUpdateField(${idx},'note',this.value)"
+          style="${inputStyle()}" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Calories</div>
+        <input type="number" placeholder="kcal" value="${meal.cal||''}" min="0" onchange="nutUpdateField(${idx},'cal',parseFloat(this.value)||0)"
+          style="${inputStyle()}" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Protein g</div>
+        <input type="number" placeholder="g" value="${meal.pro||''}" min="0" onchange="nutUpdateField(${idx},'pro',parseFloat(this.value)||0)"
+          style="${inputStyle()}" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Carbs g</div>
+        <input type="number" placeholder="g" value="${meal.carb||''}" min="0" onchange="nutUpdateField(${idx},'carb',parseFloat(this.value)||0)"
+          style="${inputStyle()}" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Fat g</div>
+        <input type="number" placeholder="g" value="${meal.fat||''}" min="0" onchange="nutUpdateField(${idx},'fat',parseFloat(this.value)||0)"
+          style="${inputStyle()}" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+    </div>`;
+  return div;
+}
+
+function renderMealCards() {
+  const container = document.getElementById('nut-meals-container');
+  if (!container) return;
+  container.innerHTML = '';
+  nutTodayMeals.forEach((meal, idx) => {
+    container.appendChild(makeMealCard(meal, idx));
+  });
+  updateNutTotals();
+}
+
+function nutUpdateField(idx, field, val) {
+  if (nutTodayMeals[idx]) { nutTodayMeals[idx][field] = val; }
+  updateNutTotals();
+  saveTodayMeals();
+}
+
+function nutUpdateMealName(idx, name) {
+  if (nutTodayMeals[idx]) nutTodayMeals[idx].name = name;
+  saveTodayMeals();
+}
+
+function addMeal(name) {
+  nutTodayMeals.push({ name: name || 'Snack ' + (nutTodayMeals.length - 2), cal:0, pro:0, carb:0, fat:0, note:'' });
+  renderMealCards();
+}
+
+function removeMeal(idx) {
+  nutTodayMeals.splice(idx, 1);
+  renderMealCards();
+  saveTodayMeals();
+}
+
+function updateNutTotals() {
+  const totals = nutTodayMeals.reduce((acc, m) => {
+    acc.cal  += (m.cal  || 0);
+    acc.pro  += (m.pro  || 0);
+    acc.carb += (m.carb || 0);
+    acc.fat  += (m.fat  || 0);
+    return acc;
+  }, {cal:0, pro:0, carb:0, fat:0});
+
+  const target = parseInt(localStorage.getItem(NUT_TARGET_KEY)) || 0;
+  const calColor = target && totals.cal ? (totals.cal > target ? 'var(--accent3)' : 'var(--accent2)') : 'var(--accent)';
+
+  const set = (id, val, color) => { const el = document.getElementById(id); if(el) { el.textContent = val||'—'; if(color) el.style.color=color; }};
+  set('tot-cal',  totals.cal  || null, calColor);
+  set('tot-pro',  totals.pro  || null, null);
+  set('tot-carb', totals.carb || null, null);
+  set('tot-fat',  totals.fat  || null, null);
+}
+
+function saveTodayMeals() {
+  const today = new Date().toISOString().split('T')[0];
+  const bw = parseFloat(document.getElementById('nut-bw') && document.getElementById('nut-bw').value) || null;
+  const log = loadNutLog();
+  const entry = { date: today, bw, meals: nutTodayMeals };
+  const idx = log.findIndex(e => e.date === today);
+  if (idx >= 0) log[idx] = entry; else log.push(entry);
+  log.sort((a,b) => a.date > b.date ? 1 : -1);
+  saveNutLog(log);
+  // Show save indicator
+  const s = document.getElementById('nut-save-status');
+  if (s) { s.textContent = '✓ Saved'; s.style.opacity = '1'; setTimeout(() => s.style.opacity='0', 1800); }
   renderNutritionCharts();
   renderNutritionTable();
 }
 
-function saveNutritionEntry() {
-  const today=new Date().toISOString().split('T')[0];
-  const entry={
-    date:today,
-    bw:  parseFloat(document.getElementById('nut-bw').value)||null,
-    cal: parseInt(document.getElementById('nut-cal').value)||null,
-    pro: parseInt(document.getElementById('nut-pro').value)||null,
-    carb:parseInt(document.getElementById('nut-carb').value)||null,
-    fat: parseInt(document.getElementById('nut-fat').value)||null,
-    note:document.getElementById('nut-note').value.trim()||null,
-  };
-  const log=loadNutLog();
-  const idx=log.findIndex(e=>e.date===today);
-  if(idx>=0) log[idx]=entry; else log.push(entry);
-  log.sort((a,b)=>a.date>b.date?1:-1);
-  saveNutLog(log);
-  const s=document.getElementById('nut-save-status');
-  s.textContent='✓ Saved'; s.style.opacity='1';
-  setTimeout(()=>s.style.opacity='0',2500);
-  renderNutritionCharts(); renderNutritionTable();
+// Auto-save bodyweight when changed
+function nutBwChanged() {
+  saveTodayMeals();
+}
+
+function initNutritionPanel() {
+  const today = new Date();
+  const dateEl = document.getElementById('nut-date-display');
+  if (dateEl) dateEl.textContent = today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
+  try { const t = localStorage.getItem(NUT_TARGET_KEY); if(t && document.getElementById('nut-target')) document.getElementById('nut-target').value = t; } catch(e) {}
+
+  // Load today's meals from log
+  const todayKey = today.toISOString().split('T')[0];
+  const log = loadNutLog();
+  const todayEntry = log.find(e => e.date === todayKey);
+
+  if (todayEntry) {
+    const bwEl = document.getElementById('nut-bw');
+    if (bwEl && todayEntry.bw) bwEl.value = todayEntry.bw;
+    nutTodayMeals = todayEntry.meals || DEFAULT_MEALS.map(n => ({name:n,cal:0,pro:0,carb:0,fat:0,note:''}));
+  } else {
+    nutTodayMeals = DEFAULT_MEALS.map(n => ({name:n, cal:0, pro:0, carb:0, fat:0, note:''}));
+  }
+
+  // Wire bodyweight input to auto-save
+  const bwEl = document.getElementById('nut-bw');
+  if (bwEl) { bwEl.onchange = nutBwChanged; }
+
+  renderMealCards();
+  renderNutritionCharts();
+  renderNutritionTable();
 }
 
 function clearNutritionLog() {
-  if(!confirm('Clear all nutrition entries?')) return;
-  saveNutLog([]); renderNutritionCharts(); renderNutritionTable();
+  if (!confirm('Clear all nutrition history?')) return;
+  saveNutLog([]);
+  nutTodayMeals = DEFAULT_MEALS.map(n => ({name:n,cal:0,pro:0,carb:0,fat:0,note:''}));
+  renderMealCards();
+  renderNutritionCharts(); renderNutritionTable();
 }
 
 function renderNutritionCharts() {
-  const log=loadNutLog().slice(-30);
-  const target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
-  drawLineChart('nut-bw-chart', log.map(e=>({x:e.date,y:e.bw})), 'var(--accent2)', 'lbs', null);
-  drawLineChart('nut-cal-chart', log.map(e=>({x:e.date,y:e.cal})), 'var(--accent)', 'kcal', target);
+  const log = loadNutLog().slice(-30);
+  const target = parseInt(localStorage.getItem(NUT_TARGET_KEY)) || null;
+  // Build daily totals from meals
+  const bwData  = log.map(e => ({ x:e.date, y:e.bw||null }));
+  const calData = log.map(e => {
+    const meals = e.meals || [];
+    // Legacy support: if old format had single cal field
+    const total = e.cal || meals.reduce((s,m)=>s+(m.cal||0),0);
+    return { x:e.date, y:total||null };
+  });
+  drawLineChart('nut-bw-chart',  bwData,  '#4fc3a1', 'lbs',  null);
+  drawLineChart('nut-cal-chart', calData, '#e8c547', 'kcal', target);
 }
 
+function renderNutritionTable() {
+  const log = loadNutLog().slice().reverse().slice(0,30);
+  const target = parseInt(localStorage.getItem(NUT_TARGET_KEY)) || null;
+  const el = document.getElementById('nut-log-table');
+  if (!el) return;
+  if (!log.length) {
+    el.innerHTML = '<div style="padding:28px 20px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--muted);">No entries yet.</div>';
+    return;
+  }
+  const th = s => `<th style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:8px 14px;text-align:left;font-weight:400;white-space:nowrap;">${s}</th>`;
+  const td = (s,color) => `<td style="padding:9px 14px;font-family:'DM Mono',monospace;font-size:12px;color:${color||'var(--text)'};">${s||'—'}</td>`;
+  let html = `<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:var(--surface2);">${['Date','BW','Cal','Pro','Carbs','Fat','Meals'].map(th).join('')}</tr></thead><tbody>`;
+  log.forEach(e => {
+    const meals = e.meals || [];
+    const cal  = e.cal  || meals.reduce((s,m)=>s+(m.cal||0),0)  || null;
+    const pro  = e.pro  || meals.reduce((s,m)=>s+(m.pro||0),0)  || null;
+    const carb = e.carb || meals.reduce((s,m)=>s+(m.carb||0),0) || null;
+    const fat  = e.fat  || meals.reduce((s,m)=>s+(m.fat||0),0)  || null;
+    const calColor = target&&cal?(cal>target?'var(--accent3)':'var(--accent2)'):'var(--text)';
+    const mealNames = meals.filter(m=>m.cal||m.note).map(m=>m.name).join(', ') || '—';
+    html += `<tr style="border-bottom:1px solid var(--border);">
+      ${td(e.date,'var(--muted)')}${td(e.bw?e.bw+' lbs':null)}${td(cal?cal+' kcal':null,calColor)}
+      ${td(pro?pro+'g':null)}${td(carb?carb+'g':null)}${td(fat?fat+'g':null)}
+      <td style="padding:9px 14px;font-size:11px;color:var(--muted);">${mealNames}</td>
+    </tr>`;
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+function saveNutritionEntry() { saveTodayMeals(); } // legacy alias
+
 function drawLineChart(canvasId, rawData, color, unit, targetVal) {
-  const canvas=document.getElementById(canvasId);
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
-  const rect=canvas.getBoundingClientRect();
-  const W=rect.width||300, H=160;
-  canvas.width=W*2; canvas.height=H*2;
-  ctx.scale(2,2);
-  ctx.clearRect(0,0,W,H);
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width || 300, H = 160;
+  canvas.width = W*2; canvas.height = H*2;
+  ctx.scale(2, 2);
+  ctx.clearRect(0, 0, W, H);
 
-  const pts=rawData.filter(d=>d.y!=null);
-  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
-  const borderCol=isDark?'#2a2b32':'#d6d3cb';
-  const mutedCol=isDark?'#7a7870':'#7a7870';
-  const textCol=isDark?'#e8e6df':'#1a1a1b';
+  const pts = rawData.filter(d => d.y != null);
+  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  const borderCol = isDark ? '#2a2b32' : '#d6d3cb';
+  const mutedCol  = isDark ? '#7a7870' : '#7a7870';
+  const textCol   = isDark ? '#e8e6df' : '#1a1a1b';
 
-  if(!pts.length) {
-    ctx.fillStyle=mutedCol; ctx.font='10px DM Mono,monospace'; ctx.textAlign='center';
-    ctx.fillText('No data yet',W/2,H/2); return;
+  if (!pts.length) {
+    ctx.fillStyle = mutedCol; ctx.font = '10px DM Mono,monospace'; ctx.textAlign = 'center';
+    ctx.fillText('No data yet', W/2, H/2); return;
   }
 
-  const padL=38,padR=12,padT=14,padB=22;
-  const cW=W-padL-padR, cH=H-padT-padB;
-  const vals=pts.map(d=>d.y);
-  const minV=Math.min(...vals)*0.97, maxV=Math.max(...vals)*1.03||1;
-  const range=maxV-minV||1;
+  const padL=38, padR=12, padT=14, padB=22;
+  const cW = W-padL-padR, cH = H-padT-padB;
+  const vals = pts.map(d => d.y);
+  const minV = Math.min(...vals)*0.97, maxV = Math.max(...vals)*1.03 || 1;
+  const range = maxV-minV || 1;
+  const xStep = pts.length > 1 ? cW/(pts.length-1) : 0;
 
-  // Grid
-  ctx.strokeStyle=borderCol; ctx.lineWidth=0.5;
-  for(let g=0;g<=4;g++){
-    const y=padT+cH-(g/4)*cH;
-    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke();
-    if(g>0){
-      ctx.fillStyle=mutedCol; ctx.font='7px DM Mono,monospace'; ctx.textAlign='right';
-      ctx.fillText(Math.round(minV+(g/4)*range),padL-3,y+3);
+  // Grid lines
+  ctx.strokeStyle = borderCol; ctx.lineWidth = 0.5;
+  for (let g = 0; g <= 4; g++) {
+    const y = padT + cH - (g/4)*cH;
+    ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(W-padR, y); ctx.stroke();
+    if (g > 0) {
+      ctx.fillStyle = mutedCol; ctx.font = '7px DM Mono,monospace'; ctx.textAlign = 'right';
+      ctx.fillText(Math.round(minV + (g/4)*range), padL-3, y+3);
     }
   }
 
   // Target line
-  if(targetVal && targetVal>=minV && targetVal<=maxV*1.1){
-    const ty=padT+cH-((targetVal-minV)/range)*cH;
-    ctx.save(); ctx.strokeStyle='rgba(232,197,71,0.45)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
-    ctx.beginPath(); ctx.moveTo(padL,ty); ctx.lineTo(W-padR,ty); ctx.stroke();
-    ctx.fillStyle='rgba(232,197,71,0.7)'; ctx.font='7px DM Mono,monospace'; ctx.textAlign='left';
-    ctx.fillText('TARGET',padL+4,ty-3); ctx.restore();
+  if (targetVal && targetVal >= minV && targetVal <= maxV*1.1) {
+    const ty = padT + cH - ((targetVal-minV)/range)*cH;
+    ctx.save(); ctx.strokeStyle = 'rgba(232,197,71,0.45)'; ctx.lineWidth = 1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(padL, ty); ctx.lineTo(W-padR, ty); ctx.stroke();
+    ctx.fillStyle = 'rgba(232,197,71,0.7)'; ctx.font = '7px DM Mono,monospace'; ctx.textAlign = 'left';
+    ctx.fillText('TARGET', padL+4, ty-3); ctx.restore();
   }
 
-  // Fill area under line
-  const xStep=pts.length>1?cW/(pts.length-1):0;
+  // Fill under line
   ctx.save();
   ctx.beginPath();
-  pts.forEach((d,i)=>{
-    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
-    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  pts.forEach((d,i) => {
+    const x = padL+i*xStep, y = padT+cH-((d.y-minV)/range)*cH;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
   });
-  ctx.lineTo(padL+(pts.length-1)*xStep,padT+cH); ctx.lineTo(padL,padT+cH); ctx.closePath();
-  ctx.fillStyle=color.replace('var(--accent2)','rgba(79,195,161,0.12)').replace('var(--accent)','rgba(232,197,71,0.10)');
-  ctx.fill(); ctx.restore();
+  ctx.lineTo(padL+(pts.length-1)*xStep, padT+cH);
+  ctx.lineTo(padL, padT+cH);
+  ctx.closePath();
+  const fillColor = color === '#4fc3a1' ? 'rgba(79,195,161,0.10)' : 'rgba(232,197,71,0.08)';
+  ctx.fillStyle = fillColor; ctx.fill(); ctx.restore();
 
   // Line
-  ctx.strokeStyle=color.replace(/var\(--accent2?\)/,'').trim()||color;
-  // Resolve CSS vars for canvas
-  const resolvedColor = color.includes('--accent2') ? '#4fc3a1' : color.includes('--accent)') ? '#e8c547' : color;
-  ctx.strokeStyle=resolvedColor; ctx.lineWidth=2; ctx.setLineDash([]);
+  ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.setLineDash([]);
   ctx.beginPath();
-  pts.forEach((d,i)=>{
-    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
-    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  pts.forEach((d,i) => {
+    const x = padL+i*xStep, y = padT+cH-((d.y-minV)/range)*cH;
+    i===0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
   });
   ctx.stroke();
 
-  // Dots + latest label
-  pts.forEach((d,i)=>{
-    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
-    ctx.beginPath(); ctx.arc(x,y,2.5,0,Math.PI*2);
-    ctx.fillStyle=resolvedColor; ctx.fill();
+  // Dots
+  pts.forEach((d,i) => {
+    const x = padL+i*xStep, y = padT+cH-((d.y-minV)/range)*cH;
+    ctx.beginPath(); ctx.arc(x, y, 2.5, 0, Math.PI*2);
+    ctx.fillStyle = color; ctx.fill();
   });
-  const last=pts[pts.length-1];
-  const lx=padL+(pts.length-1)*xStep, ly=padT+cH-((last.y-minV)/range)*cH;
-  ctx.fillStyle=textCol; ctx.font='bold 9px DM Mono,monospace'; ctx.textAlign='right';
-  ctx.fillText(`${last.y} ${unit}`, Math.min(lx+2,W-padR), Math.max(ly-7,padT+10));
 
-  // X labels
-  if(pts.length>=2){
-    ctx.fillStyle=mutedCol; ctx.font='7px DM Mono,monospace';
-    ctx.textAlign='left';  ctx.fillText(pts[0].x.slice(5),padL,H-4);
-    ctx.textAlign='right'; ctx.fillText(pts[pts.length-1].x.slice(5),W-padR,H-4);
+  // Latest value label
+  const last = pts[pts.length-1];
+  const lx = padL+(pts.length-1)*xStep, ly = padT+cH-((last.y-minV)/range)*cH;
+  ctx.fillStyle = textCol; ctx.font = 'bold 9px DM Mono,monospace'; ctx.textAlign = 'right';
+  ctx.fillText(`${last.y} ${unit}`, Math.min(lx+2, W-padR), Math.max(ly-7, padT+10));
+
+  // X-axis date labels
+  if (pts.length >= 2) {
+    ctx.fillStyle = mutedCol; ctx.font = '7px DM Mono,monospace';
+    ctx.textAlign = 'left';  ctx.fillText(pts[0].x.slice(5), padL, H-4);
+    ctx.textAlign = 'right'; ctx.fillText(pts[pts.length-1].x.slice(5), W-padR, H-4);
   }
 }
 
-function renderNutritionTable() {
-  const log=loadNutLog().slice().reverse().slice(0,30);
-  const target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
-  const el=document.getElementById('nut-log-table');
-  if(!log.length){
-    el.innerHTML='<div style="padding:28px 20px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--muted);">No entries yet. Log your first day above.</div>';
-    return;
-  }
-  const headers=['Date','Body Weight','Calories','Protein','Carbs','Fat','Notes'];
-  let html=`<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:var(--surface2);">
-    ${headers.map(h=>`<th style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:8px 14px;text-align:left;font-weight:400;white-space:nowrap;">${h}</th>`).join('')}
-  </tr></thead><tbody>`;
-  log.forEach(e=>{
-    const calColor=target&&e.cal?(e.cal>target?'var(--accent3)':'var(--accent2)'):'var(--text)';
-    const trend=log.length>1&&e.bw?'':'' ;
-    html+=`<tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);">${e.date}</td>
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.bw!=null?e.bw+' lbs':'—'}</td>
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:${calColor};">${e.cal!=null?e.cal+' kcal':'—'}</td>
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.pro!=null?e.pro+'g':'—'}</td>
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.carb!=null?e.carb+'g':'—'}</td>
-      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.fat!=null?e.fat+'g':'—'}</td>
-      <td style="padding:10px 14px;font-size:11px;color:var(--muted);">${e.note||''}</td>
-    </tr>`;
-  });
-  html+='</tbody></table>';
-  el.innerHTML=html;
-}
 
 
 // ══════════════════════════════════
