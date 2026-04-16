@@ -65,8 +65,15 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   position: fixed; inset: 0; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
+  background: var(--bg); /* solid fallback so content never bleeds through */
+  transition: opacity 0.25s;
 }
-#login-gate.hidden { display: none; }
+#login-gate.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
 
 /* Platform background image */
 .login-bg {
@@ -737,18 +744,23 @@ function doLogin() {
   if (user && user.password === pEl.value) {
     currentRole = user.role;
     sessionStorage.setItem('kc_role', currentRole);
-    document.getElementById('login-gate').classList.add('hidden');
-    if (currentRole === 'member') {
-      // Load saved name or prompt
-      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
-      if (!memberName) {
-        showNameModal();
-      } else {
-        initApp();
-      }
-    } else {
-      initApp();
-    }
+    const gate = document.getElementById('login-gate');
+    gate.classList.add('hidden');
+    // Force a repaint before continuing — fixes mobile Safari stacking issue
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        if (currentRole === 'member') {
+          try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+          if (!memberName) {
+            showNameModal();
+          } else {
+            initApp();
+          }
+        } else {
+          initApp();
+        }
+      });
+    });
   } else {
     err.textContent = 'Invalid username or password';
     pEl.classList.add('error');
@@ -758,8 +770,11 @@ function doLogin() {
 }
 
 function showNameModal() {
-  document.getElementById('name-modal-overlay').classList.add('open');
-  setTimeout(() => document.getElementById('name-modal-input').focus(), 250);
+  // Small delay ensures login gate display:none takes effect before modal opens
+  setTimeout(() => {
+    document.getElementById('name-modal-overlay').classList.add('open');
+    setTimeout(() => document.getElementById('name-modal-input').focus(), 100);
+  }, 80);
 }
 
 function saveMemberName() {
