@@ -1038,7 +1038,8 @@ function renderCycle(cycle) {
         // ── Group them into a single rendered row ──
         const exercises = day.exercises;
         let i = 0;
-        let ssGroupIdx = -1; // tracks which superset color group we're on
+        let ssGroupIdx = -1;   // -1 = not in a superset; >= 0 = index of current group
+        let ssGroupCount = -1; // total groups seen so far (never resets), used for color cycling
 
         while (i < exercises.length) {
           const ex = exercises[i];
@@ -1070,18 +1071,17 @@ function renderCycle(cycle) {
             const noteTD = !isAdmin ? `<td class="ex-note">${ex.note||''}</td>` : '';
             const waveCount = waveGroup.length;
 
-            // Name cell: lift name once, vertically centered via CSS
+            // Name cell: lift name once, vertically centered
             const nameCellContent = `<div class="wave-name-cell"><span class="wave-base-name">${baseName || ex.name}</span></div>`;
 
-            // Sets cell: wave label + sets stacked
-            const setsCellContent = `<div class="wave-group">${waveGroup.map(w => {
-              const wl = w.name.match(/Wave \d+/)?.[0] || 'Wave';
-              return `<div class="wave-line"><span class="wave-label">${wl}</span><span class="wave-sets">${w.sets}</span></div>`;
-            }).join('')}</div>`;
+            // Sets cell: just the sets per wave, no label
+            const setsCellContent = `<div class="wave-group">${waveGroup.map(w =>
+              `<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`
+            ).join('')}</div>`;
 
-            // Load cell
+            // Load cell: each wave's full load string on one line (no wrapping)
             const loadCellContent = `<div class="wave-group">${waveGroup.map(w =>
-              `<div class="wave-line"><span class="wave-load">${w.load}</span></div>`
+              `<div class="wave-line"><span class="wave-load" style="white-space:nowrap">${w.load}</span></div>`
             ).join('')}</div>`;
 
             // Weight cell
@@ -1103,30 +1103,26 @@ function renderCycle(cycle) {
           }
 
           // ── Normal row ──
-          // Superset logic:
-          // superset:true on first item of group = ss-start
-          // superset:true on subsequent items (while already in group) = ss-mid
-          // supersetEnd:true = ss-end, closes the group
-          const isSSStart = ex.superset === true && ssGroupIdx < 0;
-          const isSSMidFlag = ex.superset === true && ssGroupIdx >= 0; // continuation
-          const isSSEnd   = ex.supersetEnd === true;
+          const isSSStart  = ex.superset === true && ssGroupIdx < 0;
+          const isSSMidFlag = ex.superset === true && ssGroupIdx >= 0;
+          const isSSEnd    = ex.supersetEnd === true;
           let ssClass = '', ssAttr = '';
 
           if (isSSStart) {
-            ssGroupIdx++;
-            const ci = ssGroupIdx % 4;
+            ssGroupCount++;          // new group — advance color
+            ssGroupIdx = ssGroupCount;
+            const ci = ssGroupCount % 4;
             ssClass = 'ss-start'; ssAttr = `data-ss="${ci}"`;
           } else if (isSSEnd) {
-            const ci = Math.max(0, ssGroupIdx) % 4;
+            const ci = ssGroupCount % 4;
             ssClass = 'ss-end'; ssAttr = `data-ss="${ci}"`;
-            // don't reset yet — reset happens after we render this row
+            // reset in-group tracker AFTER this row is rendered
           } else if (isSSMidFlag || ssGroupIdx >= 0) {
-            const ci = Math.max(0, ssGroupIdx) % 4;
+            const ci = ssGroupCount % 4;
             ssClass = 'ss-mid'; ssAttr = `data-ss="${ci}"`;
           }
 
-          const ci = ssGroupIdx >= 0 ? ssGroupIdx % 4 : 0;
-          // Badge on ALL items in the group (start, mid, end)
+          const ci = ssGroupCount >= 0 ? ssGroupCount % 4 : 0;
           const inSS = ssClass === 'ss-start' || ssClass === 'ss-mid' || ssClass === 'ss-end';
           const ssBadge = inSS ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
 
@@ -1163,7 +1159,7 @@ function renderCycle(cycle) {
             ${noteTD}
             <td><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${ex.name.replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${rmId}','${lk}')">${logBtnInner}</button></td>
           </tr>`;
-          if (isSSEnd) ssGroupIdx = -1; // reset after row is emitted
+          if (isSSEnd) ssGroupIdx = -1; // back to "not in a group" — ssGroupCount keeps incrementing
           i++;
         }
 
