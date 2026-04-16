@@ -28,7 +28,7 @@
               "exercises": [
                 {
                   "name": "Snatch High Hang + Hang Snatch",
-                  "sets": "4×(1+1)",
+                  "sets": "2×(1+1)",
                   "load": "65–70%",
                   "note": "Pause 2s in hang. Beginners: hang snatch only",
                   "tag": "beginner",
@@ -36,13 +36,13 @@
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "4×3",
+                  "sets": "2×3",
                   "load": "90–95%",
                   "note": "Focus on position at knee and hip"
                 },
                 {
                   "name": "Power Clean + Push Jerk",
-                  "sets": "4×(1+1)",
+                  "sets": "2×(1+1)",
                   "load": "60–65%",
                   "note": "Light clean accessory. Focus on receiving position",
                   "tag": "beginner",
@@ -50,7 +50,7 @@
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "5×2",
+                  "sets": "4×2",
                   "load": "65%",
                   "note": "3s descent. Bar must stay over mid-foot",
                   "tag": "beginner",
@@ -58,7 +58,7 @@
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "3×10",
+                  "sets": "2×10",
                   "load": "Bodyweight",
                   "note": "Slow and controlled"
                 }
@@ -71,19 +71,19 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "5×1",
+                  "sets": "2×1",
                   "load": "70–72%",
                   "note": "Competition lift. Establish the feel at moderate load"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "4×3",
+                  "sets": "2×3",
                   "load": "90–95%",
                   "note": "Match snatch pull mechanics"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "4×2",
+                  "sets": "2×2",
                   "load": "55–60%",
                   "note": "Light snatch accessory. Feel the hip extension",
                   "tag": "beginner",
@@ -91,13 +91,13 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×4",
+                  "sets": "2×4",
                   "load": "70%",
                   "note": "Controlled descent, full depth"
                 },
                 {
                   "name": "Good Morning",
-                  "sets": "3×8",
+                  "sets": "2×8",
                   "load": "Light",
                   "note": "Hinge focus, minimal weight"
                 }
@@ -121,35 +121,35 @@
               "exercises": [
                 {
                   "name": "3-Position Snatch (High Hang → Hang → Floor)",
-                  "sets": "5×1",
-                  "load": "65–70%",
+                  "sets": "4×1",
+                  "load": "65–74%",
                   "note": "One rep from each position. Beginners: 2-position",
                   "tag": "beginner",
                   "tagText": "Scale to 2-pos"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "4×3",
-                  "load": "95–102%",
+                  "sets": "2×3",
+                  "load": "95–105%",
                   "note": "Full extension, shrug at top"
                 },
                 {
                   "name": "Hang Clean (above knee)",
-                  "sets": "4×2",
-                  "load": "60–67%",
+                  "sets": "2×2",
+                  "load": "60–71%",
                   "note": "Light clean accessory — reinforce hip contact position",
                   "tag": "beginner",
                   "tagText": "Lighter"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "5×2",
-                  "load": "68–72%",
+                  "sets": "4×2",
+                  "load": "68–76%",
                   "note": "Pause 2s at bottom"
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "3×10",
+                  "sets": "2×10",
                   "load": "+light bar",
                   "note": ""
                 }
@@ -162,38 +162,38 @@
               "exercises": [
                 {
                   "name": "Hang Clean + Clean",
-                  "sets": "5×(1+1)",
-                  "load": "68–74%",
+                  "sets": "2×(1+1)",
+                  "load": "68–78%",
                   "note": "Touch-and-go from hang",
                   "tag": "beginner",
                   "tagText": "Scale to clean only"
                 },
                 {
                   "name": "Split Jerk",
-                  "sets": "5×2",
-                  "load": "65–72%",
+                  "sets": "2×2",
+                  "load": "65–76%",
                   "note": "Pause 2s in split. Check front foot alignment",
                   "tag": "beginner",
                   "tagText": "Focus on footwork"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "4×3",
-                  "load": "95–102%",
+                  "sets": "2×3",
+                  "load": "95–105%",
                   "note": ""
                 },
                 {
                   "name": "Snatch Balance",
-                  "sets": "4×2",
-                  "load": "50–62%",
+                  "sets": "2×2",
+                  "load": "50–66%",
                   "note": "Light snatch accessory — aggressive drop under",
                   "tag": "beginner",
                   "tagText": "Scale to heaving"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×4",
-                  "load": "73–77%",
+                  "sets": "2×4",
+                  "load": "73–81%",
                   "note": "+3% from week 1"
                 }
               ]
@@ -216,36 +216,36 @@
               "exercises": [
                 {
                   "name": "Snatch (Competition)",
-                  "sets": "7×1",
-                  "load": "72–80%",
+                  "sets": "2×1",
+                  "load": "72–88%",
                   "note": "Clean competition lift from floor. No variations today"
                 },
                 {
                   "name": "Hang Snatch (Below Knee)",
-                  "sets": "5×2",
-                  "load": "72%",
+                  "sets": "2×2",
+                  "load": "80%",
                   "note": "Reinforce lam sweep position",
                   "tag": "beginner",
                   "tagText": "Scale to above knee"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "6×3",
+                  "sets": "2×3",
                   "load": "100–105%",
                   "note": "Above max snatch — pure strength pull"
                 },
                 {
                   "name": "Clean (Slow Pull)",
-                  "sets": "5×2",
-                  "load": "62–69%",
+                  "sets": "2×2",
+                  "load": "62–77%",
                   "note": "Light clean accessory. 3-count pull to hip, then fast under",
                   "tag": "beginner",
                   "tagText": "Lighter"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "6×3",
-                  "load": "68–76%",
+                  "sets": "2×3",
+                  "load": "68–84%",
                   "note": "Higher reps = more time under tension"
                 }
               ]
@@ -257,34 +257,34 @@
               "exercises": [
                 {
                   "name": "Clean w/ 2s Pause at Knee",
-                  "sets": "6×2",
-                  "load": "68–76%",
+                  "sets": "2×2",
+                  "load": "68–84%",
                   "note": "Pause = feel lats, chest tall",
                   "tag": "beginner",
                   "tagText": "Great for all levels"
                 },
                 {
                   "name": "Jerk (from rack)",
-                  "sets": "6×2",
-                  "load": "70–78%",
+                  "sets": "2×2",
+                  "load": "70–86%",
                   "note": "Focus on receiving position depth"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "6×3",
+                  "sets": "2×3",
                   "load": "100–105%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "5×2",
-                  "load": "60–69%",
+                  "sets": "2×2",
+                  "load": "60–77%",
                   "note": "Light snatch accessory. Land in power position, stay connected"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "6×3",
-                  "load": "76–82%",
+                  "sets": "2×3",
+                  "load": "76–90%",
                   "note": "Peak squat volume week"
                 }
               ]
@@ -307,33 +307,33 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "6×1 + 1×1",
-                  "load": "80% / 85%",
+                  "sets": "4×1 + 1×1",
+                  "load": "92% / 97%",
                   "note": "5 sets at 75%, then one at 80%. Beginners stay at 75%",
                   "tag": "beginner",
                   "tagText": "No extra set"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "5×3",
+                  "sets": "3×3",
                   "load": "100–105%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch + OHS",
-                  "sets": "5×(1+2)",
-                  "load": "70%",
+                  "sets": "3×(1+2)",
+                  "load": "82%",
                   "note": "Light snatch accessory combo. Land power, then squat the OHS"
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "5×3",
-                  "load": "78–85%",
+                  "sets": "3×3",
+                  "load": "78–97%",
                   "note": "Front squat replaces OHS today"
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "4×10",
+                  "sets": "2×10",
                   "load": "+light plate",
                   "note": ""
                 }
@@ -346,36 +346,36 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6×1 + 1×1",
-                  "load": "80% / 85%",
+                  "sets": "2×1 + 1×1",
+                  "load": "92% / 97%",
                   "note": "First heavy C&J single of the cycle",
                   "tag": "beginner",
                   "tagText": "Stay at 75%"
                 },
                 {
                   "name": "Jerk Dip + Drive (from rack)",
-                  "sets": "5×3",
-                  "load": "80%",
+                  "sets": "2×3",
+                  "load": "92%",
                   "note": "No catch — focus on vertical dip and powerful drive",
                   "tag": "beginner",
                   "tagText": "Great drill"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "5×3",
+                  "sets": "2×3",
                   "load": "100–105%",
                   "note": ""
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "5×2",
-                  "load": "62–70%",
+                  "sets": "2×2",
+                  "load": "62–82%",
                   "note": "Light snatch accessory. Fast and technical"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "6×3",
-                  "load": "78–85%",
+                  "sets": "2×3",
+                  "load": "78–97%",
                   "note": ""
                 }
               ]
@@ -398,34 +398,34 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "3×1 + 2×1",
-                  "load": "72% / 78%",
+                  "sets": "1×1 + 2×1",
+                  "load": "66% / 72%",
                   "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
                   "tag": "hard",
                   "tagText": "Advanced"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "3×2",
-                  "load": "66%",
+                  "sets": "1×2",
+                  "load": "60%",
                   "note": "Snatch accessory — back-off set"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "4×3",
-                  "load": "105–105%",
+                  "sets": "2×3",
+                  "load": "105–99%",
                   "note": "Heaviest pulls of phase 1"
                 },
                 {
                   "name": "Clean (High Hang)",
-                  "sets": "3×2",
-                  "load": "63–63%",
+                  "sets": "1×2",
+                  "load": "63–57%",
                   "note": "Light clean accessory. Fast elbows"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "3×3",
-                  "load": "72–70%",
+                  "sets": "1×3",
+                  "load": "72–64%",
                   "note": ""
                 }
               ]
@@ -437,34 +437,34 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "3×1 + 2×1",
-                  "load": "73% / 79%",
+                  "sets": "1×1 + 2×1",
+                  "load": "67% / 73%",
                   "note": "Advanced: attempt 83% singles",
                   "tag": "hard",
                   "tagText": "Advanced"
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "4×2",
-                  "load": "74–72%",
+                  "sets": "2×2",
+                  "load": "74–66%",
                   "note": "Crisp lockout each rep"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "4×3",
-                  "load": "105–105%",
+                  "sets": "2×3",
+                  "load": "105–99%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "3×2",
-                  "load": "65–64%",
+                  "sets": "1×2",
+                  "load": "65–58%",
                   "note": "Light snatch accessory. Speed focus"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "3×2 + 1×1",
-                  "load": "76% / 81%",
+                  "sets": "1×2 + 1×1",
+                  "load": "70% / 75%",
                   "note": "First heavy squat single",
                   "tag": "beginner",
                   "tagText": "Skip the single"
@@ -489,20 +489,20 @@
               "exercises": [
                 {
                   "name": "Snatch (competition)",
-                  "sets": "3×1",
-                  "load": "68–80%",
+                  "sets": "2×1",
+                  "load": "68–98%",
                   "note": "Feel the lift. No grinding"
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "3×2",
-                  "load": "60–73%",
+                  "sets": "2×2",
+                  "load": "60–91%",
                   "note": "Light and fast"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "3×3",
-                  "load": "60–73%",
+                  "sets": "2×3",
+                  "load": "60–91%",
                   "note": ""
                 },
                 {
@@ -520,25 +520,25 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "3×1",
-                  "load": "68–80%",
+                  "sets": "2×1",
+                  "load": "68–98%",
                   "note": "Smooth. Video your athletes this week"
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "3×2",
-                  "load": "73%",
+                  "sets": "2×2",
+                  "load": "91%",
                   "note": "Footwork drill focus"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "3×3",
-                  "load": "65–76%",
+                  "sets": "2×3",
+                  "load": "65–94%",
                   "note": "Easy and fluid"
                 },
                 {
                   "name": "Good Morning",
-                  "sets": "2×8",
+                  "sets": "1×8",
                   "load": "Light",
                   "note": ""
                 }
@@ -571,7 +571,7 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "5×1",
+                  "sets": "2×1",
                   "load": "80–82%",
                   "note": "All competition lifts now",
                   "tag": "peak",
@@ -579,25 +579,25 @@
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "3×2",
+                  "sets": "1×2",
                   "load": "68–70%",
                   "note": "Snatch accessory — back-off set"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "4×2",
+                  "sets": "2×2",
                   "load": "105%",
                   "note": "Drop reps, keep intensity"
                 },
                 {
                   "name": "Clean (High Hang)",
-                  "sets": "3×2",
+                  "sets": "1×2",
                   "load": "65%",
                   "note": "Light clean accessory"
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×3",
+                  "sets": "2×3",
                   "load": "80–82%",
                   "note": "Front squat becomes primary squat on Thursday"
                 }
@@ -610,7 +610,7 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "5×1",
+                  "sets": "2×1",
                   "load": "80–82%",
                   "note": "Competition C&J. Crisp jerk lockout",
                   "tag": "peak",
@@ -618,25 +618,25 @@
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "4×2",
+                  "sets": "2×2",
                   "load": "78%",
                   "note": "Volume jerk work for confidence"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "4×2",
+                  "sets": "2×2",
                   "load": "105%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "3×2",
+                  "sets": "1×2",
                   "load": "65–68%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×3",
+                  "sets": "2×3",
                   "load": "82–84%",
                   "note": ""
                 }
@@ -660,34 +660,34 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "4×1 + 2×1",
-                  "load": "84% / 89%",
+                  "sets": "3×1 + 2×1",
+                  "load": "88% / 93%",
                   "note": "4 at 80%, build to 2 singles at 85%",
                   "tag": "peak",
                   "tagText": "Phase 2"
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "3×2",
-                  "load": "68–74%",
+                  "sets": "1×2",
+                  "load": "68–78%",
                   "note": "Snatch accessory — speed under the bar"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "4×2",
+                  "sets": "3×2",
                   "load": "105–105%",
                   "note": ""
                 },
                 {
                   "name": "Hang Clean (above knee)",
-                  "sets": "3×2",
-                  "load": "65–72%",
+                  "sets": "1×2",
+                  "load": "65–76%",
                   "note": "Light clean accessory"
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×2",
-                  "load": "83–89%",
+                  "sets": "3×2",
+                  "load": "83–93%",
                   "note": "Doubles now"
                 }
               ]
@@ -699,34 +699,34 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "4×1 + 2×1",
-                  "load": "84% / 85–90%",
+                  "sets": "2×1 + 2×1",
+                  "load": "88% / 85–94%",
                   "note": "Same structure as snatch day",
                   "tag": "peak",
                   "tagText": "Phase 2"
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "4×2",
-                  "load": "84%",
+                  "sets": "2×2",
+                  "load": "88%",
                   "note": ""
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "4×2",
+                  "sets": "2×2",
                   "load": "105–105%",
                   "note": ""
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "3×2",
-                  "load": "65–72%",
+                  "sets": "2×2",
+                  "load": "65–76%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×2",
-                  "load": "85–91%",
+                  "sets": "2×2",
+                  "load": "85–95%",
                   "note": "Heavy doubles"
                 }
               ]
@@ -749,8 +749,8 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "3×1 + 3×1",
-                  "load": "90% / 88–98%",
+                  "sets": "2×1 + 3×1",
+                  "load": "98% / 88–105%",
                   "note": "3 at 82%, 3 heavy singles. Beginners cap at 85%",
                   "tag": "hard",
                   "tagText": "Advanced: 90%",
@@ -759,26 +759,26 @@
                 },
                 {
                   "name": "Hang Snatch",
-                  "sets": "3×2",
-                  "load": "70–80%",
+                  "sets": "2×2",
+                  "load": "70–88%",
                   "note": "Snatch accessory — back-off"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "6×2",
+                  "sets": "4×2",
                   "load": "108–105%",
                   "note": "Peak pull intensity"
                 },
                 {
                   "name": "Clean (High Hang)",
-                  "sets": "3×2",
-                  "load": "65–76%",
+                  "sets": "2×2",
+                  "load": "65–84%",
                   "note": "Light clean accessory"
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "3×2 + 1×1",
-                  "load": "93% / 98%",
+                  "sets": "2×2 + 1×1",
+                  "load": "101% / 105%",
                   "note": "Advanced: heavy single",
                   "tag": "beginner",
                   "tagText": "3×2 only"
@@ -792,8 +792,8 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "3×1 + 3×1",
-                  "load": "90% / 88–98%",
+                  "sets": "2×1 + 3×1",
+                  "load": "98% / 88–105%",
                   "note": "Most demanding session of the cycle",
                   "tag": "hard",
                   "tagText": "Advanced: 90%",
@@ -802,26 +802,26 @@
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "6×1",
-                  "load": "83–93%",
+                  "sets": "3×1",
+                  "load": "83–101%",
                   "note": "Heavy jerk singles from rack"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "6×2",
+                  "sets": "3×2",
                   "load": "108–105%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "3×2",
-                  "load": "67–78%",
+                  "sets": "2×2",
+                  "load": "67–86%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "3×2 + 1×1",
-                  "load": "95% / 100%",
+                  "sets": "2×2 + 1×1",
+                  "load": "103% / 105%",
                   "note": "Advanced: heavy single",
                   "tag": "beginner",
                   "tagText": "3×2 only"
@@ -847,26 +847,26 @@
                 {
                   "name": "Snatch — Build to Heavy Single",
                   "sets": "~6–8 singles",
-                  "load": "70→90–98%",
+                  "load": "70→90–105%",
                   "note": "Competition-style warm-up. Stop when bar slows.",
                   "tag": "peak",
                   "tagText": "Simulate meet"
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "4×2",
-                  "load": "65–73%",
+                  "sets": "6×2",
+                  "load": "65–85%",
                   "note": "Snatch accessory — back-off set"
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×2",
-                  "load": "82–90%",
+                  "sets": "6×2",
+                  "load": "82–102%",
                   "note": "Reduced — preserve legs"
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "2×10",
+                  "sets": "3×10",
                   "load": "Light",
                   "note": "Recovery-minded"
                 }
@@ -880,27 +880,27 @@
                 {
                   "name": "Clean & Jerk — Build to Heavy Single",
                   "sets": "~6–8 singles",
-                  "load": "70→90–98%",
+                  "load": "70→90–105%",
                   "note": "Same competition simulation structure",
                   "tag": "peak",
                   "tagText": "Simulate meet"
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "4×1",
-                  "load": "80–88%",
+                  "sets": "5×1",
+                  "load": "80–100%",
                   "note": "Back-off jerk singles"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "4×2",
-                  "load": "63–71%",
+                  "sets": "5×2",
+                  "load": "63–83%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×2",
-                  "load": "82–90%",
+                  "sets": "5×2",
+                  "load": "82–102%",
                   "note": "Reduced volume"
                 }
               ]
