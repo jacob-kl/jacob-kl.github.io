@@ -259,27 +259,38 @@ h1 span { color: var(--accent); }
    ss-color-0 = teal, 1 = yellow, 2 = orange, 3 = purple
 ══════════════════════════════════ */
 :root {
-  --ss0: #4fc3a1; --ss0a: rgba(79,195,161,0.12); --ss0b: rgba(79,195,161,0.25);
-  --ss1: #e8c547; --ss1a: rgba(232,197,71,0.12);  --ss1b: rgba(232,197,71,0.25);
-  --ss2: #e8843a; --ss2a: rgba(232,132,58,0.12);  --ss2b: rgba(232,132,58,0.25);
-  --ss3: #a78bfa; --ss3a: rgba(167,139,250,0.12); --ss3b: rgba(167,139,250,0.25);
+  --ss0: #4fc3a1; --ss0a: rgba(79,195,161,0.10); --ss0b: rgba(79,195,161,0.30);
+  --ss1: #e8c547; --ss1a: rgba(232,197,71,0.10);  --ss1b: rgba(232,197,71,0.30);
+  --ss2: #e8843a; --ss2a: rgba(232,132,58,0.10);  --ss2b: rgba(232,132,58,0.30);
+  --ss3: #a78bfa; --ss3a: rgba(167,139,250,0.10); --ss3b: rgba(167,139,250,0.30);
 }
-/* Row styling — border removed between grouped rows */
+/* Remove internal dividers between grouped rows */
 tr.ss-start td, tr.ss-mid td { border-bottom: none !important; }
 tr.ss-start td { padding-bottom: 3px; }
 tr.ss-mid td   { padding-top: 3px; padding-bottom: 3px; }
 tr.ss-end td   { padding-top: 3px; }
-/* Left color bar */
-tr.ss-start td:first-child, tr.ss-mid td:first-child, tr.ss-end td:first-child { border-left-width: 3px; border-left-style: solid; }
-tr[data-ss="0"] td:first-child { border-left-color: var(--ss0); }
-tr[data-ss="1"] td:first-child { border-left-color: var(--ss1); }
-tr[data-ss="2"] td:first-child { border-left-color: var(--ss2); }
-tr[data-ss="3"] td:first-child { border-left-color: var(--ss3); }
-/* Superset label badge */
+/* Left color bar — all rows in a superset get it */
+tr.ss-start td:first-child,
+tr.ss-mid   td:first-child,
+tr.ss-end   td:first-child { border-left-width: 3px; border-left-style: solid; }
+tr[data-ss="0"].ss-start td:first-child,
+tr[data-ss="0"].ss-mid   td:first-child,
+tr[data-ss="0"].ss-end   td:first-child { border-left-color: var(--ss0); }
+tr[data-ss="1"].ss-start td:first-child,
+tr[data-ss="1"].ss-mid   td:first-child,
+tr[data-ss="1"].ss-end   td:first-child { border-left-color: var(--ss1); }
+tr[data-ss="2"].ss-start td:first-child,
+tr[data-ss="2"].ss-mid   td:first-child,
+tr[data-ss="2"].ss-end   td:first-child { border-left-color: var(--ss2); }
+tr[data-ss="3"].ss-start td:first-child,
+tr[data-ss="3"].ss-mid   td:first-child,
+tr[data-ss="3"].ss-end   td:first-child { border-left-color: var(--ss3); }
+/* Superset label badge — shown on every row in the group */
 .ss-badge {
-  display: inline-block; font-family: 'DM Mono', monospace; font-size: 8px;
+  display: block; font-family: 'DM Mono', monospace; font-size: 8px;
   letter-spacing: 1px; text-transform: uppercase;
-  padding: 1px 5px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
+  padding: 1px 5px; border-radius: 2px; margin-top: 3px;
+  width: fit-content;
 }
 .ss-badge-0 { color: var(--ss0); background: var(--ss0a); border: 1px solid var(--ss0b); }
 .ss-badge-1 { color: var(--ss1); background: var(--ss1a); border: 1px solid var(--ss1b); }
@@ -1115,8 +1126,9 @@ function renderCycle(cycle) {
           }
 
           const ci = ssGroupIdx >= 0 ? ssGroupIdx % 4 : 0;
-          // Badge on start item only
-          const ssBadge = isSSStart ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
+          // Badge on ALL items in the group (start, mid, end)
+          const inSS = ssClass === 'ss-start' || ssClass === 'ss-mid' || ssClass === 'ss-end';
+          const ssBadge = inSS ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
 
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
@@ -1157,18 +1169,21 @@ function renderCycle(cycle) {
 
         html += '</tbody></table></div>'; // close table-wrap
 
-        // Daily notes — admin only
-        if (isAdmin) {
+        // Daily notes — all users
+        {
           const nKey  = notesKey(phase.id, week.number, di);
           const nVal  = loadNote(nKey).replace(/"/g,'&quot;');
           const nId   = `notes-body-${phase.id}-${week.number}-${di}`;
           const btnId = `notes-btn-${phase.id}-${week.number}-${di}`;
+          const placeholder = isAdmin
+            ? 'Notes for this session — programming thoughts, athlete feedback, anything…'
+            : 'Your notes for this day…';
           html += `<div class="day-notes-section">
             <button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')">
               <span>Day Notes</span><span class="arrow">▼</span>
             </button>
             <div class="day-notes-body" id="${nId}">
-              <textarea placeholder="Notes for this session…"
+              <textarea placeholder="${placeholder}"
                 onchange="saveNote('${nKey}',this.value)"
                 oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>
             </div>
