@@ -140,9 +140,15 @@ h1 span { color: var(--accent); }
 .meta-pill strong { color: var(--text); }
 
 /* ══════════════════════════════════
-   ADMIN BAR
+   ADMIN BAR — sticky + member name
 ══════════════════════════════════ */
-#admin-bar { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap; }
+#admin-bar {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 500;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
 #admin-bar.visible { display: flex; }
 #admin-bar .admin-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
 .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
@@ -151,6 +157,64 @@ h1 span { color: var(--accent); }
 .view-btn:not(.active):hover { color: var(--text); background: var(--surface); }
 #logout-btn { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
 #logout-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+/* Member name greeting in admin bar */
+#member-greeting {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+}
+#member-greeting strong { color: var(--text); }
+
+/* Member name pill shown in hero for member view */
+#member-name-pill {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent2);
+  border: 1px solid rgba(79,195,161,0.3); padding: 6px 14px; border-radius: 2px;
+  display: none;
+}
+#member-name-pill.visible { display: block; }
+
+/* Member name prompt modal */
+#name-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  z-index: 8500; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+#name-modal-overlay.open { opacity: 1; pointer-events: auto; }
+#name-modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  width: 100%; max-width: 380px; padding: 32px 28px; margin: 0 20px;
+  transform: scale(0.95); transition: transform 0.2s ease;
+}
+#name-modal-overlay.open #name-modal { transform: scale(1); }
+#name-modal h3 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px;
+  color: var(--accent); margin-bottom: 6px;
+}
+#name-modal p {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+}
+#name-modal-input {
+  width: 100%; background: var(--input-bg); border: 1px solid var(--border);
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px;
+  padding: 12px 14px; border-radius: 3px; outline: none; transition: border-color 0.2s;
+  margin-bottom: 16px;
+}
+#name-modal-input:focus { border-color: var(--accent); }
+#name-modal-input::placeholder { color: var(--muted); }
+#name-modal-save {
+  width: 100%; background: var(--accent); color: #0e0e0f;
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
+  border: none; padding: 13px; border-radius: 3px; cursor: pointer; transition: opacity 0.2s;
+}
+#name-modal-save:hover { opacity: 0.85; }
+#name-modal-skip {
+  width: 100%; margin-top: 10px; background: none; border: 1px solid var(--border);
+  color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; padding: 10px;
+  border-radius: 3px; cursor: pointer; transition: all 0.15s;
+}
+#name-modal-skip:hover { border-color: var(--muted); color: var(--text); }
 
 /* ══════════════════════════════════
    SELECTS
@@ -502,21 +566,23 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
   <div id="admin-bar">
     <span class="admin-label">Admin</span>
     <div class="view-toggle">
-      <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Member Lifts</button>
-      <button class="view-btn" id="btn-admin-view" onclick="switchView('admin')">My Lifts</button>
+      <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Class Program</button>
+      <button class="view-btn" id="btn-admin-view" onclick="switchView('admin')">Competitor Lifts</button>
     </div>
+    <span id="member-greeting"></span>
     <button id="logout-btn" onclick="doLogout()">Log Out</button>
   </div>
 
   <div class="hero">
     <img src="crumville_logo.png" class="hero-bg-logo" alt="">
-    <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
+    <div class="hero-label" id="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
     <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
     <div class="hero-meta">
       <div class="meta-pill" id="meta-days-per-week"><strong>2</strong> Days / Week</div>
       <div id="meta-days" class="meta-pill">—</div>
       <div id="meta-goal" class="meta-pill">—</div>
       <div id="meta-dates" class="meta-pill">—</div>
+      <div id="member-name-pill"></div>
       <div class="cycle-select-wrap" id="cycle-select-wrap">
         <label for="cycle-select">Cycle</label>
         <select id="cycle-select" onchange="onCycleChange(this.value)">
@@ -552,6 +618,17 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
     <p id="footer-left">Kilo Club · Class Program</p>
     <p>Loads = % of individual 1RM · Scale as needed</p>
   </footer>
+</div>
+
+<!-- ══ MEMBER NAME MODAL ══ -->
+<div id="name-modal-overlay">
+  <div id="name-modal">
+    <h3>Welcome to Kilo Club</h3>
+    <p>What's your name? We'll display it on your program.</p>
+    <input type="text" id="name-modal-input" placeholder="Your name" autocomplete="off" maxlength="40" />
+    <button id="name-modal-save" onclick="saveMemberName()">LET'S GO</button>
+    <button id="name-modal-skip" onclick="skipMemberName()">Skip for now</button>
+  </div>
 </div>
 
 <!-- ══ LOG LIFT MODAL ══ -->
@@ -605,6 +682,7 @@ const USERS = {
 };
 let currentRole = null;
 let currentView = 'member';
+let memberName = '';
 
 function doLogin() {
   const uEl = document.getElementById('login-username');
@@ -616,7 +694,17 @@ function doLogin() {
     currentRole = user.role;
     sessionStorage.setItem('kc_role', currentRole);
     document.getElementById('login-gate').classList.add('hidden');
-    initApp();
+    if (currentRole === 'member') {
+      // Load saved name or prompt
+      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+      if (!memberName) {
+        showNameModal();
+      } else {
+        initApp();
+      }
+    } else {
+      initApp();
+    }
   } else {
     err.textContent = 'Invalid username or password';
     pEl.classList.add('error');
@@ -625,19 +713,51 @@ function doLogin() {
   }
 }
 
+function showNameModal() {
+  document.getElementById('name-modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('name-modal-input').focus(), 250);
+}
+
+function saveMemberName() {
+  const val = document.getElementById('name-modal-input').value.trim();
+  if (val) {
+    memberName = val;
+    try { localStorage.setItem('kc_member_name', val); } catch(e) {}
+  }
+  document.getElementById('name-modal-overlay').classList.remove('open');
+  initApp();
+}
+
+function skipMemberName() {
+  memberName = '';
+  document.getElementById('name-modal-overlay').classList.remove('open');
+  initApp();
+}
+
 function doLogout() {
   sessionStorage.removeItem('kc_role');
-  currentRole = null; currentView = 'member';
+  currentRole = null; currentView = 'member'; memberName = '';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
+  // Clear name pill
+  const pill = document.getElementById('member-name-pill');
+  if (pill) { pill.classList.remove('visible'); pill.textContent = ''; }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ['login-username','login-password'].forEach(id =>
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); })
   );
+  document.getElementById('name-modal-input').addEventListener('keydown', e => { if (e.key === 'Enter') saveMemberName(); });
   const r = sessionStorage.getItem('kc_role');
-  if (r) { currentRole = r; document.getElementById('login-gate').classList.add('hidden'); initApp(); }
+  if (r) {
+    currentRole = r;
+    document.getElementById('login-gate').classList.add('hidden');
+    if (currentRole === 'member') {
+      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+    }
+    initApp();
+  }
   try {
     const u = localStorage.getItem('kiloclub_unit');
     if (u) document.getElementById('unit-select').value = u;
@@ -648,12 +768,40 @@ function initApp() {
   if (currentRole === 'admin') document.getElementById('admin-bar').classList.add('visible');
   currentView = 'member';
   updateViewButtons();
+  updateViewLabels();
   loadView();
 }
-function switchView(v) { currentView = v; updateViewButtons(); loadView(); }
+
+function switchView(v) {
+  currentView = v;
+  updateViewButtons();
+  updateViewLabels();
+  loadView();
+}
+
 function updateViewButtons() {
   document.getElementById('btn-member-view').classList.toggle('active', currentView === 'member');
   document.getElementById('btn-admin-view').classList.toggle('active',  currentView === 'admin');
+}
+
+function updateViewLabels() {
+  const heroLabel = document.getElementById('hero-label');
+  const namePill  = document.getElementById('member-name-pill');
+  const greeting  = document.getElementById('member-greeting');
+  if (currentView === 'admin') {
+    if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Competitor Program';
+    if (namePill)  { namePill.classList.remove('visible'); }
+    if (greeting)  { greeting.innerHTML = ''; }
+  } else {
+    if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Class Program';
+    if (namePill && memberName) {
+      namePill.textContent = memberName;
+      namePill.classList.add('visible');
+    }
+    if (greeting && memberName && currentRole === 'admin') {
+      greeting.innerHTML = `Viewing: <strong>${memberName}</strong>`;
+    }
+  }
 }
 
 
