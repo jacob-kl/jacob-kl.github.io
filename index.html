@@ -1555,19 +1555,26 @@ function getDayDate(weekNumber, dayIndex, isAdminView) {
 //  VOLUME CHART — per mesocycle
 // ══════════════════════════════════
 function parseSetCountForVolume(setsStr) {
-  if (!setsStr) return 0;
-  const waveM = setsStr.match(/^(\d+)-(\d+)-(\d+)/);
-  if (waveM) return parseInt(waveM[1]) + parseInt(waveM[2]) + parseInt(waveM[3]);
-  const emomM = setsStr.match(/emom\s*[x×]\s*(\d+)/i);
-  if (emomM) return parseInt(emomM[1]);
-  const groups = setsStr.split(/[\/]/).map(s=>s.trim()).filter(Boolean);
-  let total = 0;
-  for (const g of groups) {
-    const m = g.match(/(\d+)\s*[x×]/i);
-    if (m) total += parseInt(m[1]);
-    else { const n = g.match(/(\d+)/); if (n) total += parseInt(n[1]); }
+  // Returns {sets, avgReps} — used for sets × reps × load% formula
+  if (!setsStr) return {sets:0, avgReps:1};
+  const s = setsStr.trim();
+  if (/build|single|building|—|pvc|rest|record/i.test(s)) return {sets:1, avgReps:1};
+  const waveM = s.match(/^(\d+)-(\d+)-(\d+)/);
+  if (waveM) {
+    const counts = waveM.slice(1).map(Number);
+    return { sets: 3, avgReps: counts.reduce((a,b)=>a+b,0)/3 };
   }
-  return Math.max(total, 1);
+  const emomM = s.match(/emom\s*[x×]\s*(\d+)/i);
+  if (emomM) return { sets: parseInt(emomM[1]), avgReps: 1 };
+  let ts = 0, tr = 0;
+  const groups = s.split(/\//).map(g=>g.trim()).filter(Boolean);
+  for (const g of groups) {
+    const m = g.match(/(\d+)\s*[x×]\s*\(?(\d+)/i);
+    if (m) { ts += parseInt(m[1]); tr += parseInt(m[1]) * parseInt(m[2]); }
+    else { const n = g.match(/(\d+)/); if (n) { ts += parseInt(n[1]); tr += parseInt(n[1]); } }
+  }
+  if (ts === 0) return {sets:1, avgReps:1};
+  return { sets: ts, avgReps: tr/ts };
 }
 
 function calcPhaseVolume(phase) {
@@ -1575,10 +1582,10 @@ function calcPhaseVolume(phase) {
     const days = week.days.map(day => {
       let vol = 0;
       day.exercises.forEach(ex => {
-        const sets = parseSetCountForVolume(ex.sets);
+        const { sets, avgReps } = parseSetCountForVolume(ex.sets);
         const pcts = parsePercentages(ex.load);
         const avgPct = pcts.length ? pcts.reduce((a,b)=>a+b,0)/pcts.length : 0;
-        vol += sets * avgPct;
+        vol += sets * avgReps * avgPct;  // sets × reps × load%
       });
       return { label: day.label.substring(0,3), vol: Math.round(vol) };
     });
