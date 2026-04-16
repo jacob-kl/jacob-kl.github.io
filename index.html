@@ -1,221 +1,553 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kilo Club · Class Program</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #0e0e0f; --surface: #16171a; --surface2: #1e1f24;
-    --border: #2a2b32; --accent: #e8c547; --accent2: #4fc3a1;
-    --accent3: #e85d47; --text: #e8e6df; --muted: #7a7870;
-    --meso1: #4fc3a1; --meso2: #e8c547;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; min-height: 100vh; }
+/* ══════════════════════════════════
+   THEME TOKENS
+══════════════════════════════════ */
+:root {
+  --accent:  #e8c547;
+  --accent2: #4fc3a1;
+  --accent3: #e85d47;
+  --meso1:   #4fc3a1;
+  --meso2:   #e8c547;
+}
+[data-theme="dark"] {
+  --bg:      #0e0e0f;
+  --surface: #16171a;
+  --surface2:#1e1f24;
+  --border:  #2a2b32;
+  --text:    #e8e6df;
+  --muted:   #7a7870;
+  --input-bg:#1e1f24;
+  --card-shadow: none;
+}
+[data-theme="light"] {
+  --bg:      #f4f3ef;
+  --surface: #ffffff;
+  --surface2:#f0eeea;
+  --border:  #d6d3cb;
+  --text:    #1a1a1b;
+  --muted:   #7a7870;
+  --input-bg:#f8f7f4;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
 
-  /* ── LOGIN ── */
-  #login-gate { position: fixed; inset: 0; background: var(--bg); z-index: 9999; display: flex; align-items: center; justify-content: center; }
-  #login-gate.hidden { display: none; }
-  .login-box { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; max-width: 380px; padding: 0 28px; }
-  .login-logo { font-family: 'Bebas Neue', sans-serif; font-size: 64px; letter-spacing: 2px; line-height: 1; color: var(--text); text-align: center; }
-  .login-logo span { color: var(--accent); }
-  .login-field { width: 100%; display: flex; flex-direction: column; gap: 5px; }
-  .login-field label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
-  .login-field input { width: 100%; background: var(--surface); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 2px; padding: 12px 16px; border-radius: 2px; outline: none; transition: border-color 0.2s; }
-  .login-field input:focus { border-color: var(--accent); }
-  .login-field input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
-  #login-btn { width: 100%; background: var(--accent); color: var(--bg); font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px; border: none; padding: 14px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
-  #login-btn:hover { opacity: 0.85; }
-  #login-error { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent3); text-transform: uppercase; min-height: 16px; text-align: center; }
-  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.6; min-height: 100vh; transition: background 0.3s, color 0.3s; }
 
-  /* ── HERO ── */
-  .hero { padding: 60px 40px 40px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-  .hero-bg-logo { position: absolute; right: -20px; top: 50px; height: 280px; opacity: 0.75; pointer-events: none; user-select: none; }
-  .hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
-  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); letter-spacing: 2px; line-height: 0.95; color: var(--text); }
-  h1 span { color: var(--accent); }
-  .hero-meta { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; align-items: center; }
-  .meta-pill { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px; }
-  .meta-pill strong { color: var(--text); }
+/* ══════════════════════════════════
+   THEME TOGGLE (top-left of login)
+══════════════════════════════════ */
+#theme-toggle-wrap {
+  position: fixed; top: 16px; left: 16px; z-index: 10000;
+  display: flex; align-items: center; gap: 8px;
+}
+#theme-select {
+  background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 26px 6px 10px; border-radius: 2px; cursor: pointer; outline: none;
+  appearance: none; -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 8px center;
+  transition: border-color 0.2s;
+}
+#theme-select:hover { border-color: var(--accent); color: var(--text); }
 
-  /* ── ADMIN BAR ── */
-  #admin-bar { background: var(--surface2); border-bottom: 1px solid var(--border); padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap; }
-  #admin-bar.visible { display: flex; }
-  #admin-bar .admin-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
-  .view-toggle { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
-  .view-btn { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: none; color: var(--muted); padding: 7px 16px; cursor: pointer; transition: all 0.15s; }
-  .view-btn.active { background: var(--accent); color: var(--bg); }
-  .view-btn:not(.active):hover { color: var(--text); background: var(--surface); }
-  #logout-btn { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
-  #logout-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+/* ══════════════════════════════════
+   LOGIN GATE
+══════════════════════════════════ */
+#login-gate {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#login-gate.hidden { display: none; }
 
-  /* ── SELECTS ── */
-  .cycle-select-wrap { display: flex; align-items: center; gap: 10px; }
-  .cycle-select-wrap label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  #cycle-select { background: var(--surface); border: 1px solid var(--accent); color: var(--text); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; padding: 6px 28px 6px 12px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
-  #cycle-select:focus { border-color: var(--accent2); }
-  #unit-select { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 28px 6px 10px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; transition: border-color 0.2s, color 0.2s; }
-  #unit-select:focus, #unit-select:hover { border-color: var(--accent2); color: var(--text); }
+/* Platform background image */
+.login-bg {
+  position: absolute; inset: 0;
+  background: url('platform.png') center center / cover no-repeat;
+  filter: brightness(0.35) saturate(0.6);
+  transition: opacity 0.3s;
+}
+[data-theme="light"] .login-bg { filter: brightness(0.55) saturate(0.5); }
+/* Radial fade overlay — strong corner/edge vignette */
+.login-bg-fade {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at center, transparent 15%, var(--bg) 75%),
+    linear-gradient(to bottom, var(--bg) 0%, transparent 25%, transparent 75%, var(--bg) 100%),
+    linear-gradient(to right,  var(--bg) 0%, transparent 20%, transparent 80%, var(--bg) 100%);
+  pointer-events: none;
+}
 
-  /* ── 1RM PANEL ── */
-  .rm-panel { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px; }
-  .rm-panel-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
-  .rm-panel-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--accent); }
-  .rm-panel-header p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  .rm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
-  .rm-field { display: flex; flex-direction: column; gap: 5px; }
-  .rm-field label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  .rm-field input { background: var(--surface2); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; padding: 8px 12px; border-radius: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
-  .rm-field input:focus { border-color: var(--accent); }
-  .rm-field input::placeholder { color: var(--muted); font-size: 12px; }
-  .rm-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-  #rm-confirm { background: var(--accent); color: var(--bg); font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; border: none; padding: 10px 28px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
-  #rm-confirm:hover { opacity: 0.85; }
-  #rm-status { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); opacity: 0; transition: opacity 0.3s; }
-  #rm-status.visible { opacity: 1; }
-  .rm-note { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-top: 10px; }
+.login-box {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; align-items: center;
+  gap: 20px; width: 100%; max-width: 400px; padding: 0 32px;
+}
+.login-logo {
+  font-family: 'Bebas Neue', sans-serif; font-size: 80px; letter-spacing: 4px;
+  line-height: 0.9; color: var(--text); text-align: center;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.5);
+}
+.login-logo span { color: var(--accent); }
+.login-logo-sub {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--muted); margin-top: 4px; text-align: center;
+}
+.login-divider {
+  width: 60px; height: 1px; background: var(--border); margin: 4px 0;
+}
+.login-field { width: 100%; display: flex; flex-direction: column; gap: 5px; }
+.login-field label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); }
+.login-field input {
+  width: 100%; background: rgba(0,0,0,0.35); border: 1px solid var(--border);
+  color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 2px;
+  padding: 12px 16px; border-radius: 2px; outline: none; transition: border-color 0.2s;
+  backdrop-filter: blur(8px);
+}
+[data-theme="light"] .login-field input { background: rgba(255,255,255,0.6); }
+.login-field input:focus { border-color: var(--accent); }
+.login-field input.error { border-color: var(--accent3); animation: shake 0.3s ease; }
+#login-btn {
+  width: 100%; background: var(--accent); color: #0e0e0f;
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
+  border: none; padding: 14px; border-radius: 2px; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+#login-btn:hover { opacity: 0.88; }
+#login-btn:active { transform: scale(0.98); }
+#login-error { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; color: var(--accent3); text-transform: uppercase; min-height: 16px; text-align: center; }
+@keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
 
-  /* ── STATE MESSAGES ── */
-  #program-body { min-height: 200px; }
-  .state-message { padding: 60px 40px; font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
-  .state-message.error { color: var(--accent3); }
+/* ══════════════════════════════════
+   HERO
+══════════════════════════════════ */
+.hero { padding: 60px 40px 40px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
+.hero-bg-logo { position: absolute; right: -20px; top: 50px; height: 280px; opacity: 0.75; pointer-events: none; user-select: none; }
+[data-theme="light"] .hero-bg-logo { opacity: 0.55; }
+.hero-label { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px; }
+h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 88px); letter-spacing: 2px; line-height: 0.95; color: var(--text); }
+h1 span { color: var(--accent); }
+.hero-meta { display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap; align-items: center; }
+.meta-pill { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); border: 1px solid var(--border); padding: 6px 14px; border-radius: 2px; }
+.meta-pill strong { color: var(--text); }
 
-  /* ── OVERVIEW ── */
-  .overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
-  .overview-card { background: var(--surface); padding: 28px 32px; }
-  .overview-card h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .overview-card p { font-size: 14px; color: var(--text); line-height: 1.7; }
-  .overview-card .big { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 4px; }
-  .scaling-banner { background: var(--surface2); border-left: 3px solid var(--accent2); padding: 20px 32px; }
-  .scaling-banner h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
-  .scaling-banner p { font-size: 13px; color: var(--muted); }
-  .scaling-banner strong { color: var(--text); }
+/* ══════════════════════════════════
+   ADMIN BAR — sticky + member name
+══════════════════════════════════ */
+#admin-bar {
+  background: var(--surface2); border-bottom: 1px solid var(--border);
+  padding: 12px 40px; display: none; align-items: center; gap: 16px; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 500;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#admin-bar.visible { display: flex; }
+#admin-bar .admin-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); }
+.view-toggle { display: flex; border: 1px solid var(--border); border-radius: 2px; overflow: hidden; }
+.view-btn { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: none; color: var(--muted); padding: 7px 16px; cursor: pointer; transition: all 0.15s; }
+.view-btn.active { background: var(--accent); color: #0e0e0f; }
+.view-btn:not(.active):hover { color: var(--text); background: var(--surface); }
+#logout-btn { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; background: none; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s; }
+#logout-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+/* Member name greeting in admin bar */
+#member-greeting {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted);
+}
+#member-greeting strong { color: var(--text); }
 
-  /* ── PHASE HEADER ── */
-  .meso-header { padding: 40px 40px 20px; display: flex; align-items: baseline; gap: 20px; border-bottom: 1px solid var(--border); }
-  .meso-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; opacity: 0.15; }
-  .meso-num.m1 { color: var(--meso1); } .meso-num.m2 { color: var(--meso2); }
-  .meso-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; }
-  .meso-info h2.m1 { color: var(--meso1); } .meso-info h2.m2 { color: var(--meso2); }
-  .meso-info p { font-size: 13px; color: var(--muted); max-width: 600px; margin-top: 4px; }
+/* Member name pill shown in hero for member view */
+#member-name-pill {
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--accent2);
+  border: 1px solid rgba(79,195,161,0.3); padding: 6px 14px; border-radius: 2px;
+  display: none;
+}
+#member-name-pill.visible { display: block; }
 
-  /* ── WEEK TABS ── */
-  .week-nav { display: flex; padding: 0 40px; border-bottom: 1px solid var(--border); overflow-x: auto; }
-  .week-btn { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 16px 20px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
-  .week-btn:hover { color: var(--text); }
-  .week-btn.active.m1 { color: var(--meso1); border-bottom-color: var(--meso1); }
-  .week-btn.active.m2 { color: var(--meso2); border-bottom-color: var(--meso2); }
+/* Member name prompt modal */
+#name-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  z-index: 8500; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+#name-modal-overlay.open { opacity: 1; pointer-events: auto; }
+#name-modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  width: 100%; max-width: 380px; padding: 32px 28px; margin: 0 20px;
+  transform: scale(0.95); transition: transform 0.2s ease;
+}
+#name-modal-overlay.open #name-modal { transform: scale(1); }
+#name-modal h3 {
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 1px;
+  color: var(--accent); margin-bottom: 6px;
+}
+#name-modal p {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+}
+#name-modal-input {
+  width: 100%; background: var(--input-bg); border: 1px solid var(--border);
+  color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 16px;
+  padding: 12px 14px; border-radius: 3px; outline: none; transition: border-color 0.2s;
+  margin-bottom: 16px;
+}
+#name-modal-input:focus { border-color: var(--accent); }
+#name-modal-input::placeholder { color: var(--muted); }
+#name-modal-save {
+  width: 100%; background: var(--accent); color: #0e0e0f;
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
+  border: none; padding: 13px; border-radius: 3px; cursor: pointer; transition: opacity 0.2s;
+}
+#name-modal-save:hover { opacity: 0.85; }
+#name-modal-skip {
+  width: 100%; margin-top: 10px; background: none; border: 1px solid var(--border);
+  color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 2px; text-transform: uppercase; padding: 10px;
+  border-radius: 3px; cursor: pointer; transition: all 0.15s;
+}
+#name-modal-skip:hover { border-color: var(--muted); color: var(--text); }
 
-  /* ── WEEK CONTENT ── */
-  .week-content { display: none; padding: 32px 40px; }
-  .week-content.visible { display: block; }
-  .days-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+/* ══════════════════════════════════
+   SELECTS
+══════════════════════════════════ */
+.cycle-select-wrap { display: flex; align-items: center; gap: 10px; }
+.cycle-select-wrap label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+#cycle-select { background: var(--surface); border: 1px solid var(--accent); color: var(--text); font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 1px; padding: 6px 28px 6px 12px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
+#unit-select { background: var(--surface2); border: 1px solid var(--border); color: var(--muted); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 6px 28px 6px 10px; border-radius: 2px; cursor: pointer; outline: none; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5' viewBox='0 0 8 5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 8px center; transition: border-color 0.2s, color 0.2s; }
+#unit-select:hover { border-color: var(--accent2); color: var(--text); }
 
-  /* ── DAY CARD ── */
-  .day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-  .day-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
-  .day-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
-  .day-label.mon { color: var(--meso1); } .day-label.thu { color: var(--accent); }
-  .day-focus { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+/* ══════════════════════════════════
+   1RM PANEL
+══════════════════════════════════ */
+.rm-panel { background: var(--surface); border-bottom: 1px solid var(--border); padding: 28px 40px; }
+.rm-panel-header { display: flex; align-items: baseline; gap: 16px; margin-bottom: 20px; flex-wrap: wrap; }
+.rm-panel-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--accent); }
+.rm-panel-header p { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.rm-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.rm-field { display: flex; flex-direction: column; gap: 5px; }
+.rm-field label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.rm-field input { background: var(--input-bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Mono', monospace; font-size: 14px; padding: 8px 12px; border-radius: 2px; outline: none; transition: border-color 0.2s; width: 100%; }
+.rm-field input:focus { border-color: var(--accent); }
+.rm-field input::placeholder { color: var(--muted); font-size: 12px; }
+.rm-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+#rm-confirm { background: var(--accent); color: #0e0e0f; font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 2px; border: none; padding: 10px 28px; border-radius: 2px; cursor: pointer; transition: opacity 0.2s; }
+#rm-confirm:hover { opacity: 0.85; }
+#rm-status { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--accent2); opacity: 0; transition: opacity 0.3s; }
+#rm-status.visible { opacity: 1; }
+.rm-note { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-top: 10px; }
 
-  /* ── EXERCISE TABLE ── */
-  .ex-table { width: 100%; border-collapse: collapse; }
-  .ex-table thead tr { background: var(--surface2); }
-  .ex-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); padding: 8px 12px; text-align: left; font-weight: 400; }
-  .ex-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
-  .ex-table tbody tr:hover { background: var(--surface2); }
-  .ex-table tbody tr:last-child { border-bottom: none; }
-  .ex-table td { padding: 11px 12px; font-size: 13px; vertical-align: middle; }
-  .ex-name { color: var(--text); font-weight: 400; }
-  .ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); white-space: nowrap; }
-  .ex-load { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); white-space: nowrap; }
-  .ex-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
-  .ex-weight { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); white-space: nowrap; }
-  .ex-weight.empty { color: var(--muted); font-size: 10px; }
+/* ══════════════════════════════════
+   STATES
+══════════════════════════════════ */
+#program-body { min-height: 200px; }
+.state-message { padding: 60px 40px; font-family: 'DM Mono', monospace; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.state-message.error { color: var(--accent3); }
 
-  /* ── SUPERSET STYLING ── */
-  tr.superset-start td { border-bottom: none; padding-bottom: 4px; }
-  tr.superset-mid td { border-bottom: none; padding-top: 4px; padding-bottom: 4px; }
-  tr.superset-end td { padding-top: 4px; border-top: 1px dashed var(--border); }
-  tr.superset-start td:first-child, tr.superset-mid td:first-child { border-left: 3px solid var(--accent2); }
-  tr.superset-end td:first-child { border-left: 3px solid var(--accent2); }
-  .superset-label {
-    display: inline-block; font-family: 'DM Mono', monospace; font-size: 8px;
-    letter-spacing: 1px; text-transform: uppercase; color: var(--accent2);
-    background: rgba(79,195,161,0.1); border: 1px solid rgba(79,195,161,0.2);
-    padding: 1px 5px; border-radius: 2px; margin-left: 6px; vertical-align: middle;
-  }
+/* ══════════════════════════════════
+   OVERVIEW
+══════════════════════════════════ */
+.overview { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+.overview-card { background: var(--surface); padding: 28px 32px; }
+.overview-card h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.overview-card p { font-size: 14px; color: var(--text); line-height: 1.7; }
+.overview-card .big { font-family: 'Bebas Neue', sans-serif; font-size: 48px; line-height: 1; margin-bottom: 4px; }
+.scaling-banner { background: var(--surface2); border-left: 3px solid var(--accent2); padding: 20px 32px; }
+.scaling-banner h3 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--accent2); margin-bottom: 8px; }
+.scaling-banner p { font-size: 13px; color: var(--muted); }
+.scaling-banner strong { color: var(--text); }
 
-  /* ── TAGS ── */
-  .tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-top: 3px; margin-right: 4px; }
-  .tag-beginner { background: rgba(79,195,161,0.12); color: var(--accent2); border: 1px solid rgba(79,195,161,0.25); }
-  .tag-peak     { background: rgba(232,197,71,0.12);  color: var(--accent);  border: 1px solid rgba(232,197,71,0.25); }
-  .tag-hard     { background: rgba(232,93,71,0.12);   color: var(--accent3); border: 1px solid rgba(232,93,71,0.25); }
+/* ══════════════════════════════════
+   PHASE HEADER
+══════════════════════════════════ */
+.meso-header { padding: 40px 40px 20px; display: flex; align-items: baseline; gap: 20px; border-bottom: 1px solid var(--border); }
+.meso-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; line-height: 1; opacity: 0.15; }
+.meso-num.m1 { color: var(--meso1); } .meso-num.m2 { color: var(--meso2); }
+.meso-info h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 1px; }
+.meso-info h2.m1 { color: var(--meso1); } .meso-info h2.m2 { color: var(--meso2); }
+.meso-info p { font-size: 13px; color: var(--muted); max-width: 600px; margin-top: 4px; }
 
-  /* ── WEEK INTENT ── */
-  .week-intent { background: var(--surface2); border-left: 3px solid var(--border); padding: 14px 20px; margin-bottom: 24px; border-radius: 0 4px 4px 0; }
-  .week-intent.m1 { border-left-color: var(--meso1); } .week-intent.m2 { border-left-color: var(--meso2); }
-  .week-intent.deload { border-left-color: var(--muted); } .week-intent.peak { border-left-color: var(--accent3); }
-  .week-intent h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
-  .week-intent h4.m1 { color: var(--meso1); } .week-intent h4.m2 { color: var(--meso2); }
-  .week-intent h4.deload { color: var(--muted); } .week-intent h4.peak { color: var(--accent3); }
-  .week-intent p { font-size: 13px; color: var(--muted); }
+/* ══════════════════════════════════
+   WEEK TABS
+══════════════════════════════════ */
+.week-nav { display: flex; padding: 0 40px; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.week-btn { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 16px 20px; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+.week-btn:hover { color: var(--text); }
+.week-btn.active.m1 { color: var(--meso1); border-bottom-color: var(--meso1); }
+.week-btn.active.m2 { color: var(--meso2); border-bottom-color: var(--meso2); }
 
-  /* ── DAILY NOTES ── */
-  .day-notes-section { border-top: 1px solid var(--border); }
-  .day-notes-toggle {
-    width: 100%; background: none; border: none; padding: 10px 16px;
-    display: flex; align-items: center; justify-content: space-between;
-    cursor: pointer; transition: background 0.15s;
-  }
-  .day-notes-toggle:hover { background: var(--surface2); }
-  .day-notes-toggle span {
-    font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--muted);
-  }
-  .day-notes-toggle .arrow { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
-  .day-notes-toggle.open .arrow { transform: rotate(180deg); }
-  .day-notes-body { display: none; padding: 12px 16px 16px; }
-  .day-notes-body.open { display: block; }
-  .day-notes-body textarea {
-    width: 100%; background: var(--surface2); border: 1px solid var(--border);
-    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px;
-    font-weight: 300; line-height: 1.6; padding: 10px 12px; border-radius: 2px;
-    outline: none; resize: vertical; min-height: 80px; transition: border-color 0.2s;
-  }
-  .day-notes-body textarea:focus { border-color: var(--accent2); }
-  .day-notes-body textarea::placeholder { color: var(--muted); }
+/* ══════════════════════════════════
+   WEEK CONTENT
+══════════════════════════════════ */
+.week-content { display: none; padding: 32px 40px; }
+.week-content.visible { display: block; }
+.days-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
 
-  /* ── MISC ── */
-  .section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
-  footer { padding: 32px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-  footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+/* ══════════════════════════════════
+   DAY CARD
+══════════════════════════════════ */
+.day-card { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; box-shadow: var(--card-shadow); }
+.day-card .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.day-header { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--border); }
+.day-label { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; }
+.day-label.mon { color: var(--meso1); } .day-label.thu { color: var(--accent); }
+.day-focus { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 860px) {
-    .days-grid { grid-template-columns: 1fr; }
-    .hero, .week-nav, .week-content, .meso-header, .rm-panel, #admin-bar { padding-left: 20px; padding-right: 20px; }
-    .overview-card, .scaling-banner { padding: 20px; }
-    .rm-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-    .hero-bg-logo { height: 160px; top: 40px; }
-  }
+/* ══════════════════════════════════
+   EXERCISE TABLE
+══════════════════════════════════ */
+.ex-table { width: 100%; border-collapse: collapse; }
+.ex-table thead tr { background: var(--surface2); }
+.ex-table th { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); padding: 8px 12px; text-align: left; font-weight: 400; }
+.ex-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+.ex-table tbody tr:hover { background: var(--surface2); }
+.ex-table tbody tr:last-child { border-bottom: none; }
+.ex-table td { padding: 10px 12px; font-size: 13px; vertical-align: middle; }
+.ex-name { color: var(--text); font-weight: 400; }
+.ex-sets { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent2); white-space: nowrap; }
+.ex-load { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--accent); }
+.ex-note { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.ex-weight { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--text); white-space: nowrap; }
+.ex-weight.empty { color: var(--muted); font-size: 10px; }
 
-  @media print {
-    body { background: white; color: black; }
-    .week-content { display: block !important; }
-    .week-nav, #login-gate, .rm-panel, #admin-bar { display: none; }
-  }
+/* ══════════════════════════════════
+   SUPERSET — COLOR CYCLING
+   ss-color-0 = teal, 1 = yellow, 2 = orange, 3 = purple
+══════════════════════════════════ */
+:root {
+  --ss0: #4fc3a1; --ss0a: rgba(79,195,161,0.10); --ss0b: rgba(79,195,161,0.30);
+  --ss1: #e8c547; --ss1a: rgba(232,197,71,0.10);  --ss1b: rgba(232,197,71,0.30);
+  --ss2: #e8843a; --ss2a: rgba(232,132,58,0.10);  --ss2b: rgba(232,132,58,0.30);
+  --ss3: #a78bfa; --ss3a: rgba(167,139,250,0.10); --ss3b: rgba(167,139,250,0.30);
+}
+/* Remove internal dividers between grouped rows */
+tr.ss-start td, tr.ss-mid td { border-bottom: none !important; }
+tr.ss-start td { padding-bottom: 3px; }
+tr.ss-mid td   { padding-top: 3px; padding-bottom: 3px; }
+tr.ss-end td   { padding-top: 3px; }
+/* Left color bar — all rows in a superset get it */
+tr.ss-start td:first-child,
+tr.ss-mid   td:first-child,
+tr.ss-end   td:first-child { border-left-width: 3px; border-left-style: solid; }
+tr[data-ss="0"].ss-start td:first-child,
+tr[data-ss="0"].ss-mid   td:first-child,
+tr[data-ss="0"].ss-end   td:first-child { border-left-color: var(--ss0); }
+tr[data-ss="1"].ss-start td:first-child,
+tr[data-ss="1"].ss-mid   td:first-child,
+tr[data-ss="1"].ss-end   td:first-child { border-left-color: var(--ss1); }
+tr[data-ss="2"].ss-start td:first-child,
+tr[data-ss="2"].ss-mid   td:first-child,
+tr[data-ss="2"].ss-end   td:first-child { border-left-color: var(--ss2); }
+tr[data-ss="3"].ss-start td:first-child,
+tr[data-ss="3"].ss-mid   td:first-child,
+tr[data-ss="3"].ss-end   td:first-child { border-left-color: var(--ss3); }
+/* Superset label badge — shown on every row in the group */
+.ss-badge {
+  display: block; font-family: 'DM Mono', monospace; font-size: 8px;
+  letter-spacing: 1px; text-transform: uppercase;
+  padding: 1px 5px; border-radius: 2px; margin-top: 3px;
+  width: fit-content;
+}
+.ss-badge-0 { color: var(--ss0); background: var(--ss0a); border: 1px solid var(--ss0b); }
+.ss-badge-1 { color: var(--ss1); background: var(--ss1a); border: 1px solid var(--ss1b); }
+.ss-badge-2 { color: var(--ss2); background: var(--ss2a); border: 1px solid var(--ss2b); }
+.ss-badge-3 { color: var(--ss3); background: var(--ss3a); border: 1px solid var(--ss3b); }
+
+/* ══════════════════════════════════
+   WAVE ROWS — lift name left, waves right
+══════════════════════════════════ */
+.wave-group { display: flex; flex-direction: column; gap: 2px; }
+.wave-line { display: flex; gap: 8px; align-items: baseline; }
+.wave-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); min-width: 48px; }
+.wave-sets  { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent2); }
+.wave-load  { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--accent); }
+.wave-name-cell { display: flex; align-items: center; height: 100%; }
+.wave-base-name { color: var(--text); font-size: 13px; font-weight: 400; }
+
+/* ══════════════════════════════════
+   LOG LIFT BUTTON
+══════════════════════════════════ */
+.log-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--border);
+  color: var(--muted); border-radius: 3px; padding: 4px 8px;
+  cursor: pointer; font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 1px; text-transform: uppercase; gap: 4px;
+  transition: all 0.15s; white-space: nowrap; min-width: 60px;
+}
+/* Log column — never collapse */
+.ex-table th:last-child,
+.ex-table td:last-child {
+  min-width: 70px;
+  white-space: nowrap;
+}
+.log-btn:hover { border-color: var(--accent2); color: var(--accent2); background: rgba(79,195,161,0.07); }
+.log-btn svg { width: 12px; height: 12px; }
+/* logged state */
+.log-btn.logged-made { border-color: var(--accent2); color: var(--accent2); background: rgba(79,195,161,0.1); }
+.log-btn.logged-miss { border-color: var(--accent3); color: var(--accent3); background: rgba(232,93,71,0.1); }
+
+/* ══════════════════════════════════
+   LOG LIFT MODAL
+══════════════════════════════════ */
+#log-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+  z-index: 8000; display: flex; align-items: flex-end; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+#log-modal-overlay.open { opacity: 1; pointer-events: auto; }
+#log-modal {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px 12px 0 0;
+  width: 100%; max-width: 520px; padding: 0 0 32px;
+  transform: translateY(100%); transition: transform 0.25s ease;
+  max-height: 92vh; overflow-y: auto;
+}
+#log-modal-overlay.open #log-modal { transform: translateY(0); }
+.modal-handle { width: 40px; height: 4px; background: var(--border); border-radius: 2px; margin: 12px auto 0; }
+.modal-header { padding: 16px 20px 12px; border-bottom: 1px solid var(--border); }
+.modal-ex-name { font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 400; color: var(--text); }
+.modal-ex-meta { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); margin-top: 3px; }
+.modal-body { padding: 16px 20px; }
+.modal-section-label { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+
+/* Set rows in modal */
+.log-set-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 0; border-bottom: 1px solid var(--border);
+}
+.log-set-row:last-child { border-bottom: none; }
+.log-set-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 40px; }
+.log-outcome { display: flex; gap: 6px; }
+.outcome-btn {
+  width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--border);
+  background: none; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center;
+  transition: all 0.15s;
+}
+.outcome-btn.check:hover { border-color: var(--accent2); background: rgba(79,195,161,0.15); }
+.outcome-btn.x:hover     { border-color: var(--accent3); background: rgba(232,93,71,0.15); }
+.outcome-btn.check.selected { border-color: var(--accent2); background: rgba(79,195,161,0.2); }
+.outcome-btn.x.selected     { border-color: var(--accent3); background: rgba(232,93,71,0.2); }
+.log-weight-input {
+  flex: 1; background: var(--input-bg); border: 1px solid var(--border); color: var(--text);
+  font-family: 'DM Mono', monospace; font-size: 13px; padding: 7px 10px; border-radius: 3px;
+  outline: none; transition: border-color 0.2s; text-align: right;
+}
+.log-weight-input:focus { border-color: var(--accent); }
+.log-weight-unit { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); min-width: 28px; }
+
+.modal-save-btn {
+  width: 100%; margin-top: 16px; background: var(--accent); color: #0e0e0f;
+  font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 3px;
+  border: none; padding: 14px; border-radius: 3px; cursor: pointer; transition: opacity 0.2s;
+}
+.modal-save-btn:hover { opacity: 0.85; }
+.modal-close-row { padding: 4px 20px 0; }
+.modal-close-btn {
+  width: 100%; background: none; border: 1px solid var(--border); color: var(--muted);
+  font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  padding: 10px; border-radius: 3px; cursor: pointer; transition: all 0.15s;
+}
+.modal-close-btn:hover { border-color: var(--accent3); color: var(--accent3); }
+
+/* ══════════════════════════════════
+   PR CELEBRATION TOAST
+══════════════════════════════════ */
+#pr-toast {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px);
+  background: var(--accent); color: #0e0e0f;
+  font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px;
+  padding: 14px 28px; border-radius: 4px; z-index: 9998;
+  transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
+  opacity: 0; white-space: nowrap; text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+#pr-toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+#pr-toast .pr-sub { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 2px; display: block; margin-top: 2px; }
+
+/* ══════════════════════════════════
+   TAGS
+══════════════════════════════════ */
+.tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 6px; border-radius: 2px; margin-top: 3px; margin-right: 4px; }
+.tag-beginner { background: rgba(79,195,161,0.12);  color: var(--accent2); border: 1px solid rgba(79,195,161,0.25); }
+.tag-peak     { background: rgba(232,197,71,0.12);   color: var(--accent);  border: 1px solid rgba(232,197,71,0.25); }
+.tag-hard     { background: rgba(232,93,71,0.12);    color: var(--accent3); border: 1px solid rgba(232,93,71,0.25); }
+
+/* ══════════════════════════════════
+   WEEK INTENT
+══════════════════════════════════ */
+.week-intent { background: var(--surface2); border-left: 3px solid var(--border); padding: 14px 20px; margin-bottom: 24px; border-radius: 0 4px 4px 0; }
+.week-intent.m1 { border-left-color: var(--meso1); } .week-intent.m2 { border-left-color: var(--meso2); }
+.week-intent.deload { border-left-color: var(--muted); } .week-intent.peak { border-left-color: var(--accent3); }
+.week-intent h4 { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 4px; }
+.week-intent h4.m1 { color: var(--meso1); } .week-intent h4.m2 { color: var(--meso2); }
+.week-intent h4.deload { color: var(--muted); } .week-intent h4.peak { color: var(--accent3); }
+.week-intent p { font-size: 13px; color: var(--muted); }
+
+/* ══════════════════════════════════
+   DAILY NOTES
+══════════════════════════════════ */
+.day-notes-section { border-top: 1px solid var(--border); }
+.day-notes-toggle { width: 100%; background: none; border: none; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; transition: background 0.15s; }
+.day-notes-toggle:hover { background: var(--surface2); }
+.day-notes-toggle span { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.day-notes-toggle .arrow { font-size: 10px; color: var(--muted); transition: transform 0.2s; }
+.day-notes-toggle.open .arrow { transform: rotate(180deg); }
+.day-notes-body { display: none; padding: 12px 16px 16px; }
+.day-notes-body.open { display: block; }
+.day-notes-body textarea { width: 100%; background: var(--input-bg); border: 1px solid var(--border); color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; padding: 10px 12px; border-radius: 2px; outline: none; resize: vertical; min-height: 80px; transition: border-color 0.2s; }
+.day-notes-body textarea:focus { border-color: var(--accent2); }
+.day-notes-body textarea::placeholder { color: var(--muted); }
+
+/* ══════════════════════════════════
+   MISC
+══════════════════════════════════ */
+.section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
+footer { padding: 32px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+
+/* ══════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════ */
+@media (max-width: 860px) {
+  .days-grid { grid-template-columns: 1fr; }
+  .hero, .week-nav, .week-content, .meso-header, .rm-panel, #admin-bar { padding-left: 20px; padding-right: 20px; }
+  .overview-card, .scaling-banner { padding: 20px; }
+  .rm-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .hero-bg-logo { height: 160px; top: 40px; }
+}
+@media print {
+  body { background: white; color: black; }
+  .week-content { display: block !important; }
+  .week-nav, #login-gate, .rm-panel, #admin-bar, #theme-toggle-wrap { display: none; }
+}
 </style>
 </head>
 <body>
 
-<!-- ══ LOGIN GATE ══ -->
+<!-- Theme toggle -->
+<div id="theme-toggle-wrap">
+  <select id="theme-select" onchange="setTheme(this.value)">
+    <option value="dark">🌙 Dark</option>
+    <option value="light">☀️ Light</option>
+  </select>
+</div>
+
+<!-- ══ LOGIN ══ -->
 <div id="login-gate">
+  <div class="login-bg"></div>
+  <div class="login-bg-fade"></div>
   <div class="login-box">
     <div class="login-logo">KILO<br><span>CLUB</span></div>
+    <div class="login-logo-sub">Crossfit Crumville</div>
+    <div class="login-divider"></div>
     <div class="login-field">
       <label for="login-username">Username</label>
       <input type="text" id="login-username" placeholder="username" autocomplete="off" />
@@ -231,25 +563,26 @@
 
 <!-- ══ MAIN ══ -->
 <div id="main-content">
-
   <div id="admin-bar">
     <span class="admin-label">Admin</span>
     <div class="view-toggle">
-      <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Member Lifts</button>
-      <button class="view-btn" id="btn-admin-view"  onclick="switchView('admin')">My Lifts</button>
+      <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Class Program</button>
+      <button class="view-btn" id="btn-admin-view" onclick="switchView('admin')">Competitor Lifts</button>
     </div>
+    <span id="member-greeting"></span>
     <button id="logout-btn" onclick="doLogout()">Log Out</button>
   </div>
 
   <div class="hero">
     <img src="crumville_logo.png" class="hero-bg-logo" alt="">
-    <div class="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
+    <div class="hero-label" id="hero-label">Crossfit Crumville Kilo Club · Class Program</div>
     <h1>12-WEEK<br><span>PEAK</span><br>CYCLE</h1>
     <div class="hero-meta">
-      <div class="meta-pill"><strong>2</strong> Days / Week</div>
-      <div id="meta-days"  class="meta-pill">—</div>
-      <div id="meta-goal"  class="meta-pill">—</div>
+      <div class="meta-pill" id="meta-days-per-week"><strong>2</strong> Days / Week</div>
+      <div id="meta-days" class="meta-pill">—</div>
+      <div id="meta-goal" class="meta-pill">—</div>
       <div id="meta-dates" class="meta-pill">—</div>
+      <div id="member-name-pill"></div>
       <div class="cycle-select-wrap" id="cycle-select-wrap">
         <label for="cycle-select">Cycle</label>
         <select id="cycle-select" onchange="onCycleChange(this.value)">
@@ -262,7 +595,7 @@
   <div class="rm-panel">
     <div class="rm-panel-header">
       <h3>Your 1RM Maxes</h3>
-      <p>Enter your maxes → confirm → weights auto-fill throughout the program</p>
+      <p>Enter your maxes → confirm → weights auto-fill &amp; PRs tracked</p>
     </div>
     <div class="rm-grid" id="rm-grid"></div>
     <div class="rm-actions">
@@ -276,7 +609,7 @@
       </div>
       <span id="rm-status">✓ Saved</span>
     </div>
-    <p class="rm-note">Maxes are saved in your browser and will be here next time you visit.</p>
+    <p class="rm-note">Maxes are saved to your browser — PRs auto-update them.</p>
   </div>
 
   <div id="program-body"><div class="state-message">Loading program…</div></div>
@@ -287,14 +620,69 @@
   </footer>
 </div>
 
+<!-- ══ MEMBER NAME MODAL ══ -->
+<div id="name-modal-overlay">
+  <div id="name-modal">
+    <h3>Welcome to Kilo Club</h3>
+    <p>What's your name? We'll display it on your program.</p>
+    <input type="text" id="name-modal-input" placeholder="Your name" autocomplete="off" maxlength="40" />
+    <button id="name-modal-save" onclick="saveMemberName()">LET'S GO</button>
+    <button id="name-modal-skip" onclick="skipMemberName()">Skip for now</button>
+  </div>
+</div>
+
+<!-- ══ LOG LIFT MODAL ══ -->
+<div id="log-modal-overlay" onclick="maybeCloseModal(event)">
+  <div id="log-modal">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <div class="modal-ex-name" id="modal-ex-name">Exercise</div>
+      <div class="modal-ex-meta" id="modal-ex-meta">Sets · Load</div>
+    </div>
+    <div class="modal-body">
+      <div class="modal-section-label">Log Your Sets</div>
+      <div id="modal-sets-container"></div>
+      <button class="modal-save-btn" onclick="saveLog()">SAVE LOG</button>
+    </div>
+    <div class="modal-close-row">
+      <button class="modal-close-btn" onclick="closeModal()">CLOSE</button>
+    </div>
+  </div>
+</div>
+
+<!-- PR Toast -->
+<div id="pr-toast">
+  <span id="pr-toast-msg">🏆 NEW PR!</span>
+  <span class="pr-sub" id="pr-toast-sub"></span>
+</div>
+
 <script>
-// ── AUTH ──
+// ══════════════════════════════════
+//  THEME
+// ══════════════════════════════════
+function setTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('theme-select').value = t;
+  try { localStorage.setItem('kc_theme', t); } catch(e) {}
+}
+(function() {
+  try {
+    const t = localStorage.getItem('kc_theme') || 'dark';
+    setTheme(t);
+  } catch(e) { setTheme('dark'); }
+})();
+
+
+// ══════════════════════════════════
+//  AUTH
+// ══════════════════════════════════
 const USERS = {
   admin:  { password: 'olylift', role: 'admin'  },
   member: { password: 'barbell', role: 'member' }
 };
 let currentRole = null;
 let currentView = 'member';
+let memberName = '';
 
 function doLogin() {
   const uEl = document.getElementById('login-username');
@@ -304,10 +692,19 @@ function doLogin() {
   const user = USERS[u];
   if (user && user.password === pEl.value) {
     currentRole = user.role;
-    sessionStorage.setItem('kc_user', u);
     sessionStorage.setItem('kc_role', currentRole);
     document.getElementById('login-gate').classList.add('hidden');
-    initApp();
+    if (currentRole === 'member') {
+      // Load saved name or prompt
+      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+      if (!memberName) {
+        showNameModal();
+      } else {
+        initApp();
+      }
+    } else {
+      initApp();
+    }
   } else {
     err.textContent = 'Invalid username or password';
     pEl.classList.add('error');
@@ -316,20 +713,51 @@ function doLogin() {
   }
 }
 
+function showNameModal() {
+  document.getElementById('name-modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('name-modal-input').focus(), 250);
+}
+
+function saveMemberName() {
+  const val = document.getElementById('name-modal-input').value.trim();
+  if (val) {
+    memberName = val;
+    try { localStorage.setItem('kc_member_name', val); } catch(e) {}
+  }
+  document.getElementById('name-modal-overlay').classList.remove('open');
+  initApp();
+}
+
+function skipMemberName() {
+  memberName = '';
+  document.getElementById('name-modal-overlay').classList.remove('open');
+  initApp();
+}
+
 function doLogout() {
-  sessionStorage.removeItem('kc_user');
   sessionStorage.removeItem('kc_role');
-  currentRole = null; currentView = 'member';
+  currentRole = null; currentView = 'member'; memberName = '';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
+  // Clear name pill
+  const pill = document.getElementById('member-name-pill');
+  if (pill) { pill.classList.remove('visible'); pill.textContent = ''; }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
   ['login-username','login-password'].forEach(id =>
     document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); })
   );
+  document.getElementById('name-modal-input').addEventListener('keydown', e => { if (e.key === 'Enter') saveMemberName(); });
   const r = sessionStorage.getItem('kc_role');
-  if (r) { currentRole = r; document.getElementById('login-gate').classList.add('hidden'); initApp(); }
+  if (r) {
+    currentRole = r;
+    document.getElementById('login-gate').classList.add('hidden');
+    if (currentRole === 'member') {
+      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+    }
+    initApp();
+  }
   try {
     const u = localStorage.getItem('kiloclub_unit');
     if (u) document.getElementById('unit-select').value = u;
@@ -340,47 +768,63 @@ function initApp() {
   if (currentRole === 'admin') document.getElementById('admin-bar').classList.add('visible');
   currentView = 'member';
   updateViewButtons();
+  updateViewLabels();
   loadView();
 }
 
-function switchView(v) { currentView = v; updateViewButtons(); loadView(); }
+function switchView(v) {
+  currentView = v;
+  updateViewButtons();
+  updateViewLabels();
+  loadView();
+}
 
 function updateViewButtons() {
   document.getElementById('btn-member-view').classList.toggle('active', currentView === 'member');
   document.getElementById('btn-admin-view').classList.toggle('active',  currentView === 'admin');
 }
 
-function loadView() {
-  buildRmPanel();
-  loadSavedMaxes();
+function updateViewLabels() {
+  const heroLabel = document.getElementById('hero-label');
+  const namePill  = document.getElementById('member-name-pill');
+  const greeting  = document.getElementById('member-greeting');
   if (currentView === 'admin') {
-    document.getElementById('cycle-select-wrap').style.display = 'none';
-    fetch('cycles/admin_2025-spring.json')
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(data => renderCycle(data))
-      .catch(() => { document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program.</div>'; });
+
   } else {
-    document.getElementById('cycle-select-wrap').style.display = 'flex';
-    loadCycle(document.getElementById('cycle-select').value);
+    if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Class Program';
+    if (namePill && memberName) {
+      namePill.textContent = memberName;
+      namePill.classList.add('visible');
+    }
+    if (greeting && memberName && currentRole === 'admin') {
+      greeting.innerHTML = `Viewing: <strong>${memberName}</strong>`;
+    }
   }
 }
 
-function onCycleChange(v) { if (currentView === 'member') loadCycle(v); }
 
-
-// ── 1RM PANEL ──
+// ══════════════════════════════════
+//  1RM PANEL
+// ══════════════════════════════════
 const MEMBER_FIELDS = [
-  { id: 'rm-snatch', label: 'Snatch' }, { id: 'rm-cj', label: 'Clean & Jerk' },
-  { id: 'rm-backsquat', label: 'Back Squat' }, { id: 'rm-frontsquat', label: 'Front Squat' },
-  { id: 'rm-ohsquat', label: 'Overhead Squat' }, { id: 'rm-goodmorning', label: 'Good Morning' },
-  { id: 'rm-deadlift', label: 'Deadlift' }
+  { id:'rm-snatch',      label:'Snatch' },
+  { id:'rm-cj',         label:'Clean & Jerk' },
+  { id:'rm-backsquat',  label:'Back Squat' },
+  { id:'rm-frontsquat', label:'Front Squat' },
+  { id:'rm-ohsquat',    label:'Overhead Squat' },
+  { id:'rm-goodmorning',label:'Good Morning' },
+  { id:'rm-deadlift',   label:'Deadlift' }
 ];
 const ADMIN_FIELDS = [
-  { id: 'rm-snatch', label: 'Snatch' }, { id: 'rm-cj', label: 'Clean & Jerk' },
-  { id: 'rm-backsquat', label: 'Back Squat' }, { id: 'rm-frontsquat', label: 'Front Squat' },
-  { id: 'rm-ohsquat', label: 'Overhead Squat' }, { id: 'rm-bench', label: 'Bench Press' },
-  { id: 'rm-press', label: 'Strict Press' }, { id: 'rm-deadlift', label: 'Deadlift' },
-  { id: 'rm-goodmorning', label: 'Good Morning' }
+  { id:'rm-snatch',      label:'Snatch' },
+  { id:'rm-cj',         label:'Clean & Jerk' },
+  { id:'rm-backsquat',  label:'Back Squat' },
+  { id:'rm-frontsquat', label:'Front Squat' },
+  { id:'rm-ohsquat',    label:'Overhead Squat' },
+  { id:'rm-bench',      label:'Bench Press' },
+  { id:'rm-press',      label:'Strict Press' },
+  { id:'rm-deadlift',   label:'Deadlift' },
+  { id:'rm-goodmorning',label:'Good Morning' }
 ];
 
 function buildRmPanel() {
@@ -391,18 +835,18 @@ function buildRmPanel() {
 }
 
 const RM_MAP = [
-  { keys: ['snatch pull','snatch grip stage','front banded snatch','block snatch high pull','snatch high pull','snatch high hang high pull'], id: 'rm-snatch' },
-  { keys: ['clean pull','front banded clean pull','block clean high pull','stage clean deadlift'], id: 'rm-cj' },
-  { keys: ['strict press','push press','push jerk','split jerk','jerk dip','jerk from rack','jerk'], id: 'rm-cj' },
-  { keys: ['overhead squat','ohs'], id: 'rm-ohsquat' },
-  { keys: ['front squat','enderton front squat','pause front squat'], id: 'rm-frontsquat' },
-  { keys: ['back squat','pause back squat','enderton back squat'], id: 'rm-backsquat' },
-  { keys: ['clean & jerk','clean and jerk'], id: 'rm-cj' },
-  { keys: ['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','clean'], id: 'rm-cj' },
-  { keys: ['mid hang snatch','hang snatch','deficit snatch','3 position snatch','power snatch','snatch balance','muscle snatch','snatch'], id: 'rm-snatch' },
-  { keys: ['bench press','bench'], id: 'rm-bench' },
-  { keys: ['good morning','goblet'], id: 'rm-goodmorning' },
-  { keys: ['deadlift'], id: 'rm-deadlift' },
+  { keys:['snatch pull','snatch grip stage','front banded snatch','block snatch high pull','snatch high pull','snatch high hang high pull'], id:'rm-snatch' },
+  { keys:['clean pull','front banded clean pull','block clean high pull','stage clean deadlift'], id:'rm-cj' },
+  { keys:['strict press','push press','push jerk','split jerk','jerk dip','jerk from rack','jerk'], id:'rm-cj' },
+  { keys:['overhead squat','ohs'], id:'rm-ohsquat' },
+  { keys:['front squat','enderton front squat','pause front squat'], id:'rm-frontsquat' },
+  { keys:['back squat','pause back squat','enderton back squat'], id:'rm-backsquat' },
+  { keys:['clean & jerk','clean and jerk'], id:'rm-cj' },
+  { keys:['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','clean'], id:'rm-cj' },
+  { keys:['mid hang snatch','hang snatch','deficit snatch','3 position snatch','power snatch','snatch balance','muscle snatch','snatch'], id:'rm-snatch' },
+  { keys:['bench press','bench'], id:'rm-bench' },
+  { keys:['good morning','goblet'], id:'rm-goodmorning' },
+  { keys:['deadlift'], id:'rm-deadlift' },
 ];
 
 let currentMaxes = {};
@@ -414,12 +858,14 @@ function loadSavedMaxes() {
   try {
     const s = localStorage.getItem(storageKey());
     currentMaxes = s ? JSON.parse(s) : {};
-    Object.entries(currentMaxes).forEach(([id, val]) => { const el = document.getElementById(id); if (el && val) el.value = val; });
+    Object.entries(currentMaxes).forEach(([id, val]) => {
+      const el = document.getElementById(id); if (el && val) el.value = val;
+    });
   } catch(e) { currentMaxes = {}; }
 }
 
 function confirmMaxes() {
-  const all = [...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f => f.id))];
+  const all = [...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f=>f.id))];
   all.forEach(id => { const el = document.getElementById(id); if (el) currentMaxes[id] = el.value ? parseFloat(el.value) : null; });
   try { localStorage.setItem(storageKey(), JSON.stringify(currentMaxes)); } catch(e) {}
   updateAllWeightCells();
@@ -433,12 +879,16 @@ function getMaxForExercise(name) {
   for (const e of RM_MAP) { if (e.keys.some(k => n.includes(k))) return currentMaxes[e.id] || null; }
   return null;
 }
+function getMaxIdForExercise(name) {
+  const n = name.toLowerCase();
+  for (const e of RM_MAP) { if (e.keys.some(k => n.includes(k))) return e.id; }
+  return null;
+}
 
 function parsePercentages(s) {
   const m = s.match(/\d+\.?\d*/g);
   return m ? m.map(Number).filter(n => n > 0 && n <= 140) : [];
 }
-
 function getUnit() { const s = document.getElementById('unit-select'); return s ? s.value : 'lbs'; }
 function changeUnit(u) { try { localStorage.setItem('kiloclub_unit', u); } catch(e) {} updateAllWeightCells(); }
 
@@ -447,7 +897,7 @@ function calcWeight(loadStr, max) {
   const pcts = parsePercentages(loadStr);
   if (!pcts.length) return null;
   const u = getUnit();
-  const lo = pcts[0] / 100 * max, hi = pcts[pcts.length-1] / 100 * max;
+  const lo = pcts[0]/100*max, hi = pcts[pcts.length-1]/100*max;
   if (u === 'kg') {
     const a = Math.round(lo/2.205), b = Math.round(hi/2.205);
     return a === b ? `${a} kg` : `${a}–${b} kg`;
@@ -466,7 +916,165 @@ function updateAllWeightCells() {
   });
 }
 
-// ── Daily notes persistence ──
+
+// ══════════════════════════════════
+//  LOG LIFT MODAL
+// ══════════════════════════════════
+let modalState = { exName:'', sets:'', load:'', rmId:null, entries:[] };
+
+// Parse sets string → number of trackable set rows
+// e.g. "5×1" → 5, "4×(1+1)" → 4, "3×2+1×1" → 4, "EMOMx10" → 1, "3-2-1" → 1 (wave, treat as 1 entry)
+function parseSetCount(setsStr) {
+  // Wave pattern like "3-2-1" → single entry
+  if (/^\d+-\d+-\d+$/.test(setsStr.trim())) return 1;
+  // Multiple groups like "4×1 + 2×1"
+  const groups = setsStr.split(/[+\/]/).map(s=>s.trim()).filter(Boolean);
+  let total = 0;
+  for (const g of groups) {
+    const m = g.match(/^(\d+)[x×]/i);
+    if (m) total += parseInt(m[1]);
+    else total += 1;
+  }
+  return Math.min(total, 12); // cap at 12 rows
+}
+
+function openLogModal(exName, setsStr, loadStr, rmId, logKey) {
+  modalState = { exName, sets: setsStr, load: loadStr, rmId, logKey, entries: [] };
+
+  document.getElementById('modal-ex-name').textContent = exName;
+  document.getElementById('modal-ex-meta').textContent = setsStr + '  ·  ' + loadStr;
+
+  // Load existing log if any
+  let existing = {};
+  try { const v = localStorage.getItem(logKey); if (v) existing = JSON.parse(v); } catch(e) {}
+
+  const count = parseSetCount(setsStr);
+  const u = getUnit();
+  const suggestedWeight = (() => {
+    const max = getMaxForExercise(exName);
+    if (!max) return '';
+    const pcts = parsePercentages(loadStr);
+    if (!pcts.length) return '';
+    const mid = pcts[Math.floor(pcts.length/2)];
+    const raw = mid/100*max;
+    return u === 'kg' ? Math.round(raw/2.205) : Math.round(raw);
+  })();
+
+  let html = '';
+  for (let i = 0; i < count; i++) {
+    const prev = existing[i] || {};
+    const madeClass = prev.outcome === 'made' ? 'selected' : '';
+    const missClass = prev.outcome === 'miss' ? 'selected' : '';
+    const wVal = prev.weight || suggestedWeight;
+    html += `<div class="log-set-row" id="set-row-${i}">
+      <div class="log-set-num">Set ${i+1}</div>
+      <div class="log-outcome">
+        <button class="outcome-btn check ${madeClass}" onclick="setOutcome(${i},'made')" title="Made it">✓</button>
+        <button class="outcome-btn x ${missClass}" onclick="setOutcome(${i},'miss')" title="Missed">✗</button>
+      </div>
+      <input class="log-weight-input" type="number" id="log-w-${i}" value="${wVal}" placeholder="weight" min="0">
+      <span class="log-weight-unit">${u}</span>
+    </div>`;
+  }
+  document.getElementById('modal-sets-container').innerHTML = html;
+
+  // Restore entry state
+  modalState.entries = Array.from({length: count}, (_, i) => {
+    const prev = existing[i] || {};
+    return { outcome: prev.outcome || null, weight: prev.weight || (suggestedWeight || '') };
+  });
+
+  document.getElementById('log-modal-overlay').classList.add('open');
+}
+
+function setOutcome(idx, outcome) {
+  if (!modalState.entries[idx]) return;
+  modalState.entries[idx].outcome = outcome;
+  const row = document.getElementById(`set-row-${idx}`);
+  row.querySelectorAll('.outcome-btn').forEach(b => b.classList.remove('selected'));
+  row.querySelector(`.outcome-btn.${outcome === 'made' ? 'check' : 'x'}`).classList.add('selected');
+}
+
+function saveLog() {
+  const count = modalState.entries.length;
+  const logData = {};
+  let anyMade = false;
+  let maxWeightMade = 0;
+
+  for (let i = 0; i < count; i++) {
+    const w = parseFloat(document.getElementById(`log-w-${i}`)?.value) || 0;
+    modalState.entries[i].weight = w;
+    logData[i] = { outcome: modalState.entries[i].outcome, weight: w };
+    if (modalState.entries[i].outcome === 'made' && w > maxWeightMade) {
+      maxWeightMade = w; anyMade = true;
+    }
+  }
+
+  try { localStorage.setItem(modalState.logKey, JSON.stringify(logData)); } catch(e) {}
+
+  // Check for PR
+  if (anyMade && modalState.rmId) {
+    const unit = getUnit();
+    const weightInLbs = unit === 'kg' ? maxWeightMade * 2.205 : maxWeightMade;
+    const currentMax = currentMaxes[modalState.rmId] || 0;
+    if (weightInLbs > currentMax) {
+      currentMaxes[modalState.rmId] = Math.round(weightInLbs);
+      try { localStorage.setItem(storageKey(), JSON.stringify(currentMaxes)); } catch(e) {}
+      // Update the RM input on screen
+      const el = document.getElementById(modalState.rmId);
+      if (el) el.value = Math.round(weightInLbs);
+      updateAllWeightCells();
+      showPR(modalState.exName, maxWeightMade, unit);
+    }
+  }
+
+  // Update the log button state
+  const overallOutcome = (() => {
+    const outcomes = Object.values(logData).map(e => e.outcome).filter(Boolean);
+    if (!outcomes.length) return null;
+    if (outcomes.every(o => o === 'made')) return 'made';
+    if (outcomes.every(o => o === 'miss')) return 'miss';
+    return 'made'; // mixed = partial credit
+  })();
+
+  const btn = document.querySelector(`[data-log-key="${modalState.logKey}"]`);
+  if (btn && overallOutcome) {
+    btn.classList.remove('logged-made','logged-miss');
+    btn.classList.add(overallOutcome === 'made' ? 'logged-made' : 'logged-miss');
+    btn.innerHTML = overallOutcome === 'made'
+      ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`
+      : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`;
+  }
+
+  closeModal();
+}
+
+function closeModal() {
+  document.getElementById('log-modal-overlay').classList.remove('open');
+}
+
+function maybeCloseModal(e) {
+  if (e.target === document.getElementById('log-modal-overlay')) closeModal();
+}
+
+function showPR(exName, weight, unit) {
+  const toast = document.getElementById('pr-toast');
+  document.getElementById('pr-toast-msg').textContent = '🏆 NEW PR!';
+  document.getElementById('pr-toast-sub').textContent = `${exName} · ${weight} ${unit}`;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// Log key per exercise
+function logKey(phaseId, weekNum, dayIdx, exIdx) {
+  const prefix = currentView === 'admin' ? 'admin' : 'member';
+  return `kc_log_${prefix}_${phaseId}_w${weekNum}_d${dayIdx}_e${exIdx}`;
+}
+
+
+// ══════════════════════════════════
+//  DAILY NOTES
+// ══════════════════════════════════
 function notesKey(phaseId, weekNum, dayIdx) {
   const prefix = currentView === 'admin' ? 'admin' : 'member';
   return `kc_notes_${prefix}_${phaseId}_w${weekNum}_d${dayIdx}`;
@@ -480,22 +1088,44 @@ function toggleNotes(btn, bodyId) {
 }
 
 
-// ── CYCLE LOADER ──
+// ══════════════════════════════════
+//  CYCLE LOADING
+// ══════════════════════════════════
+function loadView() {
+  buildRmPanel(); loadSavedMaxes();
+  if (currentView === 'admin') {
+    document.getElementById('cycle-select-wrap').style.display = 'none';
+    fetch('cycles/admin_2025-spring.json')
+      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+      .then(renderCycle)
+      .catch(() => { document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load admin program. Make sure cycles/admin_2025-spring.json exists.</div>'; });
+  } else {
+    document.getElementById('cycle-select-wrap').style.display = 'flex';
+    loadCycle(document.getElementById('cycle-select').value);
+  }
+}
+function onCycleChange(v) { if (currentView === 'member') loadCycle(v); }
 function loadCycle(id) {
   document.getElementById('program-body').innerHTML = '<div class="state-message">Loading program…</div>';
   fetch('cycles/' + id + '.json')
     .then(r => { if (!r.ok) throw new Error(); return r.json(); })
-    .then(data => renderCycle(data))
+    .then(renderCycle)
     .catch(() => { document.getElementById('program-body').innerHTML = '<div class="state-message error">Could not load cycle. Make sure cycles/' + id + '.json exists.</div>'; });
 }
 
 
-// ── RENDERER ──
+// ══════════════════════════════════
+//  RENDERER
+// ══════════════════════════════════
 function renderCycle(cycle) {
   document.getElementById('meta-days').innerHTML  = '<strong>' + cycle.days + '</strong>';
   document.getElementById('meta-goal').innerHTML  = 'Goal: <strong>' + cycle.goal + '</strong>';
   document.getElementById('meta-dates').innerHTML = 'Dates: <strong>' + cycle.dates + '</strong>';
   document.getElementById('footer-left').textContent = 'Kilo Club · ' + cycle.name + ' · Class Program';
+  // Days per week — count slash-separated days
+  const daysPerWeek = cycle.days.split('/').length;
+  const dpwEl = document.getElementById('meta-days-per-week');
+  if (dpwEl) dpwEl.innerHTML = `<strong>${daysPerWeek}</strong> Days / Week`;
 
   const isAdmin = currentView === 'admin';
   let html = '';
@@ -503,14 +1133,14 @@ function renderCycle(cycle) {
   // Overview
   html += '<div class="overview">';
   cycle.phases.forEach(phase => {
-    const label = phase.colorClass === 'm1' ? phase.title.split('—')[1]?.trim() || 'ACCUMULATION' : phase.title.split('—')[1]?.trim() || 'PEAK';
+    const subtitle = phase.title.includes('—') ? phase.title.split('—')[1].trim() : (phase.colorClass==='m1'?'ACCUMULATION':'PEAK');
     html += `<div class="overview-card">
       <h3>${phase.title.split('—')[0].trim()}</h3>
-      <div class="big" style="color:var(--${phase.colorClass==='m1'?'meso1':'meso2'})">${label}</div>
+      <div class="big" style="color:var(--${phase.colorClass==='m1'?'meso1':'meso2'})">${subtitle}</div>
       <p>${phase.subtitle}</p>
     </div>`;
   });
-  html += `<div class="overview-card"><h3>Load Notation</h3><p>All loads are <strong>% of 1RM</strong>. Enter your maxes above to see exact weights.</p></div></div>`;
+  html += `<div class="overview-card"><h3>Load Notation</h3><p>All loads are <strong>% of 1RM</strong>. Enter your maxes above to see exact weights. PRs auto-update your maxes.</p></div></div>`;
 
   if (!isAdmin) {
     html += `<div class="scaling-banner"><h3>Beginner Scaling Guide</h3><p><strong>No 1RM?</strong> Use a weight where you can maintain full technique. Add 2.5–5 lbs per week if form holds. <strong>Paused/tempo variations</strong> — drop 10–15% from normal working load.</p></div>`;
@@ -531,31 +1161,117 @@ function renderCycle(cycle) {
       html += `<div class="week-content ${wi===0?'visible':''}" id="${phase.id}-w${week.number}">`;
       html += `<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
 
-      const dayCount = week.days.length;
-      const gs = dayCount > 2 ? 'grid-template-columns: repeat(auto-fit, minmax(320px, 1fr))' : '';
+      const gs = week.days.length > 2 ? 'grid-template-columns:repeat(auto-fit,minmax(320px,1fr))' : '';
       html += `<div class="days-grid" style="${gs}">`;
 
       week.days.forEach((day, di) => {
-        // Build headers
+        // Build table headers
         const rawH = day.tableHeaders || (isAdmin ? ['Exercise','Sets×Reps','Load'] : ['Exercise','Sets×Reps','Load','Notes']);
         let headers = [...rawH];
         const li = headers.indexOf('Load');
         if (li !== -1) headers.splice(li+1, 0, 'Weight');
+        // Add log column
+        headers.push('Log');
 
-        // Day header — admin shows no focus label
-        const focusHtml = (!isAdmin || day.focus) ? `<div class="day-focus">${day.focus}</div>` : '';
+        const focusHtml = day.focus ? `<div class="day-focus">${day.focus}</div>` : '';
         html += `<div class="day-card">
-          <div class="day-header">
-            <div class="day-label ${day.colorClass}">${day.label}</div>
-            ${focusHtml}
-          </div>
-          <table class="ex-table">
-            <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
-            <tbody>`;
+          <div class="day-header"><div class="day-label ${day.colorClass}">${day.label}</div>${focusHtml}</div>
+          <div class="table-wrap"><table class="ex-table">
+          <thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+          <tbody>`;
 
-        // Track superset grouping
-        let inSuperset = false;
-        day.exercises.forEach((ex, ei) => {
+        // ── Detect wave groups: consecutive exercises whose names contain "Wave" ──
+        // ── Group them into a single rendered row ──
+        const exercises = day.exercises;
+        let i = 0;
+        let ssGroupIdx = -1;   // -1 = not in a superset; >= 0 = index of current group
+        let ssGroupCount = -1; // total groups seen so far (never resets), used for color cycling
+
+        while (i < exercises.length) {
+          const ex = exercises[i];
+          const isWaveStart = ex.name.includes('— Wave') || ex.name.includes('— Wave');
+
+          // Check if this starts a wave group
+          if (isWaveStart) {
+            // Collect all consecutive wave rows for same base exercise
+            const baseName = ex.name.replace(/— Wave \d+/, '').trim();
+            const waveGroup = [];
+            while (i < exercises.length && (exercises[i].name.includes('— Wave') || exercises[i].name === baseName + ' — Wave')) {
+              waveGroup.push(exercises[i]);
+              i++;
+            }
+            if (waveGroup.length === 0) { waveGroup.push(ex); i++; }
+
+            const lk = logKey(phase.id, week.number, di, i);
+            const prevLog = (() => { try { const v=localStorage.getItem(lk); return v?JSON.parse(v):{}; } catch(e){return{};} })();
+            const anyMade = Object.values(prevLog).some(e=>e.outcome==='made');
+            const anyMiss = Object.values(prevLog).some(e=>e.outcome==='miss') && !anyMade;
+            const logBtnClass = anyMade ? 'log-btn logged-made' : anyMiss ? 'log-btn logged-miss' : 'log-btn';
+            const logBtnInner = anyMade
+              ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`
+              : anyMiss
+              ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`
+              : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
+
+            // Build wave group display — lift name once on left (centered), waves stacked on right
+            const noteTD = !isAdmin ? `<td class="ex-note">${ex.note||''}</td>` : '';
+            const waveCount = waveGroup.length;
+
+            // Name cell: lift name once, vertically centered
+            const nameCellContent = `<div class="wave-name-cell"><span class="wave-base-name">${baseName || ex.name}</span></div>`;
+
+            // Sets cell: just the sets per wave, no label
+            const setsCellContent = `<div class="wave-group">${waveGroup.map(w =>
+              `<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`
+            ).join('')}</div>`;
+
+            // Load cell: each wave's full load string on one line (no wrapping)
+            const loadCellContent = `<div class="wave-group">${waveGroup.map(w =>
+              `<div class="wave-line"><span class="wave-load" style="white-space:nowrap">${w.load}</span></div>`
+            ).join('')}</div>`;
+
+            // Weight cell
+            const weightCellContent = `<div class="wave-group">${waveGroup.map(w => {
+              const max = getMaxForExercise(baseName || w.name);
+              const wt = calcWeight(w.load, max) || '—';
+              return `<div class="wave-line"><span class="ex-weight ${wt==='—'?'empty':''} weight-cell" data-ex="${(baseName||w.name).replace(/"/g,'&quot;')}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;
+            }).join('')}</div>`;
+
+            html += `<tr>
+              <td class="ex-name" style="vertical-align:middle">${nameCellContent}</td>
+              <td style="vertical-align:top">${setsCellContent}</td>
+              <td style="vertical-align:top">${loadCellContent}</td>
+              <td style="vertical-align:top">${weightCellContent}</td>
+              ${noteTD}
+              <td style="vertical-align:middle"><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${(baseName||ex.name).replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${getMaxIdForExercise(baseName||ex.name)||''}','${lk}')">${logBtnInner}</button></td>
+            </tr>`;
+            continue;
+          }
+
+          // ── Normal row ──
+          const isSSStart  = ex.superset === true && ssGroupIdx < 0;
+          const isSSMidFlag = ex.superset === true && ssGroupIdx >= 0;
+          const isSSEnd    = ex.supersetEnd === true;
+          let ssClass = '', ssAttr = '';
+
+          if (isSSStart) {
+            ssGroupCount++;          // new group — advance color
+            ssGroupIdx = ssGroupCount;
+            const ci = ssGroupCount % 4;
+            ssClass = 'ss-start'; ssAttr = `data-ss="${ci}"`;
+          } else if (isSSEnd) {
+            const ci = ssGroupCount % 4;
+            ssClass = 'ss-end'; ssAttr = `data-ss="${ci}"`;
+            // reset in-group tracker AFTER this row is rendered
+          } else if (isSSMidFlag || ssGroupIdx >= 0) {
+            const ci = ssGroupCount % 4;
+            ssClass = 'ss-mid'; ssAttr = `data-ss="${ci}"`;
+          }
+
+          const ci = ssGroupCount >= 0 ? ssGroupCount % 4 : 0;
+          const inSS = ssClass === 'ss-start' || ssClass === 'ss-mid' || ssClass === 'ss-end';
+          const ssBadge = inSS ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
+
           const max = getMaxForExercise(ex.name);
           const wr = calcWeight(ex.load, max);
           const safeEx   = ex.name.replace(/"/g,'&quot;');
@@ -564,49 +1280,54 @@ function renderCycle(cycle) {
             ? `<td class="ex-weight weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${wr}</td>`
             : `<td class="ex-weight empty weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">—</td>`;
 
-          // Determine superset row class
-          let ssClass = '';
-          const isSSStart = ex.superset === true;
-          const isSSEnd   = ex.supersetEnd === true;
-          if (isSSStart) { ssClass = 'superset-start'; inSuperset = true; }
-          else if (isSSEnd) { ssClass = 'superset-end'; inSuperset = false; }
-          else if (inSuperset) { ssClass = 'superset-mid'; }
-
-          // Name cell — show superset badge on first item
-          const ssBadge = isSSStart ? '<span class="superset-label">superset</span>' : '';
-
-          // Note cell (member only)
           let noteHTML = ex.note || '';
           if (ex.tag)  noteHTML += `<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;
           if (ex.tag2) noteHTML += `<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
           const noteTD = !isAdmin ? `<td class="ex-note">${noteHTML}</td>` : '';
 
-          html += `<tr class="${ssClass}">
+          const lk = logKey(phase.id, week.number, di, i);
+          const prevLog = (() => { try { const v=localStorage.getItem(lk); return v?JSON.parse(v):{}; } catch(e){return{};} })();
+          const anyMade = Object.values(prevLog).some(e=>e.outcome==='made');
+          const anyMiss = Object.values(prevLog).some(e=>e.outcome==='miss') && !anyMade;
+          const logBtnClass = anyMade ? 'log-btn logged-made' : anyMiss ? 'log-btn logged-miss' : 'log-btn';
+          const logBtnInner = anyMade
+            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`
+            : anyMiss
+            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`
+            : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
+          const rmId = getMaxIdForExercise(ex.name) || '';
+
+          html += `<tr class="${ssClass}" ${ssAttr}>
             <td class="ex-name">${ex.name}${ssBadge}</td>
             <td class="ex-sets">${ex.sets}</td>
             <td class="ex-load">${ex.load}</td>
             ${wTD}
             ${noteTD}
+            <td><button class="${logBtnClass}" data-log-key="${lk}" onclick="openLogModal('${ex.name.replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${rmId}','${lk}')">${logBtnInner}</button></td>
           </tr>`;
-        });
+          if (isSSEnd) ssGroupIdx = -1; // back to "not in a group" — ssGroupCount keeps incrementing
+          i++;
+        }
 
-        html += '</tbody></table>';
+        html += '</tbody></table></div>'; // close table-wrap
 
-        // Daily notes section — admin only
-        if (isAdmin) {
+        // Daily notes — all users
+        {
           const nKey  = notesKey(phase.id, week.number, di);
           const nVal  = loadNote(nKey).replace(/"/g,'&quot;');
           const nId   = `notes-body-${phase.id}-${week.number}-${di}`;
           const btnId = `notes-btn-${phase.id}-${week.number}-${di}`;
+          const placeholder = isAdmin
+            ? 'Notes for this session — programming thoughts, athlete feedback, anything…'
+            : 'Your notes for this day…';
           html += `<div class="day-notes-section">
             <button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')">
-              <span>Day Notes</span>
-              <span class="arrow">▼</span>
+              <span>Day Notes</span><span class="arrow">▼</span>
             </button>
             <div class="day-notes-body" id="${nId}">
-              <textarea placeholder="Notes for this session — programming thoughts, athlete feedback, anything…"
-                onchange="saveNote('${nKey}', this.value)"
-                oninput="saveNote('${nKey}', this.value)">${nVal}</textarea>
+              <textarea placeholder="${placeholder}"
+                onchange="saveNote('${nKey}',this.value)"
+                oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>
             </div>
           </div>`;
         }
@@ -622,7 +1343,9 @@ function renderCycle(cycle) {
 }
 
 
-// ── WEEK TAB SWITCHER ──
+// ══════════════════════════════════
+//  WEEK TAB SWITCHER
+// ══════════════════════════════════
 function showWeek(phaseId, weekNum, btn, colorClass) {
   document.querySelectorAll('[id^="'+phaseId+'-w"]').forEach(el => el.classList.remove('visible'));
   document.querySelectorAll('#nav-'+phaseId+' .week-btn').forEach(b => b.classList.remove('active','m1','m2'));
