@@ -65,15 +65,8 @@ body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-s
   position: fixed; inset: 0; z-index: 9999;
   display: flex; align-items: center; justify-content: center;
   overflow: hidden;
-  background: var(--bg); /* solid fallback so content never bleeds through */
-  transition: opacity 0.25s;
 }
-#login-gate.hidden {
-  display: none !important;
-  visibility: hidden !important;
-  pointer-events: none !important;
-  opacity: 0 !important;
-}
+#login-gate.hidden { display: none; }
 
 /* Platform background image */
 .login-bg {
@@ -514,46 +507,8 @@ tr[data-ss="3"].ss-end   td:first-child { border-left-color: var(--ss3); }
 .day-notes-body textarea::placeholder { color: var(--muted); }
 
 /* ══════════════════════════════════
-   MEMBER BAR — sticky, shown when member is logged in
+   MISC
 ══════════════════════════════════ */
-#member-bar {
-  background: var(--surface2); border-bottom: 1px solid var(--border);
-  padding: 10px 40px; display: none; align-items: center; gap: 12px;
-  position: sticky; top: 0; z-index: 500;
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
-}
-#member-bar.visible { display: flex; }
-#member-bar-name {
-  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--text); flex: 1;
-}
-#member-bar-name span { color: var(--accent2); }
-#member-logout-btn {
-  margin-left: auto; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
-  text-transform: uppercase; background: none; border: 1px solid var(--border);
-  color: var(--muted); padding: 6px 14px; border-radius: 2px; cursor: pointer; transition: all 0.2s;
-}
-#member-logout-btn:hover { border-color: var(--accent3); color: var(--accent3); }
-
-/* ══════════════════════════════════
-   WEEK TAB PROGRESS DOTS
-══════════════════════════════════ */
-.week-btn { position: relative; }
-.week-dot {
-  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
-  margin-left: 5px; vertical-align: middle; margin-bottom: 1px;
-}
-.week-dot.done    { background: var(--accent2); }
-.week-dot.partial { background: var(--accent); }
-.week-dot.none    { display: none; }
-
-/* ══════════════════════════════════
-   LAST LOGGED DATE STAMP
-══════════════════════════════════ */
-.log-date-stamp {
-  display: block; font-family: 'DM Mono', monospace; font-size: 9px;
-  letter-spacing: 1px; color: var(--muted); margin-top: 3px; text-transform: uppercase;
-}
 .section-divider { border: none; border-top: 1px solid var(--border); margin: 40px 0 0; }
 footer { padding: 32px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
 footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 1px; }
@@ -616,12 +571,6 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
     </div>
     <span id="member-greeting"></span>
     <button id="logout-btn" onclick="doLogout()">Log Out</button>
-  </div>
-
-  <!-- Member bar — visible for member role only -->
-  <div id="member-bar">
-    <div id="member-bar-name">Kilo Club · <span id="member-bar-name-text">Member</span></div>
-    <button id="member-logout-btn" onclick="doLogout()">Log Out</button>
   </div>
 
   <div class="hero">
@@ -744,23 +693,18 @@ function doLogin() {
   if (user && user.password === pEl.value) {
     currentRole = user.role;
     sessionStorage.setItem('kc_role', currentRole);
-    const gate = document.getElementById('login-gate');
-    gate.classList.add('hidden');
-    // Force a repaint before continuing — fixes mobile Safari stacking issue
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (currentRole === 'member') {
-          try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
-          if (!memberName) {
-            showNameModal();
-          } else {
-            initApp();
-          }
-        } else {
-          initApp();
-        }
-      });
-    });
+    document.getElementById('login-gate').classList.add('hidden');
+    if (currentRole === 'member') {
+      // Load saved name or prompt
+      try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
+      if (!memberName) {
+        showNameModal();
+      } else {
+        initApp();
+      }
+    } else {
+      initApp();
+    }
   } else {
     err.textContent = 'Invalid username or password';
     pEl.classList.add('error');
@@ -770,11 +714,8 @@ function doLogin() {
 }
 
 function showNameModal() {
-  // Small delay ensures login gate display:none takes effect before modal opens
-  setTimeout(() => {
-    document.getElementById('name-modal-overlay').classList.add('open');
-    setTimeout(() => document.getElementById('name-modal-input').focus(), 100);
-  }, 80);
+  document.getElementById('name-modal-overlay').classList.add('open');
+  setTimeout(() => document.getElementById('name-modal-input').focus(), 250);
 }
 
 function saveMemberName() {
@@ -798,7 +739,6 @@ function doLogout() {
   currentRole = null; currentView = 'member'; memberName = '';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
-  document.getElementById('member-bar').classList.remove('visible');
   // Clear name pill
   const pill = document.getElementById('member-name-pill');
   if (pill) { pill.classList.remove('visible'); pill.textContent = ''; }
@@ -825,15 +765,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initApp() {
-  if (currentRole === 'admin') {
-    document.getElementById('admin-bar').classList.add('visible');
-    document.getElementById('member-bar').classList.remove('visible');
-  } else {
-    document.getElementById('admin-bar').classList.remove('visible');
-    document.getElementById('member-bar').classList.add('visible');
-    const nameEl = document.getElementById('member-bar-name-text');
-    if (nameEl) nameEl.textContent = memberName || 'Member';
-  }
+  if (currentRole === 'admin') document.getElementById('admin-bar').classList.add('visible');
   currentView = 'member';
   updateViewButtons();
   updateViewLabels();
@@ -1070,17 +1002,15 @@ function saveLog() {
   const logData = {};
   let anyMade = false;
   let maxWeightMade = 0;
-  const today = new Date().toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
 
   for (let i = 0; i < count; i++) {
     const w = parseFloat(document.getElementById(`log-w-${i}`)?.value) || 0;
     modalState.entries[i].weight = w;
-    logData[i] = { outcome: modalState.entries[i].outcome, weight: w, date: today };
+    logData[i] = { outcome: modalState.entries[i].outcome, weight: w };
     if (modalState.entries[i].outcome === 'made' && w > maxWeightMade) {
       maxWeightMade = w; anyMade = true;
     }
   }
-  logData._date = today; // top-level date stamp for progress dots
 
   try { localStorage.setItem(modalState.logKey, JSON.stringify(logData)); } catch(e) {}
 
@@ -1114,12 +1044,10 @@ function saveLog() {
     btn.classList.remove('logged-made','logged-miss');
     btn.classList.add(overallOutcome === 'made' ? 'logged-made' : 'logged-miss');
     btn.innerHTML = overallOutcome === 'made'
-      ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`
-      : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;
+      ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`
+      : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`;
   }
 
-  // Refresh progress dots on all week tabs
-  refreshProgressDots();
   closeModal();
 }
 
@@ -1200,8 +1128,6 @@ function renderCycle(cycle) {
   const daysPerWeek = cycle.days.split('/').length;
   const dpwEl = document.getElementById('meta-days-per-week');
   if (dpwEl) dpwEl.innerHTML = `<strong>${daysPerWeek}</strong> Days / Week`;
-  // Sync hero label and name pill
-  updateViewLabels();
 
   const isAdmin = currentView === 'admin';
   let html = '';
@@ -1229,13 +1155,7 @@ function renderCycle(cycle) {
     html += `<div class="week-nav" id="nav-${phase.id}">`;
     phase.weeks.forEach(week => {
       const isFirst = week.number === phase.weeks[0].number;
-      const status = getWeekProgress(phase.id, week.number, week.days.length, []);
-      const dotClass = `week-dot ${status}`;
-      html += `<button class="week-btn ${isFirst?'active '+phase.colorClass:''}"
-        data-phase="${phase.id}" data-week="${week.number}" data-days="${week.days.length}"
-        onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">
-        ${week.label}<span class="${dotClass}"></span>
-      </button>`;
+      html += `<button class="week-btn ${isFirst?'active '+phase.colorClass:''}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}</button>`;
     });
     html += '</div>';
 
@@ -1369,14 +1289,13 @@ function renderCycle(cycle) {
 
           const lk = logKey(phase.id, week.number, di, i);
           const prevLog = (() => { try { const v=localStorage.getItem(lk); return v?JSON.parse(v):{}; } catch(e){return{};} })();
-          const anyMade = Object.values(prevLog).some(e=>e && typeof e==='object' && e.outcome==='made');
-          const anyMiss = Object.values(prevLog).some(e=>e && typeof e==='object' && e.outcome==='miss') && !anyMade;
-          const prevDate = prevLog._date ? `<span class="log-date-stamp">${prevLog._date}</span>` : '';
+          const anyMade = Object.values(prevLog).some(e=>e.outcome==='made');
+          const anyMiss = Object.values(prevLog).some(e=>e.outcome==='miss') && !anyMade;
           const logBtnClass = anyMade ? 'log-btn logged-made' : anyMiss ? 'log-btn logged-miss' : 'log-btn';
           const logBtnInner = anyMade
-            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED${prevDate}`
+            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`
             : anyMiss
-            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED${prevDate}`
+            ? `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`
             : `<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
           const rmId = getMaxIdForExercise(ex.name) || '';
 
@@ -1423,104 +1342,18 @@ function renderCycle(cycle) {
   });
 
   document.getElementById('program-body').innerHTML = html;
-  // Paint progress dots based on existing logs
-  refreshProgressDots();
 }
 
 
 // ══════════════════════════════════
-//  PROGRESS DOTS
-//  Scans localStorage for log keys belonging to a given week
-//  and updates the dot on that week's tab button
+//  WEEK TAB SWITCHER
 // ══════════════════════════════════
-function getWeekProgress(phaseId, weekNum, dayCount, exCounts) {
-  // exCounts = array of exercise counts per day (we just scan all possible indices)
-  let totalEx = 0, loggedEx = 0, madeEx = 0;
-  for (let di = 0; di < dayCount; di++) {
-    for (let ei = 0; ei < 30; ei++) { // scan up to 30 exercises per day
-      const prefix = currentView === 'admin' ? 'admin' : 'member';
-      const k = `kc_log_${prefix}_${phaseId}_w${weekNum}_d${di}_e${ei}`;
-      try {
-        const v = localStorage.getItem(k);
-        if (!v) continue;
-        const d = JSON.parse(v);
-        const outcomes = Object.values(d).filter(e => e && typeof e === 'object' && e.outcome).map(e => e.outcome);
-        if (!outcomes.length) continue;
-        totalEx++;
-        loggedEx++;
-        if (outcomes.some(o => o === 'made')) madeEx++;
-      } catch(e) {}
-    }
-  }
-  if (loggedEx === 0) return 'none';
-  if (madeEx === loggedEx) return 'done';
-  return 'partial';
-}
-
-function refreshProgressDots() {
-  // Find all week buttons and update their dots
-  document.querySelectorAll('.week-btn[data-phase][data-week]').forEach(btn => {
-    const phaseId  = btn.getAttribute('data-phase');
-    const weekNum  = parseInt(btn.getAttribute('data-week'));
-    const dayCount = parseInt(btn.getAttribute('data-days') || '5');
-    const status   = getWeekProgress(phaseId, weekNum, dayCount, []);
-    const dot = btn.querySelector('.week-dot');
-    if (dot) {
-      dot.className = `week-dot ${status}`;
-    }
-  });
-}
-
-
-// ══════════════════════════════════
-//  SWIPE GESTURES — week tab navigation
-// ══════════════════════════════════
-(function initSwipe() {
-  let touchStartX = 0, touchStartY = 0;
-  let swipePhaseId = null, swipeColorClass = null;
-
-  document.addEventListener('touchstart', e => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-    // Find which phase's content panel we're inside
-    const weekContent = e.target.closest('.week-content');
-    if (weekContent) {
-      const id = weekContent.id; // e.g. "a1-w9"
-      const parts = id.split('-w');
-      swipePhaseId = parts[0];
-      // Get colorClass from active tab
-      const activeBtn = document.querySelector(`#nav-${swipePhaseId} .week-btn.active`);
-      swipeColorClass = activeBtn ? (activeBtn.classList.contains('m2') ? 'm2' : 'm1') : 'm1';
-    } else {
-      swipePhaseId = null;
-    }
-  }, { passive: true });
-
-  document.addEventListener('touchend', e => {
-    if (!swipePhaseId) return;
-    const dx = e.changedTouches[0].clientX - touchStartX;
-    const dy = e.changedTouches[0].clientY - touchStartY;
-    if (Math.abs(dx) < 60 || Math.abs(dy) > Math.abs(dx) * 0.8) return; // not a clean horizontal swipe
-
-    const navEl = document.getElementById('nav-' + swipePhaseId);
-    if (!navEl) return;
-    const btns = Array.from(navEl.querySelectorAll('.week-btn'));
-    const activeIdx = btns.findIndex(b => b.classList.contains('active'));
-    const nextIdx = dx < 0 ? activeIdx + 1 : activeIdx - 1; // swipe left = next week
-    if (nextIdx >= 0 && nextIdx < btns.length) {
-      btns[nextIdx].click();
-    }
-  }, { passive: true });
-})();
-
+function showWeek(phaseId, weekNum, btn, colorClass) {
   document.querySelectorAll('[id^="'+phaseId+'-w"]').forEach(el => el.classList.remove('visible'));
   document.querySelectorAll('#nav-'+phaseId+' .week-btn').forEach(b => b.classList.remove('active','m1','m2'));
   const p = document.getElementById(phaseId+'-w'+weekNum);
   if (p) p.classList.add('visible');
   btn.classList.add('active', colorClass);
-  // Scroll to the phase header so you land at the top of the week
-  const nav = document.getElementById('nav-'+phaseId);
-  if (nav) nav.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 </script>
 </body>
