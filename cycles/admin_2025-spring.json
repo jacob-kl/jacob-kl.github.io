@@ -79,19 +79,19 @@
                 },
                 {
                   "name": "Stage Clean Deadlift",
-                  "sets": "3×3",
+                  "sets": "5×3",
                   "load": "91%",
                   "note": ""
                 },
                 {
                   "name": "2 Snatch Grip Push Press + 2 Snatch Balance",
-                  "sets": "7×1",
+                  "sets": "9×1",
                   "load": "70%",
                   "note": ""
                 },
                 {
                   "name": "Enderton Front Squat (1.5/3s pause/full)",
-                  "sets": "5×2",
+                  "sets": "6×2",
                   "load": "70%",
                   "note": ""
                 },
@@ -214,13 +214,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx11",
+                  "sets": "EMOMx10",
                   "load": "70%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx11",
+                  "sets": "EMOMx10",
                   "load": "67%",
                   "note": "2 reps / min"
                 },
@@ -356,19 +356,19 @@
                 },
                 {
                   "name": "Stage Clean Deadlift",
-                  "sets": "4×3",
+                  "sets": "6×3",
                   "load": "99%",
                   "note": ""
                 },
                 {
                   "name": "2 Snatch Grip Push Press + 2 Snatch Balance",
-                  "sets": "7×1",
+                  "sets": "9×1",
                   "load": "78%",
                   "note": ""
                 },
                 {
                   "name": "Enderton Front Squat (1.5/3s pause/full)",
-                  "sets": "4×2",
+                  "sets": "5×2",
                   "load": "78%",
                   "note": ""
                 },
@@ -464,7 +464,7 @@
                 },
                 {
                   "name": "Pause Front Squat",
-                  "sets": "4×3",
+                  "sets": "3×3",
                   "load": "93%",
                   "note": ""
                 },
@@ -491,13 +491,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "78%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "75%",
                   "note": "2 reps / min"
                 },
@@ -633,19 +633,19 @@
                 },
                 {
                   "name": "Stage Clean Deadlift",
-                  "sets": "4×3",
+                  "sets": "6×3",
                   "load": "107%",
                   "note": ""
                 },
                 {
                   "name": "2 Snatch Grip Push Press + 2 Snatch Balance",
-                  "sets": "8×1",
+                  "sets": "10×1",
                   "load": "86%",
                   "note": ""
                 },
                 {
                   "name": "Enderton Front Squat (1.5/3s pause/full)",
-                  "sets": "6×1",
+                  "sets": "7×1",
                   "load": "86%",
                   "note": ""
                 },
@@ -741,7 +741,7 @@
                 },
                 {
                   "name": "Pause Front Squat",
-                  "sets": "4×2",
+                  "sets": "3×2",
                   "load": "86%",
                   "note": ""
                 },
@@ -768,13 +768,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "86%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "83%",
                   "note": "2 reps / min"
                 },
@@ -910,19 +910,19 @@
                 },
                 {
                   "name": "Stage Clean Deadlift",
-                  "sets": "3×3",
+                  "sets": "5×3",
                   "load": "82%",
                   "note": ""
                 },
                 {
                   "name": "2 Snatch Grip Push Press + 2 Snatch Balance",
-                  "sets": "6×1",
+                  "sets": "10×1",
                   "load": "75%",
                   "note": ""
                 },
                 {
                   "name": "Enderton Front Squat (1.5/3s pause/full)",
-                  "sets": "4×1",
+                  "sets": "5×1",
                   "load": "85%",
                   "note": ""
                 },
@@ -1018,7 +1018,7 @@
                 },
                 {
                   "name": "Pause Front Squat",
-                  "sets": "4×2",
+                  "sets": "3×2",
                   "load": "75%",
                   "note": ""
                 },
@@ -1045,13 +1045,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx8",
+                  "sets": "EMOMx10",
                   "load": "75%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx8",
+                  "sets": "EMOMx10",
                   "load": "72%",
                   "note": "2 reps / min"
                 },
@@ -1280,13 +1280,13 @@
               "exercises": [
                 {
                   "name": "Halting Snatch + Power Snatch + Overhead Squat",
-                  "sets": "7×1",
+                  "sets": "12×1",
                   "load": "60%",
                   "note": ""
                 },
                 {
                   "name": "Clean (3 knee to hip pull, then hang clean)",
-                  "sets": "6×1",
+                  "sets": "10×1",
                   "load": "58%",
                   "note": ""
                 },
@@ -1304,7 +1304,7 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×2",
+                  "sets": "6×2",
                   "load": "75%",
                   "note": ""
                 },
@@ -1331,13 +1331,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx11",
+                  "sets": "EMOMx10",
                   "load": "75%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx11",
+                  "sets": "EMOMx10",
                   "load": "72%",
                   "note": "2 reps / min"
                 },
@@ -1557,13 +1557,13 @@
               "exercises": [
                 {
                   "name": "Halting Snatch + Power Snatch + Overhead Squat",
-                  "sets": "8×1",
+                  "sets": "12×1",
                   "load": "68%",
                   "note": ""
                 },
                 {
                   "name": "Clean (3 knee to hip pull, then hang clean)",
-                  "sets": "6×1",
+                  "sets": "10×1",
                   "load": "65%",
                   "note": ""
                 },
@@ -1581,7 +1581,7 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×2",
+                  "sets": "6×2",
                   "load": "83%",
                   "note": ""
                 },
@@ -1608,13 +1608,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "83%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "80%",
                   "note": "2 reps / min"
                 },
@@ -1834,13 +1834,13 @@
               "exercises": [
                 {
                   "name": "Halting Snatch + Power Snatch + Overhead Squat",
-                  "sets": "8×1",
+                  "sets": "12×1",
                   "load": "76%",
                   "note": ""
                 },
                 {
                   "name": "Clean (3 knee to hip pull, then hang clean)",
-                  "sets": "6×1",
+                  "sets": "10×1",
                   "load": "73%",
                   "note": ""
                 },
@@ -1858,7 +1858,7 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "4×2",
+                  "sets": "6×2",
                   "load": "91%",
                   "note": ""
                 },
@@ -1885,13 +1885,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "91%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx12",
+                  "sets": "EMOMx10",
                   "load": "88%",
                   "note": "2 reps / min"
                 },
@@ -2111,13 +2111,13 @@
               "exercises": [
                 {
                   "name": "Halting Snatch + Power Snatch + Overhead Squat",
-                  "sets": "6×1",
+                  "sets": "12×1",
                   "load": "65%",
                   "note": ""
                 },
                 {
                   "name": "Clean (3 knee to hip pull, then hang clean)",
-                  "sets": "5×1",
+                  "sets": "10×1",
                   "load": "62%",
                   "note": ""
                 },
@@ -2135,7 +2135,7 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "2×2",
+                  "sets": "6×2",
                   "load": "90%",
                   "note": ""
                 },
@@ -2162,13 +2162,13 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx8",
+                  "sets": "EMOMx10",
                   "load": "80%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx8",
+                  "sets": "EMOMx10",
                   "load": "77%",
                   "note": "2 reps / min"
                 },
@@ -2262,25 +2262,25 @@
               "exercises": [
                 {
                   "name": "Snatch High Hang High Pull",
-                  "sets": "3×6",
+                  "sets": "2×4",
                   "load": "110%",
                   "note": ""
                 },
                 {
                   "name": "Mid Hang Snatch (drop bar between reps)",
-                  "sets": "3×2",
+                  "sets": "2×2",
                   "load": "80%",
                   "note": ""
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6×1",
+                  "sets": "4×1",
                   "load": "72%",
                   "note": ""
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "4×2",
+                  "sets": "3×2",
                   "load": "80%",
                   "note": ""
                 },
@@ -2307,7 +2307,7 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "4×1",
+                  "sets": "6×1",
                   "load": "70%",
                   "note": ""
                 },
@@ -2377,7 +2377,7 @@
                 {
                   "name": "Clean",
                   "sets": "8×2",
-                  "load": "38%",
+                  "load": "62%",
                   "note": "Light and fast turnover"
                 },
                 {
@@ -2394,14 +2394,14 @@
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "3×8",
+                  "sets": "2×8",
                   "load": "60%",
                   "note": "",
                   "superset": true
                 },
                 {
                   "name": "Strict Press",
-                  "sets": "3×8",
+                  "sets": "2×8",
                   "load": "60%",
                   "note": "",
                   "supersetEnd": true
@@ -2415,19 +2415,19 @@
               "exercises": [
                 {
                   "name": "Clean",
-                  "sets": "5×2",
+                  "sets": "7×2",
                   "load": "77%",
                   "note": ""
                 },
                 {
                   "name": "2 Jerk Dip + Drive + Jerk",
-                  "sets": "4×(2+1)",
+                  "sets": "6×(2+1)",
                   "load": "77%",
                   "note": ""
                 },
                 {
                   "name": "Snatch",
-                  "sets": "7×1",
+                  "sets": "10×1",
                   "load": "75%",
                   "note": ""
                 },
@@ -2482,25 +2482,25 @@
               "exercises": [
                 {
                   "name": "Snatch High Hang High Pull",
-                  "sets": "3×6",
+                  "sets": "2×4",
                   "load": "123%",
                   "note": ""
                 },
                 {
                   "name": "Mid Hang Snatch (drop bar between reps)",
-                  "sets": "3×2",
+                  "sets": "2×2",
                   "load": "87%",
                   "note": ""
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6×1",
+                  "sets": "4×1",
                   "load": "78%",
                   "note": ""
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "4×2",
+                  "sets": "3×2",
                   "load": "87%",
                   "note": ""
                 },
@@ -2527,7 +2527,7 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "4×1",
+                  "sets": "6×1",
                   "load": "78%",
                   "note": ""
                 },
@@ -2597,7 +2597,7 @@
                 {
                   "name": "Clean",
                   "sets": "9×2",
-                  "load": "45%",
+                  "load": "62%",
                   "note": "Light and fast"
                 },
                 {
@@ -2614,14 +2614,14 @@
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "3×8",
+                  "sets": "2×8",
                   "load": "68%",
                   "note": "",
                   "superset": true
                 },
                 {
                   "name": "Strict Press",
-                  "sets": "3×8",
+                  "sets": "2×8",
                   "load": "68%",
                   "note": "",
                   "supersetEnd": true
@@ -2635,19 +2635,19 @@
               "exercises": [
                 {
                   "name": "Clean",
-                  "sets": "5×2",
+                  "sets": "7×2",
                   "load": "84%",
                   "note": ""
                 },
                 {
                   "name": "2 Jerk Dip + Drive + Jerk",
-                  "sets": "4×(2+1)",
+                  "sets": "6×(2+1)",
                   "load": "84%",
                   "note": ""
                 },
                 {
                   "name": "Snatch",
-                  "sets": "8×1",
+                  "sets": "10×1",
                   "load": "81%",
                   "note": ""
                 },
@@ -2702,25 +2702,25 @@
               "exercises": [
                 {
                   "name": "Snatch High Hang High Pull",
-                  "sets": "3×6",
+                  "sets": "2×4",
                   "load": "136%",
                   "note": ""
                 },
                 {
                   "name": "Mid Hang Snatch (drop bar between reps)",
-                  "sets": "3×2",
+                  "sets": "2×2",
                   "load": "94%",
                   "note": ""
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6×1",
+                  "sets": "4×1",
                   "load": "85%",
                   "note": ""
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "5×2",
+                  "sets": "3×2",
                   "load": "94%",
                   "note": ""
                 },
@@ -2747,7 +2747,7 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "5×1",
+                  "sets": "7×1",
                   "load": "86%",
                   "note": ""
                 },
@@ -2817,7 +2817,7 @@
                 {
                   "name": "Clean",
                   "sets": "10×2",
-                  "load": "51%",
+                  "load": "62%",
                   "note": "Light and fast"
                 },
                 {
@@ -2834,14 +2834,14 @@
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "4×8",
+                  "sets": "2×8",
                   "load": "76%",
                   "note": "",
                   "superset": true
                 },
                 {
                   "name": "Strict Press",
-                  "sets": "4×8",
+                  "sets": "2×8",
                   "load": "76%",
                   "note": "",
                   "supersetEnd": true
@@ -2855,19 +2855,19 @@
               "exercises": [
                 {
                   "name": "Clean",
-                  "sets": "5×2",
+                  "sets": "7×2",
                   "load": "91%",
                   "note": ""
                 },
                 {
                   "name": "2 Jerk Dip + Drive + Jerk",
-                  "sets": "4×(2+1)",
+                  "sets": "6×(2+1)",
                   "load": "91%",
                   "note": ""
                 },
                 {
                   "name": "Snatch",
-                  "sets": "8×1",
+                  "sets": "10×1",
                   "load": "88%",
                   "note": ""
                 },
