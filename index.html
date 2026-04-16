@@ -603,6 +603,7 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
     </div>
     <button id="login-btn" onclick="doLogin()">ENTER</button>
     <div id="login-error"></div>
+    <button onclick="openSignup()" style="background:none;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:4px 0;transition:color 0.2s;" onmouseover="this.style.color='var(--accent2)'" onmouseout="this.style.color='var(--muted)'">+ Create Member Account</button>
   </div>
 </div>
 
@@ -612,7 +613,8 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
     <span class="admin-label">Admin</span>
     <div class="view-toggle">
       <button class="view-btn active" id="btn-member-view" onclick="switchView('member')">Class Program</button>
-      <button class="view-btn" id="btn-admin-view" onclick="switchView('admin')">Competitor Lifts</button>
+      <button class="view-btn" id="btn-admin-view"  onclick="switchView('admin')">Competitor Lifts</button>
+      <button class="view-btn" id="btn-nutrition-view" onclick="switchView('nutrition')">Nutrition</button>
     </div>
     <span id="member-greeting"></span>
     <button id="logout-btn" onclick="doLogout()">Log Out</button>
@@ -713,6 +715,125 @@ footer p { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--mute
   </div>
 </div>
 
+<!-- ══ NUTRITION TRACKER ══ -->
+<div id="nutrition-panel" style="display:none; padding:32px 40px;">
+  <div style="max-width:900px;margin:0 auto;">
+    <div style="display:flex;align-items:baseline;gap:16px;margin-bottom:28px;flex-wrap:wrap;">
+      <h2 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--accent);">DAILY TRACKER</h2>
+      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Bodyweight · Calories · Macros</p>
+    </div>
+
+    <!-- Entry form -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:24px;margin-bottom:24px;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;">Log Today</div>
+      <div id="nut-date-display" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent);margin-bottom:16px;"></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:16px;">
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Bodyweight</label>
+          <div style="display:flex;align-items:center;gap:6px;">
+            <input type="number" id="nut-bw" placeholder="lbs" step="0.1" min="0"
+              style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
+              onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+            <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap;" id="nut-bw-unit">lbs</span>
+          </div>
+        </div>
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Calories</label>
+          <input type="number" id="nut-cal" placeholder="kcal" min="0"
+            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Protein (g)</label>
+          <input type="number" id="nut-pro" placeholder="g" min="0"
+            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Carbs (g)</label>
+          <input type="number" id="nut-carb" placeholder="g" min="0"
+            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Fat (g)</label>
+          <input type="number" id="nut-fat" placeholder="g" min="0"
+            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;padding:8px 10px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+        <div>
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Notes</label>
+          <input type="text" id="nut-note" placeholder="optional"
+            style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;padding:8px 10px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+        <button onclick="saveNutritionEntry()" style="background:var(--accent);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;border:none;padding:10px 28px;border-radius:2px;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">LOG DAY</button>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Calorie Target</label>
+          <input type="number" id="nut-target" placeholder="e.g. 3200" min="0"
+            style="width:90px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:6px 8px;border-radius:2px;outline:none;"
+            onfocus="this.style.borderColor='var(--accent)'" onblur="saveNutTarget()">
+        </div>
+        <span id="nut-save-status" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--accent2);opacity:0;transition:opacity 0.3s;"></span>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Bodyweight (30 days)</div>
+        <canvas id="nut-bw-chart" style="width:100%;height:160px;"></canvas>
+      </div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Calories (30 days)</div>
+        <canvas id="nut-cal-chart" style="width:100%;height:160px;"></canvas>
+      </div>
+    </div>
+
+    <!-- Log table -->
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
+      <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Recent Entries</div>
+        <button onclick="clearNutritionLog()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Clear All</button>
+      </div>
+      <div id="nut-log-table" style="overflow-x:auto;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MEMBER SIGNUP MODAL ══ -->
+<div id="signup-overlay" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9990;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s;">
+  <div id="signup-modal" style="background:var(--surface);border:1px solid var(--border);border-radius:8px;width:100%;max-width:380px;padding:32px 28px;margin:0 20px;transform:scale(0.95);transition:transform 0.2s;">
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--accent);margin-bottom:6px;">Create Account</h3>
+    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Your account is stored on this device</p>
+    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px;">
+      <div>
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Username</label>
+        <input type="text" id="signup-username" placeholder="choose a username" autocomplete="off" maxlength="30"
+          style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:1px;padding:10px 14px;border-radius:2px;outline:none;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Password</label>
+        <input type="password" id="signup-password" placeholder="choose a password" autocomplete="off"
+          style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:1px;padding:10px 14px;border-radius:2px;outline:none;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div>
+        <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Your Name</label>
+        <input type="text" id="signup-name" placeholder="first name or nickname" autocomplete="off" maxlength="40"
+          style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;letter-spacing:1px;padding:10px 14px;border-radius:2px;outline:none;transition:border-color 0.2s;"
+          onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
+      </div>
+    </div>
+    <div id="signup-error" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--accent3);min-height:16px;margin-bottom:10px;"></div>
+    <button onclick="doSignup()" style="width:100%;background:var(--accent2);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;border:none;padding:13px;border-radius:2px;cursor:pointer;transition:opacity 0.2s;margin-bottom:10px;" onmouseover="this.style.opacity=0.85" onmouseout="this.style.opacity=1">CREATE ACCOUNT</button>
+    <button onclick="closeSignup()" style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:2px;cursor:pointer;">Cancel</button>
+  </div>
+</div>
+
 <!-- ══ LOG LIFT MODAL ══ -->
 <div id="log-modal-overlay" onclick="maybeCloseModal(event)">
   <div id="log-modal">
@@ -758,10 +879,7 @@ function setTheme(t) {
 // ══════════════════════════════════
 //  AUTH
 // ══════════════════════════════════
-const USERS = {
-  admin:  { password: 'olylift', role: 'admin'  },
-  member: { password: 'barbell', role: 'member' }
-};
+// HARDCODED_USERS defined later in multi-user auth section
 let currentRole = null;
 let currentView = 'member';
 let memberName = '';
@@ -771,29 +889,34 @@ function doLogin() {
   const pEl = document.getElementById('login-password');
   const err = document.getElementById('login-error');
   const u = uEl.value.trim().toLowerCase();
-  const user = USERS[u];
-  if (user && user.password === pEl.value) {
-    currentRole = user.role;
+  const pw = pEl.value;
+
+  // Check hardcoded users first, then registry
+  let userData = null;
+  const hc = { admin:{password:'olylift',role:'admin'}, member:{password:'barbell',role:'member'} };
+  if (hc[u] && hc[u].password === pw) {
+    userData = { ...hc[u], username: u, name: u === 'admin' ? 'Admin' : '' };
+  } else {
+    const reg = (() => { try { return JSON.parse(localStorage.getItem('kc_users')||'{}'); } catch(e) { return {}; } })();
+    if (reg[u] && reg[u].password === pw) userData = { ...reg[u], username: u };
+  }
+
+  if (userData) {
+    currentRole = userData.role;
     sessionStorage.setItem('kc_role', currentRole);
-    const gate = document.getElementById('login-gate');
-    gate.classList.add('hidden');
-    // Force a repaint before continuing — fixes mobile Safari stacking issue
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        if (currentRole === 'member') {
-          try { memberName = localStorage.getItem('kc_member_name') || ''; } catch(e) {}
-          if (!memberName) {
-            showNameModal();
-          } else {
-            initApp();
-          }
-        } else {
-          initApp();
-        }
-      });
-    });
+    sessionStorage.setItem('kc_username', u);
+    document.getElementById('login-gate').classList.add('hidden');
+    err.style.color = 'var(--accent3)';
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (currentRole === 'member') {
+        try { memberName = localStorage.getItem('kc_member_name') || userData.name || ''; } catch(e) {}
+        if (!memberName) { showNameModal(); return; }
+      }
+      initApp();
+    }));
   } else {
     err.textContent = 'Invalid username or password';
+    err.style.color = 'var(--accent3)';
     pEl.classList.add('error');
     pEl.value = '';
     setTimeout(() => pEl.classList.remove('error'), 400);
@@ -881,6 +1004,8 @@ function switchView(v) {
 function updateViewButtons() {
   document.getElementById('btn-member-view').classList.toggle('active', currentView === 'member');
   document.getElementById('btn-admin-view').classList.toggle('active',  currentView === 'admin');
+  const nutBtn = document.getElementById('btn-nutrition-view');
+  if (nutBtn) nutBtn.classList.toggle('active', currentView === 'nutrition');
 }
 
 function updateViewLabels() {
@@ -888,24 +1013,31 @@ function updateViewLabels() {
   const namePill  = document.getElementById('member-name-pill');
   const greeting  = document.getElementById('member-greeting');
   const memberLogoutBtn = document.getElementById('member-logout-btn');
+  const hero = document.querySelector('.hero');
+  const rmPanel = document.querySelector('.rm-panel');
+  const programBody = document.getElementById('program-body');
+  const nutPanel = document.getElementById('nutrition-panel');
+
+  // Show/hide hero + rm panel + program body vs nutrition panel
+  const showProgram = currentView !== 'nutrition';
+  if (hero)        hero.style.display        = showProgram ? '' : 'none';
+  if (rmPanel)     rmPanel.style.display     = showProgram ? '' : 'none';
+  if (programBody) programBody.style.display = showProgram ? '' : 'none';
+  if (nutPanel)    nutPanel.style.display    = currentView === 'nutrition' ? 'block' : 'none';
+
   if (currentView === 'admin') {
     if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Competitor Program';
-    if (namePill)  { namePill.classList.remove('visible'); }
-    if (greeting)  { greeting.innerHTML = ''; }
+    if (namePill)  namePill.classList.remove('visible');
+    if (greeting)  greeting.innerHTML = '';
+    if (memberLogoutBtn) memberLogoutBtn.style.display = 'none';
+  } else if (currentView === 'nutrition') {
+    if (greeting) greeting.innerHTML = '';
     if (memberLogoutBtn) memberLogoutBtn.style.display = 'none';
   } else {
     if (heroLabel) heroLabel.textContent = 'Crossfit Crumville Kilo Club · Class Program';
-    if (namePill && memberName) {
-      namePill.textContent = memberName;
-      namePill.classList.add('visible');
-    }
-    if (greeting && memberName && currentRole === 'admin') {
-      greeting.innerHTML = `Viewing: <strong>${memberName}</strong>`;
-    }
-    // Show logout for member role (not admin viewing member)
-    if (memberLogoutBtn) {
-      memberLogoutBtn.style.display = currentRole === 'member' ? 'block' : 'none';
-    }
+    if (namePill && memberName) { namePill.textContent = memberName; namePill.classList.add('visible'); }
+    if (greeting && memberName && currentRole === 'admin') greeting.innerHTML = `Viewing: <strong>${memberName}</strong>`;
+    if (memberLogoutBtn) memberLogoutBtn.style.display = currentRole === 'member' ? 'block' : 'none';
   }
 }
 
@@ -942,15 +1074,29 @@ function buildRmPanel() {
 }
 
 const RM_MAP = [
+  // Pulls — snatch grip (map to snatch)
   { keys:['snatch pull','snatch grip stage','front banded snatch','block snatch high pull','snatch high pull','snatch high hang high pull'], id:'rm-snatch' },
+  // Pulls — clean grip (map to C&J)
   { keys:['clean pull','front banded clean pull','block clean high pull','stage clean deadlift'], id:'rm-cj' },
-  { keys:['strict press','push press','push jerk','split jerk','jerk dip','jerk from rack','jerk'], id:'rm-cj' },
+  // Jerk variations
+  { keys:['split jerk','push jerk','jerk dip','jerk from rack','jerk (from rack)','2 jerk dip'], id:'rm-cj' },
+  // Press (map to C&J as proxy for jerk max)
+  { keys:['strict press','push press'], id:'rm-cj' },
+  // Squats
   { keys:['overhead squat','ohs'], id:'rm-ohsquat' },
   { keys:['front squat','enderton front squat','pause front squat'], id:'rm-frontsquat' },
   { keys:['back squat','pause back squat','enderton back squat'], id:'rm-backsquat' },
-  { keys:['clean & jerk','clean and jerk'], id:'rm-cj' },
-  { keys:['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','clean'], id:'rm-cj' },
-  { keys:['mid hang snatch','hang snatch','deficit snatch','3 position snatch','power snatch','snatch balance','muscle snatch','snatch'], id:'rm-snatch' },
+  // C&J — must come before plain 'clean' to match first
+  { keys:['clean & jerk','clean and jerk','c&j opener','c&j 2nd','c&j 3rd','c&j warm'], id:'rm-cj' },
+  // Clean variations
+  { keys:['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean',
+          'high hang clean','mid hang clean','clean — build','halting snatch + power snatch',
+          'clean (slow pull)','clean (3 knee'], id:'rm-cj' },
+  // Snatch variations — broad match last so specific ones above win
+  { keys:['mid hang snatch','hang snatch','deficit snatch','3-position snatch','3 position snatch',
+          'power snatch','snatch balance','muscle snatch','snatch high hang','snatch (competition)',
+          'snatch (light','snatch — build','snatch opener','snatch 2nd','snatch 3rd','snatch warm',
+          'snatch'], id:'rm-snatch' },
   { keys:['bench press','bench'], id:'rm-bench' },
   { keys:['good morning','goblet'], id:'rm-goodmorning' },
   { keys:['deadlift'], id:'rm-deadlift' },
@@ -999,7 +1145,29 @@ function parsePercentages(s) {
 function getUnit() { const s = document.getElementById('unit-select'); return s ? s.value : 'lbs'; }
 function changeUnit(u) { try { localStorage.setItem('kiloclub_unit', u); } catch(e) {} updateAllWeightCells(); }
 
-function calcWeight(loadStr, max) {
+// Exercises where load displays as-is (fixed weight, not % of 1RM)
+const BW_EXERCISES = ['side plank','box jump','glute ham raise','barbell rollout','split squat box jump','back extension'];
+const FIXED_LOAD_PATTERNS = [/lbs$/i, /kg$/i, /\bin\b/i, /\bs\b$/i, /^bw$/i, /^bar$/i, /^banded$/i, /^light$/i, /^pvc$/i, /^—$/, /^bodyweight$/i];
+
+function isFixedWeight(loadStr) {
+  if (!loadStr || loadStr === '—') return false;
+  if ('%' in loadStr) return false;
+  // Has a % sign → it's a percentage
+  if (loadStr.includes('%')) return false;
+  return true; // no % = fixed weight
+}
+
+function isBWExercise(name) {
+  const n = name.toLowerCase();
+  return BW_EXERCISES.some(bw => n.includes(bw));
+}
+
+function calcWeight(loadStr, max, exName) {
+  // BW exercises: show "BW"
+  if (isBWExercise(exName || '')) return 'BW';
+  // Fixed weight: pass through as-is
+  if (isFixedWeight(loadStr)) return loadStr;
+  // Percentage load: calculate from 1RM
   if (!max || max <= 0) return null;
   const pcts = parsePercentages(loadStr);
   if (!pcts.length) return null;
@@ -1016,8 +1184,9 @@ function calcWeight(loadStr, max) {
 
 function updateAllWeightCells() {
   document.querySelectorAll('.weight-cell').forEach(cell => {
-    const max = getMaxForExercise(cell.getAttribute('data-ex'));
-    const r = calcWeight(cell.getAttribute('data-load'), max);
+    const exName = cell.getAttribute('data-ex');
+    const max = getMaxForExercise(exName);
+    const r = calcWeight(cell.getAttribute('data-load'), max, exName);
     if (r) { cell.innerHTML = r; cell.classList.remove('empty'); }
     else { cell.innerHTML = '—'; cell.classList.add('empty'); }
   });
@@ -1203,6 +1372,11 @@ function toggleNotes(btn, bodyId) {
 //  CYCLE LOADING
 // ══════════════════════════════════
 function loadView() {
+  if (currentView === 'nutrition') {
+    updateViewLabels();
+    initNutritionPanel();
+    return;
+  }
   buildRmPanel(); loadSavedMaxes();
   if (currentView === 'admin') {
     document.getElementById('cycle-select-wrap').style.display = 'none';
@@ -1292,8 +1466,7 @@ function renderCycle(cycle) {
         let headers = [...rawH];
         const li = headers.indexOf('Load');
         if (li !== -1) headers.splice(li+1, 0, 'Weight');
-        // Add log column
-        headers.push('Log');
+        headers.push('✓'); // Log column with checkmark header
 
         const dayDate = getDayDate(week.number, di, isAdmin);
         const focusHtml = day.focus ? `<div class="day-focus">${day.focus}</div>` : '';
@@ -1406,7 +1579,7 @@ function renderCycle(cycle) {
           const ssBadge = inSS ? `<span class="ss-badge ss-badge-${ci}">superset</span>` : '';
 
           const max = getMaxForExercise(ex.name);
-          const wr = calcWeight(ex.load, max);
+          const wr = calcWeight(ex.load, max, ex.name);
           const safeEx   = ex.name.replace(/"/g,'&quot;');
           const safeLoad = ex.load.replace(/"/g,'&quot;');
           const wTD = wr
@@ -1924,6 +2097,246 @@ function launchConfetti() {
     else { canvas.style.display='none'; ctx.clearRect(0,0,canvas.width,canvas.height); }
   }
   draw();
+}
+
+
+// ══════════════════════════════════
+//  MULTI-USER AUTH
+// ══════════════════════════════════
+const HARDCODED_USERS = {
+  admin:  { password: 'olylift', role: 'admin'  },
+  member: { password: 'barbell', role: 'member' }
+};
+const USER_REGISTRY_KEY = 'kc_users';
+
+function loadUserRegistry() { try { return JSON.parse(localStorage.getItem(USER_REGISTRY_KEY)||'{}'); } catch(e) { return {}; } }
+function saveUserRegistry(r) { try { localStorage.setItem(USER_REGISTRY_KEY, JSON.stringify(r)); } catch(e) {} }
+
+function openSignup() {
+  const ov=document.getElementById('signup-overlay');
+  ov.style.opacity='1'; ov.style.pointerEvents='auto';
+  document.getElementById('signup-modal').style.transform='scale(1)';
+  setTimeout(()=>document.getElementById('signup-username').focus(),200);
+}
+function closeSignup() {
+  const ov=document.getElementById('signup-overlay');
+  ov.style.opacity='0'; ov.style.pointerEvents='none';
+  document.getElementById('signup-modal').style.transform='scale(0.95)';
+  document.getElementById('signup-error').textContent='';
+}
+function doSignup() {
+  const u=document.getElementById('signup-username').value.trim().toLowerCase();
+  const p=document.getElementById('signup-password').value.trim();
+  const n=document.getElementById('signup-name').value.trim();
+  const err=document.getElementById('signup-error');
+  if (!u||!p) { err.textContent='Username and password required'; return; }
+  if (u.length<3) { err.textContent='Username must be at least 3 characters'; return; }
+  if (p.length<4) { err.textContent='Password must be at least 4 characters'; return; }
+  if (HARDCODED_USERS[u]) { err.textContent='That username is taken'; return; }
+  const reg=loadUserRegistry();
+  if (reg[u]) { err.textContent='Username already exists'; return; }
+  reg[u]={password:p, role:'member', name:n||u};
+  saveUserRegistry(reg);
+  closeSignup();
+  document.getElementById('login-username').value=u;
+  document.getElementById('login-password').value='';
+  const loginErr=document.getElementById('login-error');
+  loginErr.textContent='✓ Account created — enter your password to log in';
+  loginErr.style.color='var(--accent2)';
+  document.getElementById('login-password').focus();
+}
+// Allow Enter key in signup
+document.addEventListener('DOMContentLoaded', ()=>{
+  ['signup-username','signup-password','signup-name'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('keydown',e=>{ if(e.key==='Enter') doSignup(); });
+  });
+});
+
+
+// ══════════════════════════════════
+//  NUTRITION TRACKER
+// ══════════════════════════════════
+const NUT_KEY        = 'kc_nutrition_log';
+const NUT_TARGET_KEY = 'kc_nut_target';
+
+function loadNutLog() { try { return JSON.parse(localStorage.getItem(NUT_KEY)||'[]'); } catch(e) { return []; } }
+function saveNutLog(l) { try { localStorage.setItem(NUT_KEY, JSON.stringify(l)); } catch(e) {} }
+function saveNutTarget() {
+  const v=document.getElementById('nut-target').value;
+  if(v) try { localStorage.setItem(NUT_TARGET_KEY, v); } catch(e) {}
+}
+
+function initNutritionPanel() {
+  const today=new Date();
+  const dateStr=today.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+  document.getElementById('nut-date-display').textContent=dateStr;
+  try { const t=localStorage.getItem(NUT_TARGET_KEY); if(t) document.getElementById('nut-target').value=t; } catch(e) {}
+  const todayKey=today.toISOString().split('T')[0];
+  const entry=loadNutLog().find(e=>e.date===todayKey);
+  if(entry) {
+    if(entry.bw)   document.getElementById('nut-bw').value=entry.bw;
+    if(entry.cal)  document.getElementById('nut-cal').value=entry.cal;
+    if(entry.pro)  document.getElementById('nut-pro').value=entry.pro;
+    if(entry.carb) document.getElementById('nut-carb').value=entry.carb;
+    if(entry.fat)  document.getElementById('nut-fat').value=entry.fat;
+    if(entry.note) document.getElementById('nut-note').value=entry.note;
+  }
+  renderNutritionCharts();
+  renderNutritionTable();
+}
+
+function saveNutritionEntry() {
+  const today=new Date().toISOString().split('T')[0];
+  const entry={
+    date:today,
+    bw:  parseFloat(document.getElementById('nut-bw').value)||null,
+    cal: parseInt(document.getElementById('nut-cal').value)||null,
+    pro: parseInt(document.getElementById('nut-pro').value)||null,
+    carb:parseInt(document.getElementById('nut-carb').value)||null,
+    fat: parseInt(document.getElementById('nut-fat').value)||null,
+    note:document.getElementById('nut-note').value.trim()||null,
+  };
+  const log=loadNutLog();
+  const idx=log.findIndex(e=>e.date===today);
+  if(idx>=0) log[idx]=entry; else log.push(entry);
+  log.sort((a,b)=>a.date>b.date?1:-1);
+  saveNutLog(log);
+  const s=document.getElementById('nut-save-status');
+  s.textContent='✓ Saved'; s.style.opacity='1';
+  setTimeout(()=>s.style.opacity='0',2500);
+  renderNutritionCharts(); renderNutritionTable();
+}
+
+function clearNutritionLog() {
+  if(!confirm('Clear all nutrition entries?')) return;
+  saveNutLog([]); renderNutritionCharts(); renderNutritionTable();
+}
+
+function renderNutritionCharts() {
+  const log=loadNutLog().slice(-30);
+  const target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
+  drawLineChart('nut-bw-chart', log.map(e=>({x:e.date,y:e.bw})), 'var(--accent2)', 'lbs', null);
+  drawLineChart('nut-cal-chart', log.map(e=>({x:e.date,y:e.cal})), 'var(--accent)', 'kcal', target);
+}
+
+function drawLineChart(canvasId, rawData, color, unit, targetVal) {
+  const canvas=document.getElementById(canvasId);
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const rect=canvas.getBoundingClientRect();
+  const W=rect.width||300, H=160;
+  canvas.width=W*2; canvas.height=H*2;
+  ctx.scale(2,2);
+  ctx.clearRect(0,0,W,H);
+
+  const pts=rawData.filter(d=>d.y!=null);
+  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+  const borderCol=isDark?'#2a2b32':'#d6d3cb';
+  const mutedCol=isDark?'#7a7870':'#7a7870';
+  const textCol=isDark?'#e8e6df':'#1a1a1b';
+
+  if(!pts.length) {
+    ctx.fillStyle=mutedCol; ctx.font='10px DM Mono,monospace'; ctx.textAlign='center';
+    ctx.fillText('No data yet',W/2,H/2); return;
+  }
+
+  const padL=38,padR=12,padT=14,padB=22;
+  const cW=W-padL-padR, cH=H-padT-padB;
+  const vals=pts.map(d=>d.y);
+  const minV=Math.min(...vals)*0.97, maxV=Math.max(...vals)*1.03||1;
+  const range=maxV-minV||1;
+
+  // Grid
+  ctx.strokeStyle=borderCol; ctx.lineWidth=0.5;
+  for(let g=0;g<=4;g++){
+    const y=padT+cH-(g/4)*cH;
+    ctx.beginPath(); ctx.moveTo(padL,y); ctx.lineTo(W-padR,y); ctx.stroke();
+    if(g>0){
+      ctx.fillStyle=mutedCol; ctx.font='7px DM Mono,monospace'; ctx.textAlign='right';
+      ctx.fillText(Math.round(minV+(g/4)*range),padL-3,y+3);
+    }
+  }
+
+  // Target line
+  if(targetVal && targetVal>=minV && targetVal<=maxV*1.1){
+    const ty=padT+cH-((targetVal-minV)/range)*cH;
+    ctx.save(); ctx.strokeStyle='rgba(232,197,71,0.45)'; ctx.lineWidth=1; ctx.setLineDash([4,4]);
+    ctx.beginPath(); ctx.moveTo(padL,ty); ctx.lineTo(W-padR,ty); ctx.stroke();
+    ctx.fillStyle='rgba(232,197,71,0.7)'; ctx.font='7px DM Mono,monospace'; ctx.textAlign='left';
+    ctx.fillText('TARGET',padL+4,ty-3); ctx.restore();
+  }
+
+  // Fill area under line
+  const xStep=pts.length>1?cW/(pts.length-1):0;
+  ctx.save();
+  ctx.beginPath();
+  pts.forEach((d,i)=>{
+    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.lineTo(padL+(pts.length-1)*xStep,padT+cH); ctx.lineTo(padL,padT+cH); ctx.closePath();
+  ctx.fillStyle=color.replace('var(--accent2)','rgba(79,195,161,0.12)').replace('var(--accent)','rgba(232,197,71,0.10)');
+  ctx.fill(); ctx.restore();
+
+  // Line
+  ctx.strokeStyle=color.replace(/var\(--accent2?\)/,'').trim()||color;
+  // Resolve CSS vars for canvas
+  const resolvedColor = color.includes('--accent2') ? '#4fc3a1' : color.includes('--accent)') ? '#e8c547' : color;
+  ctx.strokeStyle=resolvedColor; ctx.lineWidth=2; ctx.setLineDash([]);
+  ctx.beginPath();
+  pts.forEach((d,i)=>{
+    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.stroke();
+
+  // Dots + latest label
+  pts.forEach((d,i)=>{
+    const x=padL+i*xStep, y=padT+cH-((d.y-minV)/range)*cH;
+    ctx.beginPath(); ctx.arc(x,y,2.5,0,Math.PI*2);
+    ctx.fillStyle=resolvedColor; ctx.fill();
+  });
+  const last=pts[pts.length-1];
+  const lx=padL+(pts.length-1)*xStep, ly=padT+cH-((last.y-minV)/range)*cH;
+  ctx.fillStyle=textCol; ctx.font='bold 9px DM Mono,monospace'; ctx.textAlign='right';
+  ctx.fillText(`${last.y} ${unit}`, Math.min(lx+2,W-padR), Math.max(ly-7,padT+10));
+
+  // X labels
+  if(pts.length>=2){
+    ctx.fillStyle=mutedCol; ctx.font='7px DM Mono,monospace';
+    ctx.textAlign='left';  ctx.fillText(pts[0].x.slice(5),padL,H-4);
+    ctx.textAlign='right'; ctx.fillText(pts[pts.length-1].x.slice(5),W-padR,H-4);
+  }
+}
+
+function renderNutritionTable() {
+  const log=loadNutLog().slice().reverse().slice(0,30);
+  const target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
+  const el=document.getElementById('nut-log-table');
+  if(!log.length){
+    el.innerHTML='<div style="padding:28px 20px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--muted);">No entries yet. Log your first day above.</div>';
+    return;
+  }
+  const headers=['Date','Body Weight','Calories','Protein','Carbs','Fat','Notes'];
+  let html=`<table style="width:100%;border-collapse:collapse;"><thead><tr style="background:var(--surface2);">
+    ${headers.map(h=>`<th style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:8px 14px;text-align:left;font-weight:400;white-space:nowrap;">${h}</th>`).join('')}
+  </tr></thead><tbody>`;
+  log.forEach(e=>{
+    const calColor=target&&e.cal?(e.cal>target?'var(--accent3)':'var(--accent2)'):'var(--text)';
+    const trend=log.length>1&&e.bw?'':'' ;
+    html+=`<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);">${e.date}</td>
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.bw!=null?e.bw+' lbs':'—'}</td>
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:${calColor};">${e.cal!=null?e.cal+' kcal':'—'}</td>
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.pro!=null?e.pro+'g':'—'}</td>
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.carb!=null?e.carb+'g':'—'}</td>
+      <td style="padding:10px 14px;font-family:'DM Mono',monospace;font-size:12px;color:var(--text);">${e.fat!=null?e.fat+'g':'—'}</td>
+      <td style="padding:10px 14px;font-size:11px;color:var(--muted);">${e.note||''}</td>
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  el.innerHTML=html;
 }
 
 
