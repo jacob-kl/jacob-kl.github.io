@@ -1583,9 +1583,12 @@ function calcPhaseVolume(phase) {
       let vol = 0;
       day.exercises.forEach(ex => {
         const { sets, avgReps } = parseSetCountForVolume(ex.sets);
-        const pcts = parsePercentages(ex.load);
+        // Only count % loads — ignore fixed weights (lbs, kg, s, in, banded, light, etc.)
+        const pctMatches = (ex.load || '').match(/(\d+(?:\.\d+)?)\s*%/g);
+        if (!pctMatches) return; // fixed weight — skip
+        const pcts = pctMatches.map(m => parseFloat(m)).filter(n => n > 0 && n <= 140);
         const avgPct = pcts.length ? pcts.reduce((a,b)=>a+b,0)/pcts.length : 0;
-        vol += sets * avgReps * avgPct;  // sets × reps × load%
+        if (avgPct > 0) vol += sets * avgReps * avgPct;  // sets × reps × load%
       });
       return { label: day.label.substring(0,3), vol: Math.round(vol) };
     });
