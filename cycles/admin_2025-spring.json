@@ -214,15 +214,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "70%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "67%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Reverse Lunge",
@@ -491,15 +491,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "78%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "75%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Reverse Lunge",
@@ -768,15 +768,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "86%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "83%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Reverse Lunge",
@@ -1045,15 +1045,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "75%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "72%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Reverse Lunge",
@@ -1331,15 +1331,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "75%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "72%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Deadlift",
@@ -1608,15 +1608,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "83%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "80%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Deadlift",
@@ -1885,15 +1885,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "91%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "88%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Deadlift",
@@ -2162,15 +2162,15 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "EMOMx10",
+                  "sets": "10×2",
                   "load": "80%",
                   "note": "2 reps / min"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "EMOMx10",
+                  "sets": "10×1",
                   "load": "77%",
-                  "note": "2 reps / min"
+                  "note": "1 rep / min"
                 },
                 {
                   "name": "Deadlift",
@@ -2451,14 +2451,14 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Snatch EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Snatch",
+                  "sets": "10×2",
                   "load": "82%",
                   "note": "2 reps / min"
                 },
                 {
-                  "name": "Clean & Jerk EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Clean & Jerk",
+                  "sets": "10×1",
                   "load": "78%",
                   "note": "1 rep / min"
                 },
@@ -2677,14 +2677,14 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Snatch EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Snatch",
+                  "sets": "10×2",
                   "load": "88%",
                   "note": "2 reps / min"
                 },
                 {
-                  "name": "Clean & Jerk EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Clean & Jerk",
+                  "sets": "10×1",
                   "load": "84%",
                   "note": "1 rep / min"
                 },
@@ -2903,14 +2903,14 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Snatch EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Snatch",
+                  "sets": "10×2",
                   "load": "95%",
                   "note": "2 reps / min"
                 },
                 {
-                  "name": "Clean & Jerk EMOM",
-                  "sets": "EMOMx10",
+                  "name": "Clean & Jerk",
+                  "sets": "10×1",
                   "load": "90%",
                   "note": "1 rep / min"
                 },
