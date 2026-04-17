@@ -309,6 +309,20 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
         <div id="oly-total-unit" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:4px;"></div>
       </div>
     </div>
+    <!-- Powerlifting Total display -->
+    <div id="pl-total-bar" style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--accent2);">Powerlifting Total</div>
+      <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;">
+        <div style="text-align:center;"><div id="pl-bench-val" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--meso1);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Bench</div></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);line-height:1;">+</div>
+        <div style="text-align:center;"><div id="pl-dead-val" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--meso1);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Deadlift</div></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);line-height:1;">+</div>
+        <div style="text-align:center;"><div id="pl-sq-val" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--meso1);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Back Squat</div></div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--muted);line-height:1;">=</div>
+        <div style="text-align:center;"><div id="pl-total-val" style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--accent2);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">PL Total</div></div>
+        <div id="pl-total-unit" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:4px;"></div>
+      </div>
+    </div>
     <!-- Export / Import CSV -->
     <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
       <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Log Data</span>
@@ -529,13 +543,14 @@ function isBWExercise(name){const n=name.toLowerCase();return BW_EXERCISES.some(
 let currentMaxes={};
 const SK_MEMBER='kiloclub_maxes_member', SK_ADMIN='kiloclub_maxes_admin';
 function storageKey(){return currentView==='admin'?SK_ADMIN:SK_MEMBER;}
-function loadSavedMaxes(){try{const s=localStorage.getItem(storageKey());currentMaxes=s?JSON.parse(s):{};Object.entries(currentMaxes).forEach(([id,val])=>{const el=document.getElementById(id);if(el&&val)el.value=val;});}catch(e){currentMaxes={};}updateOlympicTotal();}
+function loadSavedMaxes(){try{const s=localStorage.getItem(storageKey());currentMaxes=s?JSON.parse(s):{};Object.entries(currentMaxes).forEach(([id,val])=>{const el=document.getElementById(id);if(el&&val)el.value=val;});}catch(e){currentMaxes={};}updateOlympicTotal();updatePowerTotal();}
 function confirmMaxes(){
   const all=[...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f=>f.id))];
   all.forEach(id=>{const el=document.getElementById(id);if(el)currentMaxes[id]=el.value?parseFloat(el.value):null;});
   try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}
   updateAllWeightCells();const s=document.getElementById('rm-status');s.classList.add('visible');setTimeout(()=>s.classList.remove('visible'),2500);
   updateOlympicTotal();
+  updatePowerTotal();
 }
 function getMaxForExercise(name){const n=name.toLowerCase();for(const e of RM_MAP){if(e.keys.some(k=>n.includes(k)))return currentMaxes[e.id]||null;}return null;}
 function getMaxIdForExercise(name){const n=name.toLowerCase();for(const e of RM_MAP){if(e.keys.some(k=>n.includes(k)))return e.id;}return null;}
@@ -627,21 +642,68 @@ function parseSetCountForVolume(s){
   if(/build|single|building|\u2014|pvc|rest|record/i.test(s))return{sets:1,avgReps:1};
   const wm=s.match(/^(\d+)-(\d+)-(\d+)/);if(wm){const c=wm.slice(1).map(Number);return{sets:3,avgReps:c.reduce((a,b)=>a+b,0)/3};}
   const em=s.match(/emom\s*[x\u00d7]\s*(\d+)/i);if(em)return{sets:parseInt(em[1]),avgReps:1};
-  let ts=0,tr=0;const gs=s.split('/').map(g=>g.trim()).filter(Boolean);
-  for(const g of gs){const m=g.match(/(\d+)\s*[x\u00d7]\s*\(?(\d+)/i);if(m){ts+=parseInt(m[1]);tr+=parseInt(m[1])*parseInt(m[2]);}else{const n=g.match(/(\d+)/);if(n){ts+=parseInt(n[1]);tr+=parseInt(n[1]);}}}
-  if(ts===0)return{sets:1,avgReps:1};return{sets:ts,avgReps:tr/ts};
-}
+  let ts=0,tr=0;
+  // Split on + between groups (but not inside parens)
+  const gs=s.split('/').map(g=>g.trim()).filter(Boolean);
+  for(const g of gs){
+    // Match sets × (a+b+c...) or sets × n
+    const mParen=g.match(/^(\d+)\s*[x×]\s*\(([^)]+)\)/i);
+    if(mParen){
+      const numSets=parseInt(mParen[1]);
+      const repsInParen=mParen[2].split(/[+]/).reduce((sum,r)=>{const n=parseInt(r.trim());return sum+(isNaN(n)?0:n);},0);
+      ts+=numSets;tr+=numSets*repsInParen;
+    } else {
+      const m=g.match(/(\d+)\s*[x×]\s*(\d+)/i);
+      if(m){ts+=parseInt(m[1]);tr+=parseInt(m[1])*parseInt(m[2]);}
+      else{const n=g.match(/(\d+)/);if(n){ts+=parseInt(n[1]);tr+=parseInt(n[1]);}}
+    }
+  }
+  return ts===0?{sets:1,avgReps:1}:{sets:ts,avgReps:tr/ts};
 
 function calcPhaseVolume(phase){
+  // Assumed % loads for accessories with fixed weights — hidden from user display
+  // Meso 1 & 2 ramp 70→75→80→85 across weeks 1-4; fixed-weight staples use 75%
+  const ACCESSORY_ASSUMED_PCT = 75; // fallback for fixed-weight exercises
+  // Week-number to assumed ramp % (within each meso's 4-week block)
+  function assumedPct(weekNum) {
+    const posInMeso = ((weekNum - 1) % 4) + 1;
+    return [70, 75, 80, 85][posInMeso - 1] || 75;
+  }
+  // Exercises excluded from volume index (light GPP/hypertrophy, not intensity work)
+  const VOLUME_EXCLUDED = ['good morning','bent over row','pendlay row','barbell row','t-bar row'];
+  function isVolumeExcluded(name) {
+    const n = name.toLowerCase();
+    return VOLUME_EXCLUDED.some(k => n.includes(k));
+  }
+  const FIXED_ACCESSORY_KEYS = [
+    'pause back squat','pause front squat',
+    'good morning','bent over row','reverse lunge','forward lunge','bulgarian split squat',
+    'lunge','hammer curl','wrist curl','skull','barbell curl','lat pulldown',
+    'med ball ghd','barbell rollout','side plank','hamstring curl','back extension',
+    'goblet squat','box jump','split squat box jump'
+  ];
+  function isFixedAccessory(name) {
+    const n = name.toLowerCase();
+    return FIXED_ACCESSORY_KEYS.some(k => n.includes(k));
+  }
+
   return phase.weeks.map(week=>{
     const days=week.days.map(day=>{
       let vol=0;
       day.exercises.forEach(ex=>{
         const{sets,avgReps}=parseSetCountForVolume(ex.sets);
-        const pm=(ex.load||'').match(/(\d+(?:\.\d+)?)\s*%/g);if(!pm)return;
-        const pcts=pm.map(m=>parseFloat(m)).filter(n=>n>0&&n<=140);
-        const avgPct=pcts.length?pcts.reduce((a,b)=>a+b,0)/pcts.length:0;
-        if(avgPct>0)vol+=sets*avgReps*avgPct;
+        const pm=(ex.load||'').match(/(\d+(?:\.\d+)?)\s*%/g);
+        if(pm){
+          // Has percentage loads — use them
+          const pcts=pm.map(m=>parseFloat(m)).filter(n=>n>0&&n<=140);
+          const avgPct=pcts.length?pcts.reduce((a,b)=>a+b,0)/pcts.length:0;
+          if(avgPct>0)vol+=sets*avgReps*avgPct;
+        } else if(!isVolumeExcluded(ex.name)&&isFixedAccessory(ex.name)){
+          // Fixed weight accessory — use assumed % based on week position in meso
+          const pct = assumedPct(week.number);
+          vol += sets * avgReps * pct;
+        }
+        // else: skip (e.g. BW-only, PVC, mobility)
       });
       return{label:day.label.substring(0,3),vol:Math.round(vol)};
     });
@@ -999,6 +1061,27 @@ function updateOlympicTotal(){
   if(cjEl) cjEl.textContent=disp(cj);
   if(totEl&&unitEl){
     if(sn&&cj){const total=u==='kg'?Math.round((sn+cj)/2.205):Math.round(sn+cj);totEl.textContent=total;unitEl.textContent=u;}
+    else{totEl.textContent='—';unitEl.textContent='';}
+  }
+}
+
+// ══ POWERLIFTING TOTAL ══
+function updatePowerTotal(){
+  const bench=currentMaxes['rm-bench']||null;
+  const dead=currentMaxes['rm-deadlift']||null;
+  const sq=currentMaxes['rm-backsquat']||null;
+  const u=getUnit();
+  function disp(v){if(!v)return'—';return u==='kg'?Math.round(v/2.205)+'':Math.round(v)+'';}
+  const bEl=document.getElementById('pl-bench-val');
+  const dEl=document.getElementById('pl-dead-val');
+  const sEl=document.getElementById('pl-sq-val');
+  const totEl=document.getElementById('pl-total-val');
+  const unitEl=document.getElementById('pl-total-unit');
+  if(bEl) bEl.textContent=disp(bench);
+  if(dEl) dEl.textContent=disp(dead);
+  if(sEl) sEl.textContent=disp(sq);
+  if(totEl&&unitEl){
+    if(bench&&dead&&sq){const total=u==='kg'?Math.round((bench+dead+sq)/2.205):Math.round(bench+dead+sq);totEl.textContent=total;unitEl.textContent=u;}
     else{totEl.textContent='—';unitEl.textContent='';}
   }
 }
