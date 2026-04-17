@@ -1411,19 +1411,19 @@
                 },
                 {
                   "name": "Deadlift",
-                  "sets": "3×6",
+                  "sets": "4×6",
                   "load": "75%",
                   "note": ""
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "12×5",
+                  "sets": "4×6",
                   "load": "75%",
                   "note": ""
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "4×8",
+                  "sets": "4×6",
                   "load": "75%",
                   "note": ""
                 },
@@ -1718,19 +1718,19 @@
                 },
                 {
                   "name": "Deadlift",
-                  "sets": "3×5",
+                  "sets": "3×4",
                   "load": "83%",
                   "note": ""
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "12×5",
+                  "sets": "3×4",
                   "load": "83%",
                   "note": ""
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "4×6",
+                  "sets": "3×4",
                   "load": "83%",
                   "note": ""
                 },
@@ -2043,19 +2043,19 @@
                 },
                 {
                   "name": "Deadlift",
-                  "sets": "6×5",
+                  "sets": "2×3",
                   "load": "91%",
                   "note": ""
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "12×5",
+                  "sets": "2×3",
                   "load": "91%",
                   "note": ""
                 },
                 {
                   "name": "Bench Press",
-                  "sets": "4×5",
+                  "sets": "2×3",
                   "load": "91%",
                   "note": ""
                 },
