@@ -66,10 +66,6 @@ h1 span{color:var(--accent);}
 #name-modal-input:focus{border-color:var(--accent);}
 #name-modal-save{width:100%;background:var(--accent);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;border:none;padding:13px;border-radius:3px;cursor:pointer;}
 #name-modal-skip{width:100%;margin-top:10px;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:3px;cursor:pointer;}
-#signup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9990;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
-#signup-overlay.open{opacity:1;pointer-events:auto;}
-#signup-modal{background:var(--surface);border:1px solid var(--border);border-radius:8px;width:100%;max-width:380px;padding:32px 28px;margin:0 20px;transform:scale(.95);transition:transform .2s;}
-#signup-overlay.open #signup-modal{transform:scale(1);}
 .cycle-select-wrap{display:flex;align-items:center;gap:10px;}
 .cycle-select-wrap label{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 #cycle-select{background:var(--surface);border:1px solid var(--accent);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:6px 28px 6px 12px;border-radius:2px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;}
@@ -117,6 +113,10 @@ h1 span{color:var(--accent);}
 .days-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .day-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .day-card .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+/* Future day greying — member view only */
+.day-future{opacity:0.38;pointer-events:none;}
+.day-future .day-label{color:var(--muted)!important;}
+.day-future .day-header::after{content:'UPCOMING';font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
 .day-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);}
 .day-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
 .day-label.mon{color:var(--meso1);}.day-label.thu{color:var(--accent);}
@@ -240,7 +240,6 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
     <div class="login-field"><label for="login-password">Password</label><input type="password" id="login-password" placeholder="password" autocomplete="off"/></div>
     <button id="login-btn" onclick="doLogin()">ENTER</button>
     <div id="login-error"></div>
-    <button onclick="openSignup()" style="background:none;border:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:color .2s;" onmouseover="this.style.color='var(--accent2)'" onmouseout="this.style.color='var(--muted)'">+ Create Member Account</button>
   </div>
 </div>
 <div id="main-content">
@@ -335,20 +334,6 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
     <button id="name-modal-skip" onclick="skipMemberName()">Skip for now</button>
   </div>
 </div>
-<div id="signup-overlay">
-  <div id="signup-modal">
-    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--accent);margin-bottom:6px;">Create Account</h3>
-    <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:20px;">Stored on this device</p>
-    <div style="display:flex;flex-direction:column;gap:14px;margin-bottom:16px;">
-      <div><label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Username</label><input type="text" id="signup-username" placeholder="choose a username" autocomplete="off" maxlength="30" style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:10px 14px;border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
-      <div><label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Password</label><input type="password" id="signup-password" placeholder="choose a password" style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:10px 14px;border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
-      <div><label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px;">Your Name</label><input type="text" id="signup-name" placeholder="first name or nickname" autocomplete="off" maxlength="40" style="width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:13px;padding:10px 14px;border-radius:2px;outline:none;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
-    </div>
-    <div id="signup-error" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--accent3);min-height:16px;margin-bottom:10px;"></div>
-    <button onclick="doSignup()" style="width:100%;background:var(--accent2);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;border:none;padding:13px;border-radius:2px;cursor:pointer;margin-bottom:10px;">CREATE ACCOUNT</button>
-    <button onclick="closeSignup()" style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:2px;cursor:pointer;">Cancel</button>
-  </div>
-</div>
 <canvas id="confetti-canvas" style="position:fixed;inset:0;pointer-events:none;z-index:9990;display:none;"></canvas>
 <div id="all-lifts-overlay" onclick="maybeCloseAllLifts(event)">
   <div id="all-lifts-modal">
@@ -434,33 +419,9 @@ function doLogout(){
 }
 
 // Signup
-function openSignup(){const ov=document.getElementById('signup-overlay');ov.style.opacity='1';ov.style.pointerEvents='auto';document.getElementById('signup-modal').style.transform='scale(1)';setTimeout(()=>document.getElementById('signup-username').focus(),200);}
-function closeSignup(){const ov=document.getElementById('signup-overlay');ov.style.opacity='0';ov.style.pointerEvents='none';document.getElementById('signup-modal').style.transform='scale(0.95)';document.getElementById('signup-error').textContent='';}
-function doSignup(){
-  const u=document.getElementById('signup-username').value.trim().toLowerCase();
-  const p=document.getElementById('signup-password').value.trim();
-  const n=document.getElementById('signup-name').value.trim();
-  const err=document.getElementById('signup-error');
-  if(!u||!p){err.textContent='Username and password required';return;}
-  if(u.length<3){err.textContent='Username must be at least 3 characters';return;}
-  if(p.length<4){err.textContent='Password must be at least 4 characters';return;}
-  const hc={admin:1,member:1};if(hc[u]){err.textContent='That username is taken';return;}
-  const reg=(()=>{try{return JSON.parse(localStorage.getItem('kc_users')||'{}');}catch(e){return{};}})();
-  if(reg[u]){err.textContent='Username already exists';return;}
-  reg[u]={password:p,role:'member',name:n||u};
-  try{localStorage.setItem('kc_users',JSON.stringify(reg));}catch(e){}
-  closeSignup();
-  document.getElementById('login-username').value=u;
-  document.getElementById('login-password').value='';
-  const le=document.getElementById('login-error');le.textContent='✓ Account created — enter your password to log in';le.style.color='var(--accent2)';
-  document.getElementById('login-password').focus();
-}
-
 document.addEventListener('DOMContentLoaded',()=>{
   ['login-username','login-password'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});});
-  const nmi=document.getElementById('name-modal-input');if(nmi)nmi.addEventListener('keydown',e=>{if(e.key==='Enter')saveMemberName();});
-  ['signup-username','signup-password','signup-name'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')doSignup();});});
-  const r=sessionStorage.getItem('kc_role'),u=sessionStorage.getItem('kc_username')||'';
+  const nmi=document.getElementById('name-modal-input');if(nmi)nmi.addEventListener('keydown',e=>{if(e.key==='Enter')saveMemberName();});  const r=sessionStorage.getItem('kc_role'),u=sessionStorage.getItem('kc_username')||'';
   if(r){
     currentRole=r;document.getElementById('login-gate').classList.add('hidden');
     if(currentRole==='member'&&u){try{memberName=localStorage.getItem('kc_name_'+u)||'';}catch(e){}}
@@ -701,7 +662,16 @@ function renderCycle(cycle){
         let headers=[...rawH];const li=headers.indexOf('Load');if(li!==-1)headers.splice(li+1,0,'Weight');headers.push('\u2713');
         const dayDate=getDayDate(week.number,di,isAdmin);
         const focusHtml=day.focus?`<div class="day-focus">${day.focus}</div>`:'';
-        html+=`<div class="day-card"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</div></div>${focusHtml}</div><div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+        // Grey out future days for member view
+        const isFutureDay=(()=>{
+          if(isAdmin) return false;
+          const today=new Date(); today.setHours(0,0,0,0);
+          const base=new Date(2026,2,19);
+          base.setDate(base.getDate()+(week.number-1)*7+(MEMBER_DAY_OFFSETS[di]??di));
+          return base>today;
+        })();
+        const futureOverlay=isFutureDay?'position:relative;':'';
+        html+=`<div class="day-card${isFutureDay?' day-future':''}" style="${futureOverlay}"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</div></div>${focusHtml}</div><div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
         const exercises=day.exercises;let i=0,ssGroupIdx=-1,ssGroupCount=-1;
         while(i<exercises.length){
           const ex=exercises[i];
@@ -945,11 +915,6 @@ function drawLineChart(canvasId,rawData,color,unit,targetVal){
 }
 
 // ── SWIPE & WEEK SWITCHER ─────────────────────────────────────────────────
-(function initSwipe(){
-  let touchStartX=0,touchStartY=0,swipePhaseId=null;
-  document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;touchStartY=e.touches[0].clientY;const wc=e.target.closest('.week-content');swipePhaseId=wc?wc.id.split('-w')[0]:null;},{passive:true});
-  document.addEventListener('touchend',e=>{if(!swipePhaseId)return;const dx=e.changedTouches[0].clientX-touchStartX,dy=e.changedTouches[0].clientY-touchStartY;if(Math.abs(dx)<60||Math.abs(dy)>Math.abs(dx)*0.8)return;const navEl=document.getElementById('nav-'+swipePhaseId);if(!navEl)return;const btns=Array.from(navEl.querySelectorAll('.week-btn'));const ai=btns.findIndex(b=>b.classList.contains('active'));const ni=dx<0?ai+1:ai-1;if(ni>=0&&ni<btns.length)btns[ni].click();},{passive:true});
-})();
 function showWeek(phaseId,weekNum,btn,colorClass){
   document.querySelectorAll('[id^="'+phaseId+'-w"]').forEach(el=>el.classList.remove('visible'));
   document.querySelectorAll('#nav-'+phaseId+' .week-btn').forEach(b=>b.classList.remove('active','m1','m2'));
