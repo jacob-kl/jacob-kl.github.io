@@ -117,7 +117,7 @@ h1 span{color:var(--accent);}
 .day-future{position:relative;overflow:hidden;}
 .day-future .table-wrap,.day-future .day-notes-section{filter:blur(4px);user-select:none;pointer-events:none;}
 .day-future .day-header{filter:blur(3px);user-select:none;pointer-events:none;}
-.day-future::after{content:'UPCOMING';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:6px;color:var(--text);background:rgba(0,0,0,0.18);pointer-events:none;z-index:10;}
+.day-future::after{content:'UPCOMING';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:6px;color:var(--accent);background:rgba(0,0,0,0.18);pointer-events:none;z-index:10;}
 .day-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);}
 .day-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
 .day-label.mon{color:var(--meso1);}.day-label.thu{color:var(--accent);}
@@ -654,14 +654,14 @@ function renderCycle(cycle){
     phase.weeks.forEach(week=>{const isFirst=week.number===phase.weeks[0].number;const status=getWeekProgress(phase.id,week.number,week.days.length,[]);
       // For members, hide weeks where ALL days are in the future
       const weekIsFuture=(()=>{
-        if(isAdmin) return false;
+        if(currentRole==='admin') return false;
         const today=new Date(); today.setHours(0,0,0,0);
         const base=new Date(2026,2,19);
         base.setDate(base.getDate()+(week.number-1)*7);
         return base>today;
       })();
       // For members, make the most recent past/current week the active default
-      const isActiveDefault=isAdmin?isFirst:(week.number===phase.weeks.filter(w=>{
+      const isActiveDefault=(currentRole==='admin')?isFirst:(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
         const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
@@ -670,7 +670,7 @@ function renderCycle(cycle){
       html+=`<button class="week-btn ${isActiveDefault?'active '+phase.colorClass:''}" style="${futureTabStyle}" data-phase="${phase.id}" data-week="${week.number}" data-days="${week.days.length}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}<span class="week-dot ${status}"></span></button>`;});
     html+='</div>';
     phase.weeks.forEach((week,wi)=>{
-      const isCurrentWeek=isAdmin?(wi===0):(week.number===phase.weeks.filter(w=>{
+      const isCurrentWeek=(currentRole==='admin')?(wi===0):(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
         const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
@@ -686,7 +686,7 @@ function renderCycle(cycle){
         const focusHtml=day.focus?`<div class="day-focus">${day.focus}</div>`:'';
         // Grey out future days for member view
         const isFutureDay=(()=>{
-          if(isAdmin) return false;
+          if(currentRole==='admin') return false;
           const today=new Date(); today.setHours(0,0,0,0);
           const base=new Date(2026,2,19);
           base.setDate(base.getDate()+(week.number-1)*7+(MEMBER_DAY_OFFSETS[di]??di));
