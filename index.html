@@ -659,6 +659,7 @@ function parseSetCountForVolume(s){
     }
   }
   return ts===0?{sets:1,avgReps:1}:{sets:ts,avgReps:tr/ts};
+}
 
 function calcPhaseVolume(phase){
   // Assumed % loads for accessories with fixed weights — hidden from user display
