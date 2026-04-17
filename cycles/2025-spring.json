@@ -258,12 +258,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "8×4",
-                  "load": "70%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "45 lbs",
@@ -541,12 +535,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "8×4",
-                  "load": "78%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "50 lbs",
@@ -822,13 +810,7 @@
                   "load": "—",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Front Squat",
-                  "sets": "10×4",
-                  "load": "86%",
-                  "note": ""
-                },
+                }
                 {
                   "name": "Wrist Curls",
                   "sets": "4×8",
@@ -1107,12 +1089,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "6×3",
-                  "load": "82%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "60 lbs",
@@ -1294,6 +1270,20 @@
                   "load": "60%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "50 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -1345,12 +1335,6 @@
                   "load": "75 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "7×3",
-                  "load": "70%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -1386,7 +1370,7 @@
                 {
                   "name": "Bench Press",
                   "sets": "4×8",
-                  "load": "65%",
+                  "load": "75%",
                   "note": ""
                 },
                 {
@@ -1421,20 +1405,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "45 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "50 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1583,6 +1553,20 @@
                   "load": "68%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "60 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -1634,12 +1618,6 @@
                   "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "5×3",
-                  "load": "77%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -1675,7 +1653,7 @@
                 {
                   "name": "Bench Press",
                   "sets": "4×6",
-                  "load": "72%",
+                  "load": "83%",
                   "note": ""
                 },
                 {
@@ -1710,20 +1688,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "50 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "60 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1872,6 +1836,20 @@
                   "load": "76%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "4×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "4×6",
+                  "load": "85 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -1924,12 +1902,6 @@
                   "note": "",
                   "supersetEnd": true
                 },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "6×3",
-                  "load": "84%",
-                  "note": "3s pause"
-                }
               ]
             },
             {
@@ -1999,20 +1971,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "4×8",
                   "load": "55 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "4×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "4×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -2161,6 +2119,20 @@
                   "load": "75%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "85 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -2212,12 +2184,6 @@
                   "load": "105 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "2×2",
-                  "load": "82%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -2288,20 +2254,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "60 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
