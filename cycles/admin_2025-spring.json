@@ -153,6 +153,20 @@
                   "load": "64%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "50 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -258,12 +272,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "8×4",
-                  "load": "70%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "45 lbs",
@@ -274,20 +282,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "45 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "50 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -310,9 +304,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "3 Position Snatch",
-                  "sets": "1×1 / 4×1",
-                  "load": "73% / 78%",
+                  "name": "3 Position Snatch — Wave 1",
+                  "sets": "1×1",
+                  "load": "73%",
+                  "note": ""
+                },
+                {
+                  "name": "3 Position Snatch — Wave 2",
+                  "sets": "4×1",
+                  "load": "78%",
                   "note": ""
                 },
                 {
@@ -322,9 +322,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Tempo Clean (5–7s to hip)",
-                  "sets": "2×2 / 4×2",
-                  "load": "61% / 66%",
+                  "name": "Tempo Clean (5–7s to hip) — Wave 1",
+                  "sets": "2×2",
+                  "load": "61%",
+                  "note": ""
+                },
+                {
+                  "name": "Tempo Clean (5–7s to hip) — Wave 2",
+                  "sets": "4×2",
+                  "load": "66%",
                   "note": ""
                 },
                 {
@@ -355,9 +361,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch)",
-                  "sets": "1×1 / 4×1",
-                  "load": "70% / 75%",
+                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch) — Wave 1",
+                  "sets": "1×1",
+                  "load": "70%",
+                  "note": ""
+                },
+                {
+                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch) — Wave 2",
+                  "sets": "4×1",
+                  "load": "75%",
                   "note": ""
                 },
                 {
@@ -434,6 +446,20 @@
                   "name": "Strict Press",
                   "sets": "3×8",
                   "load": "72%",
+                  "note": "",
+                  "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "60 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -541,12 +567,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "8×4",
-                  "load": "78%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "50 lbs",
@@ -557,20 +577,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "50 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "60 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -593,10 +599,22 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "3 Position Snatch",
-                  "sets": "2×1 / 2×1 / 2×1",
-                  "load": "81% / 86% / 91%",
+                  "name": "3 Position Snatch — Wave 1",
+                  "sets": "2×1",
+                  "load": "81%",
                   "note": "Build across sets"
+                },
+                {
+                  "name": "3 Position Snatch — Wave 2",
+                  "sets": "2×1",
+                  "load": "86%",
+                  "note": ""
+                },
+                {
+                  "name": "3 Position Snatch — Wave 3",
+                  "sets": "2×1",
+                  "load": "91%",
+                  "note": ""
                 },
                 {
                   "name": "Snatch Grip Stage Deadlift",
@@ -605,9 +623,21 @@
                   "note": ""
                 },
                 {
-                  "name": "Tempo Clean (5–7s to hip)",
-                  "sets": "2×2 / 2×2 / 2×2",
-                  "load": "64% / 69% / 71%",
+                  "name": "Tempo Clean (5–7s to hip) — Wave 1",
+                  "sets": "2×2",
+                  "load": "64%",
+                  "note": ""
+                },
+                {
+                  "name": "Tempo Clean (5–7s to hip) — Wave 2",
+                  "sets": "2×2",
+                  "load": "69%",
+                  "note": ""
+                },
+                {
+                  "name": "Tempo Clean (5–7s to hip) — Wave 3",
+                  "sets": "2×2",
+                  "load": "71%",
                   "note": ""
                 },
                 {
@@ -638,9 +668,21 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch)",
-                  "sets": "1×1 / 1×1 / 3×1",
-                  "load": "73% / 78% / 83%",
+                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch) — Wave 1",
+                  "sets": "1×1",
+                  "load": "73%",
+                  "note": ""
+                },
+                {
+                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch) — Wave 2",
+                  "sets": "1×1",
+                  "load": "78%",
+                  "note": ""
+                },
+                {
+                  "name": "High Hang Clean (3s) + Mid Hang Clean (3s) + Clean (3s catch) — Wave 3",
+                  "sets": "3×1",
+                  "load": "83%",
                   "note": ""
                 },
                 {
@@ -717,6 +759,20 @@
                   "name": "Strict Press",
                   "sets": "4×8",
                   "load": "80%",
+                  "note": "",
+                  "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "4×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "4×6",
+                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -824,12 +880,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "10×4",
-                  "load": "86%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "4×8",
                   "load": "55 lbs",
@@ -840,20 +890,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "4×8",
                   "load": "55 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "4×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "4×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1002,6 +1038,20 @@
                   "load": "80%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "85 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -1107,12 +1157,6 @@
                   "supersetEnd": true
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "6×3",
-                  "load": "82%",
-                  "note": ""
-                },
-                {
                   "name": "Wrist Curls",
                   "sets": "3×8",
                   "load": "60 lbs",
@@ -1123,20 +1167,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "60 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1294,6 +1324,20 @@
                   "load": "60%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "50 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -1345,12 +1389,6 @@
                   "load": "75 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "7×3",
-                  "load": "70%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -1386,7 +1424,7 @@
                 {
                   "name": "Bench Press",
                   "sets": "4×8",
-                  "load": "65%",
+                  "load": "75%",
                   "note": ""
                 },
                 {
@@ -1423,20 +1461,6 @@
                   "load": "45 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "50 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "supersetEnd": true
                 }
               ]
             }
@@ -1457,9 +1481,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Deficit Snatch",
-                  "sets": "1×3 / 2×3",
-                  "load": "78% / 83%",
+                  "name": "Deficit Snatch — Wave 1",
+                  "sets": "1×3",
+                  "load": "78%",
+                  "note": ""
+                },
+                {
+                  "name": "Deficit Snatch — Wave 2",
+                  "sets": "2×3",
+                  "load": "83%",
                   "note": ""
                 },
                 {
@@ -1469,9 +1499,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Block Clean",
-                  "sets": "2×2 / 3×2",
-                  "load": "65% / 70%",
+                  "name": "Block Clean — Wave 1",
+                  "sets": "2×2",
+                  "load": "65%",
+                  "note": ""
+                },
+                {
+                  "name": "Block Clean — Wave 2",
+                  "sets": "3×2",
+                  "load": "70%",
                   "note": ""
                 },
                 {
@@ -1502,9 +1538,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk",
-                  "sets": "1×1 / 4×1",
-                  "load": "75% / 80%",
+                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk — Wave 1",
+                  "sets": "1×1",
+                  "load": "75%",
+                  "note": ""
+                },
+                {
+                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk — Wave 2",
+                  "sets": "4×1",
+                  "load": "80%",
                   "note": ""
                 },
                 {
@@ -1547,9 +1589,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch",
-                  "sets": "2×1 / 7×1",
-                  "load": "75% / 80%",
+                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch — Wave 1",
+                  "sets": "2×1",
+                  "load": "75%",
+                  "note": ""
+                },
+                {
+                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch — Wave 2",
+                  "sets": "7×1",
+                  "load": "80%",
                   "note": ""
                 },
                 {
@@ -1581,6 +1629,20 @@
                   "name": "Strict Press",
                   "sets": "3×8",
                   "load": "68%",
+                  "note": "",
+                  "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "60 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "70 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1634,12 +1696,6 @@
                   "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "5×3",
-                  "load": "77%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -1675,7 +1731,7 @@
                 {
                   "name": "Bench Press",
                   "sets": "4×6",
-                  "load": "72%",
+                  "load": "83%",
                   "note": ""
                 },
                 {
@@ -1712,20 +1768,6 @@
                   "load": "50 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "60 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "supersetEnd": true
                 }
               ]
             }
@@ -1746,9 +1788,21 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Deficit Snatch",
-                  "sets": "1×3 / 1×3 / 2×3",
-                  "load": "81% / 86% / 91%",
+                  "name": "Deficit Snatch — Wave 1",
+                  "sets": "1×3",
+                  "load": "81%",
+                  "note": ""
+                },
+                {
+                  "name": "Deficit Snatch — Wave 2",
+                  "sets": "1×3",
+                  "load": "86%",
+                  "note": ""
+                },
+                {
+                  "name": "Deficit Snatch — Wave 3",
+                  "sets": "2×3",
+                  "load": "91%",
                   "note": ""
                 },
                 {
@@ -1758,9 +1812,21 @@
                   "note": ""
                 },
                 {
-                  "name": "Block Clean",
-                  "sets": "2×2 / 2×2 / 2×2",
-                  "load": "68% / 73% / 78%",
+                  "name": "Block Clean — Wave 1",
+                  "sets": "2×2",
+                  "load": "68%",
+                  "note": ""
+                },
+                {
+                  "name": "Block Clean — Wave 2",
+                  "sets": "2×2",
+                  "load": "73%",
+                  "note": ""
+                },
+                {
+                  "name": "Block Clean — Wave 3",
+                  "sets": "2×2",
+                  "load": "78%",
                   "note": ""
                 },
                 {
@@ -1791,9 +1857,21 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk",
-                  "sets": "1×1 / 1×1 / 3×1",
-                  "load": "78% / 83% / 88%",
+                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk — Wave 1",
+                  "sets": "1×1",
+                  "load": "78%",
+                  "note": ""
+                },
+                {
+                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk — Wave 2",
+                  "sets": "1×1",
+                  "load": "83%",
+                  "note": ""
+                },
+                {
+                  "name": "Clean w/ 2s Pause at Knee + Clean & Jerk — Wave 3",
+                  "sets": "3×1",
+                  "load": "88%",
                   "note": ""
                 },
                 {
@@ -1836,9 +1914,15 @@
               "focus": "",
               "exercises": [
                 {
-                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch",
-                  "sets": "1×3 / 4×3",
-                  "load": "78% / 77–88%",
+                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch — Wave 1",
+                  "sets": "1×3",
+                  "load": "78%",
+                  "note": ""
+                },
+                {
+                  "name": "Split Jerk w/ 3s Pause in Dip + Split Jerk w/ 3s Pause in Catch — Wave 2",
+                  "sets": "4×3",
+                  "load": "77–88%",
                   "note": ""
                 },
                 {
@@ -1870,6 +1954,20 @@
                   "name": "Strict Press",
                   "sets": "4×8",
                   "load": "76%",
+                  "note": "",
+                  "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "4×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "4×6",
+                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1923,12 +2021,6 @@
                   "load": "95 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "6×3",
-                  "load": "84%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -1964,7 +2056,7 @@
                 {
                   "name": "Bench Press",
                   "sets": "4×5",
-                  "load": "80%",
+                  "load": "91%",
                   "note": ""
                 },
                 {
@@ -1999,20 +2091,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "4×8",
                   "load": "55 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "4×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "4×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -2161,6 +2239,20 @@
                   "load": "75%",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Hammer Curls",
+                  "sets": "3×6",
+                  "load": "70 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
+                  "name": "Skullerushers",
+                  "sets": "3×6",
+                  "load": "85 lbs",
+                  "note": "",
+                  "supersetEnd": true
                 }
               ]
             },
@@ -2212,12 +2304,6 @@
                   "load": "105 lbs",
                   "note": "",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Pause Back Squat",
-                  "sets": "2×2",
-                  "load": "82%",
-                  "note": "3s pause"
                 }
               ]
             },
@@ -2288,20 +2374,6 @@
                   "name": "Reverse Wrist Curls",
                   "sets": "3×8",
                   "load": "60 lbs",
-                  "note": "",
-                  "supersetEnd": true
-                },
-                {
-                  "name": "Hammer Curls",
-                  "sets": "3×6",
-                  "load": "70 lbs",
-                  "note": "",
-                  "superset": true
-                },
-                {
-                  "name": "Skullerushers",
-                  "sets": "3×6",
-                  "load": "85 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
