@@ -272,6 +272,10 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
         <label for="cycle-select">Cycle</label>
         <select id="cycle-select" onchange="onCycleChange(this.value)"><option value="2025-spring">Spring 2025</option></select>
       </div>
+      <div class="cycle-select-wrap" id="admin-cycle-select-wrap" style="display:none;">
+        <label for="admin-cycle-select">Cycle</label>
+        <select id="admin-cycle-select" onchange="onAdminCycleChange(this.value)"><option value="admin_2025-spring">Spring 2025</option></select>
+      </div>
     </div>
   </div>
   <div class="rm-panel" id="rm-panel-wrap">
@@ -284,6 +288,34 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
       <span id="rm-status">✓ Saved</span>
     </div>
     <p class="rm-note">Maxes are saved to your browser — PRs auto-update them.</p>
+    <!-- Olympic Total display -->
+    <div id="oly-total-bar" style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:1px;color:var(--accent);">Olympic Total</div>
+      <div style="display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;">
+        <div style="text-align:center;">
+          <div id="oly-snatch-val" style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--meso1);">—</div>
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Snatch</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--muted);line-height:1;">+</div>
+        <div style="text-align:center;">
+          <div id="oly-cj-val" style="font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;color:var(--meso2);">—</div>
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">C&amp;J</div>
+        </div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--muted);line-height:1;">=</div>
+        <div style="text-align:center;">
+          <div id="oly-total-val" style="font-family:'Bebas Neue',sans-serif;font-size:40px;letter-spacing:1px;color:var(--accent);">—</div>
+          <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Total</div>
+        </div>
+        <div id="oly-total-unit" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:4px;"></div>
+      </div>
+    </div>
+    <!-- Export / Import CSV -->
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+      <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Log Data</span>
+      <button onclick="exportCSV()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↓ Export CSV</button>
+      <label style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">↑ Import CSV<input type="file" accept=".csv" onchange="importCSV(event)" style="display:none;"></label>
+      <span id="csv-status" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--accent2);opacity:0;transition:opacity .3s;"></span>
+    </div>
   </div>
   <div id="program-body"><div class="state-message">Loading program…</div></div>
   <div id="nutrition-panel">
@@ -566,9 +598,12 @@ function loadView(){
   buildRmPanel();loadSavedMaxes();
   if(currentView==='admin'){
     document.getElementById('cycle-select-wrap').style.display='none';
-    fetch('cycles/admin_2025-spring.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(renderCycle).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load admin program. Make sure cycles/admin_2025-spring.json exists.<br><br>Note: fetch() requires a web server. Run: python3 -m http.server 8080</div>';});
+    document.getElementById('admin-cycle-select-wrap').style.display='flex';
+    const adminCycleId=document.getElementById('admin-cycle-select').value;
+    fetch('cycles/'+adminCycleId+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(renderCycle).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load admin program. Run from a web server.</div>';});
   } else {
     document.getElementById('cycle-select-wrap').style.display='flex';
+    document.getElementById('admin-cycle-select-wrap').style.display='none';
     loadCycle(document.getElementById('cycle-select').value);
   }
 }
@@ -944,6 +979,70 @@ function showWeek(phaseId,weekNum,btn,colorClass){
   btn.classList.add('active',colorClass);
   const nav=document.getElementById('nav-'+phaseId);if(nav)nav.scrollIntoView({behavior:'smooth',block:'start'});
 }
+// ══ ADMIN CYCLE SELECT ══
+function onAdminCycleChange(v){
+  if(currentView==='admin') loadView();
+}
+
+// ══ OLYMPIC TOTAL ══
+function updateOlympicTotal(){
+  const sn=currentMaxes['rm-snatch']||null;
+  const cj=currentMaxes['rm-cj']||null;
+  const u=getUnit();
+  function disp(v){if(!v)return'—';return u==='kg'?Math.round(v/2.205)+'':Math.round(v)+'';}
+  const snEl=document.getElementById('oly-snatch-val');
+  const cjEl=document.getElementById('oly-cj-val');
+  const totEl=document.getElementById('oly-total-val');
+  const unitEl=document.getElementById('oly-total-unit');
+  if(snEl) snEl.textContent=disp(sn);
+  if(cjEl) cjEl.textContent=disp(cj);
+  if(totEl&&unitEl){
+    if(sn&&cj){const total=u==='kg'?Math.round((sn+cj)/2.205):Math.round(sn+cj);totEl.textContent=total;unitEl.textContent=u;}
+    else{totEl.textContent='—';unitEl.textContent='';}
+  }
+}
+const _origConfirmMaxes=confirmMaxes;
+function confirmMaxes(){_origConfirmMaxes();updateOlympicTotal();}
+const _origLoadSavedMaxes=loadSavedMaxes;
+function loadSavedMaxes(){_origLoadSavedMaxes();updateOlympicTotal();}
+
+// ══ EXPORT / IMPORT CSV ══
+function exportCSV(){
+  const rows=[['key','value']];
+  try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('kc_')){rows.push([k,localStorage.getItem(k)]);}}}catch(e){}
+  const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
+  const blob=new Blob([csv],{type:'text/csv'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='kiloclub_log.csv';a.click();
+  URL.revokeObjectURL(url);
+  showCSVStatus('✓ Exported');
+}
+function importCSV(event){
+  const file=event.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const lines=e.target.result.split('\n').filter(Boolean);
+    let count=0;
+    for(let i=1;i<lines.length;i++){
+      const cols=lines[i].match(/("(?:[^"]|"")*"|[^,]*)/g)||[];
+      const clean=c=>c.replace(/^"|"$/g,'').replace(/""/g,'"').trim();
+      const k=clean(cols[0]||'');
+      const v=clean(cols.slice(1).join(','));
+      if(k.startsWith('kc_')&&v){try{localStorage.setItem(k,v);count++;}catch(err){}}
+    }
+    showCSVStatus('✓ Imported '+count+' entries');
+    buildRmPanel();loadSavedMaxes();loadView();
+    event.target.value='';
+  };
+  reader.readAsText(file);
+}
+function showCSVStatus(msg){
+  const el=document.getElementById('csv-status');if(!el)return;
+  el.textContent=msg;el.style.opacity='1';
+  setTimeout(()=>el.style.opacity='0',3000);
+}
+
 </script>
 </body>
 </html>
