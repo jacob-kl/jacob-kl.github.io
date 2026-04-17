@@ -617,7 +617,7 @@ function loadCycle(id){document.getElementById('program-body').innerHTML='<div c
 const MEMBER_DAY_OFFSETS=[0,4];
 const ADMIN_DAY_OFFSETS=[0,1,2,4,5];
 function getDayDate(weekNum,dayIdx,isAdm){
-  const base=isAdm?new Date(2025,2,16):new Date(2025,2,20);
+  const base=isAdm?new Date(2026,2,16):new Date(2026,2,19);
   const d=new Date(base);d.setDate(d.getDate()+(weekNum-1)*7);
   const off=(isAdm?ADMIN_DAY_OFFSETS:MEMBER_DAY_OFFSETS)[dayIdx]??dayIdx;
   const dd=new Date(d);dd.setDate(dd.getDate()+off);
