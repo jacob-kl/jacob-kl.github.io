@@ -3033,8 +3033,57 @@
               ]
             },
             {
-              "label": "FRIDAY / SATURDAY",
+              "label": "FRIDAY",
               "colorClass": "thu",
+              "focus": "WARM-UP & MOBILITY",
+              "exercises": [
+                {
+                  "name": "Snatch (opener feel)",
+                  "sets": "3×1",
+                  "load": "72%",
+                  "note": "Easy. Just feel the movement."
+                },
+                {
+                  "name": "Clean & Jerk (opener feel)",
+                  "sets": "3×1",
+                  "load": "72%",
+                  "note": "Same. Confident and done."
+                },
+                {
+                  "name": "Thoracic Mobility",
+                  "sets": "3×10",
+                  "load": "BW",
+                  "note": "T-spine rotations, foam roll thoracic"
+                },
+                {
+                  "name": "Hip 90/90 Mobility",
+                  "sets": "2×60s",
+                  "load": "BW",
+                  "note": "Each side. Open the hips."
+                },
+                {
+                  "name": "Ankle Circles + Calf Stretch",
+                  "sets": "2×60s",
+                  "load": "BW",
+                  "note": "Each side"
+                },
+                {
+                  "name": "Shoulder CARs",
+                  "sets": "2×10",
+                  "load": "BW",
+                  "note": "Controlled articular rotations each direction"
+                },
+                {
+                  "name": "Snatch Balance (empty bar)",
+                  "sets": "3×5",
+                  "load": "Bar",
+                  "note": "Reinforce the drop. Feel the overhead."
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
               "focus": "OLYMPIC TOTAL",
               "tableHeaders": [
                 "Attempt",
