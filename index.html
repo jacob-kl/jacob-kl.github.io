@@ -529,12 +529,13 @@ function isBWExercise(name){const n=name.toLowerCase();return BW_EXERCISES.some(
 let currentMaxes={};
 const SK_MEMBER='kiloclub_maxes_member', SK_ADMIN='kiloclub_maxes_admin';
 function storageKey(){return currentView==='admin'?SK_ADMIN:SK_MEMBER;}
-function loadSavedMaxes(){try{const s=localStorage.getItem(storageKey());currentMaxes=s?JSON.parse(s):{};Object.entries(currentMaxes).forEach(([id,val])=>{const el=document.getElementById(id);if(el&&val)el.value=val;});}catch(e){currentMaxes={};}}
+function loadSavedMaxes(){try{const s=localStorage.getItem(storageKey());currentMaxes=s?JSON.parse(s):{};Object.entries(currentMaxes).forEach(([id,val])=>{const el=document.getElementById(id);if(el&&val)el.value=val;});}catch(e){currentMaxes={};}updateOlympicTotal();}
 function confirmMaxes(){
   const all=[...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f=>f.id))];
   all.forEach(id=>{const el=document.getElementById(id);if(el)currentMaxes[id]=el.value?parseFloat(el.value):null;});
   try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}
   updateAllWeightCells();const s=document.getElementById('rm-status');s.classList.add('visible');setTimeout(()=>s.classList.remove('visible'),2500);
+  updateOlympicTotal();
 }
 function getMaxForExercise(name){const n=name.toLowerCase();for(const e of RM_MAP){if(e.keys.some(k=>n.includes(k)))return currentMaxes[e.id]||null;}return null;}
 function getMaxIdForExercise(name){const n=name.toLowerCase();for(const e of RM_MAP){if(e.keys.some(k=>n.includes(k)))return e.id;}return null;}
@@ -1001,10 +1002,7 @@ function updateOlympicTotal(){
     else{totEl.textContent='—';unitEl.textContent='';}
   }
 }
-const _origConfirmMaxes=confirmMaxes;
-function confirmMaxes(){_origConfirmMaxes();updateOlympicTotal();}
-const _origLoadSavedMaxes=loadSavedMaxes;
-function loadSavedMaxes(){_origLoadSavedMaxes();updateOlympicTotal();}
+
 
 // ══ EXPORT / IMPORT CSV ══
 function exportCSV(){
