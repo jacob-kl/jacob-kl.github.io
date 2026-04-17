@@ -384,11 +384,11 @@
         },
         {
           "number": 5,
-          "label": "Week 5",
+          "label": "Week 5 — Deload",
           "intent": {
-            "colorClass": "m1",
-            "title": "Week 5 · Accumulation Peak",
-            "text": "Final loading week before deload. Push squat intensity. Heavier optional singles for advanced athletes."
+            "colorClass": "deload",
+            "title": "Week 5 · Deload",
+            "text": "Drop volume ~35%. Keep loads at 65–72%. No grinding. Recovery and technique only."
           },
           "days": [
             {
@@ -398,7 +398,7 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "1×1 + 2×1",
+                  "sets": "2×1 + 2×1",
                   "load": "66% / 72%",
                   "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
                   "tag": "hard",
@@ -406,25 +406,25 @@
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "1×2",
+                  "sets": "2×2",
                   "load": "60%",
                   "note": "Snatch accessory — back-off set"
                 },
                 {
                   "name": "Snatch Pull",
                   "sets": "2×3",
-                  "load": "105–99%",
+                  "load": "105–91%",
                   "note": "Heaviest pulls of phase 1"
                 },
                 {
                   "name": "Clean (High Hang)",
-                  "sets": "1×2",
+                  "sets": "2×2",
                   "load": "63–57%",
                   "note": "Light clean accessory. Fast elbows"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "1×3",
+                  "sets": "2×3",
                   "load": "72–64%",
                   "note": ""
                 }
@@ -437,7 +437,7 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "1×1 + 2×1",
+                  "sets": "2×1 + 2×1",
                   "load": "67% / 73%",
                   "note": "Advanced: attempt 83% singles",
                   "tag": "hard",
@@ -452,18 +452,18 @@
                 {
                   "name": "Clean Pull",
                   "sets": "2×3",
-                  "load": "105–99%",
+                  "load": "105–91%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "1×2",
+                  "sets": "2×2",
                   "load": "65–58%",
                   "note": "Light snatch accessory. Speed focus"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "1×2 + 1×1",
+                  "sets": "2×2 + 1×1",
                   "load": "70% / 75%",
                   "note": "First heavy squat single",
                   "tag": "beginner",
@@ -475,72 +475,64 @@
         },
         {
           "number": 6,
-          "label": "Week 6 — Deload",
+          "label": "Week 6 — Max Out",
           "intent": {
-            "colorClass": "deload",
-            "title": "Week 6 · Deload",
-            "text": "Drop volume by 40%, keep intensity moderate (65–70%). No new PRs. Great time to video athletes and drill technique."
+            "colorClass": "peak",
+            "title": "Week 6 · Max Out Day",
+            "text": "Not necessarily a PR — just find today's max. Build methodically, stop when form breaks. Trust the 5 weeks."
           },
           "days": [
             {
               "label": "THURSDAY",
               "colorClass": "mon",
-              "focus": "Snatch / Technique",
+              "focus": "MAX SNATCH",
               "exercises": [
                 {
-                  "name": "Snatch (competition)",
-                  "sets": "2×1",
-                  "load": "68–98%",
-                  "note": "Feel the lift. No grinding"
+                  "name": "Snatch — Build to Max",
+                  "sets": "Singles building",
+                  "load": "70%→Max",
+                  "note": "Work up in ~5% jumps. Stop when form breaks.",
+                  "tag": "peak",
+                  "tagText": "Max Day"
                 },
                 {
-                  "name": "Power Snatch",
-                  "sets": "2×2",
-                  "load": "60–91%",
-                  "note": "Light and fast"
+                  "name": "Snatch Balance",
+                  "sets": "3×2",
+                  "load": "65–70%",
+                  "note": "Post-max polish. Keep it light."
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "2×3",
-                  "load": "60–91%",
-                  "note": ""
-                },
-                {
-                  "name": "Back Extension",
-                  "sets": "2×10",
-                  "load": "Light",
-                  "note": ""
+                  "sets": "3×2",
+                  "load": "65%",
+                  "note": "Feel the bottom."
                 }
               ]
             },
             {
               "label": "MONDAY",
               "colorClass": "thu",
-              "focus": "C&J / Technique",
+              "focus": "MAX CLEAN & JERK",
               "exercises": [
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "2×1",
-                  "load": "68–98%",
-                  "note": "Smooth. Video your athletes this week"
+                  "name": "Clean & Jerk — Build to Max",
+                  "sets": "Singles building",
+                  "load": "70%→Max",
+                  "note": "Work up in ~5% jumps. Stop when form breaks.",
+                  "tag": "peak",
+                  "tagText": "Max Day"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "2×2",
-                  "load": "91%",
-                  "note": "Footwork drill focus"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "2×3",
-                  "load": "65–94%",
-                  "note": "Easy and fluid"
+                  "name": "Front Squat",
+                  "sets": "3×2",
+                  "load": "70%",
+                  "note": "Post-max squat work."
                 },
                 {
                   "name": "Good Morning",
-                  "sets": "1×8",
+                  "sets": "2×8",
                   "load": "Light",
-                  "note": ""
+                  "note": "Cool down."
                 }
               ]
             }
