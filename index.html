@@ -113,10 +113,8 @@ h1 span{color:var(--accent);}
 .days-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
 .day-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .day-card .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-/* Future day greying — member view only */
-.day-future{opacity:0.38;pointer-events:none;}
-.day-future .day-label{color:var(--muted)!important;}
-.day-future .day-header::after{content:'UPCOMING';font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
+/* Future day hiding — member view only, no cherry picking */
+.day-future{display:none!important;}
 .day-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);}
 .day-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
 .day-label.mon{color:var(--meso1);}.day-label.thu{color:var(--accent);}
@@ -650,10 +648,38 @@ function renderCycle(cycle){
     html+=`<div class="meso-header"><div class="meso-num ${phase.colorClass}">${phase.number}</div><div class="meso-info"><h2 class="${phase.colorClass}">${phase.title}</h2><p>${phase.subtitle}</p></div></div>`;
     html+=renderVolumeChart(phase);
     html+=`<div class="week-nav" id="nav-${phase.id}">`;
-    phase.weeks.forEach(week=>{const isFirst=week.number===phase.weeks[0].number;const status=getWeekProgress(phase.id,week.number,week.days.length,[]);html+=`<button class="week-btn ${isFirst?'active '+phase.colorClass:''}" data-phase="${phase.id}" data-week="${week.number}" data-days="${week.days.length}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}<span class="week-dot ${status}"></span></button>`;});
+    phase.weeks.forEach(week=>{const isFirst=week.number===phase.weeks[0].number;const status=getWeekProgress(phase.id,week.number,week.days.length,[]);
+      // For members, hide weeks where ALL days are in the future
+      const weekHidden=(()=>{
+        if(isAdmin) return false;
+        const today=new Date(); today.setHours(0,0,0,0);
+        const base=new Date(2026,2,19);
+        base.setDate(base.getDate()+(week.number-1)*7);
+        return base>today;
+      })();
+      if(weekHidden) return;
+      // For members, make the most recent (last visible) week the active default
+      const isActiveDefault=isAdmin?isFirst:(week.number===phase.weeks.filter(w=>{
+        const today=new Date();today.setHours(0,0,0,0);
+        const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        return b<=today;
+      }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
+      html+=`<button class="week-btn ${isActiveDefault?'active '+phase.colorClass:''}" data-phase="${phase.id}" data-week="${week.number}" data-days="${week.days.length}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}<span class="week-dot ${status}"></span></button>`;});
     html+='</div>';
     phase.weeks.forEach((week,wi)=>{
-      html+=`<div class="week-content ${wi===0?'visible':''}" id="${phase.id}-w${week.number}">`;
+      // Members: skip rendering future weeks entirely
+      if(!isAdmin){
+        const today=new Date(); today.setHours(0,0,0,0);
+        const base=new Date(2026,2,19);
+        base.setDate(base.getDate()+(week.number-1)*7);
+        if(base>today) return;
+      }
+      const isCurrentWeek=isAdmin?(wi===0):(week.number===phase.weeks.filter(w=>{
+        const today=new Date();today.setHours(0,0,0,0);
+        const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        return b<=today;
+      }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
+      html+=`<div class="week-content ${isCurrentWeek?'visible':''}" id="${phase.id}-w${week.number}">`;
       html+=`<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
       const gs=week.days.length>2?'grid-template-columns:repeat(auto-fit,minmax(320px,1fr))':'';
       html+=`<div class="days-grid" style="${gs}">`;
