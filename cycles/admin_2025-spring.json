@@ -1316,7 +1316,7 @@
                   "sets": "4×6",
                   "load": "135 lbs",
                   "note": "",
-		  "superset": true,
+		  		  "superset": true,
                 },
                 {
                   "name": "Bent Over Row",
@@ -1617,7 +1617,7 @@
                   "sets": "4×6",
                   "load": "140 lbs",
                   "note": "",
-		  "superset": true,
+		 		  "superset": true,
                 },
                 {
                   "name": "Bent Over Row",
@@ -1936,7 +1936,7 @@
                   "sets": "4×6",
                   "load": "145 lbs",
                   "note": "",
-		  "superset": true,
+		  		  "superset": true,
                 },
                 {
                   "name": "Bent Over Row",
@@ -2213,7 +2213,7 @@
                   "sets": "4×6",
                   "load": "150 lbs",
                   "note": "",
-		  "superset": true,
+				  "superset": true,
                 },
                 {
                   "name": "Bent Over Row",
