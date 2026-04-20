@@ -366,9 +366,21 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
         <button onclick="addMeal()" style="flex:1;background:none;border:1px dashed var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:14px;border-radius:4px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">+ Add Meal</button>
         <button onclick="openCookbook()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:14px 20px;border-radius:4px;cursor:pointer;transition:all .2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📖 Cookbook</button>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Bodyweight — 30 days</div><canvas id="nut-bw-chart" style="width:100%;height:160px;display:block;"></canvas></div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Calories — 30 days</div><canvas id="nut-cal-chart" style="width:100%;height:160px;display:block;"></canvas></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:20px;margin-bottom:24px;">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Nutrition — 30 days</div>
+          <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+            <span style="display:flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#e8c547;"><span style="display:inline-block;width:18px;height:2px;background:#e8c547;border-radius:1px;"></span>Calories</span>
+            <span style="display:flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#4fc3a1;"><span style="display:inline-block;width:18px;height:2px;background:#4fc3a1;border-radius:1px;"></span>Protein</span>
+            <span style="display:flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#e8843a;"><span style="display:inline-block;width:18px;height:2px;background:#e8843a;border-radius:1px;"></span>Carbs</span>
+            <span style="display:flex;align-items:center;gap:4px;font-family:'DM Mono',monospace;font-size:9px;color:#a78bfa;"><span style="display:inline-block;width:18px;height:2px;background:#a78bfa;border-radius:1px;"></span>Fat</span>
+          </div>
+        </div>
+        <canvas id="nut-macro-chart" style="width:100%;height:220px;display:block;"></canvas>
+        <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);">
+          <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Bodyweight — 30 days</div>
+          <canvas id="nut-bw-chart" style="width:100%;height:140px;display:block;"></canvas>
+        </div>
       </div>
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;">
         <div style="padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
@@ -1020,9 +1032,10 @@ function makeMealCard(meal,mi){
     </div>`;
   });
   div.innerHTML=`
-    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--border);">
-      <input type="text" value="${esc(meal.name)}" onchange="nutMealName(${mi},this.value)" style="font-family:\'Bebas Neue\',sans-serif;font-size:16px;letter-spacing:1px;color:var(--text);background:none;border:none;outline:none;cursor:text;flex:1;" onfocus="this.style.borderBottom=\'1px solid var(--accent)\'" onblur="this.style.borderBottom=\'none\'">
-      <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 14px;background:var(--surface2);border-bottom:1px solid var(--border);gap:8px;">
+      <input type="text" value="${esc(meal.name)}" onchange="nutMealName(${mi},this.value)" style="font-family:\'Bebas Neue\',sans-serif;font-size:16px;letter-spacing:1px;color:var(--text);background:none;border:none;outline:none;cursor:text;flex:1;min-width:80px;" onfocus="this.style.borderBottom=\'1px solid var(--accent)\'" onblur="this.style.borderBottom=\'none\'">
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <input type="time" value="${meal.time||''}" onchange="nutMealTime(${mi},this.value)" title="Time eaten" style="background:var(--input-bg);border:1px solid var(--border);color:var(--muted);font-family:\'DM Mono\',monospace;font-size:10px;padding:3px 6px;border-radius:2px;outline:none;width:86px;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
         <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent);" id="mc-cal-${mi}">${mt.cal?mt.cal+' kcal':''}</span>
         <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent2);" id="mc-pro-${mi}">${mt.pro?mt.pro+'g P':''}</span>
         <button onclick="removeMeal(${mi})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 4px;" onmouseover="this.style.color=\'var(--accent3)\'" onmouseout="this.style.color=\'var(--muted)\'">✕</button>
@@ -1052,6 +1065,7 @@ function nutItemField(mi,ii,field,val){
   updateNutTotals();saveTodayMeals();
 }
 function nutMealName(mi,name){if(nutTodayMeals[mi])nutTodayMeals[mi].name=name;saveTodayMeals();}
+function nutMealTime(mi,time){if(nutTodayMeals[mi])nutTodayMeals[mi].time=time;saveTodayMeals();}
 function nutRemoveItem(mi,ii){if(nutTodayMeals[mi])nutTodayMeals[mi].items.splice(ii,1);renderMealCards();saveTodayMeals();}
 function addMeal(name){nutTodayMeals.push({name:name||'Meal '+(nutTodayMeals.length+1),items:[]});renderMealCards();saveTodayMeals();}
 function removeMeal(mi){nutTodayMeals.splice(mi,1);renderMealCards();saveTodayMeals();}
@@ -1280,11 +1294,86 @@ function nutLoadDateData(dateKey){
   renderMealCards();
 }
 function clearNutritionLog(){if(!confirm('Clear all nutrition history?'))return;saveNutLog([]);nutTodayMeals=DEFAULT_MEAL_NAMES.map(n=>({name:n,items:[]}));renderMealCards();renderNutritionCharts();renderNutritionTable();}
+function nutDayTotals(entry){
+  let cal=0,pro=0,carb=0,fat=0;
+  (entry.meals||[]).forEach(m=>{if(m.items){m.items.forEach(i=>{cal+=i.cal||0;pro+=i.pro||0;carb+=i.carb||0;fat+=i.fat||0;});}else{cal+=m.cal||0;pro+=m.pro||0;carb+=m.carb||0;fat+=m.fat||0;}});
+  return{cal,pro,carb,fat};
+}
 function renderNutritionCharts(){
   const log=loadNutLog().slice(-30),target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
   const bwData=log.map(e=>({x:e.date,y:e.bw||null}));
-  const calData=log.map(e=>{const meals=e.meals||[];const total=meals.reduce((s,m)=>{if(m.items)return s+m.items.reduce((a,i)=>a+(i.cal||0),0);return s+(m.cal||0);},0);return{x:e.date,y:total||null};});
-  drawLineChart('nut-bw-chart',bwData,'#4fc3a1','lbs',null);drawLineChart('nut-cal-chart',calData,'#e8c547','kcal',target);
+  drawLineChart('nut-bw-chart',bwData,'#4fc3a1','lbs',null);
+  drawMacroChart('nut-macro-chart',log,target);
+}
+function drawMacroChart(canvasId,log,calTarget){
+  const canvas=document.getElementById(canvasId);if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const rect=canvas.getBoundingClientRect();
+  const W=rect.width||600,H=220;
+  canvas.width=W*2;canvas.height=H*2;ctx.scale(2,2);ctx.clearRect(0,0,W,H);
+  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+  const borderCol=isDark?'#2a2b32':'#d6d3cb',mutedCol='#7a7870',textCol=isDark?'#e8e6df':'#1a1a1b';
+  // Build data points — only days with any data
+  const pts=log.map(e=>{const t=nutDayTotals(e);return{x:e.date,cal:t.cal||null,pro:t.pro||null,carb:t.carb||null,fat:t.fat||null};}).filter(p=>p.cal||p.pro||p.carb||p.fat);
+  if(!pts.length){ctx.fillStyle=mutedCol;ctx.font='10px DM Mono,monospace';ctx.textAlign='center';ctx.fillText('No data yet — add food to see trends',W/2,H/2);return;}
+  const padL=40,padR=48,padT=16,padB=28,cW=W-padL-padR,cH=H-padT-padB;
+  const xStep=pts.length>1?cW/(pts.length-1):0;
+  // Macro scale (left axis) — pro/carb/fat in grams
+  const macroVals=[...pts.flatMap(p=>[p.pro,p.carb,p.fat]).filter(v=>v!=null),0];
+  const macroMax=Math.max(...macroVals)*1.15||1;
+  // Calorie scale (right axis)
+  const calVals=[...pts.map(p=>p.cal).filter(v=>v!=null),0];
+  if(calTarget)calVals.push(calTarget);
+  const calMax=Math.max(...calVals)*1.15||1;
+  const mx=(v)=>v!=null?padT+cH-(v/macroMax)*cH:null;
+  const cx=(v)=>v!=null?padT+cH-(v/calMax)*cH:null;
+  const px=(i)=>pts.length>1?padL+i*xStep:padL+cW/2;
+  // Grid lines (5)
+  ctx.strokeStyle=borderCol;ctx.lineWidth=0.5;
+  for(let g=0;g<=4;g++){
+    const y=padT+cH-(g/4)*cH;
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+    if(g>0){
+      // Left axis labels (macros)
+      ctx.fillStyle=mutedCol;ctx.font='7px DM Mono,monospace';ctx.textAlign='right';
+      ctx.fillText(Math.round(g/4*macroMax)+'g',padL-3,y+3);
+      // Right axis labels (calories)
+      ctx.textAlign='left';
+      ctx.fillText(Math.round(g/4*calMax),W-padR+3,y+3);
+    }
+  }
+  // Left axis label
+  ctx.save();ctx.fillStyle=mutedCol;ctx.font='7px DM Mono,monospace';ctx.textAlign='center';
+  ctx.translate(9,padT+cH/2);ctx.rotate(-Math.PI/2);ctx.fillText('grams',0,0);ctx.restore();
+  // Right axis label
+  ctx.save();ctx.fillStyle='#e8c547';ctx.font='7px DM Mono,monospace';ctx.textAlign='center';
+  ctx.translate(W-10,padT+cH/2);ctx.rotate(Math.PI/2);ctx.fillText('kcal',0,0);ctx.restore();
+  // Calorie target line
+  if(calTarget){
+    const ty=cx(calTarget);
+    ctx.save();ctx.strokeStyle='rgba(232,197,71,0.4)';ctx.lineWidth=1;ctx.setLineDash([4,4]);
+    ctx.beginPath();ctx.moveTo(padL,ty);ctx.lineTo(W-padR,ty);ctx.stroke();
+    ctx.fillStyle='rgba(232,197,71,0.6)';ctx.font='7px DM Mono,monospace';ctx.textAlign='left';ctx.setLineDash([]);
+    ctx.fillText('TARGET',padL+4,ty-3);ctx.restore();
+  }
+  // Draw a single multi-series line chart
+  function drawSeries(getter,color,lineW,yFn){
+    const valid=pts.map((p,i)=>({i,v:getter(p)})).filter(d=>d.v!=null);
+    if(!valid.length)return;
+    ctx.strokeStyle=color;ctx.lineWidth=lineW;ctx.setLineDash([]);
+    ctx.beginPath();let first=true;
+    valid.forEach(d=>{const x=px(d.i),y=yFn(d.v);if(first){ctx.moveTo(x,y);first=false;}else ctx.lineTo(x,y);});
+    ctx.stroke();
+    valid.forEach(d=>{ctx.beginPath();ctx.arc(px(d.i),yFn(d.v),2.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();});
+  }
+  drawSeries(p=>p.pro,'#4fc3a1',1.5,mx);
+  drawSeries(p=>p.carb,'#e8843a',1.5,mx);
+  drawSeries(p=>p.fat,'#a78bfa',1.5,mx);
+  drawSeries(p=>p.cal,'#e8c547',2.5,cx);
+  // X axis date labels (show up to 6 evenly spaced)
+  ctx.fillStyle=mutedCol;ctx.font='7px DM Mono,monospace';ctx.textAlign='center';ctx.setLineDash([]);
+  const step=Math.max(1,Math.ceil(pts.length/6));
+  pts.forEach((p,i)=>{if(i%step===0||i===pts.length-1){const d=p.x.slice(5);ctx.fillText(d,px(i),H-6);}});
 }
 function renderNutritionTable(){
   const log=loadNutLog().slice().reverse().slice(0,30),target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
@@ -1407,6 +1496,47 @@ function renderNotesJournal(){
 
     const entryId=`nj-entry-${ei}`;
     const bodyId=`nj-body-${ei}`;
+    // Build nutrition section from that day's log
+    const nutLog=loadNutLog();
+    const nutEntry=nutLog.find(e=>{
+      // Match by date — compute date for this week/day
+      const isAdm2=currentView==='admin';
+      const dateStr=getDayDate(entry.weekNum,entry.dayIdx,isAdm2);
+      // getDayDate returns "Mon, Mar 19" style — we need ISO for matching
+      // Build ISO date for comparison
+      const base=new Date(isAdm2?2026:2026,2,isAdm2?16:19);
+      const offsets=isAdm2?[0,1,2,4,5]:[0,4];
+      base.setDate(base.getDate()+(entry.weekNum-1)*7+(offsets[entry.dayIdx]??entry.dayIdx));
+      return e.date===base.toISOString().split('T')[0];
+    });
+    let nutSectionHtml='';
+    if(nutEntry&&(nutEntry.meals||[]).some(m=>m.items?m.items.length:(m.cal||m.pro))){
+      const meals=(nutEntry.meals||[]).filter(m=>m.items?m.items.length:(m.cal||m.pro));
+      const dayT=nutDayTotals(nutEntry);
+      let mealRows='';
+      meals.forEach(m=>{
+        const mt=mealTotals(m);
+        if(!mt.cal&&!mt.pro&&!mt.carb&&!mt.fat)return;
+        const timeStr=m.time?`<span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:6px;">${m.time}</span>`:'';
+        mealRows+=`<div style="display:flex;align-items:baseline;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap;">
+          <span style="font-size:12px;color:var(--text);">${m.name}${timeStr}</span>
+          <span style="font-family:'DM Mono',monospace;font-size:10px;display:flex;gap:10px;">
+            <span style="color:var(--accent);">${mt.cal} kcal</span>
+            <span style="color:var(--accent2);">${mt.pro}g P</span>
+            <span style="color:var(--muted);">${mt.carb}g C · ${mt.fat}g F</span>
+          </span>
+        </div>`;
+      });
+      nutSectionHtml=`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Nutrition</div>
+        ${mealRows}
+        <div style="display:flex;gap:14px;padding-top:6px;font-family:'DM Mono',monospace;font-size:10px;">
+          <span style="color:var(--accent);font-weight:500;">${dayT.cal} kcal total</span>
+          <span style="color:var(--accent2);">${dayT.pro}g protein</span>
+          <span style="color:var(--muted);">${dayT.carb}g carbs · ${dayT.fat}g fat</span>
+        </div>
+      </div>`;
+    }
     html+=`
     <div style="border-bottom:1px solid var(--border);">
       <button onclick="toggleNJEntry('${bodyId}','${entryId}')" id="${entryId}" style="width:100%;background:none;border:none;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;gap:12px;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">
@@ -1418,6 +1548,7 @@ function renderNotesJournal(){
       </button>
       <div id="${bodyId}" style="display:none;padding:0 20px 16px;">
         ${liftsHtml?`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">${liftsHtml}</div>`:''}
+        ${nutSectionHtml}
         <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div>
         <div style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
       </div>
