@@ -396,8 +396,8 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "8×2",
-                  "load": "75%",
+                  "sets": "6×2",
+                  "load": "65-72%%",
                   "note": "",
                   "tag": "hard",
                   "tagText": "IF the first 6 feel perfect, you can go up in weight a little bit. But this week isn't about weight, so don't worry about pushing weight"
@@ -435,8 +435,8 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "8×1",
-                  "load": "75%%",
+                  "sets": "6×1",
+                  "load": "65-72%",
                   "note": "",
                   "tag": "hard",
                   "tagText": "Go up a little on the last two only if the first 6 are perfect"
