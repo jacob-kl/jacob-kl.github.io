@@ -662,49 +662,31 @@ function parseSetCountForVolume(s){
 }
 
 function calcPhaseVolume(phase){
-  // Assumed % loads for accessories with fixed weights — hidden from user display
-  // Meso 1 & 2 ramp 70→75→80→85 across weeks 1-4; fixed-weight staples use 75%
-  const ACCESSORY_ASSUMED_PCT = 75; // fallback for fixed-weight exercises
-  // Week-number to assumed ramp % (within each meso's 4-week block)
-  function assumedPct(weekNum) {
-    const posInMeso = ((weekNum - 1) % 4) + 1;
-    return [70, 75, 80, 85][posInMeso - 1] || 75;
-  }
-  // Exercises excluded from volume index (light GPP/hypertrophy, not intensity work)
-  const VOLUME_EXCLUDED = ['good morning','bent over row','pendlay row','barbell row','t-bar row'];
-  function isVolumeExcluded(name) {
-    const n = name.toLowerCase();
-    return VOLUME_EXCLUDED.some(k => n.includes(k));
-  }
-  const FIXED_ACCESSORY_KEYS = [
-    'pause back squat','pause front squat',
-    'good morning','bent over row','reverse lunge','forward lunge','bulgarian split squat',
-    'lunge','hammer curl','wrist curl','skull','barbell curl','lat pulldown',
-    'med ball ghd','barbell rollout','side plank','hamstring curl','back extension',
-    'goblet squat','box jump','split squat box jump'
-  ];
-  function isFixedAccessory(name) {
-    const n = name.toLowerCase();
-    return FIXED_ACCESSORY_KEYS.some(k => n.includes(k));
-  }
-
   return phase.weeks.map(week=>{
     const days=week.days.map(day=>{
       let vol=0;
       day.exercises.forEach(ex=>{
+        // Skip bodyweight exercises — no meaningful weight to sum
+        if(isBWExercise(ex.name)) return;
         const{sets,avgReps}=parseSetCountForVolume(ex.sets);
+        const max=getMaxForExercise(ex.name);
         const pm=(ex.load||'').match(/(\d+(?:\.\d+)?)\s*%/g);
-        if(pm){
-          // Has percentage loads — use them
+        if(pm&&max){
+          // % load + known 1RM → actual planned weight
           const pcts=pm.map(m=>parseFloat(m)).filter(n=>n>0&&n<=140);
           const avgPct=pcts.length?pcts.reduce((a,b)=>a+b,0)/pcts.length:0;
-          if(avgPct>0)vol+=sets*avgReps*avgPct;
-        } else if(!isVolumeExcluded(ex.name)&&isFixedAccessory(ex.name)){
-          // Fixed weight accessory — use assumed % based on week position in meso
-          const pct = assumedPct(week.number);
-          vol += sets * avgReps * pct;
+          vol+=sets*avgReps*(avgPct/100*max);
+        } else if(pm&&!max){
+          // % load but no 1RM entered yet → use % as relative index so chart still has shape
+          const pcts=pm.map(m=>parseFloat(m)).filter(n=>n>0&&n<=140);
+          const avgPct=pcts.length?pcts.reduce((a,b)=>a+b,0)/pcts.length:0;
+          vol+=sets*avgReps*avgPct;
+        } else if(isFixedWeight(ex.load)){
+          // Fixed weight (e.g. "185 lbs") → parse and use directly
+          const w=parseFloat(ex.load);
+          if(w>0) vol+=sets*avgReps*w;
         }
-        // else: skip (e.g. BW-only, PVC, mobility)
+        // else: no load info (PVC, mobility, etc.) → skip
       });
       return{label:day.label.substring(0,3),vol:Math.round(vol)};
     });
