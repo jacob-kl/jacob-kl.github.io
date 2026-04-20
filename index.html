@@ -1578,9 +1578,11 @@ function toggleNJEntry(bodyId,btnId){
 }
 
 function downloadNotesPDF(){
-  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
-  const prefix=currentRole==='admin'?'admin':'member';
-  // Collect all entries same way as renderNotesJournal
+  // Use currentView (not currentRole) — notes are keyed by view, same as notesKey()
+  const prefix=currentView==='admin'?'admin':'member';
+  const isAdm=currentView==='admin';
+
+  // Collect entries — exact same logic as renderNotesJournal
   const entries=[];
   try{
     for(let i=0;i<localStorage.length;i++){
@@ -1600,9 +1602,10 @@ function downloadNotesPDF(){
   const nutLog=loadNutLog();
 
   let sections='';
-  entries.forEach(entry=>{
-    const isAdm=currentRole==='admin';
+  entries.forEach((entry,ei)=>{
     const dayDate=getDayDate(entry.weekNum,entry.dayIdx,isAdm);
+    const accentColor=ei%2===0?'#c8a800':'#2a7a5c'; // alternate gold / teal per session
+
     // Lifts from DOM
     let liftsHtml='';
     const weekEl=document.getElementById(`${entry.phaseId}-w${entry.weekNum}`);
@@ -1619,15 +1622,34 @@ function downloadNotesPDF(){
           const name=nameEl.textContent.trim();if(!name)return;
           const wt=weightEl&&!weightEl.classList.contains('empty')?weightEl.textContent.trim():'';
           const logged=logBtn&&logBtn.classList.contains('logged-made')?'✓':logBtn&&logBtn.classList.contains('logged-miss')?'✗':'';
-          liftRows+=`<tr><td style="padding:3px 8px 3px 0;font-size:12px;color:#1a1a1b;">${name}</td><td style="padding:3px 8px;font-size:11px;color:#555;font-family:monospace;">${wt}</td><td style="padding:3px 0;font-size:11px;color:${logged==='✓'?'#2a7a5c':logged==='✗'?'#c0392b':'#999'};">${logged}</td></tr>`;
+          const wtColor=wt?'#c8a800':'#999';
+          const logColor=logged==='✓'?'#2a7a5c':logged==='✗'?'#c0392b':'transparent';
+          liftRows+=`<tr>
+            <td style="padding:4px 10px 4px 0;font-size:12px;color:#1a1a1b;border-bottom:1px solid #f0eeea;">${name}</td>
+            <td style="padding:4px 10px;font-size:11px;color:${wtColor};font-family:monospace;border-bottom:1px solid #f0eeea;">${wt}</td>
+            <td style="padding:4px 0;font-size:13px;color:${logColor};border-bottom:1px solid #f0eeea;text-align:center;">${logged}</td>
+          </tr>`;
         });
-        if(liftRows)liftsHtml=`<table style="border-collapse:collapse;margin-bottom:10px;width:100%;">${liftRows}</table>`;
+        if(liftRows){
+          liftsHtml=`<div style="margin-bottom:14px;">
+            <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Lifts</div>
+            <table style="border-collapse:collapse;width:100%;background:#fafaf8;border-radius:3px;overflow:hidden;">
+              <thead><tr style="background:#f0eeea;">
+                <th style="padding:5px 10px 5px 0;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;font-weight:400;">Exercise</th>
+                <th style="padding:5px 10px;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;font-weight:400;">Weight</th>
+                <th style="padding:5px 0;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:center;font-weight:400;">Done</th>
+              </tr></thead>
+              <tbody>${liftRows}</tbody>
+            </table>
+          </div>`;
+        }
       }
     }
-    // Nutrition from log
+
+    // Nutrition
     let nutHtml='';
     const nutEntry=nutLog.find(e=>{
-      const base=new Date(isAdm?2026:2026,2,isAdm?16:19);
+      const base=new Date(2026,2,isAdm?16:19);
       const offsets=isAdm?[0,1,2,4,5]:[0,4];
       base.setDate(base.getDate()+(entry.weekNum-1)*7+(offsets[entry.dayIdx]??entry.dayIdx));
       return e.date===base.toISOString().split('T')[0];
@@ -1639,28 +1661,43 @@ function downloadNotesPDF(){
       meals.forEach(m=>{
         const mt=mealTotals(m);
         if(!mt.cal&&!mt.pro)return;
-        const timeStr=m.time?` <span style="color:#888;font-size:10px;">${m.time}</span>`:'';
-        mealRows+=`<tr><td style="padding:3px 8px 3px 0;font-size:12px;">${m.name}${timeStr}</td><td style="padding:3px 8px;font-size:11px;font-family:monospace;color:#b07d00;">${mt.cal} kcal</td><td style="padding:3px 8px;font-size:11px;font-family:monospace;color:#2a7a5c;">${mt.pro}g P</td><td style="padding:3px 0;font-size:11px;font-family:monospace;color:#555;">${mt.carb}g C · ${mt.fat}g F</td></tr>`;
+        const timeStr=m.time?`<span style="color:#aaa;font-size:10px;margin-left:6px;">${m.time}</span>`:'';
+        mealRows+=`<tr>
+          <td style="padding:4px 10px 4px 0;font-size:12px;color:#1a1a1b;border-bottom:1px solid #f0eeea;">${m.name}${timeStr}</td>
+          <td style="padding:4px 8px;font-size:11px;font-family:monospace;color:#c8a800;border-bottom:1px solid #f0eeea;">${mt.cal} kcal</td>
+          <td style="padding:4px 8px;font-size:11px;font-family:monospace;color:#2a7a5c;border-bottom:1px solid #f0eeea;">${mt.pro}g P</td>
+          <td style="padding:4px 0;font-size:11px;font-family:monospace;color:#888;border-bottom:1px solid #f0eeea;">${mt.carb}g C · ${mt.fat}g F</td>
+        </tr>`;
       });
-      nutHtml=`<div style="margin-bottom:10px;">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:5px;font-family:monospace;">Nutrition</div>
-        <table style="border-collapse:collapse;width:100%;">${mealRows}</table>
-        <div style="font-size:11px;font-family:monospace;color:#555;margin-top:4px;padding-top:4px;border-top:1px solid #ddd;">
-          Total: <strong style="color:#b07d00;">${dayT.cal} kcal</strong> · <strong style="color:#2a7a5c;">${dayT.pro}g protein</strong> · ${dayT.carb}g carbs · ${dayT.fat}g fat
+      nutHtml=`<div style="margin-bottom:14px;">
+        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Nutrition</div>
+        <table style="border-collapse:collapse;width:100%;background:#fafaf8;">
+          <thead><tr style="background:#f0eeea;">
+            <th style="padding:5px 10px 5px 0;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;font-weight:400;">Meal</th>
+            <th style="padding:5px 8px;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#c8a800;text-align:left;font-weight:400;">Cal</th>
+            <th style="padding:5px 8px;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#2a7a5c;text-align:left;font-weight:400;">Protein</th>
+            <th style="padding:5px 0;font-family:monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#888;text-align:left;font-weight:400;">Carbs · Fat</th>
+          </tr></thead>
+          <tbody>${mealRows}</tbody>
+        </table>
+        <div style="font-size:11px;font-family:monospace;margin-top:6px;padding:6px 10px;background:#f0eeea;border-radius:2px;">
+          <strong style="color:#c8a800;">${dayT.cal} kcal</strong> &nbsp;·&nbsp;
+          <strong style="color:#2a7a5c;">${dayT.pro}g protein</strong> &nbsp;·&nbsp;
+          <span style="color:#888;">${dayT.carb}g carbs · ${dayT.fat}g fat</span>
         </div>
       </div>`;
     }
 
     sections+=`
-    <div style="margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid #e8e8e4;page-break-inside:avoid;">
-      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;">
-        <span style="font-family:'Arial Black',sans-serif;font-size:16px;color:#1a1a1b;letter-spacing:0.5px;">Week ${entry.weekNum} · Day ${entry.dayIdx+1}</span>
+    <div style="margin-bottom:32px;padding:20px 20px 20px 24px;border-left:4px solid ${accentColor};background:#fafaf8;border-radius:0 4px 4px 0;page-break-inside:avoid;">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e8e8e4;">
+        <span style="font-family:'Arial Black',sans-serif;font-size:17px;color:${accentColor};letter-spacing:0.5px;">Week ${entry.weekNum} · Day ${entry.dayIdx+1}</span>
         <span style="font-size:11px;color:#888;font-family:monospace;">${dayDate}</span>
       </div>
       ${liftsHtml}
       ${nutHtml}
-      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:5px;font-family:monospace;">Notes</div>
-      <div style="font-size:13px;color:#333;line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
+      <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
     </div>`;
   });
 
@@ -1668,25 +1705,32 @@ function downloadNotesPDF(){
   <title>Session Notes — ${userName}</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
-    body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1b;background:#fff;margin:0;padding:40px 48px;max-width:720px;margin:0 auto;}
-    @media print{body{padding:20px;} @page{margin:20mm;}}
+    *{box-sizing:border-box;}
+    body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1b;background:#fff;margin:0 auto;padding:40px 48px;max-width:760px;}
+    @media print{body{padding:16px;} @page{margin:15mm 18mm;size:A4;} .no-break{page-break-inside:avoid;}}
   </style>
   </head><body>
-  <div style="border-bottom:3px solid #1a1a1b;padding-bottom:16px;margin-bottom:32px;">
-    <div style="font-size:32px;font-family:'Arial Black',sans-serif;letter-spacing:1px;line-height:1;">SESSION NOTES</div>
-    <div style="font-size:13px;color:#555;margin-top:6px;font-family:monospace;letter-spacing:1px;">${userName.toUpperCase()} · KILO CLUB · CROSSFIT CRUMVILLE</div>
-    <div style="font-size:11px;color:#999;margin-top:3px;font-family:monospace;">Generated ${today} · ${entries.length} session${entries.length!==1?'s':''}</div>
+  <div style="margin-bottom:36px;padding-bottom:20px;border-bottom:4px solid #1a1a1b;">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+      <div>
+        <div style="font-size:11px;font-family:monospace;letter-spacing:3px;text-transform:uppercase;color:#c8a800;margin-bottom:4px;">Kilo Club · Crossfit Crumville</div>
+        <div style="font-size:38px;font-family:'Arial Black',sans-serif;letter-spacing:1px;line-height:1;color:#1a1a1b;">SESSION<br>NOTES</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:15px;font-family:monospace;color:#1a1a1b;font-weight:500;">${userName.toUpperCase()}</div>
+        <div style="font-size:11px;color:#999;font-family:monospace;margin-top:4px;">${today}</div>
+        <div style="font-size:11px;color:#999;font-family:monospace;">${entries.length} session${entries.length!==1?'s':''} with notes</div>
+      </div>
+    </div>
   </div>
-  ${sections||'<p style="color:#888;">No session notes found.</p>'}
+  ${sections||'<p style="color:#888;font-family:monospace;">No session notes found.</p>'}
   </body></html>`;
 
   const blob=new Blob([html],{type:'text/html'});
   const url=URL.createObjectURL(blob);
   const win=window.open(url,'_blank');
   if(win){
-    win.addEventListener('load',()=>{
-      setTimeout(()=>{win.print();},400);
-    });
+    win.addEventListener('load',()=>setTimeout(()=>win.print(),400));
   }
   setTimeout(()=>URL.revokeObjectURL(url),30000);
 }
