@@ -29,10 +29,10 @@
                 {
                   "name": "Snatch High Hang + Hang Snatch",
                   "sets": "2×(1+1)",
-                  "load": "65–70%",
+                  "load": "70–77%",
                   "note": "Pause 2s in hang. Beginners: hang snatch only",
                   "tag": "beginner",
-                  "tagText": "Scale"
+                  "tagText": "Double hang (at knee) with a light percentage"
                 },
                 {
                   "name": "Snatch Pull",
@@ -54,7 +54,7 @@
                   "load": "65%",
                   "note": "3s descent. Bar must stay over mid-foot",
                   "tag": "beginner",
-                  "tagText": "Core movement"
+                  "tagText": "Decrease weight by 10-15%"
                 },
                 {
                   "name": "Back Extension",
@@ -72,7 +72,7 @@
                 {
                   "name": "Clean & Jerk",
                   "sets": "2×1",
-                  "load": "70–72%",
+                  "load": "70-77%",
                   "note": "Competition lift. Establish the feel at moderate load"
                 },
                 {
@@ -84,7 +84,7 @@
                 {
                   "name": "Hang Snatch (above knee)",
                   "sets": "2×2",
-                  "load": "55–60%",
+                  "load": "60-65%",
                   "note": "Light snatch accessory. Feel the hip extension",
                   "tag": "beginner",
                   "tagText": "Lighter"
@@ -122,7 +122,7 @@
                 {
                   "name": "3-Position Snatch (High Hang → Hang → Floor)",
                   "sets": "4×1",
-                  "load": "65–74%",
+                  "load": "75-82%",
                   "note": "One rep from each position. Beginners: 2-position",
                   "tag": "beginner",
                   "tagText": "Scale to 2-pos"
@@ -136,7 +136,7 @@
                 {
                   "name": "Hang Clean (above knee)",
                   "sets": "2×2",
-                  "load": "60–71%",
+                  "load": "65-70%",
                   "note": "Light clean accessory — reinforce hip contact position",
                   "tag": "beginner",
                   "tagText": "Lighter"
@@ -163,7 +163,7 @@
                 {
                   "name": "Hang Clean + Clean",
                   "sets": "2×(1+1)",
-                  "load": "68–78%",
+                  "load": "75-82%",
                   "note": "Touch-and-go from hang",
                   "tag": "beginner",
                   "tagText": "Scale to clean only"
