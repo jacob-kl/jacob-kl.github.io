@@ -3,13 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Kilo Club">
-<meta name="theme-color" content="#e8c547">
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icons/icon-192.png">
 <title>Kilo Club · Class Program</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -677,22 +670,18 @@ function calcPhaseVolume(phase){
     const posInMeso = ((weekNum - 1) % 4) + 1;
     return [70, 75, 80, 85][posInMeso - 1] || 75;
   }
-  // Exercises excluded from volume index entirely — BW, GPP, hypertrophy accessories
-  // Only barbell exercises with real % loads contribute to the volume index
-  const VOLUME_EXCLUDED = [
-    'good morning','bent over row','pendlay row','barbell row','t-bar row',
-    'back extension','glute ham raise','ghd','barbell rollout','side plank',
-    'box jump','split squat box jump','hamstring curl','wrist curl','reverse wrist',
-    'med ball','hammer curl','skull','barbell curl','lat pulldown',
-    'reverse lunge','forward lunge','lunge','bulgarian split squat','goblet squat'
-  ];
+  // Exercises excluded from volume index (light GPP/hypertrophy, not intensity work)
+  const VOLUME_EXCLUDED = ['good morning','bent over row','pendlay row','barbell row','t-bar row'];
   function isVolumeExcluded(name) {
     const n = name.toLowerCase();
     return VOLUME_EXCLUDED.some(k => n.includes(k));
   }
-  // Fixed-weight barbell lifts that still use % (pause squats counted if they have % load)
   const FIXED_ACCESSORY_KEYS = [
-    'pause back squat','pause front squat'
+    'pause back squat','pause front squat',
+    'good morning','bent over row','reverse lunge','forward lunge','bulgarian split squat',
+    'lunge','hammer curl','wrist curl','skull','barbell curl','lat pulldown',
+    'med ball ghd','barbell rollout','side plank','hamstring curl','back extension',
+    'goblet squat','box jump','split squat box jump'
   ];
   function isFixedAccessory(name) {
     const n = name.toLowerCase();
@@ -970,7 +959,6 @@ function loadNutLog(){try{return JSON.parse(localStorage.getItem(NUT_KEY)||'[]')
 function saveNutLog(l){try{localStorage.setItem(NUT_KEY,JSON.stringify(l));}catch(e){}}
 function saveNutTarget(){const v=document.getElementById('nut-target')&&document.getElementById('nut-target').value;if(v)try{localStorage.setItem(NUT_TARGET_KEY,v);}catch(e){}updateNutTotals();}
 function nutBwChanged(){saveTodayMeals();}
-function nutAutoSave(){saveTodayMeals();}
 function makeMealCard(meal,idx){
   const div=document.createElement('div');div.id='meal-card-'+idx;
   div.style.cssText='background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 18px;';
@@ -1137,12 +1125,6 @@ function showCSVStatus(msg){
   setTimeout(()=>el.style.opacity='0',3000);
 }
 
-<script>
-if('serviceWorker' in navigator){
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js').catch(()=>{});
-  });
-}
 </script>
 </body>
 </html>
