@@ -365,8 +365,8 @@
                   "note": ""
                 },
                 {
-                  "name": "Hang Snatch (above knee)",
-                  "sets": "5×2",
+                  "name": "Hang Snatch (above knee) + OHS",
+                  "sets": "5×(2+1)",
                   "load": "75–80%",
                   "note": "Light snatch accessory. Fast and technical"
                 },
@@ -396,34 +396,34 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "4×1 + 2×1",
-                  "load": "66% / 82%",
-                  "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
+                  "sets": "8×2",
+                  "load": "75%",
+                  "note": "",
                   "tag": "hard",
-                  "tagText": "Advanced"
+                  "tagText": "IF the first 6 feel perfect, you can go up in weight a little bit. But this week isn't about weight, so don't worry about pushing weight"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "2×2",
+                  "sets": "4×2",
                   "load": "60%",
-                  "note": "Snatch accessory — back-off set"
+                  "note": "Snatch accessory — Focus on a snappy hip drive and turn over. Good starting position"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "2×3",
-                  "load": "91–105%",
-                  "note": "Heaviest pulls of phase 1"
+                  "sets": "5×3",
+                  "load": "85–92%",
+                  "note": "These are the lightest pulls we've done. Focus on position, be purposeful. This is not a race off the floor"
                 },
                 {
                   "name": "Clean (High Hang)",
-                  "sets": "2×2",
+                  "sets": "4×2",
                   "load": "57–63%",
                   "note": "Light clean accessory. Fast elbows"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "2×3",
-                  "load": "64–72%",
+                  "sets": "4×5",
+                  "load": "64–68%",
                   "note": "Focus on your rotation, driving through the lats"
                 }
               ]
@@ -435,37 +435,35 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "4×1 + 2×1",
-                  "load": "66% / 82%",
-                  "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
+                  "sets": "8×1",
+                  "load": "75%%",
+                  "note": "",
                   "tag": "hard",
-                  "tagText": "Advanced"
+                  "tagText": "Go up a little on the last two only if the first 6 are perfect"
                 },
                 {
                   "name": "Jerk from Rack",
-                  "sets": "2×2",
-                  "load": "66–74%",
-                  "note": "Crisp lockout each rep"
+                  "sets": "5×2",
+                  "load": "77–82%",
+                  "note": "Focus on quick feet, and pushing yourself under the bar"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "2×3",
-                  "load": "91–105%",
-                  "note": "Knees out, chest up, focus on leading with the elbows"
+                  "sets": "5×3",
+                  "load": "85*92%%",
+                  "note": "Knees out, chest up"
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "2×2",
-                  "load": "58–65%",
-                  "note": "Light snatch accessory. Speed focus"
+                  "sets": "4×2",
+                  "load": "57–63%",
+                  "note": "Light snatch accessory. Think about an on ramp on a highway. Speed up just enough to put yourself in position (to the knees), then power/speed"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×2 + 1×1",
-                  "load": "70% / 85%",
-                  "note": "Focus on a proud chest, and driving the knees out",
-                  "tag": "beginner",
-                  "tagText": "Skip the single"
+                  "sets": "4×5",
+                  "load": "75%",
+                  "note": "Focus on a proud chest, and driving the knees out"
                 }
               ]
             }
