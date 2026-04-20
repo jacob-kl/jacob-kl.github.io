@@ -130,7 +130,7 @@
                 {
                   "name": "Snatch Pull",
                   "sets": "2×3",
-                  "load": "95–105%",
+                  "load": "100–105%",
                   "note": "Full extension, shrug at top"
                 },
                 {
@@ -144,14 +144,14 @@
                 {
                   "name": "Overhead Squat",
                   "sets": "4×2",
-                  "load": "68–76%",
+                  "load": "72–76%",
                   "note": "Pause 2s at bottom"
                 },
                 {
                   "name": "Back Extension",
                   "sets": "2×10",
                   "load": "+light bar",
-                  "note": ""
+                  "note": "Try for a slightly heavier weight than last week if form is good"
                 }
               ]
             },
@@ -171,7 +171,7 @@
                 {
                   "name": "Split Jerk",
                   "sets": "2×2",
-                  "load": "65–76%",
+                  "load": "78%-85%",
                   "note": "Pause 2s in split. Check front foot alignment",
                   "tag": "beginner",
                   "tagText": "Focus on footwork"
@@ -179,7 +179,7 @@
                 {
                   "name": "Clean Pull",
                   "sets": "2×3",
-                  "load": "95–105%",
+                  "load": "100–105%",
                   "note": ""
                 },
                 {
@@ -188,7 +188,7 @@
                   "load": "50–66%",
                   "note": "Light snatch accessory — aggressive drop under",
                   "tag": "beginner",
-                  "tagText": "Scale to heaving"
+                  "tagText": "Scale to lightweight OHS"
                 },
                 {
                   "name": "Back Squat",
