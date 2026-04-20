@@ -492,6 +492,10 @@ function setTheme(t){document.documentElement.setAttribute('data-theme',t);docum
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
 let currentRole=null, currentView='member', memberName='';
+let currentUsername=''; // set on login, used to namespace all localStorage keys
+
+// All storage goes through userKey() so accounts never share data
+function userKey(k){return currentUsername?`u_${currentUsername}_${k}`:k;}
 
 function doLogin() {
   const uEl=document.getElementById('login-username');
@@ -508,6 +512,7 @@ function doLogin() {
   }
   if(userData){
     currentRole=userData.role;
+    currentUsername=u;
     sessionStorage.setItem('kc_role',currentRole);
     sessionStorage.setItem('kc_username',u);
     document.getElementById('login-gate').classList.add('hidden');
@@ -531,7 +536,7 @@ function saveMemberName(){
 function skipMemberName(){memberName='';document.getElementById('name-modal-overlay').classList.remove('open');initApp();}
 function doLogout(){
   sessionStorage.removeItem('kc_role');sessionStorage.removeItem('kc_username');
-  currentRole=null;currentView='member';memberName='';nutActiveDate='';
+  currentRole=null;currentView='member';memberName='';nutActiveDate='';currentUsername='';
   document.getElementById('login-gate').classList.remove('hidden');
   document.getElementById('admin-bar').classList.remove('visible');
   document.getElementById('member-bar').classList.remove('visible');
@@ -544,11 +549,11 @@ document.addEventListener('DOMContentLoaded',()=>{
   ['login-username','login-password'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});});
   const nmi=document.getElementById('name-modal-input');if(nmi)nmi.addEventListener('keydown',e=>{if(e.key==='Enter')saveMemberName();});  const r=sessionStorage.getItem('kc_role'),u=sessionStorage.getItem('kc_username')||'';
   if(r){
-    currentRole=r;document.getElementById('login-gate').classList.add('hidden');
+    currentRole=r;currentUsername=u;document.getElementById('login-gate').classList.add('hidden');
     if(currentRole==='member'&&u){try{memberName=localStorage.getItem('kc_name_'+u)||'';}catch(e){}}
     initApp();
   }
-  try{const unit=localStorage.getItem('kiloclub_unit');if(unit)document.getElementById('unit-select').value=unit;}catch(e){}
+  try{const unit=localStorage.getItem(userKey('kiloclub_unit'));if(unit)document.getElementById('unit-select').value=unit;}catch(e){}
 });
 
 function initApp(){
@@ -623,7 +628,7 @@ function isBWExercise(name){const n=name.toLowerCase();return BW_EXERCISES.some(
 
 let currentMaxes={};
 const SK_MEMBER='kiloclub_maxes_member', SK_ADMIN='kiloclub_maxes_admin';
-function storageKey(){return currentView==='admin'?SK_ADMIN:SK_MEMBER;}
+function storageKey(){return userKey(currentView==='admin'?SK_ADMIN:SK_MEMBER);}
 function loadSavedMaxes(){try{const s=localStorage.getItem(storageKey());currentMaxes=s?JSON.parse(s):{};Object.entries(currentMaxes).forEach(([id,val])=>{const el=document.getElementById(id);if(el&&val)el.value=val;});}catch(e){currentMaxes={};}updateOlympicTotal();updatePowerTotal();}
 function confirmMaxes(){
   const all=[...new Set([...MEMBER_FIELDS,...ADMIN_FIELDS].map(f=>f.id))];
@@ -637,7 +642,7 @@ function getMaxForExercise(name){const n=name.toLowerCase();for(const e of RM_MA
 function getMaxIdForExercise(name){const n=name.toLowerCase();for(const e of RM_MAP){if(e.keys.some(k=>n.includes(k)))return e.id;}return null;}
 function parsePercentages(s){const m=s.match(/\d+\.?\d*/g);return m?m.map(Number).filter(n=>n>0&&n<=140):[];}
 function getUnit(){const s=document.getElementById('unit-select');return s?s.value:'lbs';}
-function changeUnit(u){try{localStorage.setItem('kiloclub_unit',u);}catch(e){}updateAllWeightCells();}
+function changeUnit(u){try{localStorage.setItem(userKey('kiloclub_unit'),u);}catch(e){}updateAllWeightCells();}
 function calcWeight(loadStr,max,exName){
   if(isBWExercise(exName||''))return'BW';
   if(isFixedWeight(loadStr))return loadStr||null;
@@ -681,10 +686,10 @@ function saveLog(){
 function closeModal(){document.getElementById('log-modal-overlay').classList.remove('open');}
 function maybeCloseModal(e){if(e.target===document.getElementById('log-modal-overlay'))closeModal();}
 function showPR(exName,weight,unit){const toast=document.getElementById('pr-toast');document.getElementById('pr-toast-msg').textContent='&#127942; NEW PR!';document.getElementById('pr-toast-sub').textContent=`${exName} \u00b7 ${weight} ${unit}`;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),4000);}
-function logKey(phaseId,weekNum,dayIdx,exIdx){return`kc_log_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}_e${exIdx}`;}
+function logKey(phaseId,weekNum,dayIdx,exIdx){return userKey(`kc_log_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}_e${exIdx}`);}
 
 // ── DAILY NOTES ──────────────────────────────────────────────────────────
-function notesKey(phaseId,weekNum,dayIdx){return`kc_notes_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}`;}
+function notesKey(phaseId,weekNum,dayIdx){return userKey(`kc_notes_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}`);}
 function saveNote(key,val){try{localStorage.setItem(key,val);}catch(e){}}
 function loadNote(key){try{return localStorage.getItem(key)||'';}catch(e){return'';}}
 function toggleNotes(btn,bodyId){const body=document.getElementById(bodyId);const open=body.classList.toggle('open');btn.classList.toggle('open',open);}
@@ -918,7 +923,7 @@ function renderCycle(cycle){
 // ── PROGRESS DOTS ────────────────────────────────────────────────────────
 function getWeekProgress(phaseId,weekNum,dayCount,exCounts){
   let loggedEx=0,madeEx=0;
-  for(let di=0;di<dayCount;di++){for(let ei=0;ei<30;ei++){const prefix=currentView==='admin'?'admin':'member';const k=`kc_log_${prefix}_${phaseId}_w${weekNum}_d${di}_e${ei}`;try{const v=localStorage.getItem(k);if(!v)continue;const d=JSON.parse(v);const outcomes=Object.values(d).filter(e=>e&&typeof e==='object'&&e.outcome).map(e=>e.outcome);if(!outcomes.length)continue;loggedEx++;if(outcomes.some(o=>o==='made'))madeEx++;}catch(e){}}}
+  for(let di=0;di<dayCount;di++){for(let ei=0;ei<30;ei++){const prefix=currentView==='admin'?'admin':'member';const k=userKey(`kc_log_${prefix}_${phaseId}_w${weekNum}_d${di}_e${ei}`);try{const v=localStorage.getItem(k);if(!v)continue;const d=JSON.parse(v);const outcomes=Object.values(d).filter(e=>e&&typeof e==='object'&&e.outcome).map(e=>e.outcome);if(!outcomes.length)continue;loggedEx++;if(outcomes.some(o=>o==='made'))madeEx++;}catch(e){}}}
   if(loggedEx===0)return'none';if(madeEx===loggedEx)return'done';return'partial';
 }
 function refreshProgressDots(){document.querySelectorAll('.week-btn[data-phase][data-week]').forEach(btn=>{const phaseId=btn.getAttribute('data-phase'),weekNum=parseInt(btn.getAttribute('data-week')),dayCount=parseInt(btn.getAttribute('data-days')||'5');const status=getWeekProgress(phaseId,weekNum,dayCount,[]);const dot=btn.querySelector('.week-dot');if(dot)dot.className=`week-dot ${status}`;});}
@@ -979,8 +984,8 @@ const ALL_LIFTS_DB=[
   {cat:'Accessory',lifts:['Pull-up','Chin-up','Dip','Cable Row','Face Pull','Lateral Raise','Barbell Curl','Hammer Curl','Reverse Curl','Skull Crushers','Tricep Pushdown','Wrist Curl','Reverse Wrist Curl']},
 ];
 const ALL_LIFTS_SK='kc_all_lifts';
-function loadAllLiftsData(){try{return JSON.parse(localStorage.getItem(ALL_LIFTS_SK)||'{}');}catch(e){return{};}}
-function saveAllLiftsData(d){try{localStorage.setItem(ALL_LIFTS_SK,JSON.stringify(d));}catch(e){}}
+function loadAllLiftsData(){try{return JSON.parse(localStorage.getItem(userKey(ALL_LIFTS_SK))||'{}');}catch(e){return{};}}
+function saveAllLiftsData(d){try{localStorage.setItem(userKey(ALL_LIFTS_SK),JSON.stringify(d));}catch(e){}}
 function openAllLifts(){const ov=document.getElementById('all-lifts-overlay'),md=document.getElementById('all-lifts-modal');ov.style.opacity='1';ov.style.pointerEvents='auto';md.style.transform='translateY(0)';document.getElementById('all-lifts-search').value='';renderAllLiftsBody('');}
 function closeAllLifts(){const ov=document.getElementById('all-lifts-overlay'),md=document.getElementById('all-lifts-modal');ov.style.opacity='0';ov.style.pointerEvents='none';md.style.transform='translateY(100%)';}
 function maybeCloseAllLifts(e){if(e.target===document.getElementById('all-lifts-overlay'))closeAllLifts();}
@@ -1019,9 +1024,9 @@ const NUT_KEY='kc_nutrition_log',NUT_TARGET_KEY='kc_nut_target',COOKBOOK_KEY='kc
 const DEFAULT_MEAL_NAMES=['Breakfast','Lunch','Dinner'];
 let nutTodayMeals=[];   // [{name, items:[{name,cal,pro,carb,fat}]}]
 let nutActiveDate='';
-function loadNutLog(){try{return JSON.parse(localStorage.getItem(NUT_KEY)||'[]');}catch(e){return[];}}
-function saveNutLog(l){try{localStorage.setItem(NUT_KEY,JSON.stringify(l));}catch(e){}}
-function saveNutTarget(){const v=document.getElementById('nut-target')&&document.getElementById('nut-target').value;if(v)try{localStorage.setItem(NUT_TARGET_KEY,v);}catch(e){}updateNutTotals();}
+function loadNutLog(){try{return JSON.parse(localStorage.getItem(userKey(NUT_KEY))||'[]');}catch(e){return[];}}
+function saveNutLog(l){try{localStorage.setItem(userKey(NUT_KEY),JSON.stringify(l));}catch(e){}}
+function saveNutTarget(){const v=document.getElementById('nut-target')&&document.getElementById('nut-target').value;if(v)try{localStorage.setItem(userKey(NUT_TARGET_KEY),v);}catch(e){}updateNutTotals();}
 function nutAutoSave(){saveTodayMeals();}
 function esc(s){return(s||'').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function mealTotals(meal){return(meal.items||[]).reduce((a,i)=>({cal:a.cal+(i.cal||0),pro:a.pro+(i.pro||0),carb:a.carb+(i.carb||0),fat:a.fat+(i.fat||0)}),{cal:0,pro:0,carb:0,fat:0});}
@@ -1083,7 +1088,7 @@ function addMeal(name){nutTodayMeals.push({name:name||'Meal '+(nutTodayMeals.len
 function removeMeal(mi){nutTodayMeals.splice(mi,1);renderMealCards();saveTodayMeals();}
 function updateNutTotals(){
   const totals=nutTodayMeals.reduce((acc,m)=>{const mt=mealTotals(m);return{cal:acc.cal+mt.cal,pro:acc.pro+mt.pro,carb:acc.carb+mt.carb,fat:acc.fat+mt.fat};},{cal:0,pro:0,carb:0,fat:0});
-  const target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||0;
+  const target=parseInt(localStorage.getItem(userKey(NUT_TARGET_KEY)))||0;
   const calColor=target&&totals.cal?(totals.cal>target?'var(--accent3)':'var(--accent2)'):'var(--accent)';
   const set=(id,val,color)=>{const el=document.getElementById(id);if(el){el.textContent=val||'\u2014';if(color)el.style.color=color;}};
   set('tot-cal',totals.cal||null,calColor);set('tot-pro',totals.pro||null,null);set('tot-carb',totals.carb||null,null);set('tot-fat',totals.fat||null,null);
@@ -1161,8 +1166,8 @@ function fpAddRecipe(ri){
 
 // ── COOKBOOK ──────────────────────────────────────────────────────────────────
 let cbEditingId=null;
-function loadCookbook(){try{return JSON.parse(localStorage.getItem(COOKBOOK_KEY)||'[]');}catch(e){return[];}}
-function saveCookbook(d){try{localStorage.setItem(COOKBOOK_KEY,JSON.stringify(d));}catch(e){}}
+function loadCookbook(){try{return JSON.parse(localStorage.getItem(userKey(COOKBOOK_KEY))||'[]');}catch(e){return[];}}
+function saveCookbook(d){try{localStorage.setItem(userKey(COOKBOOK_KEY),JSON.stringify(d));}catch(e){}}
 function recipeNutritionTotals(r){return(r.ingredients||[]).reduce((a,i)=>({cal:a.cal+(i.cal||0),pro:a.pro+(i.pro||0),carb:a.carb+(i.carb||0),fat:a.fat+(i.fat||0)}),{cal:0,pro:0,carb:0,fat:0});}
 function openCookbook(){cbEditingId=null;cbSetTab('list');const ov=document.getElementById('cookbook-overlay'),md=document.getElementById('cookbook-modal');ov.style.opacity='1';ov.style.pointerEvents='auto';md.style.transform='translateY(0)';}
 function closeCookbook(){const ov=document.getElementById('cookbook-overlay'),md=document.getElementById('cookbook-modal');ov.style.opacity='0';ov.style.pointerEvents='none';md.style.transform='translateY(100%)';}
@@ -1276,7 +1281,7 @@ function saveTodayMeals(){
 function initNutritionPanel(){
   const todayKey=new Date().toISOString().split('T')[0];
   if(!nutActiveDate)nutActiveDate=todayKey;
-  try{const t=localStorage.getItem(NUT_TARGET_KEY);if(t&&document.getElementById('nut-target'))document.getElementById('nut-target').value=t;}catch(e){}
+  try{const t=localStorage.getItem(userKey(NUT_TARGET_KEY));if(t&&document.getElementById('nut-target'))document.getElementById('nut-target').value=t;}catch(e){}
   nutBuildDateSelect();nutLoadDateData(nutActiveDate);renderNutritionCharts();renderNutritionTable();
 }
 function nutBuildDateSelect(){
@@ -1312,7 +1317,7 @@ function nutDayTotals(entry){
   return{cal,pro,carb,fat};
 }
 function renderNutritionCharts(){
-  const log=loadNutLog().slice(-30),target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
+  const log=loadNutLog().slice(-30),target=parseInt(localStorage.getItem(userKey(NUT_TARGET_KEY)))||null;
   const bwData=log.map(e=>({x:e.date,y:e.bw||null}));
   drawLineChart('nut-bw-chart',bwData,'#4fc3a1','lbs',null);
   drawMacroChart('nut-macro-chart',log,target);
@@ -1388,7 +1393,7 @@ function drawMacroChart(canvasId,log,calTarget){
   pts.forEach((p,i)=>{if(i%step===0||i===pts.length-1){const d=p.x.slice(5);ctx.fillText(d,px(i),H-6);}});
 }
 function renderNutritionTable(){
-  const log=loadNutLog().slice().reverse().slice(0,30),target=parseInt(localStorage.getItem(NUT_TARGET_KEY))||null;
+  const log=loadNutLog().slice().reverse().slice(0,30),target=parseInt(localStorage.getItem(userKey(NUT_TARGET_KEY)))||null;
   const el=document.getElementById('nut-log-table');if(!el)return;
   if(!log.length){el.innerHTML='<div style="padding:28px 20px;font-family:\'DM Mono\',monospace;font-size:11px;color:var(--muted);">No entries yet.</div>';return;}
   const th=s=>`<th style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:8px 14px;text-align:left;font-weight:400;white-space:nowrap;">${s}</th>`;
@@ -1445,14 +1450,16 @@ function renderNotesJournal(){
   const prefix=currentView==='admin'?'admin':'member';
   // Scan localStorage for all notes keys for this role
   const entries=[];
+  const notesPrefix=userKey(`kc_notes_${prefix}_`);
   try{
     for(let i=0;i<localStorage.length;i++){
       const k=localStorage.key(i);
-      if(!k||!k.startsWith(`kc_notes_${prefix}_`))continue;
+      if(!k||!k.startsWith(notesPrefix))continue;
       const val=localStorage.getItem(k);
       if(!val||!val.trim())continue;
-      // Key format: kc_notes_{role}_{phaseId}_w{weekNum}_d{dayIdx}
-      const m=k.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
+      // Strip user prefix before regex matching
+      const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
+      const m=bare.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
       if(!m)continue;
       entries.push({key:k,phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()});
     }
@@ -1584,13 +1591,16 @@ function downloadNotesPDF(){
 
   // Collect entries — exact same logic as renderNotesJournal
   const entries=[];
+  const notesPrefix=userKey(`kc_notes_${prefix}_`);
   try{
     for(let i=0;i<localStorage.length;i++){
       const k=localStorage.key(i);
-      if(!k||!k.startsWith(`kc_notes_${prefix}_`))continue;
+      if(!k||!k.startsWith(notesPrefix))continue;
       const val=localStorage.getItem(k);
       if(!val||!val.trim())continue;
-      const m=k.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
+      // Strip the userKey prefix before regex matching
+      const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
+      const m=bare.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
       if(!m)continue;
       entries.push({key:k,phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()});
     }
@@ -1790,13 +1800,14 @@ function updatePowerTotal(){
 
 // ══ EXPORT / IMPORT CSV ══
 function exportCSV(){
+  const userPrefix=currentUsername?`u_${currentUsername}_`:'';
   const rows=[['key','value']];
-  try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('kc_')){rows.push([k,localStorage.getItem(k)]);}}}catch(e){}
+  try{for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&(userPrefix?k.startsWith(userPrefix):k.startsWith('kc_'))){rows.push([k,localStorage.getItem(k)]);}}}catch(e){}
   const csv=rows.map(r=>r.map(c=>'"'+String(c).replace(/"/g,'""')+'"').join(',')).join('\n');
   const blob=new Blob([csv],{type:'text/csv'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='kiloclub_log.csv';a.click();
+  a.href=url;a.download=`kiloclub_log_${currentUsername||'export'}.csv`;a.click();
   URL.revokeObjectURL(url);
   showCSVStatus('✓ Exported');
 }
@@ -1806,12 +1817,15 @@ function importCSV(event){
   reader.onload=e=>{
     const lines=e.target.result.split('\n').filter(Boolean);
     let count=0;
+    const userPrefix=currentUsername?`u_${currentUsername}_`:'';
     for(let i=1;i<lines.length;i++){
       const cols=lines[i].match(/("(?:[^"]|"")*"|[^,]*)/g)||[];
       const clean=c=>c.replace(/^"|"$/g,'').replace(/""/g,'"').trim();
       const k=clean(cols[0]||'');
       const v=clean(cols.slice(1).join(','));
-      if(k.startsWith('kc_')&&v){try{localStorage.setItem(k,v);count++;}catch(err){}}
+      // Accept keys that match current user's prefix or bare kc_ keys (legacy import)
+      const validKey=userPrefix?k.startsWith(userPrefix):k.startsWith('kc_');
+      if(validKey&&v){try{localStorage.setItem(k,v);count++;}catch(err){}}
     }
     showCSVStatus('✓ Imported '+count+' entries');
     buildRmPanel();loadSavedMaxes();loadView();
