@@ -346,9 +346,9 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "2×1 + 1×1",
+                  "sets": "4×1 + 1×1",
                   "load": "92% / 97%",
-                  "note": "First heavy C&J single of the cycle",
+                  "note": "First heavy C&J single of the cycle. Only attempt single if no misses at 92%",
                   "tag": "beginner",
                   "tagText": "Stay at 75%"
                 },
@@ -398,8 +398,8 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "2×1 + 2×1",
-                  "load": "66% / 72%",
+                  "sets": "4×1 + 2×1",
+                  "load": "66% / 82%",
                   "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
                   "tag": "hard",
                   "tagText": "Advanced"
@@ -413,20 +413,20 @@
                 {
                   "name": "Snatch Pull",
                   "sets": "2×3",
-                  "load": "105–91%",
+                  "load": "91–105%",
                   "note": "Heaviest pulls of phase 1"
                 },
                 {
                   "name": "Clean (High Hang)",
                   "sets": "2×2",
-                  "load": "63–57%",
+                  "load": "57–63%",
                   "note": "Light clean accessory. Fast elbows"
                 },
                 {
                   "name": "Overhead Squat",
                   "sets": "2×3",
-                  "load": "72–64%",
-                  "note": ""
+                  "load": "64–72%",
+                  "note": "Focus on your rotation, driving through the lats"
                 }
               ]
             },
@@ -437,35 +437,35 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "2×1 + 2×1",
-                  "load": "67% / 73%",
-                  "note": "Advanced: attempt 83% singles",
+                  "sets": "4×1 + 2×1",
+                  "load": "66% / 82%",
+                  "note": "4 at 76%, 2 heavy at 82%. Advanced only on 82%",
                   "tag": "hard",
                   "tagText": "Advanced"
                 },
                 {
                   "name": "Jerk from Rack",
                   "sets": "2×2",
-                  "load": "74–66%",
+                  "load": "66–74%",
                   "note": "Crisp lockout each rep"
                 },
                 {
                   "name": "Clean Pull",
                   "sets": "2×3",
-                  "load": "105–91%",
-                  "note": ""
+                  "load": "91–105%",
+                  "note": "Knees out, chest up, focus on leading with the elbows"
                 },
                 {
                   "name": "Power Snatch",
                   "sets": "2×2",
-                  "load": "65–58%",
+                  "load": "58–65%",
                   "note": "Light snatch accessory. Speed focus"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "2×2 + 1×1",
-                  "load": "70% / 75%",
-                  "note": "First heavy squat single",
+                  "load": "70% / 85%",
+                  "note": "Focus on a proud chest, and driving the knees out",
                   "tag": "beginner",
                   "tagText": "Skip the single"
                 }
