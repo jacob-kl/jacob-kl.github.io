@@ -99,7 +99,7 @@
                   "name": "Good Morning",
                   "sets": "3×8",
                   "load": "Light",
-                  "note": "Hinge focus, minimal weight"
+                  "note": "Hinge focus, minimal weight. We will be adding weight to this as we go on, so establish good mechanics here. Tight core, shoulers back."
                 }
               ]
             }
@@ -121,9 +121,9 @@
               "exercises": [
                 {
                   "name": "3-Position Snatch (High Hang → Hang → Floor)",
-                  "sets": "4×1",
+                  "sets": "4×(1+1+1)",
                   "load": "75-82%",
-                  "note": "One rep from each position. Beginners: 2-position",
+                  "note": "One rep from each position.",
                   "tag": "beginner",
                   "tagText": "Two hangs, one from the floor if mechanics are solid"
                 },
@@ -171,7 +171,7 @@
                 {
                   "name": "Split Jerk",
                   "sets": "4×2",
-                  "load": "78%-85%",
+                  "load": "78-85%",
                   "note": "Pause 2s in split. Check front foot alignment",
                   "tag": "beginner",
                   "tagText": "Do push jerks if split is not solid. Focus on footwork drills between sets"
@@ -216,13 +216,13 @@
               "exercises": [
                 {
                   "name": "Snatch (Competition)",
-                  "sets": "2×1",
-                  "load": "76–88%",
+                  "sets": "4×1",
+                  "load": "80–87%",
                   "note": "Clean competition lift from floor. No variations today"
                 },
                 {
                   "name": "Hang Snatch (Below Knee)",
-                  "sets": "2×2",
+                  "sets": "4×2",
                   "load": "80%",
                   "note": "Reinforce knee sweep position",
                   "tag": "beginner",
@@ -230,23 +230,23 @@
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "3×3",
-                  "load": "100–105%",
+                  "sets": "5×3",
+                  "load": "105–110%",
                   "note": "Above max snatch — pure strength pull"
                 },
                 {
                   "name": "Clean (Slow Pull)",
-                  "sets": "2×2",
-                  "load": "62–77%",
+                  "sets": "5×2",
+                  "load": "70–75%",
                   "note": "Light clean accessory. 3-count pull to hip, then fast under",
                   "tag": "beginner",
-                  "tagText": "Lighter"
+                  "tagText": "-10-15%. Go from a hang position"
                 },
                 {
                   "name": "Overhead Squat",
-                  "sets": "2×3",
-                  "load": "68–84%",
-                  "note": "Higher reps = more time under tension"
+                  "sets": "5×3",
+                  "load": "80–84%",
+                  "note": "Higher reps = more time under tension. Keep your lats engaged!"
                 }
               ]
             },
@@ -257,34 +257,34 @@
               "exercises": [
                 {
                   "name": "Clean w/ 2s Pause at Knee",
-                  "sets": "2×2",
-                  "load": "76–88%",
-                  "note": "Pause = feel lats, chest tall",
+                  "sets": "4×2",
+                  "load": "80–87%",
+                  "note": "Pause = feel lats, chest tall, back engaged, don't let your shoulders get lazy. Keep those knees driving out",
                   "tag": "beginner",
-                  "tagText": "Great for all levels"
+                  "tagText": "This lets us pull off the floor. Focus on getting to that position we have established in the hang"
                 },
                 {
                   "name": "Jerk (from rack)",
-                  "sets": "2×2",
-                  "load": "78–88%",
-                  "note": "Focus on receiving position depth"
+                  "sets": "5×2",
+                  "load": "85–92%",
+                  "note": "Focus on receiving position depth. Notice this is heavier than we train the clean. I don't want you getting to the jerk and failing at that part of the lift. Stay strong, even when you're tired"
                 },
                 {
                   "name": "Clean Pull",
                   "sets": "4×3",
-                  "load": "100–105%",
+                  "load": "105–110%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
-                  "sets": "2×2",
-                  "load": "60–77%",
+                  "sets": "5×2",
+                  "load": "70–75%",
                   "note": "Light snatch accessory. Land in power position, stay connected"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×3",
-                  "load": "82–90%",
+                  "sets": "5×3",
+                  "load": "86–94%",
                   "note": "Peak squat volume week"
                 }
               ]
