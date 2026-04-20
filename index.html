@@ -337,9 +337,12 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
   <div id="nutrition-panel">
     <div style="max-width:960px;margin:0 auto;">
       <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:24px;flex-wrap:wrap;">
-        <div style="display:flex;align-items:baseline;gap:16px;">
+        <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;">
           <h2 style="font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--accent);margin:0;">DAILY TRACKER</h2>
-          <span id="nut-date-display" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);"></span>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <select id="nut-date-select" onchange="nutSwitchDate(this.value)" style="background:var(--surface2);border:1px solid var(--accent);color:var(--text);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:1px;padding:6px 28px 6px 10px;border-radius:2px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 10px center;"></select>
+            <span id="nut-date-badge" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);display:none;">past day</span>
+          </div>
         </div>
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
           <label style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Bodyweight</label>
@@ -953,6 +956,7 @@ function launchConfetti(){
 const NUT_KEY='kc_nutrition_log',NUT_TARGET_KEY='kc_nut_target';
 const DEFAULT_MEALS=['Breakfast','Lunch','Dinner'];
 let nutTodayMeals=[];
+let nutActiveDate=''; // ISO date string yyyy-mm-dd, defaults to today
 function loadNutLog(){try{return JSON.parse(localStorage.getItem(NUT_KEY)||'[]');}catch(e){return[];}}
 function saveNutLog(l){try{localStorage.setItem(NUT_KEY,JSON.stringify(l));}catch(e){}}
 function saveNutTarget(){const v=document.getElementById('nut-target')&&document.getElementById('nut-target').value;if(v)try{localStorage.setItem(NUT_TARGET_KEY,v);}catch(e){}updateNutTotals();}
@@ -977,12 +981,13 @@ function updateNutTotals(){
   set('tot-cal',totals.cal||null,calColor);set('tot-pro',totals.pro||null,null);set('tot-carb',totals.carb||null,null);set('tot-fat',totals.fat||null,null);
 }
 function saveTodayMeals(){
-  const today=new Date().toISOString().split('T')[0];
+  const dateKey=nutActiveDate||new Date().toISOString().split('T')[0];
   const bw=parseFloat(document.getElementById('nut-bw')&&document.getElementById('nut-bw').value)||null;
-  const log=loadNutLog();const entry={date:today,bw,meals:nutTodayMeals};
-  const idx=log.findIndex(e=>e.date===today);if(idx>=0)log[idx]=entry;else log.push(entry);
+  const log=loadNutLog();const entry={date:dateKey,bw,meals:nutTodayMeals};
+  const idx=log.findIndex(e=>e.date===dateKey);if(idx>=0)log[idx]=entry;else log.push(entry);
   log.sort((a,b)=>a.date>b.date?1:-1);saveNutLog(log);
   const s=document.getElementById('nut-save-status');if(s){s.textContent='\u2713 Saved';s.style.opacity='1';setTimeout(()=>s.style.opacity='0',1800);}
+  nutBuildDateSelect();
   renderNutritionCharts();renderNutritionTable();
 }
 function initNutritionPanel(){
