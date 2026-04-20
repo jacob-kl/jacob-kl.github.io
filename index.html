@@ -257,8 +257,12 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
   </div>
   <div id="member-bar">
     <div id="member-bar-name">Kilo Club · <span id="member-bar-name-text">Member</span></div>
-    <button onclick="openNotesJournal()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Session Notes</button>
-    <button id="member-logout-btn" onclick="doLogout()">Log Out</button>
+    <div style="display:flex;gap:6px;align-items:center;margin-left:auto;">
+      <button id="member-nutrition-btn" onclick="switchView('nutrition')" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Nutrition</button>
+      <button id="member-program-btn" onclick="switchView('member')" style="display:none;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;transition:all .15s;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Program</button>
+      <button onclick="openNotesJournal()" style="background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:2px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent2)';this.style.color='var(--accent2)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">📋 Notes</button>
+      <button id="member-logout-btn" onclick="doLogout()">Log Out</button>
+    </div>
   </div>
   <div class="hero" id="hero-section">
     <img src="crumville_logo.png" class="hero-bg-logo" alt="">
@@ -411,7 +415,8 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
       <div id="notes-journal-count" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);"></div>
     </div>
     <div id="notes-journal-body" style="overflow-y:auto;padding:0 0 24px;flex:1;"></div>
-    <div style="padding:8px 20px 20px;flex-shrink:0;">
+    <div style="padding:8px 20px 20px;flex-shrink:0;display:flex;flex-direction:column;gap:8px;">
+      <button onclick="downloadNotesPDF()" style="width:100%;background:none;border:1px solid var(--accent);color:var(--accent);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:3px;cursor:pointer;" onmouseover="this.style.background='rgba(232,197,71,.1)'" onmouseout="this.style.background='none'">↓ Download PDF</button>
       <button onclick="closeNotesJournal()" style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:3px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Close</button>
     </div>
 </div>
@@ -572,6 +577,13 @@ function updateViewLabels(){
   if(programBody)programBody.style.display=showProg?'':'none';
   if(footer)footer.style.display=showProg?'':'none';
   if(nutPanel)nutPanel.style.display=currentView==='nutrition'?'block':'none';
+  // Member bar navigation button visibility
+  const nutBtn=document.getElementById('member-nutrition-btn');
+  const progBtn=document.getElementById('member-program-btn');
+  if(currentRole==='member'){
+    if(nutBtn)nutBtn.style.display=currentView==='nutrition'?'none':'inline-block';
+    if(progBtn)progBtn.style.display=currentView==='nutrition'?'inline-block':'none';
+  }
   if(currentView==='admin'){
     if(heroLabel)heroLabel.textContent='Crossfit Crumville Kilo Club \u00b7 Competitor Program';
     if(namePill)namePill.classList.remove('visible');
@@ -1563,6 +1575,120 @@ function toggleNJEntry(bodyId,btnId){
   const open=body.style.display==='none';
   body.style.display=open?'block':'none';
   if(arrow)arrow.style.transform=open?'rotate(180deg)':'';
+}
+
+function downloadNotesPDF(){
+  const isDark=document.documentElement.getAttribute('data-theme')!=='light';
+  const prefix=currentRole==='admin'?'admin':'member';
+  // Collect all entries same way as renderNotesJournal
+  const entries=[];
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(!k||!k.startsWith(`kc_notes_${prefix}_`))continue;
+      const val=localStorage.getItem(k);
+      if(!val||!val.trim())continue;
+      const m=k.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
+      if(!m)continue;
+      entries.push({key:k,phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()});
+    }
+  }catch(e){}
+  entries.sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
+
+  const userName=memberName||sessionStorage.getItem('kc_username')||'Member';
+  const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const nutLog=loadNutLog();
+
+  let sections='';
+  entries.forEach(entry=>{
+    const isAdm=currentRole==='admin';
+    const dayDate=getDayDate(entry.weekNum,entry.dayIdx,isAdm);
+    // Lifts from DOM
+    let liftsHtml='';
+    const weekEl=document.getElementById(`${entry.phaseId}-w${entry.weekNum}`);
+    if(weekEl){
+      const dayCard=weekEl.querySelectorAll('.day-card')[entry.dayIdx];
+      if(dayCard){
+        const rows=dayCard.querySelectorAll('.ex-table tbody tr');
+        let liftRows='';
+        rows.forEach(row=>{
+          const nameEl=row.querySelector('.ex-name,.wave-base-name');
+          const weightEl=row.querySelector('.weight-cell');
+          const logBtn=row.querySelector('.log-btn');
+          if(!nameEl)return;
+          const name=nameEl.textContent.trim();if(!name)return;
+          const wt=weightEl&&!weightEl.classList.contains('empty')?weightEl.textContent.trim():'';
+          const logged=logBtn&&logBtn.classList.contains('logged-made')?'✓':logBtn&&logBtn.classList.contains('logged-miss')?'✗':'';
+          liftRows+=`<tr><td style="padding:3px 8px 3px 0;font-size:12px;color:#1a1a1b;">${name}</td><td style="padding:3px 8px;font-size:11px;color:#555;font-family:monospace;">${wt}</td><td style="padding:3px 0;font-size:11px;color:${logged==='✓'?'#2a7a5c':logged==='✗'?'#c0392b':'#999'};">${logged}</td></tr>`;
+        });
+        if(liftRows)liftsHtml=`<table style="border-collapse:collapse;margin-bottom:10px;width:100%;">${liftRows}</table>`;
+      }
+    }
+    // Nutrition from log
+    let nutHtml='';
+    const nutEntry=nutLog.find(e=>{
+      const base=new Date(isAdm?2026:2026,2,isAdm?16:19);
+      const offsets=isAdm?[0,1,2,4,5]:[0,4];
+      base.setDate(base.getDate()+(entry.weekNum-1)*7+(offsets[entry.dayIdx]??entry.dayIdx));
+      return e.date===base.toISOString().split('T')[0];
+    });
+    if(nutEntry&&(nutEntry.meals||[]).some(m=>m.items?m.items.length:(m.cal||m.pro))){
+      const meals=(nutEntry.meals||[]).filter(m=>m.items?m.items.length:(m.cal||m.pro));
+      const dayT=nutDayTotals(nutEntry);
+      let mealRows='';
+      meals.forEach(m=>{
+        const mt=mealTotals(m);
+        if(!mt.cal&&!mt.pro)return;
+        const timeStr=m.time?` <span style="color:#888;font-size:10px;">${m.time}</span>`:'';
+        mealRows+=`<tr><td style="padding:3px 8px 3px 0;font-size:12px;">${m.name}${timeStr}</td><td style="padding:3px 8px;font-size:11px;font-family:monospace;color:#b07d00;">${mt.cal} kcal</td><td style="padding:3px 8px;font-size:11px;font-family:monospace;color:#2a7a5c;">${mt.pro}g P</td><td style="padding:3px 0;font-size:11px;font-family:monospace;color:#555;">${mt.carb}g C · ${mt.fat}g F</td></tr>`;
+      });
+      nutHtml=`<div style="margin-bottom:10px;">
+        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:5px;font-family:monospace;">Nutrition</div>
+        <table style="border-collapse:collapse;width:100%;">${mealRows}</table>
+        <div style="font-size:11px;font-family:monospace;color:#555;margin-top:4px;padding-top:4px;border-top:1px solid #ddd;">
+          Total: <strong style="color:#b07d00;">${dayT.cal} kcal</strong> · <strong style="color:#2a7a5c;">${dayT.pro}g protein</strong> · ${dayT.carb}g carbs · ${dayT.fat}g fat
+        </div>
+      </div>`;
+    }
+
+    sections+=`
+    <div style="margin-bottom:28px;padding-bottom:24px;border-bottom:2px solid #e8e8e4;page-break-inside:avoid;">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:12px;">
+        <span style="font-family:'Arial Black',sans-serif;font-size:16px;color:#1a1a1b;letter-spacing:0.5px;">Week ${entry.weekNum} · Day ${entry.dayIdx+1}</span>
+        <span style="font-size:11px;color:#888;font-family:monospace;">${dayDate}</span>
+      </div>
+      ${liftsHtml}
+      ${nutHtml}
+      <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#888;margin-bottom:5px;font-family:monospace;">Notes</div>
+      <div style="font-size:13px;color:#333;line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+    </div>`;
+  });
+
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+  <title>Session Notes — ${userName}</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+    body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1b;background:#fff;margin:0;padding:40px 48px;max-width:720px;margin:0 auto;}
+    @media print{body{padding:20px;} @page{margin:20mm;}}
+  </style>
+  </head><body>
+  <div style="border-bottom:3px solid #1a1a1b;padding-bottom:16px;margin-bottom:32px;">
+    <div style="font-size:32px;font-family:'Arial Black',sans-serif;letter-spacing:1px;line-height:1;">SESSION NOTES</div>
+    <div style="font-size:13px;color:#555;margin-top:6px;font-family:monospace;letter-spacing:1px;">${userName.toUpperCase()} · KILO CLUB · CROSSFIT CRUMVILLE</div>
+    <div style="font-size:11px;color:#999;margin-top:3px;font-family:monospace;">Generated ${today} · ${entries.length} session${entries.length!==1?'s':''}</div>
+  </div>
+  ${sections||'<p style="color:#888;">No session notes found.</p>'}
+  </body></html>`;
+
+  const blob=new Blob([html],{type:'text/html'});
+  const url=URL.createObjectURL(blob);
+  const win=window.open(url,'_blank');
+  if(win){
+    win.addEventListener('load',()=>{
+      setTimeout(()=>{win.print();},400);
+    });
+  }
+  setTimeout(()=>URL.revokeObjectURL(url),30000);
 }
 
 
