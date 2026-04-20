@@ -711,7 +711,7 @@ function renderVolumeChart(phase){
   firstDays.forEach((day,di)=>{const lx=legX+di*56;svg+=`<rect x="${lx}" y="${padT-22}" width="8" height="8" fill="${pal[di%pal.length]}" rx="1"/><text x="${lx+11}" y="${padT-14}" font-family="DM Mono,monospace" font-size="8" fill="var(--muted)">${day.label}</text>`;});
   svg+=`<text x="${padL}" y="${padT-6}" font-family="DM Mono,monospace" font-size="9" fill="var(--muted)" letter-spacing="1">VOLUME INDEX</text></svg>`;
   const isAdm=currentView==='admin';
-  const cap=isAdm?'Each bar = sets \u00d7 reps \u00d7 avg load% for that day. Mon lowest, Wed highest within each week. Weeks 1\u20133 ramp up; week 4 deloads.':'Each bar = sets \u00d7 reps \u00d7 load% for Thu and Mon. Builds W1\u2013W4, deloads W5, peaks intensity W6. Repeats for phase 2.';
+  const cap=isAdm?'Each bar = sets \u00d7 reps \u00d7 avg load% for that day. Mon lowest, Wed highest within each week. Weeks 1\u20133 ramp up; week 4 deloads.':'Each bar = sets \u00d7 reps \u00d7 load% for Thu and Mon. Builds W1\u2013W4, deloads W5, peaks intensity W6.';
   return`<div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px 24px 16px;margin:0 40px 32px;overflow-x:auto;">${svg}<p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:10px;line-height:1.6;">${cap}</p></div>`;
 }
 
