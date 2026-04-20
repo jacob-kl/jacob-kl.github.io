@@ -1312,16 +1312,16 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "135 lbs",
+                  "name": "Bench Press",
+                  "sets": "3×8",
+                  "load": "60%",
                   "note": "",
-		  		  "superset": true,
+                  "superset": true
                 },
                 {
-                  "name": "Bent Over Row",
-                  "sets": "4×8",
-                  "load": "145 lbs",
+                  "name": "Strict Press",
+                  "sets": "3×8",
+                  "load": "60%",
                   "note": "",
                   "supersetEnd": true
                 },
@@ -1359,9 +1359,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Jerk dip and drive",
-                  "sets": "6×4",
-                  "load": "95%",
+                  "name": "Good Morning",
+                  "sets": "4×6",
+                  "load": "135 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "4×8",
+                  "load": "145 lbs",
                   "note": ""
                 },
                 {
@@ -1613,16 +1619,16 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "140 lbs",
+                  "name": "Bench Press",
+                  "sets": "3×8",
+                  "load": "68%",
                   "note": "",
-		 		  "superset": true,
+                  "superset": true
                 },
                 {
-                  "name": "Bent Over Row",
-                  "sets": "4×8",
-                  "load": "155 lbs",
+                  "name": "Strict Press",
+                  "sets": "3×8",
+                  "load": "68%",
                   "note": "",
                   "supersetEnd": true
                 },
@@ -1660,9 +1666,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Jerk dip and drive",
-                  "sets": "6×4",
-                  "load": "100%",
+                  "name": "Good Morning",
+                  "sets": "4×6",
+                  "load": "140 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "4×8",
+                  "load": "155 lbs",
                   "note": ""
                 },
                 {
@@ -1932,16 +1944,16 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "145 lbs",
+                  "name": "Bench Press",
+                  "sets": "4×8",
+                  "load": "76%",
                   "note": "",
-		  		  "superset": true,
+                  "superset": true
                 },
                 {
-                  "name": "Bent Over Row",
+                  "name": "Strict Press",
                   "sets": "4×8",
-                  "load": "165 lbs",
+                  "load": "76%",
                   "note": "",
                   "supersetEnd": true
                 },
@@ -1979,9 +1991,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Jerk dip and drive",
-                  "sets": "6×4",
-                  "load": "105%",
+                  "name": "Good Morning",
+                  "sets": "4×6",
+                  "load": "145 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "4×8",
+                  "load": "165 lbs",
                   "note": ""
                 },
                 {
@@ -2209,16 +2227,16 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "150 lbs",
+                  "name": "Bench Press",
+                  "sets": "2×8",
+                  "load": "75%",
                   "note": "",
-				  "superset": true,
+                  "superset": true
                 },
                 {
-                  "name": "Bent Over Row",
-                  "sets": "4×8",
-                  "load": "175 lbs",
+                  "name": "Strict Press",
+                  "sets": "2×8",
+                  "load": "75%",
                   "note": "",
                   "supersetEnd": true
                 },
@@ -2256,9 +2274,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Jerk dip and drive",
-                  "sets": "6×4",
-                  "load": "110%",
+                  "name": "Good Morning",
+                  "sets": "3×6",
+                  "load": "150 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3×8",
+                  "load": "175 lbs",
                   "note": ""
                 },
                 {
