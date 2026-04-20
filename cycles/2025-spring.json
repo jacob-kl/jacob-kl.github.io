@@ -28,7 +28,7 @@
               "exercises": [
                 {
                   "name": "Snatch High Hang + Hang Snatch",
-                  "sets": "2×(1+1)",
+                  "sets": "4×(1+1)",
                   "load": "70–77%",
                   "note": "Pause 2s in hang. Beginners: hang snatch only",
                   "tag": "beginner",
@@ -36,13 +36,13 @@
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "2×3",
+                  "sets": "6×3",
                   "load": "90–95%",
                   "note": "Focus on position at knee and hip"
                 },
                 {
                   "name": "Power Clean + Push Jerk",
-                  "sets": "2×(1+1)",
+                  "sets": "5×(1+1)",
                   "load": "60–65%",
                   "note": "Light clean accessory. Focus on receiving position",
                   "tag": "beginner",
@@ -58,7 +58,7 @@
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "2×10",
+                  "sets": "3×10",
                   "load": "Bodyweight",
                   "note": "Slow and controlled"
                 }
@@ -71,19 +71,19 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "2×1",
+                  "sets": "4×1",
                   "load": "70-77%",
                   "note": "Competition lift. Establish the feel at moderate load"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "2×3",
+                  "sets": "6×3",
                   "load": "90–95%",
                   "note": "Match snatch pull mechanics"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "2×2",
+                  "sets": "5×2",
                   "load": "60-65%",
                   "note": "Light snatch accessory. Feel the hip extension",
                   "tag": "beginner",
@@ -91,13 +91,13 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×4",
+                  "sets": "4×4",
                   "load": "70%",
                   "note": "Controlled descent, full depth"
                 },
                 {
                   "name": "Good Morning",
-                  "sets": "2×8",
+                  "sets": "3×8",
                   "load": "Light",
                   "note": "Hinge focus, minimal weight"
                 }
