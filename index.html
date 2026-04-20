@@ -816,7 +816,7 @@ function renderCycle(cycle){
   cycle.phases.forEach((phase,pi)=>{
     if(pi>0)html+='<hr class="section-divider">';
     html+=`<div class="meso-header"><div class="meso-num ${phase.colorClass}">${phase.number}</div><div class="meso-info"><h2 class="${phase.colorClass}">${phase.title}</h2><p>${phase.subtitle}</p></div></div>`;
-    if(isAdmin)html+=renderVolumeChart(phase);
+    if(currentRole==='admin')html+=renderVolumeChart(phase);
     html+=`<div class="week-nav" id="nav-${phase.id}">`;
     phase.weeks.forEach(week=>{const isFirst=week.number===phase.weeks[0].number;const status=getWeekProgress(phase.id,week.number,week.days.length,[]);
       // For members, hide weeks where ALL days are in the future
