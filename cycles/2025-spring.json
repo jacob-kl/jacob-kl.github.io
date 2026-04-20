@@ -217,20 +217,20 @@
                 {
                   "name": "Snatch (Competition)",
                   "sets": "2×1",
-                  "load": "72–88%",
+                  "load": "76–88%",
                   "note": "Clean competition lift from floor. No variations today"
                 },
                 {
                   "name": "Hang Snatch (Below Knee)",
                   "sets": "2×2",
                   "load": "80%",
-                  "note": "Reinforce lam sweep position",
+                  "note": "Reinforce knee sweep position",
                   "tag": "beginner",
                   "tagText": "Scale to above knee"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "2×3",
+                  "sets": "3×3",
                   "load": "100–105%",
                   "note": "Above max snatch — pure strength pull"
                 },
@@ -258,7 +258,7 @@
                 {
                   "name": "Clean w/ 2s Pause at Knee",
                   "sets": "2×2",
-                  "load": "68–84%",
+                  "load": "76–88%",
                   "note": "Pause = feel lats, chest tall",
                   "tag": "beginner",
                   "tagText": "Great for all levels"
@@ -266,12 +266,12 @@
                 {
                   "name": "Jerk (from rack)",
                   "sets": "2×2",
-                  "load": "70–86%",
+                  "load": "78–88%",
                   "note": "Focus on receiving position depth"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "2×3",
+                  "sets": "4×3",
                   "load": "100–105%",
                   "note": ""
                 },
@@ -284,7 +284,7 @@
                 {
                   "name": "Back Squat",
                   "sets": "2×3",
-                  "load": "76–90%",
+                  "load": "82–90%",
                   "note": "Peak squat volume week"
                 }
               ]
@@ -362,7 +362,7 @@
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "2×3",
+                  "sets": "3×3",
                   "load": "100–105%",
                   "note": ""
                 },
