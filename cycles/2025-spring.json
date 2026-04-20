@@ -307,29 +307,29 @@
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "4×1 + 1×1",
-                  "load": "92% / 97%",
-                  "note": "5 sets at 75%, then one at 80%. Beginners stay at 75%",
+                  "sets": "5×1 + 1×1",
+                  "load": "92/97%",
+                  "note": "5 sets at 92%, then one at 97%. Do not go to the heavier weight unless you are solid at 92%, and you have not missed a lift",
                   "tag": "beginner",
-                  "tagText": "No extra set"
+                  "tagText": "Stay around 75% for 6 sets"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "3×3",
-                  "load": "100–105%",
+                  "sets": "5×3",
+                  "load": "110–115%",
                   "note": ""
                 },
                 {
-                  "name": "Power Snatch + OHS",
-                  "sets": "3×(1+2)",
-                  "load": "82%",
-                  "note": "Light snatch accessory combo. Land power, then squat the OHS"
+                  "name": "Power Clean + Front Squat",
+                  "sets": "5×(1+2)",
+                  "load": "75-80%",
+                  "note": "Light cleah accessory combo. Ideally, I want you squatting the same position as you land the power clean. We're solidifying the strong elbows here"
                 },
                 {
                   "name": "Front Squat",
                   "sets": "3×3",
-                  "load": "78–97%",
-                  "note": "Front squat replaces OHS today"
+                  "load": "87–92%",
+                  "note": "Focus on strong core, chest up. Lead with your elbows. Knees out, not forward"
                 },
                 {
                   "name": "Back Extension",
@@ -346,36 +346,34 @@
               "exercises": [
                 {
                   "name": "Clean & Jerk",
-                  "sets": "4×1 + 1×1",
-                  "load": "92% / 97%",
-                  "note": "First heavy C&J single of the cycle. Only attempt single if no misses at 92%",
+                  "sets": "5×1 + 1×1",
+                  "load": "92/97%",
+                  "note": "Only attempt single if no misses at 92%",
                   "tag": "beginner",
                   "tagText": "Stay at 75%"
                 },
                 {
                   "name": "Jerk Dip + Drive (from rack)",
-                  "sets": "2×3",
-                  "load": "92%",
-                  "note": "No catch — focus on vertical dip and powerful drive",
-                  "tag": "beginner",
-                  "tagText": "Great drill"
+                  "sets": "4×3",
+                  "load": "105%",
+                  "note": "No catch — focus on vertical dip and powerful drive. Knees out!"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "3×3",
-                  "load": "100–105%",
+                  "sets": "5×3",
+                  "load": "110–115%",
                   "note": ""
                 },
                 {
                   "name": "Hang Snatch (above knee)",
-                  "sets": "2×2",
-                  "load": "62–82%",
+                  "sets": "5×2",
+                  "load": "75–80%",
                   "note": "Light snatch accessory. Fast and technical"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×3",
-                  "load": "78–97%",
+                  "sets": "3×3",
+                  "load": "92–97%",
                   "note": ""
                 }
               ]
