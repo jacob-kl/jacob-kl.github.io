@@ -30,7 +30,7 @@
                   "name": "Snatch High Hang + Hang Snatch",
                   "sets": "4×(1+1)",
                   "load": "70–77%",
-                  "note": "Pause 2s in hang. Beginners: hang snatch only",
+                  "note": "Pause 2s in hang",
                   "tag": "beginner",
                   "tagText": "Double hang (at knee) with a light percentage"
                 },
@@ -38,7 +38,7 @@
                   "name": "Snatch Pull",
                   "sets": "6×3",
                   "load": "90–95%",
-                  "note": "Focus on position at knee and hip"
+                  "note": "Focus on position at knee and hip. Stay over the bar. You pull the bar, don't let the bar pull you"
                 },
                 {
                   "name": "Power Clean + Push Jerk",
@@ -52,7 +52,7 @@
                   "name": "Overhead Squat",
                   "sets": "4×2",
                   "load": "65%",
-                  "note": "3s descent. Bar must stay over mid-foot",
+                  "note": "3s descent. Bar must stay over mid-foot. Focus on driving knees out, hips back",
                   "tag": "beginner",
                   "tagText": "Decrease weight by 10-15%"
                 },
@@ -91,7 +91,7 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "4×4",
+                  "sets": "5×4",
                   "load": "70%",
                   "note": "Controlled descent, full depth"
                 },
@@ -125,17 +125,17 @@
                   "load": "75-82%",
                   "note": "One rep from each position. Beginners: 2-position",
                   "tag": "beginner",
-                  "tagText": "Scale to 2-pos"
+                  "tagText": "Two hangs, one from the floor if mechanics are solid"
                 },
                 {
                   "name": "Snatch Pull",
-                  "sets": "2×3",
+                  "sets": "5×3",
                   "load": "100–105%",
                   "note": "Full extension, shrug at top"
                 },
                 {
                   "name": "Hang Clean (above knee)",
-                  "sets": "2×2",
+                  "sets": "4×2",
                   "load": "65-70%",
                   "note": "Light clean accessory — reinforce hip contact position",
                   "tag": "beginner",
@@ -162,39 +162,39 @@
               "exercises": [
                 {
                   "name": "Hang Clean + Clean",
-                  "sets": "2×(1+1)",
+                  "sets": "4×(1+1)",
                   "load": "75-82%",
                   "note": "Touch-and-go from hang",
                   "tag": "beginner",
-                  "tagText": "Scale to clean only"
+                  "tagText": "Clean pull plus two hang cleans"
                 },
                 {
                   "name": "Split Jerk",
-                  "sets": "2×2",
+                  "sets": "4×2",
                   "load": "78%-85%",
                   "note": "Pause 2s in split. Check front foot alignment",
                   "tag": "beginner",
-                  "tagText": "Focus on footwork"
+                  "tagText": "Do push jerks if split is not solid. Focus on footwork drills between sets"
                 },
                 {
                   "name": "Clean Pull",
-                  "sets": "2×3",
+                  "sets": "5×3",
                   "load": "100–105%",
                   "note": ""
                 },
                 {
                   "name": "Snatch Balance",
-                  "sets": "2×2",
+                  "sets": "3×2",
                   "load": "50–66%",
-                  "note": "Light snatch accessory — aggressive drop under",
+                  "note": "Light snatch accessory — Think about pushing yourself under an immovable object, NOT just dropping",
                   "tag": "beginner",
                   "tagText": "Scale to lightweight OHS"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×4",
-                  "load": "73–81%",
-                  "note": "+3% from week 1"
+                  "sets": "4×4",
+                  "load": "75–81%",
+                  "note": ""
                 }
               ]
             }
