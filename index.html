@@ -623,6 +623,9 @@ const RM_MAP=[
   {keys:['deadlift'],id:'rm-deadlift'},
 ];
 const BW_EXERCISES=['side plank','box jump','glute ham raise','barbell rollout','split squat box jump','back extension'];
+// Pulls and accessories that should never update a 1RM even if logged above max
+const NO_PR_EXERCISES=['snatch pull','snatch high pull','snatch grip deadlift','snatch grip stage','front banded snatch','block snatch high pull','snatch high hang high pull','clean pull','clean high pull','front banded clean pull','block clean high pull','stage clean deadlift','clean grip deadlift','good morning','bent over row','pendlay row','barbell row','back extension','glute ham raise','hamstring curl','hammer curl','skull','wrist curl','reverse wrist curl','box jump','med ball','barbell rollout','side plank','forward lunge','bulgarian split squat'];
+function isNoPrExercise(name){const n=name.toLowerCase();return NO_PR_EXERCISES.some(k=>n.includes(k));}
 function isFixedWeight(loadStr){if(!loadStr||loadStr==='—')return false;return !loadStr.includes('%');}
 function isBWExercise(name){const n=name.toLowerCase();return BW_EXERCISES.some(bw=>n.includes(bw));}
 
@@ -677,7 +680,7 @@ function saveLog(){
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   for(let i=0;i<count;i++){const w=parseFloat(document.getElementById(`log-w-${i}`)?.value)||0;modalState.entries[i].weight=w;logData[i]={outcome:modalState.entries[i].outcome,weight:w,date:today};if(modalState.entries[i].outcome==='made'&&w>maxW){maxW=w;anyMade=true;}}
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
-  if(anyMade&&modalState.rmId){const unit=getUnit(),wLbs=unit==='kg'?maxW*2.205:maxW,curMax=currentMaxes[modalState.rmId]||0;if(wLbs>curMax){currentMaxes[modalState.rmId]=Math.round(wLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(wLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
+  if(anyMade&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),wLbs=unit==='kg'?maxW*2.205:maxW,curMax=currentMaxes[modalState.rmId]||0;if(wLbs>curMax){currentMaxes[modalState.rmId]=Math.round(wLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(wLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
   const oo=(()=>{const outcomes=Object.values(logData).map(e=>e.outcome).filter(Boolean);if(!outcomes.length)return null;if(outcomes.every(o=>o==='made'))return'made';if(outcomes.every(o=>o==='miss'))return'miss';return'made';})();
   const btn=document.querySelector(`[data-log-key="${modalState.logKey}"]`);
   if(btn&&oo){btn.classList.remove('logged-made','logged-miss');btn.classList.add(oo==='made'?'logged-made':'logged-miss');btn.innerHTML=oo==='made'?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}
@@ -968,7 +971,7 @@ function saveWaveLog(){
   const logData={};let maxW=0;const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   modalState.waveEntries.forEach((wave,wi)=>{wave.forEach((entry,si)=>{const w=parseFloat(document.getElementById(`wlog-${wi}-${si}`)?.value)||0;logData[`w${wi}_s${si}`]={outcome:entry.outcome,weight:w,date:today};if(entry.outcome==='made'&&w>maxW)maxW=w;});});
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
-  if(maxW>0&&modalState.rmId){const unit=getUnit(),inLbs=unit==='kg'?maxW*2.205:maxW;if(inLbs>(currentMaxes[modalState.rmId]||0)){currentMaxes[modalState.rmId]=Math.round(inLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(inLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
+  if(maxW>0&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),inLbs=unit==='kg'?maxW*2.205:maxW;if(inLbs>(currentMaxes[modalState.rmId]||0)){currentMaxes[modalState.rmId]=Math.round(inLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(inLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
   const anyMade=Object.values(logData).some(e=>e&&e.outcome==='made');const allMiss=Object.values(logData).filter(e=>e&&e.outcome).every(e=>e.outcome==='miss');
   const btn=document.querySelector(`[data-log-key="${modalState.logKey}"]`);
   if(btn){btn.classList.remove('logged-made','logged-miss');if(anyMade){btn.classList.add('logged-made');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`;}else if(allMiss){btn.classList.add('logged-miss');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}}
