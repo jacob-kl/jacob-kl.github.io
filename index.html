@@ -616,7 +616,7 @@ const RM_MAP=[
   {keys:['front squat','enderton front squat','pause front squat'],id:'rm-frontsquat'},
   {keys:['back squat','pause back squat','enderton back squat'],id:'rm-backsquat'},
   {keys:['clean & jerk','clean and jerk','c&j opener','c&j 2nd','c&j 3rd','c&j warm'],id:'rm-cj'},
-  {keys:['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','high hang clean','mid hang clean','clean \u2014 build','clean (slow pull)'],id:'rm-cj'},
+  {keys:['block clean','tempo clean','hang clean','clean w/','clean (','3 position clean','high hang clean','mid hang clean','clean \u2014 build','clean (slow pull)','clean'],id:'rm-cj'},
   {keys:['mid hang snatch','hang snatch','deficit snatch','3-position snatch','3 position snatch','power snatch','snatch balance','muscle snatch','snatch high hang','snatch (competition)','snatch (light','snatch \u2014 build','snatch opener','snatch 2nd','snatch 3rd','snatch warm','snatch'],id:'rm-snatch'},
   {keys:['bench press','bench'],id:'rm-bench'},
   {keys:['good morning','goblet'],id:'rm-goodmorning'},
@@ -929,6 +929,7 @@ function getWeekProgress(phaseId,weekNum,dayCount,exCounts){
 function refreshProgressDots(){document.querySelectorAll('.week-btn[data-phase][data-week]').forEach(btn=>{const phaseId=btn.getAttribute('data-phase'),weekNum=parseInt(btn.getAttribute('data-week')),dayCount=parseInt(btn.getAttribute('data-days')||'5');const status=getWeekProgress(phaseId,weekNum,dayCount,[]);const dot=btn.querySelector('.week-dot');if(dot)dot.className=`week-dot ${status}`;});}
 
 // ── WAVE LOG MODAL ────────────────────────────────────────────────────────
+function parseWaveRepCounts(setsStr){const s=setsStr||'3-2-1';const cross=s.match(/^(\d+)\s*[x×]\s*(\d+)$/i);if(cross){const count=parseInt(cross[1]);const reps=parseInt(cross[2]);return Array(count).fill(reps);}return s.split('-').map(Number).filter(n=>n>0);}
 function openWaveLogModal(baseName,waveGroup,lk){
   modalState={exName:baseName,sets:'wave',load:'',rmId:getMaxIdForExercise(baseName)||'',logKey:lk,entries:[],isWave:true,waveGroup};
   document.getElementById('modal-ex-name').textContent=baseName;
@@ -936,7 +937,7 @@ function openWaveLogModal(baseName,waveGroup,lk){
   let existing={};try{const v=localStorage.getItem(lk);if(v)existing=JSON.parse(v);}catch(e){}
   const u=getUnit();let html='';
   waveGroup.forEach((wave,wi)=>{
-    const repCounts=(wave.sets||'3-2-1').split('-').map(Number).filter(n=>n>0);
+    const repCounts=parseWaveRepCounts(wave.sets);
     const loads=wave.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
     const maxForEx=getMaxForExercise(baseName);const cols=repCounts.length;
     html+=`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Wave ${wi+1} \u00b7 ${wave.load}</div>`;
@@ -949,7 +950,7 @@ function openWaveLogModal(baseName,waveGroup,lk){
     html+='</div></div>';
   });
   document.getElementById('modal-sets-container').innerHTML=html;
-  modalState.waveEntries=waveGroup.map((wave,wi)=>{const reps=(wave.sets||'3-2-1').split('-').map(Number).filter(n=>n>0);return reps.map((r,si)=>{const prev=existing[`w${wi}_s${si}`]||{};return{outcome:prev.outcome||null,weight:prev.weight||''};});});
+  modalState.waveEntries=waveGroup.map((wave,wi)=>{const reps=parseWaveRepCounts(wave.sets);return reps.map((r,si)=>{const prev=existing[`w${wi}_s${si}`]||{};return{outcome:prev.outcome||null,weight:prev.weight||''};});});
   document.getElementById('log-modal-overlay').classList.add('open');
 }
 function setWaveOutcome(wi,si,outcome){
