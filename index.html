@@ -1506,7 +1506,8 @@ function renderNotesJournal(){
           // Get log status
           const isLogged=logBtn&&logBtn.classList.contains('logged-made');
           const isMissed=logBtn&&logBtn.classList.contains('logged-miss');
-          const statusDot=isLogged?`<span style="color:var(--accent2);margin-left:4px;">✓</span>`:isMissed?`<span style="color:var(--accent3);margin-left:4px;">✗</span>`:'';
+          const isMixed=logBtn&&logBtn.classList.contains('logged-mixed');
+          const statusDot=isMixed?`<span style="color:var(--ss3);margin-left:4px;">✓</span>`:isLogged?`<span style="color:var(--accent2);margin-left:4px;">✓</span>`:isMissed?`<span style="color:var(--accent3);margin-left:4px;">✗</span>`:'';
           const weightDisplay=weightStr?` <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);">(${weightStr})</span>`:'';
           liftsHtml+=`<div style="padding:3px 0;font-size:12px;color:var(--text);display:flex;align-items:baseline;gap:2px;">${name}${weightDisplay}${statusDot}</div>`;
         });
@@ -1631,13 +1632,14 @@ function downloadNotesPDF(){
           if(!nameEl)return;
           const name=nameEl.textContent.trim();if(!name)return;
           const wt=weightEl&&!weightEl.classList.contains('empty')?weightEl.textContent.trim():'';
-          const logged=logBtn&&logBtn.classList.contains('logged-made')?'✓':logBtn&&logBtn.classList.contains('logged-miss')?'✗':'';
+          const logged=logBtn&&logBtn.classList.contains('logged-mixed')?'✓mixed':logBtn&&logBtn.classList.contains('logged-made')?'✓':logBtn&&logBtn.classList.contains('logged-miss')?'✗':'';
           const wtColor=wt?'#c8a800':'#999';
-          const logColor=logged==='✓'?'#2a7a5c':logged==='✗'?'#c0392b':'transparent';
+          const logColor=logged==='✓mixed'?'#a78bfa':logged==='✓'?'#2a7a5c':logged==='✗'?'#c0392b':'transparent';
+          const logDisplay=logged==='✓mixed'?'✓':logged;
           liftRows+=`<tr>
             <td style="padding:4px 10px 4px 0;font-size:12px;color:#1a1a1b;border-bottom:1px solid #f0eeea;">${name}</td>
             <td style="padding:4px 10px;font-size:11px;color:${wtColor};font-family:monospace;border-bottom:1px solid #f0eeea;">${wt}</td>
-            <td style="padding:4px 0;font-size:13px;color:${logColor};border-bottom:1px solid #f0eeea;text-align:center;">${logged}</td>
+            <td style="padding:4px 0;font-size:13px;color:${logColor};border-bottom:1px solid #f0eeea;text-align:center;">${logDisplay}</td>
           </tr>`;
         });
         if(liftRows){
