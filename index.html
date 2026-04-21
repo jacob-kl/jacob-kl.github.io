@@ -871,9 +871,10 @@ function renderCycle(cycle){
           if(ex.name.includes('\u2014 Wave')){
             const baseName=ex.name.replace(/\u2014 Wave \d+/,'').trim();
             const waveGroup=[];
+            const waveStartIdx=i;
             while(i<exercises.length&&exercises[i].name.includes('\u2014 Wave')){waveGroup.push(exercises[i]);i++;}
             if(waveGroup.length===0){waveGroup.push(ex);i++;}
-            const lk=logKey(phase.id,week.number,di,i);
+            const lk=logKey(phase.id,week.number,di,waveStartIdx);
             const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
             const anyMade=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made');
             const anyMiss=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss');
