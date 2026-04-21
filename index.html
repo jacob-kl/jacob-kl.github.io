@@ -160,6 +160,7 @@ tr[data-ss="3"].ss-start td:first-child,tr[data-ss="3"].ss-mid td:first-child,tr
 .log-btn svg{width:12px;height:12px;}
 .log-btn.logged-made{border-color:var(--accent2);color:var(--accent2);background:rgba(79,195,161,.1);}
 .log-btn.logged-miss{border-color:var(--accent3);color:var(--accent3);background:rgba(232,93,71,.1);}
+.log-btn.logged-mixed{border-color:var(--ss3);color:var(--ss3);background:rgba(167,139,250,.1);}
 #log-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:8000;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
 #log-modal-overlay.open{opacity:1;pointer-events:auto;}
 #log-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px 12px 0 0;width:100%;max-width:520px;padding:0 0 32px;transform:translateY(100%);transition:transform .25s ease;max-height:92vh;overflow-y:auto;}
@@ -681,9 +682,9 @@ function saveLog(){
   for(let i=0;i<count;i++){const w=parseFloat(document.getElementById(`log-w-${i}`)?.value)||0;modalState.entries[i].weight=w;logData[i]={outcome:modalState.entries[i].outcome,weight:w,date:today};if(modalState.entries[i].outcome==='made'&&w>maxW){maxW=w;anyMade=true;}}
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
   if(anyMade&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),wLbs=unit==='kg'?maxW*2.205:maxW,curMax=currentMaxes[modalState.rmId]||0;if(wLbs>curMax){currentMaxes[modalState.rmId]=Math.round(wLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(wLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
-  const oo=(()=>{const outcomes=Object.values(logData).map(e=>e.outcome).filter(Boolean);if(!outcomes.length)return null;if(outcomes.every(o=>o==='made'))return'made';if(outcomes.every(o=>o==='miss'))return'miss';return'made';})();
+  const oo=(()=>{const outcomes=Object.values(logData).map(e=>e.outcome).filter(Boolean);if(!outcomes.length)return null;if(outcomes.every(o=>o==='made'))return'made';if(outcomes.every(o=>o==='miss'))return'miss';return'mixed';})();
   const btn=document.querySelector(`[data-log-key="${modalState.logKey}"]`);
-  if(btn&&oo){btn.classList.remove('logged-made','logged-miss');btn.classList.add(oo==='made'?'logged-made':'logged-miss');btn.innerHTML=oo==='made'?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}
+  if(btn&&oo){btn.classList.remove('logged-made','logged-miss','logged-mixed');btn.classList.add(oo==='made'?'logged-made':oo==='miss'?'logged-miss':'logged-mixed');btn.innerHTML=oo==='made'?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`:oo==='miss'?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED<span class="log-date-stamp">${today}</span>`;}
   refreshProgressDots();closeModal();
 }
 function closeModal(){document.getElementById('log-modal-overlay').classList.remove('open');}
@@ -876,8 +877,9 @@ function renderCycle(cycle){
             const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
             const anyMade=Object.values(prevLog).some(e=>e.outcome==='made');
             const anyMiss=Object.values(prevLog).some(e=>e.outcome==='miss')&&!anyMade;
-            const lbc=anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
-            const lbi=anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
+            const anyMixed=Object.values(prevLog).some(e=>e.outcome==='made')&&Object.values(prevLog).some(e=>e.outcome==='miss');
+            const lbc=anyMixed?'log-btn logged-mixed':anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
+            const lbi=anyMixed?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED`:anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
             const noteTD=!isAdmin?`<td class="ex-note">${ex.note||''}</td>`:'';
             const nameCell=`<div class="wave-name-cell"><span class="wave-base-name">${baseName||ex.name}</span></div>`;
             const setsCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`).join('')}</div>`;
@@ -904,9 +906,10 @@ function renderCycle(cycle){
           const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
           const anyMade=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made');
           const anyMiss=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss')&&!anyMade;
+          const anyMixed=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made')&&Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss');
           const prevDate=prevLog._date?`<span class="log-date-stamp">${prevLog._date}</span>`:'';
-          const lbc=anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
-          const lbi=anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED${prevDate}`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED${prevDate}`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
+          const lbc=anyMixed?'log-btn logged-mixed':anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
+          const lbi=anyMixed?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED${prevDate}`:anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED${prevDate}`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED${prevDate}`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
           const rmId=getMaxIdForExercise(ex.name)||'';
           html+=`<tr class="${ssClass}" ${ssAttr}><td class="ex-name">${ex.name}${ssBadge}</td><td class="ex-sets">${ex.sets}</td><td class="ex-load">${ex.load}</td>${wTD}${noteTD}<td><button class="${lbc}" data-log-key="${lk}" onclick="openLogModal('${ex.name.replace(/'/g,"\\'")}','${ex.sets.replace(/'/g,"\\'")}','${ex.load.replace(/'/g,"\\'")}','${rmId}','${lk}')">${lbi}</button></td></tr>`;
           if(isSSE)ssGroupIdx=-1;i++;
@@ -942,15 +945,11 @@ function openWaveLogModal(baseName,waveGroup,lk){
   waveGroup.forEach((wave,wi)=>{
     const repCounts=parseWaveRepCounts(wave.sets);
     const loads=wave.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
-    const maxForEx=getMaxForExercise(baseName);const cols=repCounts.length;
-    html+=`<div style="margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Wave ${wi+1} \u00b7 ${wave.load}</div>`;
-    html+=`<div style="display:grid;grid-template-columns:54px repeat(${cols},1fr);gap:6px;margin-bottom:4px;"><div></div>`;
-    repCounts.forEach(r=>html+=`<div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:center;">${r}rep</div>`);html+='</div>';
-    html+=`<div style="display:grid;grid-template-columns:54px repeat(${cols},1fr);gap:6px;margin-bottom:4px;align-items:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">Result</div>`;
-    repCounts.forEach((r,si)=>{const key=`w${wi}_s${si}`;const prev=existing[key]||{};const mC=prev.outcome==='made'?'selected':'',xC=prev.outcome==='miss'?'selected':'';html+=`<div style="display:flex;gap:4px;justify-content:center;"><button class="outcome-btn check ${mC}" onclick="setWaveOutcome(${wi},${si},'made')">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setWaveOutcome(${wi},${si},'miss')">&#10007;</button></div>`;});html+='</div>';
-    html+=`<div style="display:grid;grid-template-columns:54px repeat(${cols},1fr);gap:6px;align-items:center;"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);">${u}</div>`;
-    repCounts.forEach((r,si)=>{const key=`w${wi}_s${si}`;const prev=existing[key]||{};const pct=loads[si]!==undefined?loads[si]:(loads[0]||0);const sug=maxForEx&&pct?(u==='kg'?Math.round(pct/100*maxForEx/2.205):Math.round(pct/100*maxForEx)):'';html+=`<input class="log-weight-input" type="number" id="wlog-${wi}-${si}" value="${prev.weight||sug}" placeholder="\u2014" min="0" style="text-align:center;">`;});
-    html+='</div></div>';
+    const maxForEx=getMaxForExercise(baseName);
+    html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Wave ${wi+1} \u00b7 ${wave.load}</div>`;
+    repCounts.forEach((r,si)=>{const key=`w${wi}_s${si}`;const prev=existing[key]||{};const mC=prev.outcome==='made'?'selected':'',xC=prev.outcome==='miss'?'selected':'';const pct=loads[si]!==undefined?loads[si]:(loads[0]||0);const sug=maxForEx&&pct?(u==='kg'?Math.round(pct/100*maxForEx/2.205):Math.round(pct/100*maxForEx)):'';const wVal=prev.weight||sug;
+    html+=`<div class="log-set-row" id="set-row-w${wi}s${si}" style="margin-bottom:6px;"><div class="log-set-num">Set ${si+1} <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-weight:400;">${r}rep</span></div><div class="log-outcome"><button class="outcome-btn check ${mC}" onclick="setWaveOutcome(${wi},${si},'made')" title="Made">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setWaveOutcome(${wi},${si},'miss')" title="Missed">&#10007;</button></div><input class="log-weight-input" type="number" id="wlog-${wi}-${si}" value="${wVal}" placeholder="\u2014" min="0"><span class="log-weight-unit">${u}</span></div>`;});
+    html+='</div>';
   });
   document.getElementById('modal-sets-container').innerHTML=html;
   modalState.waveEntries=waveGroup.map((wave,wi)=>{const reps=parseWaveRepCounts(wave.sets);return reps.map((r,si)=>{const prev=existing[`w${wi}_s${si}`]||{};return{outcome:prev.outcome||null,weight:prev.weight||''};});});
@@ -959,11 +958,8 @@ function openWaveLogModal(baseName,waveGroup,lk){
 function setWaveOutcome(wi,si,outcome){
   if(!modalState.waveEntries?.[wi]?.[si])return;
   modalState.waveEntries[wi][si].outcome=outcome;
-  const container=document.getElementById('modal-sets-container');
-  const allCheck=container.querySelectorAll('.outcome-btn.check'),allX=container.querySelectorAll('.outcome-btn.x');
-  let idx=0;for(let w=0;w<wi;w++)idx+=(modalState.waveGroup[w].sets||'3-2-1').split('-').length;idx+=si;
-  if(allCheck[idx])allCheck[idx].classList.toggle('selected',outcome==='made');
-  if(allX[idx])allX[idx].classList.toggle('selected',outcome==='miss');
+  const row=document.getElementById(`set-row-w${wi}s${si}`);
+  if(row){row.querySelectorAll('.outcome-btn').forEach(b=>b.classList.remove('selected'));row.querySelector(`.outcome-btn.${outcome==='made'?'check':'x'}`)?.classList.add('selected');}
   if(outcome==='made'&&allX[idx])allX[idx].classList.remove('selected');
   if(outcome==='miss'&&allCheck[idx])allCheck[idx].classList.remove('selected');
 }
@@ -972,9 +968,9 @@ function saveWaveLog(){
   modalState.waveEntries.forEach((wave,wi)=>{wave.forEach((entry,si)=>{const w=parseFloat(document.getElementById(`wlog-${wi}-${si}`)?.value)||0;logData[`w${wi}_s${si}`]={outcome:entry.outcome,weight:w,date:today};if(entry.outcome==='made'&&w>maxW)maxW=w;});});
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
   if(maxW>0&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),inLbs=unit==='kg'?maxW*2.205:maxW;if(inLbs>(currentMaxes[modalState.rmId]||0)){currentMaxes[modalState.rmId]=Math.round(inLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(inLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
-  const anyMade=Object.values(logData).some(e=>e&&e.outcome==='made');const allMiss=Object.values(logData).filter(e=>e&&e.outcome).every(e=>e.outcome==='miss');
+  const anyMade=Object.values(logData).some(e=>e&&e.outcome==='made');const allMiss=Object.values(logData).filter(e=>e&&e.outcome).every(e=>e.outcome==='miss');const anyMixed=anyMade&&Object.values(logData).some(e=>e&&e.outcome==='miss');
   const btn=document.querySelector(`[data-log-key="${modalState.logKey}"]`);
-  if(btn){btn.classList.remove('logged-made','logged-miss');if(anyMade){btn.classList.add('logged-made');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`;}else if(allMiss){btn.classList.add('logged-miss');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}}
+  if(btn){btn.classList.remove('logged-made','logged-miss','logged-mixed');if(anyMixed){btn.classList.add('logged-mixed');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED<span class="log-date-stamp">${today}</span>`;}else if(anyMade){btn.classList.add('logged-made');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`;}else if(allMiss){btn.classList.add('logged-miss');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}}
   refreshProgressDots();closeModal();
 }
 function openWaveLogFromRegistry(lk){const reg=window._waveRegistry&&window._waveRegistry[lk];if(!reg)return;openWaveLogModal(reg.baseName,reg.waveGroup,lk);}
