@@ -457,6 +457,27 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
     </div>
   </div>
 </div>
+<!-- COPY MEAL MODAL -->
+<div id="copy-meal-overlay" onclick="maybeCopyMealClose(event)" style="position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:8600;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;">
+  <div id="copy-meal-modal" style="background:var(--surface);border:1px solid var(--border);border-radius:12px 12px 0 0;width:100%;max-width:480px;padding:0 0 28px;transform:translateY(100%);transition:transform .25s ease;">
+    <div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;"></div>
+    <div style="padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;">
+      <div>
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;color:var(--accent2);">Copy Meal</div>
+        <div id="copy-meal-label" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px;"></div>
+      </div>
+    </div>
+    <div style="padding:20px 20px 0;">
+      <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Copy to which day?</div>
+      <select id="copy-meal-date-select" style="width:100%;background:var(--input-bg);border:1px solid var(--accent);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;letter-spacing:1px;padding:10px 14px;border-radius:3px;outline:none;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23e8c547'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 12px center;"></select>
+      <div id="copy-meal-conflict-note" style="margin-top:8px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--accent);display:none;">⚠ That day already has a meal with this name — it will be replaced.</div>
+    </div>
+    <div style="padding:16px 20px 0;display:flex;flex-direction:column;gap:8px;">
+      <button id="copy-meal-confirm-btn" onclick="copyMealConfirm()" style="width:100%;background:var(--accent2);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;border:none;padding:13px;border-radius:3px;cursor:pointer;">COPY MEAL</button>
+      <button onclick="closeCopyMeal()" style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:3px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Cancel</button>
+    </div>
+  </div>
+</div>
 <div id="all-lifts-overlay" onclick="maybeCloseAllLifts(event)">
   <div id="all-lifts-modal">
     <div style="width:40px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0;flex-shrink:0;"></div>
@@ -1056,6 +1077,7 @@ function makeMealCard(meal,mi){
         <input type="time" value="${meal.time||''}" onchange="nutMealTime(${mi},this.value)" title="Time eaten" style="background:var(--input-bg);border:1px solid var(--border);color:var(--muted);font-family:\'DM Mono\',monospace;font-size:10px;padding:3px 6px;border-radius:2px;outline:none;width:86px;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
         <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent);" id="mc-cal-${mi}">${mt.cal?mt.cal+' kcal':''}</span>
         <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent2);" id="mc-pro-${mi}">${mt.pro?mt.pro+'g P':''}</span>
+        <button onclick="openCopyMeal(${mi})" title="Copy meal to another day" style="background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;transition:all .15s;" onmouseover="this.style.borderColor=\'var(--accent2)\';this.style.color=\'var(--accent2)\'" onmouseout="this.style.borderColor=\'var(--border)\';this.style.color=\'var(--muted)\'">⬆ Copy</button>
         <button onclick="removeMeal(${mi})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 4px;" onmouseover="this.style.color=\'var(--accent3)\'" onmouseout="this.style.color=\'var(--muted)\'">✕</button>
       </div>
     </div>
@@ -1268,6 +1290,95 @@ function cbSaveRecipe(editId){
   if(editId){const idx=recipes.findIndex(r=>r.id===editId);if(idx>=0)recipes[idx]={...recipes[idx],name,servings,instructions,ingredients};}
   else recipes.push({id:'r'+Date.now(),name,servings,instructions,ingredients});
   saveCookbook(recipes);cbEditingId=null;cbSetTab('list');
+}
+
+// ── COPY MEAL TO DAY ──────────────────────────────────────────────────────────
+let copyMealIndex = -1;
+function openCopyMeal(mi) {
+  copyMealIndex = mi;
+  const meal = nutTodayMeals[mi];
+  const labelEl = document.getElementById('copy-meal-label');
+  if (labelEl) labelEl.textContent = meal ? meal.name : '';
+  // Build date options: next 14 days + past 14 days, excluding activeDate
+  const sel = document.getElementById('copy-meal-date-select');
+  if (!sel) return;
+  const todayKey = new Date().toISOString().split('T')[0];
+  const activeKey = nutActiveDate || todayKey;
+  const dates = [];
+  for (let i = -14; i <= 14; i++) {
+    if (i === 0) continue; // skip current day — can't copy to same day
+    const d = new Date(); d.setDate(d.getDate() + i);
+    const key = d.toISOString().split('T')[0];
+    if (key !== activeKey) dates.push(key);
+  }
+  // Deduplicate and also include any logged dates not already in range
+  const log = loadNutLog();
+  const extra = log.map(e => e.date).filter(d => d !== activeKey && !dates.includes(d));
+  const allDates = [...new Set([...dates, ...extra])].sort((a,b) => a > b ? 1 : -1);
+  sel.innerHTML = allDates.map(d => {
+    const isToday = d === todayKey;
+    const label = formatNutDate(d, isToday);
+    return `<option value="${d}">${label}</option>`;
+  }).join('');
+  // Default to tomorrow if available, else nearest future
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+  const tomorrowKey = tomorrow.toISOString().split('T')[0];
+  if (allDates.includes(tomorrowKey)) sel.value = tomorrowKey;
+  updateCopyMealConflictNote();
+  sel.onchange = updateCopyMealConflictNote;
+  const ov = document.getElementById('copy-meal-overlay');
+  const md = document.getElementById('copy-meal-modal');
+  ov.style.opacity = '1'; ov.style.pointerEvents = 'auto'; md.style.transform = 'translateY(0)';
+}
+function updateCopyMealConflictNote() {
+  const sel = document.getElementById('copy-meal-date-select');
+  const note = document.getElementById('copy-meal-conflict-note');
+  if (!sel || !note || copyMealIndex < 0) return;
+  const targetDate = sel.value;
+  const meal = nutTodayMeals[copyMealIndex];
+  if (!meal) return;
+  const log = loadNutLog();
+  const entry = log.find(e => e.date === targetDate);
+  const conflict = entry && (entry.meals || []).some(m => m.name === meal.name);
+  note.style.display = conflict ? 'block' : 'none';
+}
+function closeCopyMeal() {
+  const ov = document.getElementById('copy-meal-overlay');
+  const md = document.getElementById('copy-meal-modal');
+  ov.style.opacity = '0'; ov.style.pointerEvents = 'none'; md.style.transform = 'translateY(100%)';
+  copyMealIndex = -1;
+}
+function maybeCopyMealClose(e) { if (e.target === document.getElementById('copy-meal-overlay')) closeCopyMeal(); }
+function copyMealConfirm() {
+  if (copyMealIndex < 0) return;
+  const sel = document.getElementById('copy-meal-date-select');
+  if (!sel) return;
+  const targetDate = sel.value;
+  const meal = nutTodayMeals[copyMealIndex];
+  if (!meal || !targetDate) return;
+  const mealCopy = JSON.parse(JSON.stringify(meal)); // deep clone
+  const log = loadNutLog();
+  let entry = log.find(e => e.date === targetDate);
+  if (!entry) {
+    entry = { date: targetDate, bw: null, meals: [] };
+    log.push(entry);
+  }
+  // Replace if same-name meal exists, otherwise append
+  const idx = (entry.meals || []).findIndex(m => m.name === mealCopy.name);
+  if (!entry.meals) entry.meals = [];
+  if (idx >= 0) entry.meals[idx] = mealCopy;
+  else entry.meals.push(mealCopy);
+  log.sort((a, b) => a.date > b.date ? 1 : -1);
+  saveNutLog(log);
+  closeCopyMeal();
+  // Show confirmation toast via save-status element
+  const s = document.getElementById('nut-save-status');
+  if (s) {
+    const label = formatNutDate(targetDate, targetDate === new Date().toISOString().split('T')[0]);
+    s.textContent = `✓ Copied to ${label}`; s.style.opacity = '1';
+    setTimeout(() => s.style.opacity = '0', 2400);
+  }
+  nutBuildDateSelect();
 }
 
 function saveTodayMeals(){
