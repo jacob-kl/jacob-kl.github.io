@@ -875,9 +875,9 @@ function renderCycle(cycle){
             if(waveGroup.length===0){waveGroup.push(ex);i++;}
             const lk=logKey(phase.id,week.number,di,i);
             const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
-            const anyMade=Object.values(prevLog).some(e=>e.outcome==='made');
-            const anyMiss=Object.values(prevLog).some(e=>e.outcome==='miss')&&!anyMade;
-            const anyMixed=Object.values(prevLog).some(e=>e.outcome==='made')&&Object.values(prevLog).some(e=>e.outcome==='miss');
+            const anyMade=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made');
+            const anyMiss=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss');
+            const anyMixed=anyMade&&anyMiss;
             const lbc=anyMixed?'log-btn logged-mixed':anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
             const lbi=anyMixed?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED`:anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
             const noteTD=!isAdmin?`<td class="ex-note">${ex.note||''}</td>`:'';
@@ -905,8 +905,8 @@ function renderCycle(cycle){
           const lk=logKey(phase.id,week.number,di,i);
           const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
           const anyMade=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made');
-          const anyMiss=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss')&&!anyMade;
-          const anyMixed=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made')&&Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss');
+          const anyMiss=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='miss');
+          const anyMixed=anyMade&&anyMiss;
           const prevDate=prevLog._date?`<span class="log-date-stamp">${prevLog._date}</span>`:'';
           const lbc=anyMixed?'log-btn logged-mixed':anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
           const lbi=anyMixed?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED${prevDate}`:anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED${prevDate}`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED${prevDate}`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
