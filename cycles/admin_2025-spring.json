@@ -1602,7 +1602,7 @@
                 },
                 {
                   "name": "Block Snatch High Pull",
-                  "sets": "9×2",
+                  "sets": "5×3",
                   "load": "103%",
                   "note": ""
                 },
@@ -1921,7 +1921,7 @@
                 },
                 {
                   "name": "Block Snatch High Pull",
-                  "sets": "10×2",
+                  "sets": 6×3",
                   "load": "111%",
                   "note": ""
                 },
@@ -2198,7 +2198,7 @@
                 },
                 {
                   "name": "Block Snatch High Pull",
-                  "sets": "6×2",
+                  "sets": "3×3",
                   "load": "110%",
                   "note": ""
                 },
