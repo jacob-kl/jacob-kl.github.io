@@ -1719,11 +1719,12 @@ function renderNotesJournal(){
       nutSectionHtml=`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Nutrition</div>${mealRows}<div style="display:flex;gap:14px;padding-top:6px;font-family:'DM Mono',monospace;font-size:10px;"><span style="color:var(--accent);font-weight:500;">${dayT.cal} kcal total</span><span style="color:var(--accent2);">${dayT.pro}g protein</span><span style="color:var(--muted);">${dayT.carb}g carbs &middot; ${dayT.fat}g fat</span></div></div>`;
     }
 
-    // Additional workouts
+    // Additional workouts — with fallback scan if phaseId doesn't match exactly
     const awHtml=getAWHtmlForJournalEntry(entry.phaseId,entry.weekNum,entry.dayIdx);
 
-    // Build badges for header
-    const awCount=loadSavedWorkouts(`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`).length;
+    // Badge count — scan all keys for this week+day
+    let awCount=loadSavedWorkouts(`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`).length;
+    if(!awCount){try{const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');Object.keys(allWO).forEach(k=>{if(awCount)return;const m=k.match(/^(.+)_w(\d+)_d(\d+)$/);if(m&&parseInt(m[2])===entry.weekNum&&parseInt(m[3])===entry.dayIdx&&allWO[k]&&allWO[k].length)awCount=allWO[k].length;});}catch(e){}}
     const badges=[];
     if(liftsHtml)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);background:rgba(79,195,161,.1);border:1px solid rgba(79,195,161,.25);padding:2px 6px;border-radius:2px;">Program</span>`);
     if(awCount)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.25);padding:2px 6px;border-radius:2px;">${awCount} Workout${awCount>1?'s':''}</span>`);
@@ -1876,6 +1877,43 @@ function downloadNotesPDF(){
       </div>`;
     }
 
+    // Additional workouts for PDF
+    let awPdfHtml='';
+    const awSaved=(()=>{
+      let s=loadSavedWorkouts(`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`);
+      if(!s.length){try{const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');Object.keys(allWO).forEach(k=>{if(s.length)return;const m=k.match(/^(.+)_w(\d+)_d(\d+)$/);if(m&&parseInt(m[2])===entry.weekNum&&parseInt(m[3])===entry.dayIdx&&allWO[k]&&allWO[k].length)s=allWO[k];});}catch(e){}}
+      return s;
+    })();
+    if(awSaved.length){
+      const typeColors={lift:'#c8a800',amrap:'#2a7a5c',fortime:'#c06020'};
+      let awRows='';
+      awSaved.forEach(w=>{
+        const tl={lift:'Lift',amrap:'AMRAP',fortime:'For Time'}[w.type]||'Lift';
+        const tc=typeColors[w.type]||'#c8a800';
+        let detail='';
+        w.movements.forEach((m,mi)=>{
+          const meta=[];
+          if(m.sets)meta.push(m.sets+' sets');
+          if(m.reps)meta.push(m.reps+(w.type==='lift'?' reps':''));
+          if(m.weight)meta.push(m.weight);
+          detail+=`<div style="margin-bottom:2px;font-size:12px;color:#1a1a1b;"><strong>${m.exercise}</strong>${meta.length?' <span style="color:#888;font-family:monospace;font-size:10px;">· '+meta.join(' · ')+'</span>':''}</div>`;
+        });
+        let result='';
+        if((w.type==='amrap'||w.type==='fortime')&&(w.timecap||w.result)){
+          const rl=w.type==='fortime'?'Time':'Result';
+          result=`<div style="font-family:monospace;font-size:10px;color:#888;margin-top:3px;">${[w.timecap?w.timecap+' min cap':'',w.result?rl+': '+w.result:''].filter(Boolean).join(' · ')}</div>`;
+        }
+        awRows+=`<div style="margin-bottom:8px;padding:8px 10px;background:#f4f3ef;border-radius:3px;border-left:3px solid ${tc};">
+          <div style="font-family:monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:${tc};margin-bottom:4px;">${tl}</div>
+          ${detail}${result}
+        </div>`;
+      });
+      awPdfHtml=`<div style="margin-bottom:14px;">
+        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Additional Workouts</div>
+        ${awRows}
+      </div>`;
+    }
+
     sections+=`
     <div style="margin-bottom:32px;padding:20px 20px 20px 24px;border-left:4px solid ${accentColor};background:#fafaf8;border-radius:0 4px 4px 0;page-break-inside:avoid;">
       <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #e8e8e4;">
@@ -1883,6 +1921,7 @@ function downloadNotesPDF(){
         <span style="font-size:11px;color:#888;font-family:monospace;">${dayDate}</span>
       </div>
       ${liftsHtml}
+      ${awPdfHtml}
       ${nutHtml}
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
       <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
@@ -2354,8 +2393,25 @@ function renderSavedWorkout(w,wi,awKey){
 
 // Inject saved workouts into session journal entry
 function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
+  // Try the direct key first
   const awKey=`${phaseId}_w${weekNum}_d${dayIdx}`;
-  const saved=loadSavedWorkouts(awKey);
+  let saved=loadSavedWorkouts(awKey);
+
+  // Fallback: scan all stored workout keys for a match on weekNum+dayIdx
+  // (guards against any phaseId mismatch between notes key and awKey)
+  if(!saved.length){
+    try{
+      const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');
+      Object.keys(allWO).forEach(k=>{
+        if(saved.length)return;
+        const m=k.match(/^(.+)_w(\d+)_d(\d+)$/);
+        if(m&&parseInt(m[2])===weekNum&&parseInt(m[3])===dayIdx&&allWO[k]&&allWO[k].length){
+          saved=allWO[k];
+        }
+      });
+    }catch(e){}
+  }
+
   if(!saved.length)return'';
   let html=`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">
     <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Additional Workouts</div>`;
