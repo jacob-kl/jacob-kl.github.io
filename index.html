@@ -222,6 +222,47 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
 #all-lifts-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px 12px 0 0;width:100%;max-width:600px;max-height:92vh;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .25s ease;}
 @media(max-width:860px){.days-grid{grid-template-columns:1fr;}.hero,.week-nav,.week-content,.meso-header,.rm-panel,#admin-bar{padding-left:20px;padding-right:20px;}.rm-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));}.hero-bg-logo{height:160px;top:40px;}}
 @media print{body{background:white;color:black;}.week-content{display:block!important;}.week-nav,#login-gate,.rm-panel,#admin-bar,#theme-toggle-wrap{display:none;}}
+/* ── ADD WORKOUT ─────────────────────────────────────────────── */
+.add-workout-btn{width:100%;background:none;border:1px dashed var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px;border-radius:3px;cursor:pointer;transition:all .2s;margin:0;}
+.add-workout-btn:hover{border-color:var(--accent);color:var(--accent);}
+.add-workout-section{padding:10px 14px;border-top:1px solid var(--border);}
+#aw-modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:8800;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .2s;}
+#aw-modal-overlay.open{opacity:1;pointer-events:auto;}
+#aw-modal{background:var(--surface);border:1px solid var(--border);border-radius:12px 12px 0 0;width:100%;max-width:560px;padding:0 0 24px;transform:translateY(100%);transition:transform .25s ease;max-height:92vh;overflow-y:auto;}
+#aw-modal-overlay.open #aw-modal{transform:translateY(0);}
+.aw-type-tabs{display:flex;gap:0;border-bottom:1px solid var(--border);}
+.aw-type-tab{flex:1;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;background:none;border:none;border-bottom:2px solid transparent;color:var(--muted);padding:12px 8px;cursor:pointer;transition:all .15s;}
+.aw-type-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.aw-section{padding:14px 20px;}
+.aw-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;display:block;}
+.aw-select{width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border-radius:3px;outline:none;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a7870'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
+.aw-select:focus{border-color:var(--accent);}
+.aw-input{width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px;border-radius:3px;outline:none;}
+.aw-input:focus{border-color:var(--accent);}
+.aw-row{display:flex;gap:10px;align-items:flex-end;}
+.aw-row .aw-field{flex:1;display:flex;flex-direction:column;gap:5px;}
+.aw-new-ex-row{display:none;margin-top:8px;align-items:center;gap:8px;}
+.aw-new-ex-row.visible{display:flex;}
+.aw-new-ex-btn{background:var(--accent);color:#0e0e0f;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:none;padding:6px 12px;border-radius:3px;cursor:pointer;white-space:nowrap;}
+.aw-superset-toggle{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);margin-top:2px;}
+.aw-superset-toggle label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;}
+.aw-superset-toggle input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;}
+.aw-superset-block{display:none;border:1px solid var(--border);border-radius:4px;padding:12px;margin-top:8px;background:var(--surface2);}
+.aw-superset-block.visible{display:block;}
+.aw-ss-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:10px;}
+.aw-saved-list{margin-top:10px;}
+.aw-saved-item{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;color:var(--text);}
+.aw-saved-item:last-child{border-bottom:none;}
+.aw-saved-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:2px;}
+.aw-amrap-footer{border-top:1px solid var(--border);margin-top:10px;padding-top:12px;display:flex;gap:10px;}
+.aw-amrap-footer .aw-field{flex:1;display:flex;flex-direction:column;gap:5px;}
+.aw-workouts-list{padding:10px 14px;border-top:1px solid var(--border);}
+.aw-workout-entry{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:12px 14px;margin-bottom:8px;position:relative;}
+.aw-workout-entry-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:6px;}
+.aw-workout-entry-detail{font-size:13px;color:var(--text);line-height:1.6;}
+.aw-workout-entry-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;}
+.aw-delete-btn{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px 4px;}
+.aw-delete-btn:hover{color:var(--accent3);}
 </style>
 </head>
 <body>
@@ -496,6 +537,24 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
   <div style="background:var(--accent);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:3px;padding:14px 32px;border-radius:4px;box-shadow:0 8px 32px rgba(0,0,0,.4);">
     <span id="pr-lift-msg">🏆 NEW PR!</span>
     <div id="pr-lift-sub" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;margin-top:3px;"></div>
+  </div>
+</div>
+<!-- ADD WORKOUT MODAL -->
+<div id="aw-modal-overlay" onclick="maybeCloseAWModal(event)">
+  <div id="aw-modal">
+    <div class="modal-handle"></div>
+    <div style="padding:14px 20px 0;border-bottom:1px solid var(--border);">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:1px;color:var(--accent);margin-bottom:10px;">Add Workout</div>
+      <div class="aw-type-tabs">
+        <button class="aw-type-tab active" id="aw-tab-lift" onclick="awSetType('lift')">Lift</button>
+        <button class="aw-type-tab" id="aw-tab-amrap" onclick="awSetType('amrap')">AMRAP</button>
+      </div>
+    </div>
+    <div id="aw-form-body" style="padding:0;"></div>
+    <div style="padding:10px 20px 0;display:flex;flex-direction:column;gap:8px;">
+      <button onclick="awSave()" style="width:100%;background:var(--accent);color:#0e0e0f;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:3px;border:none;padding:13px;border-radius:3px;cursor:pointer;">SAVE WORKOUT</button>
+      <button onclick="closeAWModal()" style="width:100%;background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:10px;border-radius:3px;cursor:pointer;" onmouseover="this.style.borderColor='var(--accent3)';this.style.color='var(--accent3)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Cancel</button>
+    </div>
   </div>
 </div>
 <div id="log-modal-overlay" onclick="maybeCloseModal(event)">
@@ -939,6 +998,14 @@ function renderCycle(cycle){
         html+='</tbody></table></div>';
         const nKey=notesKey(phase.id,week.number,di),nVal=loadNote(nKey).replace(/"/g,'&quot;'),nId=`notes-body-${phase.id}-${week.number}-${di}`,btnId=`notes-btn-${phase.id}-${week.number}-${di}`;
         const ph=isAdmin?'Notes for this session\u2014programming thoughts, athlete feedback\u2026':'Your notes for this day\u2026';
+        // Add Workout button (admin/competitor view only)
+        if(isAdmin){
+          const awKey=`${phase.id}_w${week.number}_d${di}`;
+          const savedAW=loadSavedWorkouts(awKey);
+          let awListHtml='';
+          if(savedAW.length){awListHtml='<div class="aw-workouts-list">'+savedAW.map((w,wi)=>renderSavedWorkout(w,wi,awKey)).join('')+'</div>';}
+          html+=`${awListHtml}<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${awKey}')">+ Add Workout</button></div>`;
+        }
         html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea></div></div>`;
         html+='</div>';
       });
@@ -1951,6 +2018,266 @@ function showCSVStatus(msg){
   const el=document.getElementById('csv-status');if(!el)return;
   el.textContent=msg;el.style.opacity='1';
   setTimeout(()=>el.style.opacity='0',3000);
+}
+
+// ══ ADD WORKOUT ══════════════════════════════════════════════════════════════
+const AW_WORKOUTS_SK='kc_aw_workouts';
+const AW_CUSTOM_EX_SK='kc_aw_custom_exercises';
+
+// Built-in exercise list for dropdown (flat from ALL_LIFTS_DB + common metcon moves)
+const AW_BUILTIN_EX=[
+  'Snatch','Clean & Jerk','Clean','Jerk','Split Jerk','Power Snatch','Power Clean',
+  'Hang Snatch','Hang Clean','Muscle Snatch','Snatch Balance',
+  'Back Squat','Front Squat','Overhead Squat','Box Squat','Goblet Squat','Bulgarian Split Squat',
+  'Deadlift','Romanian Deadlift','Good Morning','Snatch Pull','Clean Pull','Pendlay Row','Bent Over Row',
+  'Bench Press','Incline Bench','Strict Press','Push Press','Push Jerk','Floor Press',
+  'Pull-up','Chin-up','Dip','Barbell Curl','Skull Crushers','Tricep Pushdown',
+  'Box Jump','Burpee','Kettlebell Swing','Kettlebell Snatch','Kettlebell Clean','Thruster',
+  'Wall Ball','Double Under','Row','Assault Bike','Ski Erg','Run','400m Run','800m Run',
+  'Toes to Bar','Knees to Elbow','Muscle Up','Bar Muscle Up','Ring Muscle Up',
+  'Handstand Push-up','Handstand Walk','Pistol','GHD Sit-up','GHD Hip Extension',
+  'Rope Climb','Dumbbell Snatch','Dumbbell Clean and Jerk','Farmer Carry'
+];
+
+function loadCustomExercises(){try{return JSON.parse(localStorage.getItem(userKey(AW_CUSTOM_EX_SK))||'[]');}catch(e){return[];}}
+function saveCustomExercises(arr){try{localStorage.setItem(userKey(AW_CUSTOM_EX_SK),JSON.stringify(arr));}catch(e){}}
+function getAllExercises(){return [...new Set([...AW_BUILTIN_EX,...loadCustomExercises()])].sort();}
+
+function loadSavedWorkouts(awKey){
+  try{const all=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');return all[awKey]||[];}catch(e){return[];}
+}
+function saveSavedWorkouts(awKey,arr){
+  try{const all=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');all[awKey]=arr;localStorage.setItem(userKey(AW_WORKOUTS_SK),JSON.stringify(all));}catch(e){}
+}
+
+let awCurrentKey='', awCurrentType='lift';
+
+function openAWModal(awKey){
+  awCurrentKey=awKey;
+  awCurrentType='lift';
+  document.getElementById('aw-tab-lift').classList.add('active');
+  document.getElementById('aw-tab-amrap').classList.remove('active');
+  renderAWForm();
+  const ov=document.getElementById('aw-modal-overlay');
+  ov.classList.add('open');
+}
+function closeAWModal(){document.getElementById('aw-modal-overlay').classList.remove('open');}
+function maybeCloseAWModal(e){if(e.target===document.getElementById('aw-modal-overlay'))closeAWModal();}
+
+function awSetType(t){
+  awCurrentType=t;
+  document.getElementById('aw-tab-lift').classList.toggle('active',t==='lift');
+  document.getElementById('aw-tab-amrap').classList.toggle('active',t==='amrap');
+  renderAWForm();
+}
+
+function awExSelectHtml(idPrefix,label){
+  const exList=getAllExercises();
+  const opts=exList.map(e=>`<option value="${e.replace(/"/g,'&quot;')}">${e}</option>`).join('');
+  return `
+    <div class="aw-field">
+      <span class="aw-label">${label}</span>
+      <select class="aw-select" id="${idPrefix}-select" onchange="awCheckNewEx('${idPrefix}')">
+        <option value="">— Select exercise —</option>
+        ${opts}
+        <option value="__custom__">Enter custom…</option>
+      </select>
+      <input class="aw-input" type="text" id="${idPrefix}-custom" placeholder="Type exercise name…" style="display:none;margin-top:6px;">
+      <div class="aw-new-ex-row" id="${idPrefix}-newex-row">
+        <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--accent2);flex:1;">Save this exercise for later?</span>
+        <button class="aw-new-ex-btn" onclick="awAddExercise('${idPrefix}')">+ Add Exercise</button>
+      </div>
+    </div>`;
+}
+
+function awCheckNewEx(pfx){
+  const sel=document.getElementById(pfx+'-select');
+  const customInp=document.getElementById(pfx+'-custom');
+  const newRow=document.getElementById(pfx+'-newex-row');
+  if(sel.value==='__custom__'){
+    customInp.style.display='block';
+    customInp.focus();
+  }else{
+    customInp.style.display='none';
+  }
+  // Show "Add exercise" prompt only when typing custom
+  customInp.oninput=()=>{
+    const val=(customInp.value||'').trim();
+    const known=getAllExercises().map(e=>e.toLowerCase());
+    if(val&&!known.includes(val.toLowerCase()))newRow.classList.add('visible');
+    else newRow.classList.remove('visible');
+  };
+}
+
+function awGetExName(pfx){
+  const sel=document.getElementById(pfx+'-select');
+  if(sel.value==='__custom__'||sel.value===''){
+    return (document.getElementById(pfx+'-custom')?.value||'').trim();
+  }
+  return sel.value;
+}
+
+function awAddExercise(pfx){
+  const name=(document.getElementById(pfx+'-custom')?.value||'').trim();
+  if(!name)return;
+  const arr=loadCustomExercises();
+  if(!arr.map(e=>e.toLowerCase()).includes(name.toLowerCase())){arr.push(name);saveCustomExercises(arr);}
+  // Refresh the select and pick the new entry
+  renderAWForm();
+  // Re-select the new exercise
+  setTimeout(()=>{
+    const s=document.getElementById(pfx+'-select');
+    if(s){for(let i=0;i<s.options.length;i++){if(s.options[i].value.toLowerCase()===name.toLowerCase()){s.selectedIndex=i;break;}}}
+  },50);
+}
+
+function liftBlockHtml(pfx,labelSuffix){
+  const label=labelSuffix?'Exercise ('+labelSuffix+')':'Exercise';
+  return `
+  <div class="aw-section" style="padding-bottom:8px;">
+    ${awExSelectHtml(pfx,label)}
+    <div class="aw-row" style="margin-top:12px;">
+      <div class="aw-field">
+        <span class="aw-label">Sets</span>
+        <input class="aw-input" type="text" id="${pfx}-sets" placeholder="e.g. 4">
+      </div>
+      <div class="aw-field">
+        <span class="aw-label">Reps</span>
+        <input class="aw-input" type="text" id="${pfx}-reps" placeholder="e.g. 5">
+      </div>
+      <div class="aw-field">
+        <span class="aw-label">Weight</span>
+        <input class="aw-input" type="text" id="${pfx}-weight" placeholder="e.g. 185 lbs">
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderAWForm(){
+  const body=document.getElementById('aw-form-body');
+  if(awCurrentType==='lift'){
+    body.innerHTML=`
+      ${liftBlockHtml('aw-a','')}
+      <div class="aw-section" style="padding-top:4px;padding-bottom:12px;border-top:1px solid var(--border);">
+        <div class="aw-superset-toggle">
+          <input type="checkbox" id="aw-ss-check" onchange="awToggleSS()">
+          <label for="aw-ss-check">Superset with another exercise</label>
+        </div>
+        <div class="aw-superset-block" id="aw-ss-block">
+          <div class="aw-ss-label">Superset Exercise</div>
+          ${liftBlockHtml('aw-b','')}
+        </div>
+      </div>`;
+  } else {
+    body.innerHTML=`
+      ${liftBlockHtml('aw-a','Movement 1')}
+      <div class="aw-section" style="padding-top:4px;padding-bottom:12px;border-top:1px solid var(--border);">
+        <div class="aw-superset-toggle">
+          <input type="checkbox" id="aw-ss-check" onchange="awToggleSS()">
+          <label for="aw-ss-check">Include second movement</label>
+        </div>
+        <div class="aw-superset-block" id="aw-ss-block">
+          <div class="aw-ss-label">Movement 2</div>
+          ${liftBlockHtml('aw-b','')}
+        </div>
+      </div>
+      <div class="aw-section" style="border-top:1px solid var(--border);padding-top:12px;">
+        <div class="aw-amrap-footer">
+          <div class="aw-field">
+            <span class="aw-label">Time Cap (min)</span>
+            <input class="aw-input" type="number" id="aw-timecap" placeholder="e.g. 20" min="1">
+          </div>
+          <div class="aw-field">
+            <span class="aw-label">Result (rounds+reps)</span>
+            <input class="aw-input" type="text" id="aw-result" placeholder="e.g. 7+14">
+          </div>
+        </div>
+      </div>`;
+  }
+}
+
+function awToggleSS(){
+  const checked=document.getElementById('aw-ss-check').checked;
+  const block=document.getElementById('aw-ss-block');
+  if(block)block.classList.toggle('visible',checked);
+}
+
+function awSave(){
+  const exA=awGetExName('aw-a');
+  if(!exA){alert('Please select or enter an exercise.');return;}
+  const entry={type:awCurrentType,timestamp:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),movements:[]};
+  // Primary movement
+  const mvA={exercise:exA,sets:document.getElementById('aw-a-sets')?.value||'',reps:document.getElementById('aw-a-reps')?.value||'',weight:document.getElementById('aw-a-weight')?.value||''};
+  entry.movements.push(mvA);
+  // Superset / second movement
+  const ssChecked=document.getElementById('aw-ss-check')?.checked;
+  if(ssChecked){
+    const exB=awGetExName('aw-b');
+    if(exB){entry.movements.push({exercise:exB,sets:document.getElementById('aw-b-sets')?.value||'',reps:document.getElementById('aw-b-reps')?.value||'',weight:document.getElementById('aw-b-weight')?.value||''});}
+  }
+  // AMRAP-specific
+  if(awCurrentType==='amrap'){
+    entry.timecap=document.getElementById('aw-timecap')?.value||'';
+    entry.result=document.getElementById('aw-result')?.value||'';
+  }
+  const arr=loadSavedWorkouts(awCurrentKey);
+  arr.push(entry);
+  saveSavedWorkouts(awCurrentKey,arr);
+  closeAWModal();
+  // Re-render the day card's workout list in-place
+  refreshAWSection(awCurrentKey);
+}
+
+function deleteWorkout(awKey,idx){
+  const arr=loadSavedWorkouts(awKey);
+  arr.splice(idx,1);
+  saveSavedWorkouts(awKey,arr);
+  refreshAWSection(awKey);
+}
+
+function refreshAWSection(awKey){
+  // Find all add-workout-section divs and re-render the one matching this key
+  const saved=loadSavedWorkouts(awKey);
+  let listHtml='';
+  if(saved.length)listHtml='<div class="aw-workouts-list">'+saved.map((w,wi)=>renderSavedWorkout(w,wi,awKey)).join('')+'</div>';
+  // The button onclick has the awKey encoded — find the sibling list
+  const allBtns=document.querySelectorAll('.add-workout-btn');
+  allBtns.forEach(btn=>{
+    if(btn.getAttribute('onclick')&&btn.getAttribute('onclick').includes(`'${awKey}'`)){
+      const section=btn.closest('.add-workout-section');
+      const parent=section?.parentElement;
+      if(!parent)return;
+      // Remove old list if any
+      const oldList=parent.querySelector('.aw-workouts-list');
+      if(oldList)oldList.remove();
+      // Insert before the add-workout-section
+      if(listHtml){const tmp=document.createElement('div');tmp.innerHTML=listHtml;parent.insertBefore(tmp.firstChild,section);}
+    }
+  });
+}
+
+function renderSavedWorkout(w,wi,awKey){
+  const typeLabel=w.type==='amrap'?'AMRAP':'Lift';
+  const typeColor=w.type==='amrap'?'var(--accent2)':'var(--accent)';
+  let details='';
+  w.movements.forEach((m,mi)=>{
+    const ss=w.movements.length>1&&mi===0?'<span style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--ss0);background:var(--ss0a);border:1px solid var(--ss0b);padding:1px 5px;border-radius:2px;margin-left:6px;">superset</span>':'';
+    const line=`<strong>${m.exercise}</strong>${ss}`;
+    const meta=[m.sets?m.sets+' sets':'',m.reps?m.reps+' reps':'',m.weight||''].filter(Boolean).join(' · ');
+    details+=`<div style="margin-bottom:${mi<w.movements.length-1?'6':'2'}px;">${line}${meta?'<br><span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">'+meta+'</span>':''}</div>`;
+  });
+  let footer='';
+  if(w.type==='amrap'){
+    const parts=[w.timecap?w.timecap+' min cap':'',w.result?'Result: '+w.result:''].filter(Boolean).join(' · ');
+    if(parts)footer=`<div class="aw-workout-entry-meta">${parts}</div>`;
+  }
+  return `<div class="aw-workout-entry">
+    <button class="aw-delete-btn" onclick="deleteWorkout('${awKey.replace(/'/g,"\\'")}',${wi})" title="Delete">✕</button>
+    <div class="aw-workout-entry-title" style="color:${typeColor};">${typeLabel}</div>
+    <div class="aw-workout-entry-detail">${details}</div>
+    ${footer}
+    <div class="aw-workout-entry-meta">${w.timestamp||''}</div>
+  </div>`;
 }
 
 </script>
