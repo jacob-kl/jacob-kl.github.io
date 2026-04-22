@@ -1619,9 +1619,9 @@
                   "note": ""
                 },
                 {
-                  "name": "Bench Press",
+                  "name": "Good morning",
                   "sets": "3×8",
-                  "load": "68%",
+                  "load": "140 lbs",
                   "note": "",
                   "superset": true
                 },
@@ -1666,15 +1666,9 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "140 lbs",
-                  "note": ""
-                },
-                {
-                  "name": "Bent Over Row",
-                  "sets": "4×8",
-                  "load": "155 lbs",
+                  "name": "Push press + Split Jerk",
+                  "sets": "10×1",
+                  "load": "72%",
                   "note": ""
                 },
                 {
@@ -1944,15 +1938,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Bench Press",
-                  "sets": "4×8",
-                  "load": "76%",
+                  "name": "Good Morning",
+                  "sets": "3×8",
+                  "load": "145",
                   "note": "",
                   "superset": true
                 },
                 {
                   "name": "Strict Press",
-                  "sets": "4×8",
+                  "sets": "3×8",
                   "load": "76%",
                   "note": "",
                   "supersetEnd": true
@@ -1991,15 +1985,9 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "4×6",
-                  "load": "145 lbs",
-                  "note": ""
-                },
-                {
-                  "name": "Bent Over Row",
-                  "sets": "4×8",
-                  "load": "165 lbs",
+                  "name": "Push Press + Split Jerk",
+                  "sets": "10×1",
+                  "load": "81%",
                   "note": ""
                 },
                 {
@@ -2227,15 +2215,15 @@
                   "note": ""
                 },
                 {
-                  "name": "Bench Press",
-                  "sets": "2×8",
-                  "load": "75%",
+                  "name": "Good Morning",
+                  "sets": "3×8",
+                  "load": "150",
                   "note": "",
                   "superset": true
                 },
                 {
                   "name": "Strict Press",
-                  "sets": "2×8",
+                  "sets": "3×8",
                   "load": "75%",
                   "note": "",
                   "supersetEnd": true
@@ -2274,15 +2262,9 @@
                   "note": ""
                 },
                 {
-                  "name": "Good Morning",
-                  "sets": "3×6",
-                  "load": "150 lbs",
-                  "note": ""
-                },
-                {
-                  "name": "Bent Over Row",
-                  "sets": "3×8",
-                  "load": "175 lbs",
+                  "name": "Push Press + Split Jerk",
+                  "sets": "10×1",
+                  "load": "68%",
                   "note": ""
                 },
                 {
