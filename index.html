@@ -1628,8 +1628,10 @@ function maybeCloseNotesJournal(e){
 }
 function renderNotesJournal(){
   const prefix=currentView==='admin'?'admin':'member';
-  // Scan localStorage for all notes keys for this role
-  const entries=[];
+  const isAdm=currentView==='admin';
+
+  // ── 1. Collect entries from text notes ──────────────────────────────────
+  const byKey={}; // key: "phaseId|weekNum|dayIdx"
   const notesPrefix=userKey(`kc_notes_${prefix}_`);
   try{
     for(let i=0;i<localStorage.length;i++){
@@ -1637,75 +1639,70 @@ function renderNotesJournal(){
       if(!k||!k.startsWith(notesPrefix))continue;
       const val=localStorage.getItem(k);
       if(!val||!val.trim())continue;
-      // Strip user prefix before regex matching
       const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
       const m=bare.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
       if(!m)continue;
-      entries.push({key:k,phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()});
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      byKey[ek]={phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()};
     }
   }catch(e){}
 
-  // Sort by weekNum then dayIdx
-  entries.sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
+  // ── 2. Also collect days that have saved workouts (even with no notes) ──
+  try{
+    const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');
+    Object.keys(allWO).forEach(awKey=>{
+      if(!allWO[awKey]||!allWO[awKey].length)return;
+      // awKey format: "phaseId_wN_dN"
+      const m=awKey.match(/^(.+)_w(\d+)_d(\d+)$/);
+      if(!m)return;
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      if(!byKey[ek])byKey[ek]={phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:''};
+    });
+  }catch(e){}
+
+  const entries=Object.values(byKey).sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
 
   const countEl=document.getElementById('notes-journal-count');
-  if(countEl)countEl.textContent=entries.length?`${entries.length} session${entries.length>1?'s':''}  with notes`:'';
+  if(countEl)countEl.textContent=entries.length?`${entries.length} session${entries.length>1?'s':''} logged`:'';
 
   const body=document.getElementById('notes-journal-body');
   if(!entries.length){
-    body.innerHTML=`<div style="padding:48px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">No session notes yet.<br><br>Use the Day Notes section under any workout to add notes.</div>`;
+    body.innerHTML=`<div style="padding:48px 20px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">No sessions logged yet.<br><br>Add workouts or use Day Notes under any workout.</div>`;
     return;
   }
 
-  // We need the cycle data to look up exercise names + logged weights
-  // Pull from the currently rendered program DOM — exercise rows are already in the page
+  const nutLog=loadNutLog();
   let html='';
   entries.forEach((entry,ei)=>{
-    const isAdm=currentView==='admin';
     const dayDate=getDayDate(entry.weekNum,entry.dayIdx,isAdm);
-    // Try to find the day's exercises from the DOM (already rendered)
-    const dayCardSelector=`#${entry.phaseId}-w${entry.weekNum}`;
+
+    // Lifts from DOM
     const weekEl=document.getElementById(`${entry.phaseId}-w${entry.weekNum}`);
     let liftsHtml='';
     if(weekEl){
-      const dayCards=weekEl.querySelectorAll('.day-card');
-      const dayCard=dayCards[entry.dayIdx];
+      const dayCard=weekEl.querySelectorAll('.day-card')[entry.dayIdx];
       if(dayCard){
-        const rows=dayCard.querySelectorAll('.ex-table tbody tr');
-        const u=getUnit();
-        rows.forEach((row,ri)=>{
+        dayCard.querySelectorAll('.ex-table tbody tr').forEach(row=>{
           const nameEl=row.querySelector('.ex-name,.wave-base-name');
           const weightEl=row.querySelector('.weight-cell');
           const logBtn=row.querySelector('.log-btn');
           if(!nameEl)return;
-          const name=nameEl.textContent.trim();
-          if(!name)return;
-          // Get displayed weight
-          let weightStr='';
-          if(weightEl&&!weightEl.classList.contains('empty'))weightStr=weightEl.textContent.trim();
-          // Get log status
+          const name=nameEl.textContent.trim();if(!name)return;
+          const weightStr=weightEl&&!weightEl.classList.contains('empty')?weightEl.textContent.trim():'';
           const isLogged=logBtn&&logBtn.classList.contains('logged-made');
           const isMissed=logBtn&&logBtn.classList.contains('logged-miss');
           const isMixed=logBtn&&logBtn.classList.contains('logged-mixed');
-          const statusDot=isMixed?`<span style="color:var(--ss3);margin-left:4px;">✓</span>`:isLogged?`<span style="color:var(--accent2);margin-left:4px;">✓</span>`:isMissed?`<span style="color:var(--accent3);margin-left:4px;">✗</span>`:'';
+          const statusDot=isMixed?`<span style="color:var(--ss3);margin-left:4px;">&#10003;</span>`:isLogged?`<span style="color:var(--accent2);margin-left:4px;">&#10003;</span>`:isMissed?`<span style="color:var(--accent3);margin-left:4px;">&#10007;</span>`:'';
           const weightDisplay=weightStr?` <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);">(${weightStr})</span>`:'';
           liftsHtml+=`<div style="padding:3px 0;font-size:12px;color:var(--text);display:flex;align-items:baseline;gap:2px;">${name}${weightDisplay}${statusDot}</div>`;
         });
       }
     }
 
-    const entryId=`nj-entry-${ei}`;
-    const bodyId=`nj-body-${ei}`;
-    // Build nutrition section from that day's log
-    const nutLog=loadNutLog();
+    // Nutrition
     const nutEntry=nutLog.find(e=>{
-      // Match by date — compute date for this week/day
-      const isAdm2=currentView==='admin';
-      const dateStr=getDayDate(entry.weekNum,entry.dayIdx,isAdm2);
-      // getDayDate returns "Mon, Mar 19" style — we need ISO for matching
-      // Build ISO date for comparison
-      const base=new Date(isAdm2?2026:2026,2,isAdm2?16:19);
-      const offsets=isAdm2?[0,1,2,4,5]:[0,4];
+      const base=new Date(isAdm?2026:2026,2,isAdm?16:19);
+      const offsets=isAdm?[0,1,2,4,5]:[0,4];
       base.setDate(base.getDate()+(entry.weekNum-1)*7+(offsets[entry.dayIdx]??entry.dayIdx));
       return e.date===base.toISOString().split('T')[0];
     });
@@ -1715,43 +1712,41 @@ function renderNotesJournal(){
       const dayT=nutDayTotals(nutEntry);
       let mealRows='';
       meals.forEach(m=>{
-        const mt=mealTotals(m);
-        if(!mt.cal&&!mt.pro&&!mt.carb&&!mt.fat)return;
+        const mt=mealTotals(m);if(!mt.cal&&!mt.pro&&!mt.carb&&!mt.fat)return;
         const timeStr=m.time?`<span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:6px;">${m.time}</span>`:'';
-        mealRows+=`<div style="display:flex;align-items:baseline;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap;">
-          <span style="font-size:12px;color:var(--text);">${m.name}${timeStr}</span>
-          <span style="font-family:'DM Mono',monospace;font-size:10px;display:flex;gap:10px;">
-            <span style="color:var(--accent);">${mt.cal} kcal</span>
-            <span style="color:var(--accent2);">${mt.pro}g P</span>
-            <span style="color:var(--muted);">${mt.carb}g C · ${mt.fat}g F</span>
-          </span>
-        </div>`;
+        mealRows+=`<div style="display:flex;align-items:baseline;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);gap:8px;flex-wrap:wrap;"><span style="font-size:12px;color:var(--text);">${m.name}${timeStr}</span><span style="font-family:'DM Mono',monospace;font-size:10px;display:flex;gap:10px;"><span style="color:var(--accent);">${mt.cal} kcal</span><span style="color:var(--accent2);">${mt.pro}g P</span><span style="color:var(--muted);">${mt.carb}g C &middot; ${mt.fat}g F</span></span></div>`;
       });
-      nutSectionHtml=`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Nutrition</div>
-        ${mealRows}
-        <div style="display:flex;gap:14px;padding-top:6px;font-family:'DM Mono',monospace;font-size:10px;">
-          <span style="color:var(--accent);font-weight:500;">${dayT.cal} kcal total</span>
-          <span style="color:var(--accent2);">${dayT.pro}g protein</span>
-          <span style="color:var(--muted);">${dayT.carb}g carbs · ${dayT.fat}g fat</span>
-        </div>
-      </div>`;
+      nutSectionHtml=`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Nutrition</div>${mealRows}<div style="display:flex;gap:14px;padding-top:6px;font-family:'DM Mono',monospace;font-size:10px;"><span style="color:var(--accent);font-weight:500;">${dayT.cal} kcal total</span><span style="color:var(--accent2);">${dayT.pro}g protein</span><span style="color:var(--muted);">${dayT.carb}g carbs &middot; ${dayT.fat}g fat</span></div></div>`;
     }
+
+    // Additional workouts
+    const awHtml=getAWHtmlForJournalEntry(entry.phaseId,entry.weekNum,entry.dayIdx);
+
+    // Build badges for header
+    const awCount=loadSavedWorkouts(`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`).length;
+    const badges=[];
+    if(liftsHtml)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);background:rgba(79,195,161,.1);border:1px solid rgba(79,195,161,.25);padding:2px 6px;border-radius:2px;">Program</span>`);
+    if(awCount)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.25);padding:2px 6px;border-radius:2px;">${awCount} Workout${awCount>1?'s':''}</span>`);
+    if(entry.note)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:2px 6px;border-radius:2px;">Notes</span>`);
+
+    const entryId=`nj-entry-${ei}`,bodyId=`nj-body-${ei}`;
     html+=`
     <div style="border-bottom:1px solid var(--border);">
       <button onclick="toggleNJEntry('${bodyId}','${entryId}')" id="${entryId}" style="width:100%;background:none;border:none;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;gap:12px;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">
-        <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--accent2);">Week ${entry.weekNum} · Day ${entry.dayIdx+1}</span>
-          <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</span>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--accent2);">Week ${entry.weekNum} &middot; Day ${entry.dayIdx+1}</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</span>
+          </div>
+          ${badges.length?`<div style="display:flex;gap:5px;flex-wrap:wrap;">${badges.join('')}</div>`:''}
         </div>
-        <span style="font-size:10px;color:var(--muted);transition:transform .2s;" id="${entryId}-arrow">▼</span>
+        <span style="font-size:10px;color:var(--muted);transition:transform .2s;flex-shrink:0;" id="${entryId}-arrow">&#9660;</span>
       </button>
       <div id="${bodyId}" style="display:none;padding:0 20px 16px;">
-        ${liftsHtml?`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">${liftsHtml}</div>`:''}
-        ${getAWHtmlForJournalEntry(entry.phaseId,entry.weekNum,entry.dayIdx)}
+        ${liftsHtml?`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Program Lifts</div>${liftsHtml}</div>`:''}
+        ${awHtml}
         ${nutSectionHtml}
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+        ${entry.note?`<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><div style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`:''}
       </div>
     </div>`;
   });
@@ -2055,7 +2050,9 @@ let awCurrentKey='', awCurrentType='lift', awEditingIdx=-1;
 
 function openAWModal(awKey){
   awCurrentKey=awKey; awEditingIdx=-1;
-  awSetType('lift');
+  awCurrentType='lift';
+  ['lift','amrap','fortime'].forEach(id=>{const el=document.getElementById('aw-tab-'+id);if(el)el.classList.toggle('active',id==='lift');});
+  renderAWForm();
   document.getElementById('aw-modal').querySelector('[onclick="awSave()"]').textContent='SAVE WORKOUT';
   document.getElementById('aw-modal-overlay').classList.add('open');
 }
@@ -2346,14 +2343,12 @@ function renderSavedWorkout(w,wi,awKey){
   const editedNote=w.editedAt?`<span style="color:var(--muted);"> · edited ${w.editedAt}</span>`:'';
   const safeKey=awKey.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
   return `<div class="aw-workout-entry">
-    <div style="position:absolute;top:8px;right:8px;display:flex;gap:4px;">
-      <button class="aw-delete-btn" onclick="openAWEditModal('${safeKey}',${wi})" title="Edit" style="color:var(--muted);font-size:12px;">✎</button>
-      <button class="aw-delete-btn" onclick="deleteWorkout('${safeKey}',${wi})" title="Delete">✕</button>
-    </div>
+    <button class="aw-delete-btn" onclick="deleteWorkout('${safeKey}',${wi})" title="Delete" style="position:absolute;top:8px;right:8px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 6px;" onmouseover="this.style.color='var(--accent3)'" onmouseout="this.style.color='var(--muted)'">&#x2715;</button>
     <div class="aw-workout-entry-title" style="color:${typeColor};">${typeLabel}</div>
     <div class="aw-workout-entry-detail">${details}</div>
     ${footer}
-    <div class="aw-workout-entry-meta">${w.timestamp||''}${editedNote}</div>
+    <div class="aw-workout-entry-meta" style="margin-bottom:10px;">${w.timestamp||''}${editedNote}</div>
+    <button onclick="openAWEditModal('${safeKey}',${wi})" style="width:100%;background:none;border:1px solid var(--accent);color:var(--accent);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px;border-radius:3px;cursor:pointer;transition:all .2s;" onmouseover="this.style.background='rgba(232,197,71,.1)'" onmouseout="this.style.background='none'">&#9998; EDIT</button>
   </div>`;
 }
 
