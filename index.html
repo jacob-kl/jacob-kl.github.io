@@ -641,7 +641,7 @@ document.addEventListener('DOMContentLoaded',()=>{
 function initApp(){
   if(currentRole==='admin'){document.getElementById('admin-bar').classList.add('visible');document.getElementById('member-bar').classList.remove('visible');}
   else{document.getElementById('admin-bar').classList.remove('visible');document.getElementById('member-bar').classList.add('visible');const n=document.getElementById('member-bar-name-text');if(n)n.textContent=memberName||'Member';}
-  currentView='member';updateViewButtons();updateViewLabels();loadView();
+  currentView=(currentRole==='admin')?'admin':'member';updateViewButtons();updateViewLabels();loadView();
 }
 function switchView(v){currentView=v;updateViewButtons();updateViewLabels();loadView();}
 function updateViewButtons(){
@@ -787,11 +787,41 @@ function loadView(){
     document.getElementById('cycle-select-wrap').style.display='none';
     document.getElementById('admin-cycle-select-wrap').style.display='flex';
     const adminCycleId=document.getElementById('admin-cycle-select').value;
-    fetch('cycles/'+adminCycleId+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(renderCycle).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load admin program. Run from a web server.</div>';});
+    fetch('cycles/'+adminCycleId+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{renderCycle(data);requestAnimationFrame(()=>requestAnimationFrame(scrollToToday));}).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load admin program. Run from a web server.</div>';});
   } else {
     document.getElementById('cycle-select-wrap').style.display='flex';
     document.getElementById('admin-cycle-select-wrap').style.display='none';
     loadCycle(document.getElementById('cycle-select').value);
+  }
+}
+function scrollToToday(){
+  if(currentView!=='admin')return;
+  const today=new Date();today.setHours(0,0,0,0);
+  const base=new Date(2026,2,16); // Admin start: Mon March 16
+  const offsets=ADMIN_DAY_OFFSETS; // [0,1,2,4,5]
+  let targetCard=null;
+  // Walk every rendered day card and find the one matching today
+  document.querySelectorAll('.week-content').forEach(weekEl=>{
+    const dayCards=weekEl.querySelectorAll('.day-card');
+    dayCards.forEach((card,di)=>{
+      // Extract week number from weekEl id, e.g. "phase1-w3"
+      const m=weekEl.id.match(/-w(\d+)$/);if(!m)return;
+      const wNum=parseInt(m[1]);
+      const off=offsets[di]??di;
+      const d=new Date(base);d.setDate(d.getDate()+(wNum-1)*7+off);
+      if(d.getTime()===today.getTime())targetCard=card;
+    });
+  });
+  if(targetCard){
+    // Small offset so the sticky admin bar doesn't cover it
+    const barH=(document.getElementById('admin-bar')?.offsetHeight||52)+12;
+    const rect=targetCard.getBoundingClientRect();
+    const scrollY=window.scrollY+rect.top-barH;
+    window.scrollTo({top:scrollY,behavior:'smooth'});
+    // Brief gold highlight pulse so it's obvious which card
+    targetCard.style.transition='box-shadow .3s';
+    targetCard.style.boxShadow='0 0 0 2px var(--accent)';
+    setTimeout(()=>{targetCard.style.boxShadow='';},2000);
   }
 }
 function onCycleChange(v){if(currentView==='member')loadCycle(v);}
@@ -913,18 +943,18 @@ function renderCycle(cycle){
         return base>today;
       })();
       // For members, make the most recent past/current week the active default
-      const isActiveDefault=(currentRole==='admin')?isFirst:(week.number===phase.weeks.filter(w=>{
+      const isActiveDefault=(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
-        const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        const b=currentView==='admin'?new Date(2026,2,16):new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       const futureTabStyle=weekIsFuture?'opacity:0.4;font-style:italic;':'';
       html+=`<button class="week-btn ${isActiveDefault?'active '+phase.colorClass:''}" style="${futureTabStyle}" data-phase="${phase.id}" data-week="${week.number}" data-days="${week.days.length}" onclick="showWeek('${phase.id}',${week.number},this,'${phase.colorClass}')">${week.label}<span class="week-dot ${status}"></span></button>`;});
     html+='</div>';
     phase.weeks.forEach((week,wi)=>{
-      const isCurrentWeek=(currentRole==='admin')?(wi===0):(week.number===phase.weeks.filter(w=>{
+      const isCurrentWeek=(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
-        const b=new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        const b=currentView==='admin'?new Date(2026,2,16):new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       html+=`<div class="week-content ${isCurrentWeek?'visible':''}" id="${phase.id}-w${week.number}">`;
@@ -2442,4 +2472,5 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
 
