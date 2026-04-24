@@ -1158,14 +1158,19 @@ function makeMealCard(meal,mi){
   const iS='background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:12px;padding:5px 7px;border-radius:2px;outline:none;width:100%;';
   const mt=mealTotals(meal);
   let itemsHtml='';
+  const niS="background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:11px;padding:3px 5px;border-radius:2px;outline:none;width:100%;";
   (meal.items||[]).forEach((item,ii)=>{
-    itemsHtml+=`<div id="meal-${mi}-item-${ii}" style="display:grid;grid-template-columns:2fr 62px 52px 52px 52px 26px;gap:5px;align-items:center;padding:5px 14px;border-bottom:1px solid var(--border);">
-      <input type="text" value="${esc(item.name)}" placeholder="Food name" onchange="nutItemField(${mi},${ii},\'name\',this.value)" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
-      <input type="number" value="${item.cal||''}" placeholder="kcal" min="0" onchange="nutItemField(${mi},${ii},\'cal\',parseFloat(this.value)||0)" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-      <input type="number" value="${item.pro||''}" placeholder="pro" min="0" onchange="nutItemField(${mi},${ii},\'pro\',parseFloat(this.value)||0)" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
-      <input type="number" value="${item.carb||''}" placeholder="carb" min="0" onchange="nutItemField(${mi},${ii},\'carb\',parseFloat(this.value)||0)" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-      <input type="number" value="${item.fat||''}" placeholder="fat" min="0" onchange="nutItemField(${mi},${ii},\'fat\',parseFloat(this.value)||0)" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-      <button onclick="nutRemoveItem(${mi},${ii})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px;" onmouseover="this.style.color=\'var(--accent3)\'" onmouseout="this.style.color=\'var(--muted)\'">✕</button>
+    itemsHtml+=`<div id="meal-${mi}-item-${ii}" style="padding:5px 10px 6px 14px;border-bottom:1px solid var(--border);">
+      <div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;">
+        <input type="text" value="${esc(item.name)}" placeholder="Food name" onchange="nutItemField(${mi},${ii},'name',this.value)" style="${niS}font-size:12px;" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'">
+        <button onclick="nutRemoveItem(${mi},${ii})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:1px 3px;flex-shrink:0;" onmouseover="this.style.color='var(--accent3)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;">
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:1px;">kcal</div><input type="number" value="${item.cal||''}" placeholder="0" min="0" onchange="nutItemField(${mi},${ii},'cal',parseFloat(this.value)||0)" style="${niS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:1px;">pro</div><input type="number" value="${item.pro||''}" placeholder="0" min="0" onchange="nutItemField(${mi},${ii},'pro',parseFloat(this.value)||0)" style="${niS}text-align:right;" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;">carb</div><input type="number" value="${item.carb||''}" placeholder="0" min="0" onchange="nutItemField(${mi},${ii},'carb',parseFloat(this.value)||0)" style="${niS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+        <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;">fat</div><input type="number" value="${item.fat||''}" placeholder="0" min="0" onchange="nutItemField(${mi},${ii},'fat',parseFloat(this.value)||0)" style="${niS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+      </div>
     </div>`;
   });
   div.innerHTML=`
@@ -1178,14 +1183,6 @@ function makeMealCard(meal,mi){
         <button onclick="openCopyMeal(${mi})" title="Copy meal to another day" style="background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;white-space:nowrap;transition:all .15s;" onmouseover="this.style.borderColor=\'var(--accent2)\';this.style.color=\'var(--accent2)\'" onmouseout="this.style.borderColor=\'var(--border)\';this.style.color=\'var(--muted)\'">⬆ Copy</button>
         <button onclick="removeMeal(${mi})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;padding:2px 4px;" onmouseover="this.style.color=\'var(--accent3)\'" onmouseout="this.style.color=\'var(--muted)\'">✕</button>
       </div>
-    </div>
-    <div style="display:grid;grid-template-columns:2fr 62px 52px 52px 52px 26px;gap:5px;padding:4px 14px;background:var(--surface2);border-bottom:1px solid var(--border);">
-      <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Food</div>
-      <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">kcal</div>
-      <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">pro</div>
-      <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">carb</div>
-      <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">fat</div>
-      <div></div>
     </div>
     <div id="meal-${mi}-items">${itemsHtml||'<div style="padding:8px 14px;font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);letter-spacing:1px;">No items yet — add food below</div>'}</div>
     <div style="padding:7px 14px;">
@@ -1325,14 +1322,18 @@ function cbRenderList(){
 function cbEditRecipe(id){cbEditingId=id;cbSetTab('edit');}
 function cbDeleteRecipe(id){if(!confirm('Delete this recipe?'))return;saveCookbook(loadCookbook().filter(r=>r.id!==id));cbRenderList();}
 function cbIngredientRow(ii,ing){
-  const iS='background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:12px;padding:5px 7px;border-radius:2px;outline:none;width:100%;';
-  return`<div id="cb-ing-${ii}" style="display:grid;grid-template-columns:2fr 60px 52px 52px 52px 26px;gap:5px;margin-bottom:5px;">
-    <input type="text" id="cbi-name-${ii}" value="${esc(ing.name||'')}" placeholder="Ingredient" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
-    <input type="number" id="cbi-cal-${ii}" value="${ing.cal||''}" placeholder="0" min="0" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-    <input type="number" id="cbi-pro-${ii}" value="${ing.pro||''}" placeholder="0" min="0" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
-    <input type="number" id="cbi-carb-${ii}" value="${ing.carb||''}" placeholder="0" min="0" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-    <input type="number" id="cbi-fat-${ii}" value="${ing.fat||''}" placeholder="0" min="0" style="${iS}text-align:right;" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'">
-    <button onclick="cbRemoveIngRow(${ii})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;" onmouseover="this.style.color=\'var(--accent3)\'" onmouseout="this.style.color=\'var(--muted)\'">✕</button>
+  const cbS="background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:11px;padding:3px 5px;border-radius:2px;outline:none;width:100%;";
+  return`<div id="cb-ing-${ii}" style="padding:5px 0 6px;border-bottom:1px solid var(--border);margin-bottom:0;">
+    <div style="display:flex;align-items:center;gap:4px;margin-bottom:3px;">
+      <input type="text" id="cbi-name-${ii}" value="${esc(ing.name||'')}" placeholder="Ingredient" style="${cbS}font-size:12px;" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'">
+      <button onclick="cbRemoveIngRow(${ii})" style="background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:1px 3px;flex-shrink:0;" onmouseover="this.style.color='var(--accent3)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:4px;">
+      <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-bottom:1px;">kcal</div><input type="number" id="cbi-cal-${ii}" value="${ing.cal||''}" placeholder="0" min="0" style="${cbS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+      <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);margin-bottom:1px;">pro</div><input type="number" id="cbi-pro-${ii}" value="${ing.pro||''}" placeholder="0" min="0" style="${cbS}text-align:right;" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'"></div>
+      <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;">carb</div><input type="number" id="cbi-carb-${ii}" value="${ing.carb||''}" placeholder="0" min="0" style="${cbS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+      <div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;">fat</div><input type="number" id="cbi-fat-${ii}" value="${ing.fat||''}" placeholder="0" min="0" style="${cbS}text-align:right;" onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></div>
+    </div>
   </div>`;
 }
 function cbRenderEditor(editId){
@@ -1350,14 +1351,6 @@ function cbRenderEditor(editId){
     <textarea id="cb-instructions" placeholder="Steps, cooking notes, prep tips…" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Sans\',sans-serif;font-size:13px;padding:8px 10px;border-radius:2px;outline:none;width:100%;min-height:80px;resize:vertical;line-height:1.6;" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">${esc(recipe?.instructions||'')}</textarea></div>
     <div>
       <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Ingredients &amp; Nutrition per serving</div>
-      <div style="display:grid;grid-template-columns:2fr 60px 52px 52px 52px 26px;gap:5px;padding:4px 0;margin-bottom:4px;">
-        <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);">Ingredient</div>
-        <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">kcal</div>
-        <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">pro</div>
-        <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">carb</div>
-        <div style="font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:right;">fat</div>
-        <div></div>
-      </div>
       <div id="cb-ing-list">${ingRows}</div>
       <button onclick="cbAddIngredientRow()" style="width:100%;background:none;border:1px dashed var(--border);color:var(--muted);font-family:\'DM Mono\',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px;border-radius:2px;cursor:pointer;margin-top:5px;transition:all .2s;" onmouseover="this.style.borderColor=\'var(--accent2)\';this.style.color=\'var(--accent2)\'" onmouseout="this.style.borderColor=\'var(--border)\';this.style.color=\'var(--muted)\'">+ Add Ingredient</button>
     </div>
@@ -2472,5 +2465,6 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
 
 
