@@ -995,7 +995,7 @@ function renderCycle(cycle){
           if (savedOffAW.length) { odAwListHtml = '<div class="aw-workouts-list">' + savedOffAW.map((w,wi) => renderSavedWorkout(w,wi,odAwKey)).join('') + '</div>'; }
           const dowNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
           const dayLabel = dowNames[slotDate.getDay()];
-          html += `<div class="day-card off-day-card${isFuture?' day-future':''}" data-day-offset="${slot.offset}">`;
+          html += `<div class="day-card off-day-card${(currentRole!=='admin'&&isFuture)?' day-future':''}" data-day-offset="${slot.offset}">`;
           html += `<div class="day-header" style="opacity:0.65;"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label" style="color:var(--muted);font-size:18px;">${dayLabel}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div><div class="day-focus" style="color:var(--muted);">Rest Day</div></div>`;
           html += odAwListHtml;
           html += `<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${odAwKey}')">+ Add Workout</button></div>`;
