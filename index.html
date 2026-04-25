@@ -800,14 +800,12 @@ function loadView(){
 function scrollToToday(){
   const today=new Date();today.setHours(0,0,0,0);
   const isAdminView=currentView==='admin';
-  // For class (member) view the base is Thu Mar 19; for competitor it's Mon Mar 16
   const base=isAdminView?new Date(2026,2,16):new Date(2026,2,19);
   let targetCard=null;
   document.querySelectorAll('.week-content').forEach(weekEl=>{
     const m=weekEl.id.match(/-w(\d+)$/);if(!m)return;
     const wNum=parseInt(m[1]);
     weekEl.querySelectorAll('.day-card').forEach(card=>{
-      // Each card carries its day offset in data-day-offset
       const off=card.getAttribute('data-day-offset');if(off===null)return;
       const d=new Date(base);d.setDate(d.getDate()+(wNum-1)*7+parseInt(off));
       if(d.getTime()===today.getTime())targetCard=card;
@@ -828,9 +826,11 @@ function loadCycle(id){document.getElementById('program-body').innerHTML='<div c
 
 // ── RENDERER ─────────────────────────────────────────────────────────────
 const MEMBER_DAY_OFFSETS=[0,4]; // Thu=0, Mon=4
-// Off-day offsets from Thu base: Fri=1,Sat=2,Sun=3,Tue=5,Wed=6
+// Member off days from Thu base: Fri=1,Sat=2,Sun=3,Tue=5,Wed=6
 const MEMBER_OFF_OFFSETS=[1,2,3,5,6];
-const ADMIN_DAY_OFFSETS=[0,1,2,4,5];
+const ADMIN_DAY_OFFSETS=[0,1,2,4,5]; // Mon=0,Tue=1,Wed=2,Fri=4,Sat=5
+// Competitor off days from Mon base: Thu=3, Sun=6
+const ADMIN_OFF_OFFSETS=[3,6];
 function getDayDate(weekNum,dayIdx,isAdm){
   const base=isAdm?new Date(2026,2,16):new Date(2026,2,19);
   const d=new Date(base);d.setDate(d.getDate()+(weekNum-1)*7);
@@ -960,24 +960,18 @@ function renderCycle(cycle){
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       html+=`<div class="week-content ${isCurrentWeek?'visible':''}" id="${phase.id}-w${week.number}">`;
       html+=`<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
-      // Build merged sorted slot list: program days + off days (class view only)
-      const isClassView = currentView === 'member';
-      // For class view: merge program days (Thu=0,Mon=4) with off days (Fri=1,Sat=2,Sun=3,Tue=5,Wed=6)
-      // For admin/competitor view: program days only
+      // Build merged sorted slot list: program days + off days
+      // Off days: Thu(3)+Sun(6) for competitor; Fri(1)+Sat(2)+Sun(3)+Tue(5)+Wed(6) for class
+      const offOffsets = isAdmin ? ADMIN_OFF_OFFSETS : MEMBER_OFF_OFFSETS;
       let slots = [];
       week.days.forEach((day, di) => {
         const off = isAdmin ? (ADMIN_DAY_OFFSETS[di] ?? di) : (MEMBER_DAY_OFFSETS[di] ?? di);
         slots.push({ type: 'program', day, di, offset: off });
       });
-      if (isClassView) {
-        MEMBER_OFF_OFFSETS.forEach(offOff => {
-          slots.push({ type: 'offday', offset: offOff });
-        });
-      }
+      offOffsets.forEach(offOff => slots.push({ type: 'offday', offset: offOff }));
       slots.sort((a, b) => a.offset - b.offset);
 
-      const totalCards = slots.length;
-      const gs = totalCards > 2 ? 'grid-template-columns:repeat(auto-fit,minmax(300px,1fr))' : '';
+      const gs = slots.length > 2 ? 'grid-template-columns:repeat(auto-fit,minmax(300px,1fr))' : '';
       html += `<div class="days-grid" style="${gs}">`;
 
       slots.forEach(slot => {
@@ -990,16 +984,17 @@ function renderCycle(cycle){
 
         if (slot.type === 'offday') {
           // ── Off-day / rest day card ──────────────────────────────────────
-          const offDayNames = {1:'Friday',2:'Saturday',3:'Sunday',5:'Tuesday',6:'Wednesday'};
-          const dayLabel = offDayNames[slot.offset] || slotDateStr;
-          const odKey = userKey(`kc_notes_member_offday_${phase.id}_w${week.number}_off${slot.offset}`);
+          const prefix = isAdmin ? 'admin' : 'member';
+          const odKey = userKey(`kc_notes_${prefix}_offday_${phase.id}_w${week.number}_off${slot.offset}`);
           const odNote = loadNote(odKey).replace(/"/g,'&quot;');
           const odNId = `notes-body-offday-${phase.id}-${week.number}-off${slot.offset}`;
           const odBtnId = `notes-btn-offday-${phase.id}-${week.number}-off${slot.offset}`;
-          const odAwKey = `offday_${phase.id}_w${week.number}_off${slot.offset}`;
+          const odAwKey = `${prefix}_offday_${phase.id}_w${week.number}_off${slot.offset}`;
           const savedOffAW = loadSavedWorkouts(odAwKey);
           let odAwListHtml = '';
           if (savedOffAW.length) { odAwListHtml = '<div class="aw-workouts-list">' + savedOffAW.map((w,wi) => renderSavedWorkout(w,wi,odAwKey)).join('') + '</div>'; }
+          const dowNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+          const dayLabel = dowNames[slotDate.getDay()];
           html += `<div class="day-card off-day-card${isFuture?' day-future':''}" data-day-offset="${slot.offset}">`;
           html += `<div class="day-header" style="opacity:0.65;"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label" style="color:var(--muted);font-size:18px;">${dayLabel}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div><div class="day-focus" style="color:var(--muted);">Rest Day</div></div>`;
           html += odAwListHtml;
@@ -1012,14 +1007,9 @@ function renderCycle(cycle){
           const day = slot.day, di = slot.di;
           const rawH = day.tableHeaders || (isAdmin ? ['Exercise','Sets\u00d7Reps','Load'] : ['Exercise','Sets\u00d7Reps','Load','Notes']);
           let headers = [...rawH]; const li = headers.indexOf('Load'); if (li !== -1) headers.splice(li+1,0,'Weight'); headers.push('\u2713');
-          const dayDate = slotDateStr;
           const focusHtml = day.focus ? `<div class="day-focus">${day.focus}</div>` : '';
-          const isFutureDay = (()=>{
-            if (currentRole==='admin') return false;
-            return isFuture;
-          })();
-          const futureOverlay = isFutureDay ? 'position:relative;' : '';
-          html += `<div class="day-card${isFutureDay?' day-future':''}" style="${futureOverlay}" data-day-offset="${slot.offset}"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</div></div>${focusHtml}</div><div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+          const isFutureDay = (currentRole !== 'admin') && isFuture;
+          html += `<div class="day-card${isFutureDay?' day-future':''}" style="${isFutureDay?'position:relative;':''}" data-day-offset="${slot.offset}"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div>${focusHtml}</div><div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
           const exercises = day.exercises; let i = 0, ssGroupIdx = -1, ssGroupCount = -1;
           while (i < exercises.length) {
             const ex = exercises[i];
@@ -1073,7 +1063,6 @@ function renderCycle(cycle){
           html += '</tbody></table></div>';
           const nKey=notesKey(phase.id,week.number,di),nVal=loadNote(nKey).replace(/"/g,'&quot;'),nId=`notes-body-${phase.id}-${week.number}-${di}`,btnId=`notes-btn-${phase.id}-${week.number}-${di}`;
           const ph=isAdmin?'Notes for this session\u2014programming thoughts, athlete feedback\u2026':'Your notes for this day\u2026';
-          // Add Workout button — both admin and member class view
           const awKey=`${phase.id}_w${week.number}_d${di}`;
           const savedAW=loadSavedWorkouts(awKey);
           let awListHtml='';
