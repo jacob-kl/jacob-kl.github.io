@@ -118,6 +118,10 @@ h1 span{color:var(--accent);}
 .day-future .table-wrap,.day-future .day-notes-section{filter:blur(4px);user-select:none;pointer-events:none;}
 .day-future .day-header{filter:blur(3px);user-select:none;pointer-events:none;}
 .day-future::after{content:'UPCOMING';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:42px;letter-spacing:6px;color:var(--accent);background:rgba(0,0,0,0.18);pointer-events:none;z-index:10;}
+/* Off-day (rest day) cards — member view */
+.off-day-card{border-style:dashed;border-color:var(--border);opacity:0.72;}
+.off-day-card:hover{opacity:1;}
+.off-day-card.day-future::after{content:'UPCOMING';font-size:28px;}
 .day-header{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);}
 .day-label{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:1px;}
 .day-label.mon{color:var(--meso1);}.day-label.thu{color:var(--accent);}
@@ -795,40 +799,40 @@ function loadView(){
   }
 }
 function scrollToToday(){
-  if(currentView!=='admin')return;
   const today=new Date();today.setHours(0,0,0,0);
-  const base=new Date(2026,2,16); // Admin start: Mon March 16
-  const offsets=ADMIN_DAY_OFFSETS; // [0,1,2,4,5]
+  const isAdm=currentView==='admin';
+  const base=isAdm?new Date(2026,2,16):new Date(2026,2,19);
   let targetCard=null;
-  // Walk every rendered day card and find the one matching today
   document.querySelectorAll('.week-content').forEach(weekEl=>{
-    const dayCards=weekEl.querySelectorAll('.day-card');
-    dayCards.forEach((card,di)=>{
-      // Extract week number from weekEl id, e.g. "phase1-w3"
-      const m=weekEl.id.match(/-w(\d+)$/);if(!m)return;
-      const wNum=parseInt(m[1]);
-      const off=offsets[di]??di;
+    const m=weekEl.id.match(/-w(\d+)$/);if(!m)return;
+    const wNum=parseInt(m[1]);
+    weekEl.querySelectorAll('.day-card').forEach((card,di)=>{
+      // Off-day cards have a data-off-offset attribute (member view only)
+      const offAttr=card.getAttribute('data-off-offset');
+      const off=offAttr!=null?parseInt(offAttr):(isAdm?ADMIN_DAY_OFFSETS:MEMBER_DAY_OFFSETS)[di]??di;
       const d=new Date(base);d.setDate(d.getDate()+(wNum-1)*7+off);
       if(d.getTime()===today.getTime())targetCard=card;
     });
   });
   if(targetCard){
-    // Small offset so the sticky admin bar doesn't cover it
-    const barH=(document.getElementById('admin-bar')?.offsetHeight||52)+12;
+    const barId=isAdm?'admin-bar':'member-bar';
+    const barH=(document.getElementById(barId)?.offsetHeight||52)+12;
     const rect=targetCard.getBoundingClientRect();
-    const scrollY=window.scrollY+rect.top-barH;
-    window.scrollTo({top:scrollY,behavior:'smooth'});
-    // Brief gold highlight pulse so it's obvious which card
+    window.scrollTo({top:window.scrollY+rect.top-barH,behavior:'smooth'});
     targetCard.style.transition='box-shadow .3s';
     targetCard.style.boxShadow='0 0 0 2px var(--accent)';
     setTimeout(()=>{targetCard.style.boxShadow='';},2000);
   }
 }
 function onCycleChange(v){if(currentView==='member')loadCycle(v);}
-function loadCycle(id){document.getElementById('program-body').innerHTML='<div class="state-message">Loading program\u2026</div>';fetch('cycles/'+id+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(renderCycle).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load cycle. Requires web server. Run: python3 -m http.server 8080</div>';});}
+function loadCycle(id){document.getElementById('program-body').innerHTML='<div class="state-message">Loading program\u2026</div>';fetch('cycles/'+id+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{renderCycle(data);requestAnimationFrame(()=>requestAnimationFrame(scrollToToday));}).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load cycle. Requires web server. Run: python3 -m http.server 8080</div>';});}
 
 // ── RENDERER ─────────────────────────────────────────────────────────────
 const MEMBER_DAY_OFFSETS=[0,4];
+// All 7 offsets from Thu base: Thu=0, Fri=1, Sat=2, Sun=3, Mon=4, Tue=5, Wed=6
+// Program days are indices 0(Thu) and 4(Mon). Off days fill the rest.
+const MEMBER_OFF_OFFSETS=[1,2,3,5,6]; // Fri, Sat, Sun, Tue, Wed
+const ALL_MEMBER_OFFSETS=[0,1,2,3,4,5,6]; // all 7 days in order
 const ADMIN_DAY_OFFSETS=[0,1,2,4,5];
 function getDayDate(weekNum,dayIdx,isAdm){
   const base=isAdm?new Date(2026,2,16):new Date(2026,2,19);
@@ -959,7 +963,8 @@ function renderCycle(cycle){
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       html+=`<div class="week-content ${isCurrentWeek?'visible':''}" id="${phase.id}-w${week.number}">`;
       html+=`<div class="week-intent ${week.intent.colorClass}"><h4 class="${week.intent.colorClass}">${week.intent.title}</h4><p>${week.intent.text}</p></div>`;
-      const gs=week.days.length>2?'grid-template-columns:repeat(auto-fit,minmax(320px,1fr))':'';
+      const totalCards=isAdmin?week.days.length:(week.days.length+MEMBER_OFF_OFFSETS.length);
+      const gs=totalCards>2?'grid-template-columns:repeat(auto-fit,minmax(300px,1fr))':'';
       html+=`<div class="days-grid" style="${gs}">`;
       week.days.forEach((day,di)=>{
         const rawH=day.tableHeaders||(isAdmin?['Exercise','Sets\u00d7Reps','Load']:['Exercise','Sets\u00d7Reps','Load','Notes']);
@@ -1039,8 +1044,30 @@ function renderCycle(cycle){
         }
         html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea></div></div>`;
         html+='</div>';
-      });
-      html+='</div></div>';
+      }); // end week.days.forEach
+      // ── OFF DAYS (member view only) ──────────────────────────────────────
+      if(!isAdmin){
+        // Member schedule: Thu(+0) and Mon(+4). Off days: Fri(+1),Sat(+2),Sun(+3),Tue(+5),Wed(+6)
+        const offDayLabels={1:'Friday',2:'Saturday',3:'Sunday',5:'Tuesday',6:'Wednesday'};
+        MEMBER_OFF_OFFSETS.forEach(offOff=>{
+          const offDate=new Date(new Date(2026,2,19).setDate(new Date(2026,2,19).getDate()+(week.number-1)*7+offOff));
+          const offDateStr=offDate.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+          const offDow=offDate.getDay(); // 0=Sun,1=Mon,...
+          const dayLabel=offDayLabels[offOff]||offDateStr;
+          const isFutureOff=(()=>{const t=new Date();t.setHours(0,0,0,0);return offDate>t;})();
+          // Use a stable key based on phase+week+offset so notes persist
+          const odKey=userKey(`kc_notes_member_offday_${phase.id}_w${week.number}_off${offOff}`);
+          const odNote=loadNote(odKey).replace(/"/g,'&quot;');
+          const odNId=`notes-body-offday-${phase.id}-${week.number}-off${offOff}`;
+          const odBtnId=`notes-btn-offday-${phase.id}-${week.number}-off${offOff}`;
+          const odAwKey=`offday_${phase.id}_w${week.number}_off${offOff}`;
+          const savedOffAW=loadSavedWorkouts(odAwKey);
+          let odAwListHtml='';
+          if(savedOffAW.length){odAwListHtml='<div class="aw-workouts-list">'+savedOffAW.map((w,wi)=>renderSavedWorkout(w,wi,odAwKey)).join('')+'</div>';}
+          html+=`<div class="day-card off-day-card${isFutureOff?' day-future':''}" data-off-offset="${offOff}"><div class="day-header" style="opacity:0.7;"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label" style="color:var(--muted);font-size:18px;">${dayLabel}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${offDateStr}</div></div><div class="day-focus" style="color:var(--muted);">Rest Day</div></div>${odAwListHtml}<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${odAwKey}')">+ Add Workout</button></div><div class="day-notes-section"><button class="day-notes-toggle" id="${odBtnId}" onclick="toggleNotes(this,'${odNId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${odNId}"><textarea placeholder="Notes for this rest day…" onchange="saveNote('${odKey}',this.value)" oninput="saveNote('${odKey}',this.value)">${odNote}</textarea></div></div></div>`;
+        });
+      }
+      html+='</div></div>'; // close days-grid and week-content
     });
   });
   document.getElementById('program-body').innerHTML=html;refreshProgressDots();
@@ -1663,6 +1690,12 @@ function renderNotesJournal(){
       const val=localStorage.getItem(k);
       if(!val||!val.trim())continue;
       const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
+      const mOff=bare.match(/kc_notes_member_offday_(.+)_w(\d+)_off(\d+)$/);
+      if(mOff){
+        const ek=`offday|${mOff[1]}|${mOff[2]}|${mOff[3]}`;
+        byKey[ek]={phaseId:mOff[1],weekNum:parseInt(mOff[2]),offOffset:parseInt(mOff[3]),isOffDay:true,note:val.trim()};
+        continue;
+      }
       const m=bare.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
       if(!m)continue;
       const ek=`${m[1]}|${m[2]}|${m[3]}`;
@@ -1690,7 +1723,7 @@ function renderNotesJournal(){
     });
   }catch(e){}
 
-  const entries=Object.values(byKey).sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
+  const entries=Object.values(byKey).sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:(a.isOffDay?a.offOffset+10:a.dayIdx)-(b.isOffDay?b.offOffset+10:b.dayIdx));
 
   const countEl=document.getElementById('notes-journal-count');
   if(countEl)countEl.textContent=entries.length?`${entries.length} session${entries.length>1?'s':''} logged`:'';
@@ -1704,12 +1737,15 @@ function renderNotesJournal(){
   const nutLog=loadNutLog();
   let html='';
   entries.forEach((entry,ei)=>{
-    const dayDate=getDayDate(entry.weekNum,entry.dayIdx,isAdm);
+    // Compute display date — off-day entries use offOffset, program days use dayIdx
+    const dayDate=entry.isOffDay
+      ?(()=>{const b=new Date(2026,2,19);b.setDate(b.getDate()+(entry.weekNum-1)*7+entry.offOffset);return b.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});})()
+      :getDayDate(entry.weekNum,entry.dayIdx,isAdm);
 
-    // Lifts from DOM
+    // Lifts from DOM (off-day cards have no program lifts)
     const weekEl=document.getElementById(`${entry.phaseId}-w${entry.weekNum}`);
     let liftsHtml='';
-    if(weekEl){
+    if(weekEl&&!entry.isOffDay){
       const dayCard=weekEl.querySelectorAll('.day-card')[entry.dayIdx];
       if(dayCard){
         dayCard.querySelectorAll('.ex-table tbody tr').forEach(row=>{
@@ -1732,8 +1768,10 @@ function renderNotesJournal(){
     // Nutrition
     const nutEntry=nutLog.find(e=>{
       const base=new Date(isAdm?2026:2026,2,isAdm?16:19);
-      const offsets=isAdm?[0,1,2,4,5]:[0,4];
-      base.setDate(base.getDate()+(entry.weekNum-1)*7+(offsets[entry.dayIdx]??entry.dayIdx));
+      let dayOff;
+      if(entry.isOffDay){dayOff=entry.offOffset;}
+      else{const offsets=isAdm?[0,1,2,4,5]:[0,4];dayOff=offsets[entry.dayIdx]??entry.dayIdx;}
+      base.setDate(base.getDate()+(entry.weekNum-1)*7+dayOff);
       return e.date===base.toISOString().split('T')[0];
     });
     let nutSectionHtml='';
@@ -1750,11 +1788,24 @@ function renderNotesJournal(){
     }
 
     // Additional workouts — with fallback scan if phaseId doesn't match exactly
-    const awHtml=getAWHtmlForJournalEntry(entry.phaseId,entry.weekNum,entry.dayIdx);
+    let awHtml='';
+    if(entry.isOffDay){
+      // Off-day: load workouts directly by off-day awKey
+      const odAwKey=`offday_${entry.phaseId}_w${entry.weekNum}_off${entry.offOffset}`;
+      const odSaved=loadSavedWorkouts(odAwKey);
+      if(odSaved.length){
+        awHtml='<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);">'
+          +'<div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Additional Workouts</div>';
+        odSaved.forEach(w=>{const tc={lift:'var(--accent)',amrap:'var(--accent2)',fortime:'var(--ss2)'}[w.type]||'var(--accent)';const tl={lift:'Lift',amrap:'AMRAP',fortime:'For Time'}[w.type]||'Lift';awHtml+=`<div style="margin-bottom:8px;padding:8px 10px;background:var(--surface2);border-radius:3px;border-left:3px solid ${tc};"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:${tc};margin-bottom:4px;">${tl}</div>`;w.movements.forEach(mv=>{const meta=[];if(mv.sets)meta.push(mv.sets+' sets');if(mv.reps)meta.push(mv.reps);if(mv.weight)meta.push(mv.weight);awHtml+=`<div style="font-size:12px;color:var(--text);margin-bottom:2px;"><strong>${mv.exercise}</strong>${meta.length?' <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">· '+meta.join(' · ')+'</span>':''}</div>`;});awHtml+='</div>';});
+        awHtml+='</div>';
+      }
+    } else {
+      awHtml=getAWHtmlForJournalEntry(entry.phaseId,entry.weekNum,entry.dayIdx);
+    }
 
     // Badge count — scan by weekNum+dayIdx
     let awCount=0;
-    try{const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');Object.keys(allWO).forEach(k=>{if(awCount)return;const m=k.match(/^(.+)_w(\d+)_d(\d+)$/);if(m&&parseInt(m[2])===entry.weekNum&&parseInt(m[3])===entry.dayIdx&&allWO[k])awCount=allWO[k].length;});}catch(e){}
+    try{const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');Object.keys(allWO).forEach(k=>{if(awCount)return;if(entry.isOffDay){const mo=k.match(/^offday_(.+)_w(\d+)_off(\d+)$/);if(mo&&parseInt(mo[2])===entry.weekNum&&parseInt(mo[3])===entry.offOffset&&allWO[k])awCount=allWO[k].length;}else{const m=k.match(/^(.+)_w(\d+)_d(\d+)$/);if(m&&parseInt(m[2])===entry.weekNum&&parseInt(m[3])===entry.dayIdx&&allWO[k])awCount=allWO[k].length;}});}catch(e){}
     const badges=[];
     if(liftsHtml)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);background:rgba(79,195,161,.1);border:1px solid rgba(79,195,161,.25);padding:2px 6px;border-radius:2px;">Program</span>`);
     if(awCount)badges.push(`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--accent);background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.25);padding:2px 6px;border-radius:2px;">${awCount} Workout${awCount>1?'s':''}</span>`);
@@ -1766,7 +1817,7 @@ function renderNotesJournal(){
       <button onclick="toggleNJEntry('${bodyId}','${entryId}')" id="${entryId}" style="width:100%;background:none;border:none;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;text-align:left;gap:12px;" onmouseover="this.style.background='var(--surface2)'" onmouseout="this.style.background='none'">
         <div style="display:flex;flex-direction:column;gap:6px;">
           <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;">
-            <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:var(--accent2);">Week ${entry.weekNum} &middot; Day ${entry.dayIdx+1}</span>
+            <span style="font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:1px;color:${entry.isOffDay?'var(--muted)':'var(--accent2)'};">Week ${entry.weekNum} &middot; ${entry.isOffDay?dayDate:'Day '+(entry.dayIdx+1)}</span>
             <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${dayDate}</span>
           </div>
           ${badges.length?`<div style="display:flex;gap:5px;flex-wrap:wrap;">${badges.join('')}</div>`:''}
