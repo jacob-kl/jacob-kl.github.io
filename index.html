@@ -1288,9 +1288,8 @@ function fpSetMode(mode){
         </div>
         <div style="padding:7px 14px;display:flex;align-items:center;gap:8px;">
           <span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">Servings:</span>
-          <select id="fp-sv-${ri}" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:11px;padding:4px 8px;border-radius:2px;outline:none;">
-            ${Array.from({length:sv},(_,i)=>`<option value="${i+1}">${i+1}</option>`).join('')}
-          </select>
+          <input type="number" id="fp-sv-${ri}" value="1" min="0.1" step="0.25" style="background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:\'DM Mono\',monospace;font-size:11px;padding:4px 8px;border-radius:2px;outline:none;width:72px;" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
+          <span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">/ ${sv}</span>
           <button onclick="fpAddRecipe(${ri})" style="background:var(--accent2);color:#0e0e0f;font-family:\'DM Mono\',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;border:none;padding:6px 14px;border-radius:2px;cursor:pointer;">Add</button>
         </div>
       </div>`;
@@ -1308,8 +1307,11 @@ function fpConfirm(){
 function fpAddRecipe(ri){
   const recipes=loadCookbook();const r=recipes[ri];if(!r)return;
   const sv=parseFloat(document.getElementById(`fp-sv-${ri}`)?.value)||1;
+  if(sv<=0)return;
   const ratio=sv/(r.servings||1);
-  const items=(r.ingredients||[]).map(ing=>({name:ing.name+(sv!==r.servings?' (\u00d7'+sv+')':''),cal:Math.round((ing.cal||0)*ratio),pro:Math.round((ing.pro||0)*ratio),carb:Math.round((ing.carb||0)*ratio),fat:Math.round((ing.fat||0)*ratio)}));
+  const svLabel=Number.isInteger(sv)?sv:parseFloat(sv.toFixed(2));
+  const suffix=Math.abs(sv-(r.servings||1))<0.001?'':' (\u00d7'+svLabel+')';
+  const items=(r.ingredients||[]).map(ing=>({name:ing.name+suffix,cal:Math.round((ing.cal||0)*ratio*10)/10,pro:Math.round((ing.pro||0)*ratio*10)/10,carb:Math.round((ing.carb||0)*ratio*10)/10,fat:Math.round((ing.fat||0)*ratio*10)/10}));
   if(nutTodayMeals[fpTargetMeal]){nutTodayMeals[fpTargetMeal].items.push(...items);renderMealCards();saveTodayMeals();}
   closeFoodPicker();
 }
@@ -2498,6 +2500,8 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
+
 
 
 
