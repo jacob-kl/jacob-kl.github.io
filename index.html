@@ -401,13 +401,67 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
           <span id="nut-save-status" style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--accent2);opacity:0;transition:opacity .3s;"></span>
         </div>
       </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:16px 24px;margin-bottom:20px;display:flex;gap:28px;align-items:center;flex-wrap:wrap;">
-        <div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);">Today&#39;s Total</div>
-        <div style="display:flex;gap:24px;flex-wrap:wrap;">
-          <div style="text-align:center;"><div id="tot-cal"  style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--accent);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">kcal</div></div>
-          <div style="text-align:center;"><div id="tot-pro"  style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--accent2);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">protein g</div></div>
-          <div style="text-align:center;"><div id="tot-carb" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">carbs g</div></div>
-          <div style="text-align:center;"><div id="tot-fat"  style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--text);">—</div><div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">fat g</div></div>
+      <!-- MACRO SPLIT CONFIG -->
+      <div id="macro-split-panel" style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px 20px;margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);flex-shrink:0;">Macro Split</span>
+          <select id="macro-preset" onchange="applyMacroPreset(this.value)" style="background:var(--surface2);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;padding:5px 26px 5px 9px;border-radius:2px;cursor:pointer;outline:none;appearance:none;-webkit-appearance:none;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='5'%3E%3Cpath d='M0 0l4 5 4-5z' fill='%237a7870'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 8px center;">
+            <option value="custom">Custom</option>
+            <option value="balanced">Balanced (30/40/30)</option>
+            <option value="highcarb">High Carb (25/55/20)</option>
+            <option value="lowcarb">Low Carb (35/25/40)</option>
+            <option value="keto">Keto (25/5/70)</option>
+            <option value="highpro">High Protein (40/35/25)</option>
+            <option value="zone">Zone Diet (30/40/30)</option>
+          </select>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:3px;">
+              <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--accent2);">P</span>
+              <input type="number" id="macro-pro-pct" min="0" max="100" placeholder="30" onchange="saveMacroSplit()" style="width:46px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:4px 6px;border-radius:2px;outline:none;text-align:center;" onfocus="this.style.borderColor='var(--accent2)'" onblur="this.style.borderColor='var(--border)'">
+              <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:3px;">
+              <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ss2);">C</span>
+              <input type="number" id="macro-carb-pct" min="0" max="100" placeholder="40" onchange="saveMacroSplit()" style="width:46px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:4px 6px;border-radius:2px;outline:none;text-align:center;" onfocus="this.style.borderColor='var(--ss2)'" onblur="this.style.borderColor='var(--border)'">
+              <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">%</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:3px;">
+              <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;color:var(--ss3);">F</span>
+              <input type="number" id="macro-fat-pct" min="0" max="100" placeholder="30" onchange="saveMacroSplit()" style="width:46px;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Mono',monospace;font-size:12px;padding:4px 6px;border-radius:2px;outline:none;text-align:center;" onfocus="this.style.borderColor='var(--ss3)'" onblur="this.style.borderColor='var(--border)'">
+              <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">%</span>
+            </div>
+            <span id="macro-pct-status" style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);min-width:60px;"></span>
+          </div>
+        </div>
+      </div>
+      <!-- TOTALS + REMAINING -->
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-bottom:20px;">
+        <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Today's Total</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+          <div style="background:var(--surface2);border-radius:3px;padding:10px 12px;">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">kcal</div>
+            <div id="tot-cal" style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--accent);line-height:1;">—</div>
+            <div id="tot-cal-target" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;"></div>
+            <div id="tot-cal-rem" style="font-family:'DM Mono',monospace;font-size:9px;font-weight:500;margin-top:2px;"></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:3px;padding:10px 12px;">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">protein g</div>
+            <div id="tot-pro" style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--accent2);line-height:1;">—</div>
+            <div id="tot-pro-target" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;"></div>
+            <div id="tot-pro-rem" style="font-family:'DM Mono',monospace;font-size:9px;font-weight:500;margin-top:2px;"></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:3px;padding:10px 12px;">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">carbs g</div>
+            <div id="tot-carb" style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--ss2);line-height:1;">—</div>
+            <div id="tot-carb-target" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;"></div>
+            <div id="tot-carb-rem" style="font-family:'DM Mono',monospace;font-size:9px;font-weight:500;margin-top:2px;"></div>
+          </div>
+          <div style="background:var(--surface2);border-radius:3px;padding:10px 12px;">
+            <div style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">fat g</div>
+            <div id="tot-fat" style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:1px;color:var(--ss3);line-height:1;">—</div>
+            <div id="tot-fat-target" style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:3px;"></div>
+            <div id="tot-fat-rem" style="font-family:'DM Mono',monospace;font-size:9px;font-weight:500;margin-top:2px;"></div>
+          </div>
         </div>
       </div>
       <div id="nut-meals-container" style="display:flex;flex-direction:column;gap:12px;margin-bottom:16px;"></div>
@@ -1172,7 +1226,51 @@ function launchConfetti(){
 }
 
 // ── NUTRITION TRACKER ─────────────────────────────────────────────────────
-const NUT_KEY='kc_nutrition_log',NUT_TARGET_KEY='kc_nut_target',COOKBOOK_KEY='kc_cookbook';
+const NUT_KEY='kc_nutrition_log',NUT_TARGET_KEY='kc_nut_target',COOKBOOK_KEY='kc_cookbook',MACRO_SPLIT_KEY='kc_macro_split';
+
+// ── MACRO SPLIT ───────────────────────────────────────────────────────────────
+const MACRO_PRESETS={
+  balanced:{pro:30,carb:40,fat:30},
+  highcarb:{pro:25,carb:55,fat:20},
+  lowcarb:{pro:35,carb:25,fat:40},
+  keto:{pro:25,carb:5,fat:70},
+  highpro:{pro:40,carb:35,fat:25},
+  zone:{pro:30,carb:40,fat:30}
+};
+function loadMacroSplit(){try{return JSON.parse(localStorage.getItem(userKey(MACRO_SPLIT_KEY))||'null');}catch(e){return null;}}
+function saveMacroSplit(){
+  const p=parseInt(document.getElementById('macro-pro-pct')?.value)||0;
+  const c=parseInt(document.getElementById('macro-carb-pct')?.value)||0;
+  const f=parseInt(document.getElementById('macro-fat-pct')?.value)||0;
+  const total=p+c+f;
+  const statusEl=document.getElementById('macro-pct-status');
+  if(statusEl){
+    if(total===0){statusEl.textContent='';statusEl.style.color='var(--muted)';}
+    else if(total===100){statusEl.textContent='✓ 100%';statusEl.style.color='var(--accent2)';}
+    else{statusEl.textContent=(total>100?'↑':'↓')+' '+total+'%';statusEl.style.color='var(--accent3)';}
+  }
+  if(p||c||f)try{localStorage.setItem(userKey(MACRO_SPLIT_KEY),JSON.stringify({pro:p,carb:c,fat:f}));}catch(e){}
+  updateNutTotals();
+}
+function applyMacroPreset(val){
+  if(val==='custom')return;
+  const preset=MACRO_PRESETS[val];if(!preset)return;
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v;};
+  set('macro-pro-pct',preset.pro);set('macro-carb-pct',preset.carb);set('macro-fat-pct',preset.fat);
+  saveMacroSplit();
+}
+function loadMacroSplitUI(){
+  const split=loadMacroSplit();if(!split)return;
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v;};
+  set('macro-pro-pct',split.pro);set('macro-carb-pct',split.carb);set('macro-fat-pct',split.fat);
+  // detect preset match
+  const presetEl=document.getElementById('macro-preset');
+  if(presetEl){
+    const match=Object.entries(MACRO_PRESETS).find(([k,p])=>p.pro===split.pro&&p.carb===split.carb&&p.fat===split.fat);
+    presetEl.value=match?match[0]:'custom';
+  }
+  saveMacroSplit(); // refresh status badge
+}
 const DEFAULT_MEAL_NAMES=['Breakfast','Lunch','Dinner'];
 let nutTodayMeals=[];   // [{name, items:[{name,cal,pro,carb,fat}]}]
 let nutActiveDate='';
@@ -1238,10 +1336,37 @@ function addMeal(name){nutTodayMeals.push({name:name||'Meal '+(nutTodayMeals.len
 function removeMeal(mi){nutTodayMeals.splice(mi,1);renderMealCards();saveTodayMeals();}
 function updateNutTotals(){
   const totals=nutTodayMeals.reduce((acc,m)=>{const mt=mealTotals(m);return{cal:acc.cal+mt.cal,pro:acc.pro+mt.pro,carb:acc.carb+mt.carb,fat:acc.fat+mt.fat};},{cal:0,pro:0,carb:0,fat:0});
-  const target=parseInt(localStorage.getItem(userKey(NUT_TARGET_KEY)))||0;
-  const calColor=target&&totals.cal?(totals.cal>target?'var(--accent3)':'var(--accent2)'):'var(--accent)';
-  const set=(id,val,color)=>{const el=document.getElementById(id);if(el){el.textContent=val||'\u2014';if(color)el.style.color=color;}};
-  set('tot-cal',totals.cal||null,calColor);set('tot-pro',totals.pro||null,null);set('tot-carb',totals.carb||null,null);set('tot-fat',totals.fat||null,null);
+  const calTarget=parseInt(localStorage.getItem(userKey(NUT_TARGET_KEY)))||0;
+  const split=loadMacroSplit();
+  const setText=(id,val)=>{const el=document.getElementById(id);if(el)el.textContent=val||'';};
+  const setColor=(id,c)=>{const el=document.getElementById(id);if(el)el.style.color=c;};
+  // calorie main value + color
+  const calColor=calTarget&&totals.cal?(totals.cal>calTarget?'var(--accent3)':'var(--accent)'):'var(--accent)';
+  setColor('tot-cal',calColor);
+  const el=document.getElementById('tot-cal');if(el)el.textContent=totals.cal||'\u2014';
+  // calorie target + remaining
+  if(calTarget){
+    setText('tot-cal-target','target: '+calTarget+' kcal');
+    const remCal=calTarget-totals.cal;
+    const remCalEl=document.getElementById('tot-cal-rem');
+    if(remCalEl){remCalEl.textContent=remCal>0?remCal+' left':remCal===0?'\u2713 done':(Math.abs(remCal))+' over';remCalEl.style.color=remCal>0?'var(--muted)':remCal===0?'var(--accent2)':'var(--accent3)';}
+  }else{setText('tot-cal-target','');setText('tot-cal-rem','');}
+  // macro targets from split + calTarget
+  const macros=['pro','carb','fat'];
+  const pcts=split?{pro:split.pro,carb:split.carb,fat:split.fat}:{pro:0,carb:0,fat:0};
+  const kcalPer={pro:4,carb:4,fat:9};
+  const colors={pro:'var(--accent2)',carb:'var(--ss2)',fat:'var(--ss3)'};
+  macros.forEach(m=>{
+    const valEl=document.getElementById('tot-'+m);
+    if(valEl){valEl.textContent=totals[m]||'\u2014';valEl.style.color=colors[m];}
+    if(calTarget&&pcts[m]){
+      const gTarget=Math.round((calTarget*(pcts[m]/100))/kcalPer[m]);
+      setText('tot-'+m+'-target','target: '+gTarget+'g');
+      const remG=gTarget-totals[m];
+      const remEl=document.getElementById('tot-'+m+'-rem');
+      if(remEl){remEl.textContent=remG>0?remG+'g left':remG===0?'\u2713 done':(Math.abs(remG))+'g over';remEl.style.color=remG>0?'var(--muted)':remG===0?'var(--accent2)':'var(--accent3)';}
+    }else{setText('tot-'+m+'-target','');setText('tot-'+m+'-rem','');}
+  });
 }
 
 // ── FOOD PICKER ──────────────────────────────────────────────────────────────
@@ -1519,6 +1644,7 @@ function initNutritionPanel(){
   const todayKey=new Date().toISOString().split('T')[0];
   if(!nutActiveDate)nutActiveDate=todayKey;
   try{const t=localStorage.getItem(userKey(NUT_TARGET_KEY));if(t&&document.getElementById('nut-target'))document.getElementById('nut-target').value=t;}catch(e){}
+  loadMacroSplitUI();
   nutBuildDateSelect();nutLoadDateData(nutActiveDate);renderNutritionCharts();renderNutritionTable();
 }
 function nutBuildDateSelect(){
@@ -2500,7 +2626,6 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
-
 
 
 
