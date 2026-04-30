@@ -193,6 +193,11 @@ tr[data-ss="3"].ss-start td:first-child,tr[data-ss="3"].ss-mid td:first-child,tr
 .set-ctrl-btn.minus:hover{border-color:var(--accent3);color:var(--accent3);}
 .set-ctrl-btn[disabled]{opacity:.35;cursor:not-allowed;}
 .set-ctrl-btn[disabled]:hover{border-color:var(--border);color:var(--muted);}
+.wave-extra-block{margin-top:14px;padding:12px;border:1px solid var(--accent2);border-radius:4px;background:rgba(79,195,161,.06);}
+.wave-extra-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.wave-extra-title{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);}
+.wave-extra-remove{background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:2px;cursor:pointer;}
+.wave-extra-remove:hover{border-color:var(--accent3);color:var(--accent3);}
 .log-set-row.added-set td:first-child::before{content:'+ ';color:var(--accent2);}
 .log-set-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:40px;}
 .log-outcome{display:flex;gap:6px;}
@@ -1231,38 +1236,78 @@ function refreshProgressDots(){document.querySelectorAll('.week-btn[data-phase][
 // ── WAVE LOG MODAL ────────────────────────────────────────────────────────
 function parseWaveRepCounts(setsStr){const s=setsStr||'3-2-1';const cross=s.match(/^(\d+)\s*[x×]\s*(\d+)$/i);if(cross){const count=parseInt(cross[1]);const reps=parseInt(cross[2]);return Array(count).fill(reps);}return s.split('-').map(Number).filter(n=>n>0);}
 function openWaveLogModal(baseName,waveGroup,lk){
-  modalState={exName:baseName,sets:'wave',load:'',rmId:getMaxIdForExercise(baseName)||'',logKey:lk,entries:[],isWave:true,waveGroup};
+  modalState={exName:baseName,sets:'wave',load:'',rmId:getMaxIdForExercise(baseName)||'',logKey:lk,entries:[],isWave:true,waveGroup,extras:[]};
   document.getElementById('modal-ex-name').textContent=baseName;
   document.getElementById('modal-ex-meta').textContent=`Wave Loading \u00b7 ${waveGroup.length} waves`;
   let existing={};try{const v=localStorage.getItem(lk);if(v)existing=JSON.parse(v);}catch(e){}
-  const u=getUnit();let html='';
+  // Restore extras from saved data if present
+  if(existing._extras&&Array.isArray(existing._extras))modalState.extras=existing._extras;
+  modalState.waveEntries=waveGroup.map((wave,wi)=>{const reps=parseWaveRepCounts(wave.sets);return reps.map((r,si)=>{const prev=existing[`w${wi}_s${si}`]||{};return{outcome:prev.outcome||null,weight:prev.weight||''};});});
+  renderWaveLogBody(existing);
+  document.getElementById('log-modal-overlay').classList.add('open');
+}
+function renderWaveLogBody(existing){
+  existing=existing||{};
+  const u=getUnit();const baseName=modalState.exName;const waveGroup=modalState.waveGroup;
+  let html='';
   waveGroup.forEach((wave,wi)=>{
     const repCounts=parseWaveRepCounts(wave.sets);
     const loads=wave.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));
     const maxForEx=getMaxForExercise(baseName);
     html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Wave ${wi+1} \u00b7 ${wave.load}</div>`;
-    repCounts.forEach((r,si)=>{const key=`w${wi}_s${si}`;const prev=existing[key]||{};const mC=prev.outcome==='made'?'selected':'',xC=prev.outcome==='miss'?'selected':'';const pct=loads[si]!==undefined?loads[si]:(loads[0]||0);const sug=maxForEx&&pct?(u==='kg'?Math.round(pct/100*maxForEx/2.205):Math.round(pct/100*maxForEx)):'';const wVal=prev.weight||sug;
+    repCounts.forEach((r,si)=>{const stored=modalState.waveEntries?.[wi]?.[si]||{};const prev=existing[`w${wi}_s${si}`]||{};const outcome=stored.outcome||prev.outcome;const mC=outcome==='made'?'selected':'',xC=outcome==='miss'?'selected':'';const pct=loads[si]!==undefined?loads[si]:(loads[0]||0);const sug=maxForEx&&pct?(u==='kg'?Math.round(pct/100*maxForEx/2.205):Math.round(pct/100*maxForEx)):'';const wVal=stored.weight||prev.weight||sug;
     html+=`<div class="log-set-row" id="set-row-w${wi}s${si}" style="margin-bottom:6px;"><div class="log-set-num">Set ${si+1} <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);font-weight:400;">${r}rep</span></div><div class="log-outcome"><button class="outcome-btn check ${mC}" onclick="setWaveOutcome(${wi},${si},'made')" title="Made">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setWaveOutcome(${wi},${si},'miss')" title="Missed">&#10007;</button></div><input class="log-weight-input" type="number" id="wlog-${wi}-${si}" value="${wVal}" placeholder="\u2014" min="0"><span class="log-weight-unit">${u}</span></div>`;});
     html+='</div>';
   });
+  // Render any additional lifts sections
+  modalState.extras.forEach((extra,ei)=>{
+    html+=`<div class="wave-extra-block"><div class="wave-extra-header"><div class="wave-extra-title">Additional Lifts${modalState.extras.length>1?' '+(ei+1):''}</div><button type="button" class="wave-extra-remove" onclick="removeWaveExtra(${ei})">Remove</button></div>`;
+    for(let si=0;si<extra.entries.length;si++){
+      const e=extra.entries[si]||{outcome:null,weight:''};
+      const mC=e.outcome==='made'?'selected':'',xC=e.outcome==='miss'?'selected':'';
+      html+=`<div class="log-set-row" id="set-row-extra${ei}-${si}" style="margin-bottom:6px;"><div class="log-set-num">Set ${si+1}</div><div class="log-outcome"><button class="outcome-btn check ${mC}" onclick="setExtraOutcome(${ei},${si},'made')" title="Made">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setExtraOutcome(${ei},${si},'miss')" title="Missed">&#10007;</button></div><input class="log-weight-input" type="number" id="elog-${ei}-${si}" value="${e.weight||''}" placeholder="weight" min="0" oninput="modalState.extras[${ei}].entries[${si}].weight=parseFloat(this.value)||0;"><span class="log-weight-unit">${u}</span></div>`;
+    }
+    const canRemoveSet=extra.entries.length>1;
+    html+=`<div class="set-controls"><button class="set-ctrl-btn minus" onclick="removeExtraSet(${ei})" ${canRemoveSet?'':'disabled'} title="Remove last set">&minus; Set</button><button class="set-ctrl-btn" onclick="addExtraSet(${ei})" title="Add a set">+ Set</button></div></div>`;
+  });
+  // Top-level "+ Additional Lifts" control
+  html+=`<div class="set-controls"><button class="set-ctrl-btn" onclick="addWaveExtra()" title="Add an additional lifts section">+ Additional Lifts</button></div>`;
   document.getElementById('modal-sets-container').innerHTML=html;
-  modalState.waveEntries=waveGroup.map((wave,wi)=>{const reps=parseWaveRepCounts(wave.sets);return reps.map((r,si)=>{const prev=existing[`w${wi}_s${si}`]||{};return{outcome:prev.outcome||null,weight:prev.weight||''};});});
-  document.getElementById('log-modal-overlay').classList.add('open');
 }
+// Capture current input values from the DOM into modalState before re-render
+function captureWaveInputs(){
+  if(modalState.waveEntries){modalState.waveEntries.forEach((wave,wi)=>wave.forEach((entry,si)=>{const inp=document.getElementById(`wlog-${wi}-${si}`);if(inp)entry.weight=parseFloat(inp.value)||entry.weight||'';}));}
+  if(modalState.extras){modalState.extras.forEach((extra,ei)=>extra.entries.forEach((e,si)=>{const inp=document.getElementById(`elog-${ei}-${si}`);if(inp)e.weight=parseFloat(inp.value)||e.weight||'';}));}
+}
+function addWaveExtra(){captureWaveInputs();modalState.extras.push({entries:[{outcome:null,weight:''}]});renderWaveLogBody();}
+function removeWaveExtra(ei){captureWaveInputs();modalState.extras.splice(ei,1);renderWaveLogBody();}
+function addExtraSet(ei){captureWaveInputs();if(!modalState.extras[ei])return;modalState.extras[ei].entries.push({outcome:null,weight:''});renderWaveLogBody();}
+function removeExtraSet(ei){captureWaveInputs();if(!modalState.extras[ei]||modalState.extras[ei].entries.length<=1)return;modalState.extras[ei].entries.pop();renderWaveLogBody();}
+function setExtraOutcome(ei,si,outcome){if(!modalState.extras[ei]?.entries[si])return;const cur=modalState.extras[ei].entries[si].outcome;modalState.extras[ei].entries[si].outcome=cur===outcome?null:outcome;const row=document.getElementById(`set-row-extra${ei}-${si}`);if(row){row.querySelectorAll('.outcome-btn').forEach(b=>b.classList.remove('selected'));const newOutcome=modalState.extras[ei].entries[si].outcome;if(newOutcome)row.querySelector(`.outcome-btn.${newOutcome==='made'?'check':'x'}`)?.classList.add('selected');}}
 function setWaveOutcome(wi,si,outcome){
   if(!modalState.waveEntries?.[wi]?.[si])return;
-  modalState.waveEntries[wi][si].outcome=outcome;
+  const cur=modalState.waveEntries[wi][si].outcome;
+  modalState.waveEntries[wi][si].outcome=cur===outcome?null:outcome;
   const row=document.getElementById(`set-row-w${wi}s${si}`);
-  if(row){row.querySelectorAll('.outcome-btn').forEach(b=>b.classList.remove('selected'));row.querySelector(`.outcome-btn.${outcome==='made'?'check':'x'}`)?.classList.add('selected');}
-  if(outcome==='made'&&allX[idx])allX[idx].classList.remove('selected');
-  if(outcome==='miss'&&allCheck[idx])allCheck[idx].classList.remove('selected');
+  if(row){row.querySelectorAll('.outcome-btn').forEach(b=>b.classList.remove('selected'));const newOutcome=modalState.waveEntries[wi][si].outcome;if(newOutcome)row.querySelector(`.outcome-btn.${newOutcome==='made'?'check':'x'}`)?.classList.add('selected');}
 }
 function saveWaveLog(){
   const logData={};let maxW=0;const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   modalState.waveEntries.forEach((wave,wi)=>{wave.forEach((entry,si)=>{const w=parseFloat(document.getElementById(`wlog-${wi}-${si}`)?.value)||0;logData[`w${wi}_s${si}`]={outcome:entry.outcome,weight:w,date:today};if(entry.outcome==='made'&&w>maxW)maxW=w;});});
+  // Capture extras
+  if(modalState.extras&&modalState.extras.length){
+    modalState.extras.forEach((extra,ei)=>{extra.entries.forEach((e,si)=>{const inp=document.getElementById(`elog-${ei}-${si}`);if(inp)e.weight=parseFloat(inp.value)||0;if(e.outcome==='made'&&e.weight>maxW)maxW=e.weight;});});
+    logData._extras=modalState.extras;
+  }
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
   if(maxW>0&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),inLbs=unit==='kg'?maxW*2.205:maxW;if(inLbs>(currentMaxes[modalState.rmId]||0)){currentMaxes[modalState.rmId]=Math.round(inLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(inLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
-  const anyMade=Object.values(logData).some(e=>e&&e.outcome==='made');const allMiss=Object.values(logData).filter(e=>e&&e.outcome).every(e=>e.outcome==='miss');const anyMixed=anyMade&&Object.values(logData).some(e=>e&&e.outcome==='miss');
+  // Aggregate outcomes from waves AND extras
+  const allOutcomes=[];
+  Object.keys(logData).forEach(k=>{if(k.startsWith('w')&&logData[k]&&logData[k].outcome)allOutcomes.push(logData[k].outcome);});
+  if(modalState.extras)modalState.extras.forEach(ex=>ex.entries.forEach(e=>{if(e.outcome)allOutcomes.push(e.outcome);}));
+  const anyMade=allOutcomes.includes('made');
+  const allMiss=allOutcomes.length>0&&allOutcomes.every(o=>o==='miss');
+  const anyMixed=anyMade&&allOutcomes.includes('miss');
   const btn=document.querySelector(`[data-log-key="${modalState.logKey}"]`);
   if(btn){btn.classList.remove('logged-made','logged-miss','logged-mixed');if(anyMixed){btn.classList.add('logged-mixed');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED<span class="log-date-stamp">${today}</span>`;}else if(anyMade){btn.classList.add('logged-made');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED<span class="log-date-stamp">${today}</span>`;}else if(allMiss){btn.classList.add('logged-miss');btn.innerHTML=`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED<span class="log-date-stamp">${today}</span>`;}}
   refreshProgressDots();closeModal();
@@ -2061,7 +2106,7 @@ function downloadNotesPDF(){
   const isAdm=currentView==='admin';
 
   // Collect entries — exact same logic as renderNotesJournal
-  const entries=[];
+  const byKey={}; // key: "phaseId|weekNum|dayIdx"
   const notesPrefix=userKey(`kc_notes_${prefix}_`);
   try{
     for(let i=0;i<localStorage.length;i++){
@@ -2073,10 +2118,44 @@ function downloadNotesPDF(){
       const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
       const m=bare.match(/kc_notes_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
       if(!m)continue;
-      entries.push({key:k,phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()});
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      byKey[ek]={phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:val.trim()};
     }
   }catch(e){}
-  entries.sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
+
+  // Also collect days with only a feeling rating
+  try{
+    const fPrefix=userKey(`kc_feeling_${prefix}_`);
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(!k||!k.startsWith(fPrefix))continue;
+      const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
+      const m=bare.match(/kc_feeling_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
+      if(!m)continue;
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      if(!byKey[ek])byKey[ek]={phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:''};
+    }
+  }catch(e){}
+
+  // Also collect days that have saved workouts (even with no notes)
+  try{
+    const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');
+    Object.keys(allWO).forEach(awKey=>{
+      if(!allWO[awKey]||!allWO[awKey].length)return;
+      const m=awKey.match(/^(.+)_w(\d+)_d(\d+)$/);
+      if(!m)return;
+      const wn=parseInt(m[2]),di=parseInt(m[3]);
+      const existingKey=Object.keys(byKey).find(ek=>{
+        const parts=ek.split('|');
+        return parseInt(parts[1])===wn&&parseInt(parts[2])===di;
+      });
+      if(existingKey)return;
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      if(!byKey[ek])byKey[ek]={phaseId:m[1],weekNum:wn,dayIdx:di,note:''};
+    });
+  }catch(e){}
+
+  const entries=Object.values(byKey).sort((a,b)=>a.weekNum!==b.weekNum?a.weekNum-b.weekNum:a.dayIdx-b.dayIdx);
 
   const userName=memberName||sessionStorage.getItem('kc_username')||'Member';
   const today=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
@@ -2217,8 +2296,8 @@ function downloadNotesPDF(){
       ${awPdfHtml}
       ${nutHtml}
       ${(()=>{const fk=feelingKey(entry.phaseId,entry.weekNum,entry.dayIdx);const r=loadFeeling(fk);return r?`<div style="margin-bottom:10px;padding:6px 10px;background:#f0eeea;border-radius:3px;display:inline-block;font-family:monospace;font-size:11px;"><span style="color:#999;letter-spacing:1px;text-transform:uppercase;font-size:9px;">Felt:</span> <span style="font-size:14px;">${FEELING_EMOJIS[r-1]}</span> <strong style="color:#1a1a1b;">${FEELING_LABELS[r-1]}</strong></div>`:'';})()}
-      <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
-      <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
+      ${entry.note?`<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
+      <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`:''}
     </div>`;
   });
 
@@ -2730,7 +2809,5 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
-
-
 
 
