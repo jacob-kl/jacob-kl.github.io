@@ -176,6 +176,24 @@ tr[data-ss="3"].ss-start td:first-child,tr[data-ss="3"].ss-mid td:first-child,tr
 .modal-section-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
 .log-set-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
 .log-set-row:last-child{border-bottom:none;}
+.feeling-row{padding:10px 0 4px;border-top:1px solid var(--border);margin-top:10px;}
+.feeling-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.feeling-scale{display:flex;gap:4px;}
+.feeling-btn{flex:1;background:var(--input-bg);border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:8px 4px;border-radius:3px;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:3px;}
+.feeling-btn .emoji{font-size:18px;line-height:1;}
+.feeling-btn:hover{border-color:var(--accent2);color:var(--text);}
+.feeling-btn.selected[data-rating="1"]{border-color:#e85d47;color:#e85d47;background:rgba(232,93,71,.10);}
+.feeling-btn.selected[data-rating="2"]{border-color:#e8843a;color:#e8843a;background:rgba(232,132,58,.10);}
+.feeling-btn.selected[data-rating="3"]{border-color:#e8c547;color:#e8c547;background:rgba(232,197,71,.10);}
+.feeling-btn.selected[data-rating="4"]{border-color:#a4d97a;color:#a4d97a;background:rgba(164,217,122,.10);}
+.feeling-btn.selected[data-rating="5"]{border-color:#4fc3a1;color:#4fc3a1;background:rgba(79,195,161,.10);}
+.set-controls{display:flex;gap:6px;justify-content:center;padding:10px 0 4px;}
+.set-ctrl-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:3px;cursor:pointer;transition:all .15s;display:inline-flex;align-items:center;gap:6px;}
+.set-ctrl-btn:hover{border-color:var(--accent2);color:var(--accent2);}
+.set-ctrl-btn.minus:hover{border-color:var(--accent3);color:var(--accent3);}
+.set-ctrl-btn[disabled]{opacity:.35;cursor:not-allowed;}
+.set-ctrl-btn[disabled]:hover{border-color:var(--border);color:var(--muted);}
+.log-set-row.added-set td:first-child::before{content:'+ ';color:var(--accent2);}
 .log-set-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);min-width:40px;}
 .log-outcome{display:flex;gap:6px;}
 .outcome-btn{width:36px;height:36px;border-radius:50%;border:2px solid var(--border);background:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
@@ -800,22 +818,63 @@ function updateAllWeightCells(){document.querySelectorAll('.weight-cell').forEac
 let modalState={exName:'',sets:'',load:'',rmId:null,entries:[]};
 function parseSetCount(s){if(/^\d+-\d+-\d+$/.test(s.trim()))return 1;const groups=s.split(/[+\/]/).map(g=>g.trim()).filter(Boolean);let total=0;for(const g of groups){const m=g.match(/^(\d+)[x\u00d7]/i);if(m)total+=parseInt(m[1]);else total+=1;}return Math.min(total,12);}
 function openLogModal(exName,setsStr,loadStr,rmId,lk){
-  modalState={exName,sets:setsStr,load:loadStr,rmId,logKey:lk,entries:[]};
+  modalState={exName,sets:setsStr,load:loadStr,rmId,logKey:lk,entries:[],isWave:false};
   document.getElementById('modal-ex-name').textContent=exName;
   document.getElementById('modal-ex-meta').textContent=setsStr+'  \u00b7  '+loadStr;
   let existing={};try{const v=localStorage.getItem(lk);if(v)existing=JSON.parse(v);}catch(e){}
-  const count=parseSetCount(setsStr),u=getUnit();
+  const baseCount=parseSetCount(setsStr),u=getUnit();
+  // Restore previous added-sets count if user added extras last time
+  const savedKeys=Object.keys(existing).filter(k=>/^\d+$/.test(k)).map(Number);
+  const maxIdx=savedKeys.length?Math.max(...savedKeys):-1;
+  const count=Math.max(baseCount,maxIdx+1);
+  modalState.originalCount=baseCount;
+  modalState.currentCount=count;
   const suggestedWeight=(()=>{const max=getMaxForExercise(exName);if(!max)return'';const pcts=parsePercentages(loadStr);if(!pcts.length)return'';const mid=pcts[Math.floor(pcts.length/2)];const raw=mid/100*max;return u==='kg'?Math.round(raw/2.205):Math.round(raw);})();
-  let html='';
-  for(let i=0;i<count;i++){const prev=existing[i]||{};const mC=prev.outcome==='made'?'selected':'',xC=prev.outcome==='miss'?'selected':'';const wVal=prev.weight||suggestedWeight;html+=`<div class="log-set-row" id="set-row-${i}"><div class="log-set-num">Set ${i+1}</div><div class="log-outcome"><button class="outcome-btn check ${mC}" onclick="setOutcome(${i},'made')" title="Made">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setOutcome(${i},'miss')" title="Missed">&#10007;</button></div><input class="log-weight-input" type="number" id="log-w-${i}" value="${wVal}" placeholder="weight" min="0"><span class="log-weight-unit">${u}</span></div>`;}
-  document.getElementById('modal-sets-container').innerHTML=html;
+  modalState.suggestedWeight=suggestedWeight;
   modalState.entries=Array.from({length:count},(_,i)=>{const prev=existing[i]||{};return{outcome:prev.outcome||null,weight:prev.weight||(suggestedWeight||'')};});
+  renderLogSets();
   document.getElementById('log-modal-overlay').classList.add('open');
+}
+function renderLogSets(){
+  const u=getUnit();const count=modalState.currentCount;const baseCount=modalState.originalCount;
+  let html='';
+  for(let i=0;i<count;i++){
+    const e=modalState.entries[i]||{};
+    const mC=e.outcome==='made'?'selected':'',xC=e.outcome==='miss'?'selected':'';
+    const wVal=e.weight||modalState.suggestedWeight||'';
+    const addedClass=i>=baseCount?'added-set':'';
+    html+=`<div class="log-set-row ${addedClass}" id="set-row-${i}"><div class="log-set-num">Set ${i+1}</div><div class="log-outcome"><button class="outcome-btn check ${mC}" onclick="setOutcome(${i},'made')" title="Made">&#10003;</button><button class="outcome-btn x ${xC}" onclick="setOutcome(${i},'miss')" title="Missed">&#10007;</button></div><input class="log-weight-input" type="number" id="log-w-${i}" value="${wVal}" placeholder="weight" min="0"><span class="log-weight-unit">${u}</span></div>`;
+  }
+  // +/- controls — minus only enabled when count > originalCount
+  const canRemove=count>baseCount;
+  html+=`<div class="set-controls"><button class="set-ctrl-btn minus" onclick="removeSet()" ${canRemove?'':'disabled'} title="Remove last added set">&minus; Set</button><button class="set-ctrl-btn" onclick="addSet()" title="Add a set">+ Set</button></div>`;
+  document.getElementById('modal-sets-container').innerHTML=html;
+}
+function addSet(){
+  // Capture current weights before re-render
+  for(let i=0;i<modalState.currentCount;i++){
+    const w=document.getElementById(`log-w-${i}`);
+    if(w&&modalState.entries[i])modalState.entries[i].weight=parseFloat(w.value)||modalState.entries[i].weight;
+  }
+  modalState.currentCount++;
+  modalState.entries.push({outcome:null,weight:modalState.suggestedWeight||''});
+  renderLogSets();
+}
+function removeSet(){
+  if(modalState.currentCount<=modalState.originalCount)return;
+  // Capture current weights before re-render
+  for(let i=0;i<modalState.currentCount;i++){
+    const w=document.getElementById(`log-w-${i}`);
+    if(w&&modalState.entries[i])modalState.entries[i].weight=parseFloat(w.value)||modalState.entries[i].weight;
+  }
+  modalState.currentCount--;
+  modalState.entries.pop();
+  renderLogSets();
 }
 function setOutcome(idx,outcome){if(!modalState.entries[idx])return;modalState.entries[idx].outcome=outcome;const row=document.getElementById(`set-row-${idx}`);row.querySelectorAll('.outcome-btn').forEach(b=>b.classList.remove('selected'));row.querySelector(`.outcome-btn.${outcome==='made'?'check':'x'}`).classList.add('selected');}
 function saveLog(){
   if(modalState.isWave){saveWaveLog();return;}
-  const count=modalState.entries.length,logData={};let anyMade=false,maxW=0;
+  const count=modalState.currentCount||modalState.entries.length,logData={};let anyMade=false,maxW=0;xW=0;
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   for(let i=0;i<count;i++){const w=parseFloat(document.getElementById(`log-w-${i}`)?.value)||0;modalState.entries[i].weight=w;logData[i]={outcome:modalState.entries[i].outcome,weight:w,date:today};if(modalState.entries[i].outcome==='made'&&w>maxW){maxW=w;anyMade=true;}}
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
@@ -835,6 +894,31 @@ function notesKey(phaseId,weekNum,dayIdx){return userKey(`kc_notes_${currentView
 function saveNote(key,val){try{localStorage.setItem(key,val);}catch(e){}}
 function loadNote(key){try{return localStorage.getItem(key)||'';}catch(e){return'';}}
 function toggleNotes(btn,bodyId){const body=document.getElementById(bodyId);const open=body.classList.toggle('open');btn.classList.toggle('open',open);}
+  
+// ── DAILY FEELING RATING ─────────────────────────────────────────────────
+const FEELING_LABELS=['Rough','Tough','OK','Good','Great'];
+const FEELING_EMOJIS=['😣','😕','😐','🙂','💪'];
+function feelingKey(phaseId,weekNum,dayIdx){return userKey(`kc_feeling_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}`);}
+function loadFeeling(key){try{const v=localStorage.getItem(key);return v?parseInt(v):null;}catch(e){return null;}}
+function saveFeeling(key,rating){try{if(rating)localStorage.setItem(key,String(rating));else localStorage.removeItem(key);}catch(e){}}
+function setFeeling(key,rating,btnId){
+  const cur=loadFeeling(key);
+  const newRating=cur===rating?null:rating; // tap again to clear
+  saveFeeling(key,newRating);
+  // Update UI
+  document.querySelectorAll(`[data-feeling-key="${btnId}"] .feeling-btn`).forEach(b=>b.classList.remove('selected'));
+  if(newRating){const btn=document.querySelector(`[data-feeling-key="${btnId}"] .feeling-btn[data-rating="${newRating}"]`);if(btn)btn.classList.add('selected');}
+}
+function feelingScaleHtml(fKey,scopeId){
+  const cur=loadFeeling(fKey);
+  let html=`<div class="feeling-row" data-feeling-key="${scopeId}"><div class="feeling-label">How'd today go?</div><div class="feeling-scale">`;
+  for(let i=1;i<=5;i++){
+    const sel=cur===i?'selected':'';
+    html+=`<button type="button" class="feeling-btn ${sel}" data-rating="${i}" onclick="setFeeling('${fKey}',${i},'${scopeId}')"><span class="emoji">${FEELING_EMOJIS[i-1]}</span><span>${FEELING_LABELS[i-1]}</span></button>`;
+  }
+  html+=`</div></div>`;
+  return html;
+}
 
 // ── VIEW / CYCLE LOADING ─────────────────────────────────────────────────
 function loadView(){
@@ -1053,7 +1137,9 @@ function renderCycle(cycle){
           html += `<div class="day-header" style="opacity:0.65;"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label" style="color:var(--muted);font-size:18px;">${dayLabel}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div><div class="day-focus" style="color:var(--muted);">Rest Day</div></div>`;
           html += odAwListHtml;
           html += `<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${odAwKey}')">+ Add Workout</button></div>`;
-          html += `<div class="day-notes-section"><button class="day-notes-toggle" id="${odBtnId}" onclick="toggleNotes(this,'${odNId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${odNId}"><textarea placeholder="Notes for this rest day\u2026" onchange="saveNote('${odKey}',this.value)" oninput="saveNote('${odKey}',this.value)">${odNote}</textarea></div></div>`;
+          const odFKey=userKey(`kc_feeling_${currentRole==='admin'?'admin':'member'}_offday_${phase.id}_w${week.number}_off${slot.offset}`);
+          const odFScope=`feel-off-${phase.id}-${week.number}-${slot.offset}`;
+          html += `<div class="day-notes-section"><button class="day-notes-toggle" id="${odBtnId}" onclick="toggleNotes(this,'${odNId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${odNId}"><textarea placeholder="Notes for this rest day\u2026" onchange="saveNote('${odKey}',this.value)" oninput="saveNote('${odKey}',this.value)">${odNote}</textarea>${feelingScaleHtml(odFKey,odFScope)}</div></div>`;
           html += '</div>';
 
         } else {
@@ -1122,7 +1208,9 @@ function renderCycle(cycle){
           let awListHtml='';
           if(savedAW.length){awListHtml='<div class="aw-workouts-list">'+savedAW.map((w,wi)=>renderSavedWorkout(w,wi,awKey)).join('')+'</div>';}
           html+=`${awListHtml}<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${awKey}')">+ Add Workout</button></div>`;
-          html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea></div></div>`;
+          const fKey=feelingKey(phase.id,week.number,di);
+          const fScopeId=`feel-${phase.id}-${week.number}-${di}`;
+          html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
           html += '</div>';
         }
       }); // end slots.forEach
@@ -1830,6 +1918,20 @@ function renderNotesJournal(){
     }
   }catch(e){}
 
+  // ── Also collect days with only a feeling rating ─────────────────
+  try{
+    const fPrefix=userKey(`kc_feeling_${prefix}_`);
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(!k||!k.startsWith(fPrefix))continue;
+      const bare=currentUsername?k.slice(`u_${currentUsername}_`.length):k;
+      const m=bare.match(/kc_feeling_(?:admin|member)_(.+)_w(\d+)_d(\d+)$/);
+      if(!m)continue;
+      const ek=`${m[1]}|${m[2]}|${m[3]}`;
+      if(!byKey[ek])byKey[ek]={phaseId:m[1],weekNum:parseInt(m[2]),dayIdx:parseInt(m[3]),note:''};
+    }
+  }catch(e){}
+  
   // ── 2. Also collect days that have saved workouts (even with no notes) ──
   try{
     const allWO=JSON.parse(localStorage.getItem(userKey(AW_WORKOUTS_SK))||'{}');
@@ -1937,6 +2039,7 @@ function renderNotesJournal(){
         ${liftsHtml?`<div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border);"><div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Program Lifts</div>${liftsHtml}</div>`:''}
         ${awHtml}
         ${nutSectionHtml}
+        ${(()=>{const fk=feelingKey(entry.phaseId,entry.weekNum,entry.dayIdx);const r=loadFeeling(fk);return r?`<div style="margin-bottom:10px;padding:8px 12px;background:var(--surface2);border-radius:3px;display:flex;align-items:center;gap:10px;"><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Felt:</span><span style="font-size:16px;">${FEELING_EMOJIS[r-1]}</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text);">${FEELING_LABELS[r-1]}</span></div>`:'';})()}
         ${entry.note?`<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><div style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`:''}
       </div>
     </div>`;
@@ -2113,6 +2216,7 @@ function downloadNotesPDF(){
       ${liftsHtml}
       ${awPdfHtml}
       ${nutHtml}
+      ${(()=>{const fk=feelingKey(entry.phaseId,entry.weekNum,entry.dayIdx);const r=loadFeeling(fk);return r?`<div style="margin-bottom:10px;padding:6px 10px;background:#f0eeea;border-radius:3px;display:inline-block;font-family:monospace;font-size:11px;"><span style="color:#999;letter-spacing:1px;text-transform:uppercase;font-size:9px;">Felt:</span> <span style="font-size:14px;">${FEELING_EMOJIS[r-1]}</span> <strong style="color:#1a1a1b;">${FEELING_LABELS[r-1]}</strong></div>`:'';})()}
       <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
       <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>
     </div>`;
