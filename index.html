@@ -289,6 +289,17 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
 .aw-workout-entry-meta{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:4px;}
 .aw-delete-btn{position:absolute;top:8px;right:8px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:13px;padding:2px 4px;}
 .aw-delete-btn:hover{color:var(--accent3);}
+/* per-set rows */
+.aw-set-rows{display:flex;flex-direction:column;gap:6px;margin-top:10px;}
+.aw-set-row{display:flex;align-items:center;gap:6px;}
+.aw-set-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);min-width:24px;text-align:center;}
+.aw-set-row .aw-input{padding:7px 10px;font-size:13px;}
+.aw-set-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:16px;padding:0 4px;line-height:1;flex-shrink:0;}
+.aw-set-remove:hover{color:var(--accent3);}
+.aw-add-set-btn{width:100%;margin-top:8px;background:none;border:1px dashed var(--border);color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:7px;border-radius:3px;cursor:pointer;transition:all .2s;}
+.aw-add-set-btn:hover{border-color:var(--accent);color:var(--accent);}
+.aw-set-col-labels{display:flex;gap:6px;margin-top:8px;padding-left:30px;}
+.aw-set-col-labels span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);flex:1;text-align:center;}
 </style>
 </head>
 <body>
@@ -2475,24 +2486,38 @@ function openAWEditModal(awKey,idx){
   const arr=loadSavedWorkouts(awKey);
   const w=arr[idx]; if(!w)return;
   awCurrentType=w.type||'lift';
-  // set tabs
   ['lift','amrap','fortime'].forEach(t=>document.getElementById('aw-tab-'+t).classList.toggle('active',t===awCurrentType));
-  renderAWForm();
-  // populate primary movement
+
+  // For lift type: extract per-set arrays (support both old flat format and new sets[] format)
+  let initA=null,initB=null;
+  if(awCurrentType==='lift'){
+    const mvA=w.movements[0]||{};
+    if(Array.isArray(mvA.sets)){
+      initA=mvA.sets;
+    } else {
+      // old flat format: {sets,reps,weight} — convert to per-set rows
+      const n=parseInt(mvA.sets)||1;
+      initA=Array.from({length:n},()=>({reps:mvA.reps||'',weight:mvA.weight||''}));
+    }
+    if(w.movements.length>1){
+      const mvB=w.movements[1]||{};
+      if(Array.isArray(mvB.sets)){
+        initB=mvB.sets;
+      } else {
+        const n=parseInt(mvB.sets)||1;
+        initB=Array.from({length:n},()=>({reps:mvB.reps||'',weight:mvB.weight||''}));
+      }
+    }
+  }
+
+  renderAWForm(initA,initB);
+  // populate exercise selectors
   awSetSelectValue('aw-a',w.movements[0]?.exercise||'');
-  document.getElementById('aw-a-sets').value=w.movements[0]?.sets||'';
-  document.getElementById('aw-a-reps').value=w.movements[0]?.reps||'';
-  document.getElementById('aw-a-weight').value=w.movements[0]?.weight||'';
-  // superset/second movement
   if(w.movements.length>1){
     const ssCheck=document.getElementById('aw-ss-check');
     if(ssCheck){ssCheck.checked=true;awToggleSS();}
     awSetSelectValue('aw-b',w.movements[1].exercise||'');
-    document.getElementById('aw-b-sets').value=w.movements[1]?.sets||'';
-    document.getElementById('aw-b-reps').value=w.movements[1]?.reps||'';
-    document.getElementById('aw-b-weight').value=w.movements[1]?.weight||'';
   }
-  // type-specific result fields
   if(w.type==='amrap'||w.type==='fortime'){
     if(document.getElementById('aw-timecap'))document.getElementById('aw-timecap').value=w.timecap||'';
     if(document.getElementById('aw-result'))document.getElementById('aw-result').value=w.result||'';
@@ -2577,7 +2602,7 @@ function awAddExercise(pfx){
   },50);
 }
 
-// Movement block used by all three workout types
+// Movement block used by AMRAP / For Time
 function movementBlockHtml(pfx,labelText){
   return `
   <div style="padding:14px 20px 8px;">
@@ -2595,25 +2620,51 @@ function movementBlockHtml(pfx,labelText){
   </div>`;
 }
 
-// Lift block keeps sets field
+// Per-set rows state for lift blocks
+const awSetData={};  // keyed by pfx
+
+function awInitSets(pfx,initialSets){
+  // initialSets: array of {reps,weight} or empty for a fresh form
+  awSetData[pfx]=initialSets&&initialSets.length?initialSets.map(s=>({reps:s.reps||'',weight:s.weight||''})):[{reps:'',weight:''}];
+}
+
+function awRenderSetRows(pfx){
+  const container=document.getElementById(pfx+'-set-rows');
+  if(!container)return;
+  const rows=awSetData[pfx]||[];
+  container.innerHTML=rows.map((s,i)=>`
+    <div class="aw-set-row">
+      <span class="aw-set-num">${i+1}</span>
+      <input class="aw-input" type="text" placeholder="Reps" value="${s.reps}"
+        oninput="awSetData['${pfx}'][${i}].reps=this.value" style="flex:1;padding:7px 10px;font-size:13px;">
+      <input class="aw-input" type="text" placeholder="Weight" value="${s.weight}"
+        oninput="awSetData['${pfx}'][${i}].weight=this.value" style="flex:1;padding:7px 10px;font-size:13px;">
+      ${rows.length>1?`<button class="aw-set-remove" onclick="awRemoveSet('${pfx}',${i})" title="Remove set">×</button>`:'<span style="width:20px;"></span>'}
+    </div>`).join('');
+}
+
+function awAddSet(pfx){
+  if(!awSetData[pfx])awSetData[pfx]=[];
+  // clone last row's weight as convenience
+  const last=awSetData[pfx][awSetData[pfx].length-1]||{};
+  awSetData[pfx].push({reps:'',weight:last.weight||''});
+  awRenderSetRows(pfx);
+}
+
+function awRemoveSet(pfx,i){
+  if(!awSetData[pfx]||awSetData[pfx].length<=1)return;
+  awSetData[pfx].splice(i,1);
+  awRenderSetRows(pfx);
+}
+
+// Lift block — per-set rows
 function liftBlockHtml(pfx,labelText){
   return `
   <div style="padding:14px 20px 8px;">
     ${awExSelectHtml(pfx,labelText)}
-    <div class="aw-row" style="margin-top:10px;">
-      <div class="aw-field">
-        <span class="aw-label">Sets</span>
-        <input class="aw-input" type="text" id="${pfx}-sets" placeholder="e.g. 4">
-      </div>
-      <div class="aw-field">
-        <span class="aw-label">Reps</span>
-        <input class="aw-input" type="text" id="${pfx}-reps" placeholder="e.g. 5">
-      </div>
-      <div class="aw-field">
-        <span class="aw-label">Weight</span>
-        <input class="aw-input" type="text" id="${pfx}-weight" placeholder="e.g. 185 lbs">
-      </div>
-    </div>
+    <div class="aw-set-col-labels"><span>Reps</span><span>Weight</span></div>
+    <div class="aw-set-rows" id="${pfx}-set-rows"></div>
+    <button class="aw-add-set-btn" onclick="awAddSet('${pfx}')">+ Add Set</button>
   </div>`;
 }
 
@@ -2647,9 +2698,12 @@ function resultFooterHtml(resultLabel){
   </div>`;
 }
 
-function renderAWForm(){
+function renderAWForm(initA,initB){
+  // initA / initB: optional arrays of {reps,weight} for pre-population
   const body=document.getElementById('aw-form-body');
   if(awCurrentType==='lift'){
+    awInitSets('aw-a',initA||null);
+    awInitSets('aw-b',initB||null);
     body.innerHTML=
       liftBlockHtml('aw-a','Exercise')+
       `<div style="padding:4px 20px 12px;border-top:1px solid var(--border);">
@@ -2662,6 +2716,8 @@ function renderAWForm(){
           ${liftBlockHtml('aw-b','Exercise')}
         </div>
       </div>`;
+    awRenderSetRows('aw-a');
+    awRenderSetRows('aw-b');
   } else if(awCurrentType==='amrap'){
     body.innerHTML=
       movementBlockHtml('aw-a','Movement 1')+
@@ -2686,22 +2742,34 @@ function awSave(){
   if(!exA){alert('Please select or enter an exercise.');return;}
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
   const arr=loadSavedWorkouts(awCurrentKey);
-  // Preserve original timestamp if editing
   const origTimestamp=awEditingIdx>=0&&arr[awEditingIdx]?arr[awEditingIdx].timestamp:today;
   const entry={type:awCurrentType,timestamp:origTimestamp,editedAt:awEditingIdx>=0?today:undefined,movements:[]};
-  // Primary
-  const mvA={exercise:exA,sets:document.getElementById('aw-a-sets')?.value||'',reps:document.getElementById('aw-a-reps')?.value||'',weight:document.getElementById('aw-a-weight')?.value||''};
-  entry.movements.push(mvA);
-  // Second movement
-  if(document.getElementById('aw-ss-check')?.checked){
-    const exB=awGetExName('aw-b');
-    if(exB){entry.movements.push({exercise:exB,sets:document.getElementById('aw-b-sets')?.value||'',reps:document.getElementById('aw-b-reps')?.value||'',weight:document.getElementById('aw-b-weight')?.value||''});}
-  }
-  // Result fields
-  if(awCurrentType==='amrap'||awCurrentType==='fortime'){
+
+  if(awCurrentType==='lift'){
+    // Primary movement — store sets as array of {reps,weight}
+    const setsA=(awSetData['aw-a']||[]).filter(s=>s.reps||s.weight);
+    const mvA={exercise:exA,sets:setsA.length?setsA:[{reps:'',weight:''}]};
+    entry.movements.push(mvA);
+    // Superset
+    if(document.getElementById('aw-ss-check')?.checked){
+      const exB=awGetExName('aw-b');
+      if(exB){
+        const setsB=(awSetData['aw-b']||[]).filter(s=>s.reps||s.weight);
+        entry.movements.push({exercise:exB,sets:setsB.length?setsB:[{reps:'',weight:''}]});
+      }
+    }
+  } else {
+    // AMRAP / For Time — flat movement fields
+    const mvA={exercise:exA,reps:document.getElementById('aw-a-reps')?.value||'',weight:document.getElementById('aw-a-weight')?.value||''};
+    entry.movements.push(mvA);
+    if(document.getElementById('aw-ss-check')?.checked){
+      const exB=awGetExName('aw-b');
+      if(exB){entry.movements.push({exercise:exB,reps:document.getElementById('aw-b-reps')?.value||'',weight:document.getElementById('aw-b-weight')?.value||''});}
+    }
     entry.timecap=document.getElementById('aw-timecap')?.value||'';
     entry.result=document.getElementById('aw-result')?.value||'';
   }
+
   if(awEditingIdx>=0&&awEditingIdx<arr.length){arr[awEditingIdx]=entry;}
   else{arr.push(entry);}
   saveSavedWorkouts(awCurrentKey,arr);
@@ -2741,11 +2809,25 @@ function renderSavedWorkout(w,wi,awKey){
     const isMulti=w.movements.length>1;
     const badgeLabel=w.type==='lift'?(isMulti&&mi===0?'superset':''):(mi===0?'':'');
     const badge=badgeLabel?`<span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;text-transform:uppercase;color:var(--ss0);background:var(--ss0a);border:1px solid var(--ss0b);padding:1px 5px;border-radius:2px;margin-left:6px;">${badgeLabel}</span>`:'';
-    const meta=[];
-    if(m.sets)meta.push(m.sets+' sets');
-    if(m.reps)meta.push(m.reps+(w.type==='lift'?' reps':''));
-    if(m.weight)meta.push(m.weight);
-    details+=`<div style="margin-bottom:${mi<w.movements.length-1?'6':'2'}px;"><strong>${m.exercise}</strong>${badge}${meta.length?'<br><span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">'+meta.join(' · ')+'</span>':''}</div>`;
+    let metaHtml='';
+    if(w.type==='lift'&&Array.isArray(m.sets)){
+      // New format: per-set rows
+      const setLines=m.sets.map((s,si)=>{
+        const parts=[];
+        if(s.reps)parts.push(s.reps+' reps');
+        if(s.weight)parts.push(s.weight);
+        return `<span style="display:inline-block;min-width:20px;color:var(--muted);margin-right:4px;">${si+1}.</span>${parts.join(' @ ')||'—'}`;
+      }).join('<br>');
+      metaHtml=`<div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:3px;line-height:1.7;">${setLines}</div>`;
+    } else {
+      // Old flat format or AMRAP/ForTime
+      const meta=[];
+      if(m.sets&&!Array.isArray(m.sets))meta.push(m.sets+' sets');
+      if(m.reps)meta.push(m.reps+(w.type==='lift'?' reps':''));
+      if(m.weight)meta.push(m.weight);
+      if(meta.length)metaHtml=`<span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">${meta.join(' · ')}</span>`;
+    }
+    details+=`<div style="margin-bottom:${mi<w.movements.length-1?'8':'2'}px;"><strong>${m.exercise}</strong>${badge}${metaHtml?'<br>'+metaHtml:''}</div>`;
   });
   let footer='';
   if(w.type==='amrap'||w.type==='fortime'){
@@ -2789,11 +2871,18 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
     html+=`<div style="margin-bottom:8px;padding:8px 10px;background:var(--surface2);border-radius:3px;border-left:3px solid ${tc};">`;
     html+=`<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:${tc};margin-bottom:4px;">${tl}</div>`;
     w.movements.forEach(m=>{
-      const meta=[];
-      if(m.sets)meta.push(m.sets+' sets');
-      if(m.reps)meta.push(m.reps+(w.type==='lift'?' reps':''));
-      if(m.weight)meta.push(m.weight);
-      html+=`<div style="font-size:12px;color:var(--text);margin-bottom:2px;"><strong>${m.exercise}</strong>${meta.length?' <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);">· '+meta.join(' · ')+'</span>':''}</div>`;
+      let metaStr='';
+      if(w.type==='lift'&&Array.isArray(m.sets)){
+        const lines=m.sets.map((s,si)=>{const p=[];if(s.reps)p.push(s.reps+' reps');if(s.weight)p.push(s.weight);return `${si+1}. ${p.join(' @ ')||'—'}`;}).join('  ');
+        metaStr=lines?` <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">· ${lines}</span>`:'';
+      } else {
+        const meta=[];
+        if(m.sets&&!Array.isArray(m.sets))meta.push(m.sets+' sets');
+        if(m.reps)meta.push(m.reps+(w.type==='lift'?' reps':''));
+        if(m.weight)meta.push(m.weight);
+        if(meta.length)metaStr=` <span style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);">· ${meta.join(' · ')}</span>`;
+      }
+      html+=`<div style="font-size:12px;color:var(--text);margin-bottom:2px;"><strong>${m.exercise}</strong>${metaStr}</div>`;
     });
     if((w.type==='amrap'||w.type==='fortime')&&(w.timecap||w.result)){
       const rl=w.type==='fortime'?'Time':'Result';
