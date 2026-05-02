@@ -237,6 +237,15 @@ tr[data-ss="3"].ss-start td:first-child,tr[data-ss="3"].ss-mid td:first-child,tr
 .day-notes-body.open{display:block;}
 .day-notes-body textarea{width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;line-height:1.6;padding:10px 12px;border-radius:2px;outline:none;resize:vertical;min-height:80px;}
 .day-notes-body textarea:focus{border-color:var(--accent2);}
+/* ── DAY METRICS ── */
+.day-metrics-row{display:flex;gap:8px;margin-top:10px;}
+.day-metric{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:8px 10px;}
+.day-metric-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.day-metric-value{font-family:'DM Mono',monospace;font-size:15px;color:var(--text);font-weight:500;}
+.day-metric-value.muted{color:var(--muted);}
+.day-metric input{background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:100%;outline:none;padding:0;}
+.day-metric input::placeholder{color:var(--muted);font-size:13px;}
+.day-metric input:focus{color:var(--accent);}
 .week-dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-left:5px;vertical-align:middle;}
 .week-dot.done{background:var(--accent2);}.week-dot.partial{background:var(--accent);}.week-dot.none{display:none;}
 .log-date-stamp{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);margin-top:3px;text-transform:uppercase;}
@@ -270,6 +279,19 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
 .aw-new-ex-row{display:none;margin-top:8px;align-items:center;gap:8px;}
 .aw-new-ex-row.visible{display:flex;}
 .aw-new-ex-btn{background:var(--accent);color:#0e0e0f;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;border:none;padding:6px 12px;border-radius:3px;cursor:pointer;white-space:nowrap;}
+/* exercise search */
+.aw-ex-search-wrap{position:relative;}
+.aw-ex-search{width:100%;background:var(--input-bg);border:1px solid var(--border);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;padding:9px 12px 9px 34px;border-radius:3px;outline:none;}
+.aw-ex-search:focus{border-color:var(--accent);}
+.aw-ex-search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:13px;pointer-events:none;}
+.aw-ex-dropdown{position:absolute;left:0;right:0;top:calc(100% + 3px);background:var(--surface);border:1px solid var(--border);border-radius:3px;z-index:9999;max-height:220px;overflow-y:auto;display:none;box-shadow:0 4px 16px rgba(0,0,0,.35);}
+.aw-ex-dropdown.open{display:block;}
+.aw-ex-opt{padding:10px 12px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid var(--border);}
+.aw-ex-opt:last-child{border-bottom:none;}
+.aw-ex-opt:hover,.aw-ex-opt.highlighted{background:var(--surface2);}
+.aw-ex-opt.custom-entry{color:var(--accent2);font-style:italic;}
+.aw-ex-selected{display:flex;align-items:center;gap:6px;margin-top:6px;padding:5px 8px;background:var(--surface2);border-radius:3px;font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:1px;display:none;}
+.aw-ex-selected.visible{display:flex;}
 .aw-superset-toggle{display:flex;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--border);margin-top:2px;}
 .aw-superset-toggle label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;}
 .aw-superset-toggle input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer;}
@@ -936,7 +958,60 @@ function feelingScaleHtml(fKey,scopeId){
   return html;
 }
 
-// ── VIEW / CYCLE LOADING ─────────────────────────────────────────────────
+// ── DAY METRICS ─────────────────────────────────────────────────────────────
+function timeKey(phaseId,weekNum,dayIdx){return userKey(`kc_time_${currentView==='admin'?'admin':'member'}_${phaseId}_w${weekNum}_d${dayIdx}`);}
+function loadTimeWorked(key){try{return localStorage.getItem(key)||'';}catch(e){return'';}}
+function saveTimeWorked(key,val){try{if(val.trim())localStorage.setItem(key,val.trim());else localStorage.removeItem(key);}catch(e){}}
+
+function calcDayVolume(awKey){
+  // Sum sets[i].reps * parsed weight for all lift workouts on this day
+  const saved=loadSavedWorkouts(awKey);
+  let total=0;
+  saved.forEach(w=>{
+    if(w.type!=='lift')return;
+    w.movements.forEach(m=>{
+      const setsArr=Array.isArray(m.sets)?m.sets:[];
+      setsArr.forEach(s=>{
+        const reps=parseInt(s.reps)||0;
+        const wMatch=(s.weight||'').match(/([\d.]+)/);
+        const wt=wMatch?parseFloat(wMatch[1]):0;
+        total+=reps*wt;
+      });
+    });
+  });
+  return total;
+}
+
+function dayMetricsHtml(awKey,tKey,scopeId){
+  const vol=calcDayVolume(awKey);
+  const volStr=vol>0?vol.toLocaleString()+' lbs':'—';
+  const volCls=vol>0?'':'muted';
+  const timeVal=loadTimeWorked(tKey);
+  return `<div class="day-metrics-row">
+    <div class="day-metric">
+      <div class="day-metric-label">Total Volume</div>
+      <div class="day-metric-value ${volCls}" id="vol-${scopeId}">${volStr}</div>
+    </div>
+    <div class="day-metric">
+      <div class="day-metric-label">Time Worked</div>
+      <input class="day-metric-input" type="text" placeholder="e.g. 1:15" value="${timeVal}"
+        onchange="saveTimeWorked('${tKey}',this.value)"
+        style="background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:100%;outline:none;padding:0;"
+        onfocus="this.style.color='var(--accent)'" onblur="this.style.color='var(--text)'">
+    </div>
+  </div>`;
+}
+
+// Call after awSave to refresh volume display for the relevant day
+function refreshDayVolume(awKey){
+  const scopeId=awKey.replace(/[^a-z0-9]/gi,'-');
+  const el=document.getElementById('vol-'+scopeId);
+  if(!el)return;
+  const vol=calcDayVolume(awKey);
+  el.textContent=vol>0?vol.toLocaleString()+' lbs':'—';
+  el.className='day-metric-value'+(vol>0?'':' muted');
+}
+
 function loadView(){
   if(currentView==='nutrition'){updateViewLabels();initNutritionPanel();return;}
   buildRmPanel();loadSavedMaxes();
@@ -1226,7 +1301,9 @@ function renderCycle(cycle){
           html+=`${awListHtml}<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${awKey}')">+ Add Workout</button></div>`;
           const fKey=feelingKey(phase.id,week.number,di);
           const fScopeId=`feel-${phase.id}-${week.number}-${di}`;
-          html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
+          const tKey=timeKey(phase.id,week.number,di);
+          const metScopeId=awKey.replace(/[^a-z0-9]/gi,'-');
+          html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${dayMetricsHtml(awKey,tKey,metScopeId)}${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
           html += '</div>';
         }
       }); // end slots.forEach
@@ -2096,6 +2173,17 @@ function renderNotesJournal(){
         ${awHtml}
         ${nutSectionHtml}
         ${(()=>{const fk=feelingKey(entry.phaseId,entry.weekNum,entry.dayIdx);const r=loadFeeling(fk);return r?`<div style="margin-bottom:10px;padding:8px 12px;background:var(--surface2);border-radius:3px;display:flex;align-items:center;gap:10px;"><span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Felt:</span><span style="font-size:16px;">${FEELING_EMOJIS[r-1]}</span><span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text);">${FEELING_LABELS[r-1]}</span></div>`:'';})()}
+        ${(()=>{
+          const awK=`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`;
+          const tk=timeKey(entry.phaseId,entry.weekNum,entry.dayIdx);
+          const vol=calcDayVolume(awK);
+          const tw=loadTimeWorked(tk);
+          if(!vol&&!tw)return'';
+          const parts=[];
+          if(vol)parts.push(`<span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Volume:</span> <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text);">${vol.toLocaleString()} lbs</span>`);
+          if(tw)parts.push(`<span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Time:</span> <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text);">${tw}</span>`);
+          return`<div style="margin-bottom:10px;padding:8px 12px;background:var(--surface2);border-radius:3px;display:flex;align-items:center;gap:16px;">${parts.join('')}</div>`;
+        })()}
         ${entry.note?`<div style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;">Notes</div><div style="font-size:13px;color:var(--text);line-height:1.7;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`:''}
       </div>
     </div>`;
@@ -2307,6 +2395,17 @@ function downloadNotesPDF(){
       ${awPdfHtml}
       ${nutHtml}
       ${(()=>{const fk=feelingKey(entry.phaseId,entry.weekNum,entry.dayIdx);const r=loadFeeling(fk);return r?`<div style="margin-bottom:10px;padding:6px 10px;background:#f0eeea;border-radius:3px;display:inline-block;font-family:monospace;font-size:11px;"><span style="color:#999;letter-spacing:1px;text-transform:uppercase;font-size:9px;">Felt:</span> <span style="font-size:14px;">${FEELING_EMOJIS[r-1]}</span> <strong style="color:#1a1a1b;">${FEELING_LABELS[r-1]}</strong></div>`:'';})()}
+      ${(()=>{
+        const awK=`${entry.phaseId}_w${entry.weekNum}_d${entry.dayIdx}`;
+        const tk=timeKey(entry.phaseId,entry.weekNum,entry.dayIdx);
+        const vol=calcDayVolume(awK);
+        const tw=loadTimeWorked(tk);
+        if(!vol&&!tw)return'';
+        const parts=[];
+        if(vol)parts.push(`<span style="color:#999;letter-spacing:1px;text-transform:uppercase;font-size:9px;">Volume:</span> <strong style="color:#1a1a1b;">${vol.toLocaleString()} lbs</strong>`);
+        if(tw)parts.push(`<span style="color:#999;letter-spacing:1px;text-transform:uppercase;font-size:9px;">Time:</span> <strong style="color:#1a1a1b;">${tw}</strong>`);
+        return`<div style="margin-bottom:10px;padding:6px 10px;background:#f0eeea;border-radius:3px;display:inline-flex;gap:16px;font-family:monospace;font-size:11px;">${parts.join('')}</div>`;
+      })()}
       ${entry.note?`<div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px;font-family:monospace;">Session Notes</div>
       <div style="font-size:13px;color:#333;line-height:1.75;white-space:pre-wrap;">${entry.note.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div>`:''}
     </div>`;
@@ -2445,18 +2544,50 @@ const AW_WORKOUTS_SK='kc_aw_workouts';
 const AW_CUSTOM_EX_SK='kc_aw_custom_exercises';
 
 const AW_BUILTIN_EX=[
+  // Olympic
   'Snatch','Clean & Jerk','Clean','Jerk','Split Jerk','Power Snatch','Power Clean',
-  'Hang Snatch','Hang Clean','Muscle Snatch','Snatch Balance',
+  'Hang Snatch','Hang Clean','Muscle Snatch','Snatch Balance','Hang Power Snatch','Hang Power Clean',
+  // Squat
   'Back Squat','Front Squat','Overhead Squat','Box Squat','Goblet Squat','Bulgarian Split Squat',
-  'Deadlift','Romanian Deadlift','Good Morning','Snatch Pull','Clean Pull','Pendlay Row','Bent Over Row',
-  'Bench Press','Incline Bench','Strict Press','Push Press','Push Jerk','Floor Press',
-  'Pull-up','Chin-up','Dip','Barbell Curl','Skull Crushers','Tricep Pushdown',
-  'Box Jump','Burpee','Kettlebell Swing','Kettlebell Snatch','Kettlebell Clean','Thruster',
-  'Wall Ball','Double Under','Row','Assault Bike','Ski Erg','Run','400m Run','800m Run',
-  'Toes to Bar','Knees to Elbow','Muscle Up','Bar Muscle Up','Ring Muscle Up',
-  'Handstand Push-up','Handstand Walk','Pistol','GHD Sit-up','GHD Hip Extension',
-  'Rope Climb','Dumbbell Snatch','Dumbbell Clean and Jerk','Farmer Carry','Hammer Curl',
-  'Standing Dumbbell Tricep Extension'
+  'Pause Back Squat','Pause Front Squat','Tempo Back Squat','Hack Squat','Zercher Squat',
+  'Single Leg Squat','Step Up','Lunge','Reverse Lunge','Walking Lunge',
+  // Hinge / Pull
+  'Deadlift','Romanian Deadlift','Stiff Leg Deadlift','Sumo Deadlift','Trap Bar Deadlift',
+  'Good Morning','Snatch Pull','Clean Pull','Pendlay Row','Bent Over Row',
+  'Single Arm Dumbbell Row','Cable Row','T-Bar Row','Chest Supported Row',
+  // Push
+  'Bench Press','Incline Bench','Decline Bench','Close Grip Bench',
+  'Dumbbell Bench Press','Incline Dumbbell Press','Floor Press',
+  'Strict Press','Push Press','Push Jerk','Dumbbell Shoulder Press','Arnold Press',
+  // Shoulders
+  'Lateral Raise','Dumbbell Lateral Raise','Cable Lateral Raise',
+  'Front Raise','Dumbbell Front Raise','Cable Front Raise',
+  'Rear Delt Fly','Face Pull','Upright Row','Shrug','Dumbbell Shrug',
+  // Arms
+  'Pull-up','Chin-up','Dip',
+  'Barbell Curl','Dumbbell Curl','Hammer Curl','Incline Dumbbell Curl',
+  'Preacher Curl','Cable Curl','Concentration Curl',
+  'Skull Crushers','Tricep Pushdown','Overhead Tricep Extension',
+  'Standing Dumbbell Tricep Extension','Close Grip Push-up','Tricep Kickback',
+  // Core / Gymnastics
+  'Toes to Bar','Knees to Elbow','GHD Sit-up','GHD Hip Extension',
+  'Sit-up','Ab Mat Sit-up','Hollow Body Hold','V-Up','L-Sit',
+  'Plank','Side Plank','Dead Bug','Pallof Press',
+  'Handstand Push-up','Handstand Walk','Handstand Hold','Pike Push-up',
+  'Muscle Up','Bar Muscle Up','Ring Muscle Up','Rope Climb',
+  'Pistol','Box Jump','Broad Jump','Burpee',
+  // Kettlebell
+  'Kettlebell Swing','Kettlebell Snatch','Kettlebell Clean','Kettlebell Press',
+  'Turkish Get-Up','Kettlebell Goblet Squat','Single Arm Kettlebell Row',
+  // Cardio / Conditioning
+  'Run','400m Run','800m Run','1 Mile Run',
+  'Row','Assault Bike','Ski Erg','Echo Bike','Jump Rope','Double Under',
+  // Dumbbell compound
+  'Dumbbell Snatch','Dumbbell Clean and Jerk','Thruster','Dumbbell Thruster',
+  'Farmer Carry','Suitcase Carry','Overhead Carry','Yoke Carry',
+  'Wall Ball','Slam Ball','Med Ball Clean',
+  // Back / Isolation
+  'Lat Pulldown','Pull-down','Straight Arm Pulldown','Pullover',
 ];
 
 function loadCustomExercises(){try{return JSON.parse(localStorage.getItem(userKey(AW_CUSTOM_EX_SK))||'[]');}catch(e){return[];}}
@@ -2528,16 +2659,10 @@ function openAWEditModal(awKey,idx){
 
 function awSetSelectValue(pfx, exName){
   if(!exName)return;
-  const sel=document.getElementById(pfx+'-select');
-  if(!sel)return;
-  // Try to find exact match in options
-  for(let i=0;i<sel.options.length;i++){
-    if(sel.options[i].value===exName){sel.selectedIndex=i;return;}
-  }
-  // Not in list — show custom input
-  sel.value='__custom__';
-  const inp=document.getElementById(pfx+'-custom');
-  if(inp){inp.style.display='block';inp.value=exName;}
+  document.getElementById(pfx+'-search').value=exName;
+  document.getElementById(pfx+'-value').value=exName;
+  const sel=document.getElementById(pfx+'-selected');
+  if(sel){sel.textContent=exName;sel.classList.add('visible');}
 }
 
 function closeAWModal(){document.getElementById('aw-modal-overlay').classList.remove('open');awEditingIdx=-1;}
@@ -2550,17 +2675,21 @@ function awSetType(t){
 }
 
 function awExSelectHtml(idPrefix,label){
-  const exList=getAllExercises();
-  const opts=exList.map(e=>`<option value="${e.replace(/"/g,'&quot;')}">${e}</option>`).join('');
   return `
     <div class="aw-field">
       <span class="aw-label">${label}</span>
-      <select class="aw-select" id="${idPrefix}-select" onchange="awCheckNewEx('${idPrefix}')">
-        <option value="">— Select exercise —</option>
-        ${opts}
-        <option value="__custom__">Enter custom…</option>
-      </select>
-      <input class="aw-input" type="text" id="${idPrefix}-custom" placeholder="Type exercise name…" style="display:none;margin-top:6px;">
+      <div class="aw-ex-search-wrap" id="${idPrefix}-search-wrap">
+        <span class="aw-ex-search-icon">⌕</span>
+        <input class="aw-ex-search" type="text" id="${idPrefix}-search"
+          placeholder="Search exercise…"
+          autocomplete="off"
+          oninput="awFilterEx('${idPrefix}')"
+          onfocus="awOpenDropdown('${idPrefix}')"
+          onkeydown="awExKeydown(event,'${idPrefix}')">
+        <div class="aw-ex-dropdown" id="${idPrefix}-dropdown"></div>
+      </div>
+      <div class="aw-ex-selected" id="${idPrefix}-selected"></div>
+      <input type="hidden" id="${idPrefix}-value">
       <div class="aw-new-ex-row" id="${idPrefix}-newex-row">
         <span style="font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--accent2);flex:1;">Save this exercise for later?</span>
         <button class="aw-new-ex-btn" onclick="awAddExercise('${idPrefix}')">+ Add Exercise</button>
@@ -2568,38 +2697,107 @@ function awExSelectHtml(idPrefix,label){
     </div>`;
 }
 
-function awCheckNewEx(pfx){
-  const sel=document.getElementById(pfx+'-select');
-  const customInp=document.getElementById(pfx+'-custom');
-  const newRow=document.getElementById(pfx+'-newex-row');
-  if(sel.value==='__custom__'){customInp.style.display='block';customInp.focus();}
-  else{customInp.style.display='none';}
-  customInp.oninput=()=>{
-    const val=(customInp.value||'').trim();
-    const known=getAllExercises().map(e=>e.toLowerCase());
-    if(val&&!known.includes(val.toLowerCase()))newRow.classList.add('visible');
-    else newRow.classList.remove('visible');
-  };
+function awFilterEx(pfx){
+  const inp=document.getElementById(pfx+'-search');
+  const q=(inp?.value||'').toLowerCase().trim();
+  const all=getAllExercises();
+  const matches=q?all.filter(e=>e.toLowerCase().includes(q)):all;
+  awRenderDropdown(pfx,matches,q);
+  awOpenDropdown(pfx);
+  // Clear selected value when user edits
+  document.getElementById(pfx+'-value').value='';
+  document.getElementById(pfx+'-selected')?.classList.remove('visible');
+  // Show "save new" prompt if unrecognized
+  const val=(inp?.value||'').trim();
+  const known=getAllExercises().map(e=>e.toLowerCase());
+  if(val&&!known.includes(val.toLowerCase()))document.getElementById(pfx+'-newex-row')?.classList.add('visible');
+  else document.getElementById(pfx+'-newex-row')?.classList.remove('visible');
 }
 
+function awRenderDropdown(pfx,list,q){
+  const dd=document.getElementById(pfx+'-dropdown');
+  if(!dd)return;
+  const esc=(s)=>s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  let html=list.slice(0,60).map((e,i)=>{
+    const disp=q?e.replace(new RegExp('('+esc(q)+')','gi'),'<strong>$1</strong>'):e;
+    const safe=e.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+    return `<div class="aw-ex-opt" data-idx="${i}" onmousedown="awPickEx('${pfx}','${safe}',event)">${disp}</div>`;
+  }).join('');
+  if(q&&!getAllExercises().map(e=>e.toLowerCase()).includes(q)){
+    const safe=q.replace(/'/g,"\\'").replace(/"/g,'&quot;');
+    html+=`<div class="aw-ex-opt custom-entry" onmousedown="awPickCustomEx('${pfx}',event)">Use "${safe}"…</div>`;
+  }
+  dd.innerHTML=html;
+}
+
+function awOpenDropdown(pfx){
+  const dd=document.getElementById(pfx+'-dropdown');
+  if(!dd)return;
+  const inp=document.getElementById(pfx+'-search');
+  const q=(inp?.value||'').toLowerCase().trim();
+  const all=getAllExercises();
+  const matches=q?all.filter(e=>e.toLowerCase().includes(q)):all;
+  awRenderDropdown(pfx,matches,q);
+  dd.classList.add('open');
+  setTimeout(()=>{
+    const handler=(e)=>{
+      const wrap=document.getElementById(pfx+'-search-wrap');
+      if(wrap&&!wrap.contains(e.target)){dd.classList.remove('open');document.removeEventListener('mousedown',handler,true);}
+    };
+    document.addEventListener('mousedown',handler,true);
+  },0);
+}
+
+function awPickEx(pfx,val,e){
+  if(e)e.preventDefault();
+  document.getElementById(pfx+'-search').value=val;
+  document.getElementById(pfx+'-value').value=val;
+  const sel=document.getElementById(pfx+'-selected');
+  if(sel){sel.textContent=val;sel.classList.add('visible');}
+  document.getElementById(pfx+'-dropdown').classList.remove('open');
+  document.getElementById(pfx+'-newex-row')?.classList.remove('visible');
+}
+
+function awPickCustomEx(pfx,e){
+  if(e)e.preventDefault();
+  const val=document.getElementById(pfx+'-search').value.trim();
+  document.getElementById(pfx+'-value').value=val;
+  const sel=document.getElementById(pfx+'-selected');
+  if(sel){sel.textContent=val;sel.classList.add('visible');}
+  document.getElementById(pfx+'-dropdown').classList.remove('open');
+  const known=getAllExercises().map(e=>e.toLowerCase());
+  if(val&&!known.includes(val.toLowerCase()))document.getElementById(pfx+'-newex-row')?.classList.add('visible');
+}
+
+function awExKeydown(e,pfx){
+  const dd=document.getElementById(pfx+'-dropdown');
+  if(!dd||!dd.classList.contains('open'))return;
+  const opts=[...dd.querySelectorAll('.aw-ex-opt')];
+  const cur=dd.querySelector('.aw-ex-opt.highlighted');
+  let idx=cur?opts.indexOf(cur):-1;
+  if(e.key==='ArrowDown'){e.preventDefault();idx=Math.min(idx+1,opts.length-1);opts.forEach((o,i)=>o.classList.toggle('highlighted',i===idx));opts[idx]?.scrollIntoView({block:'nearest'});}
+  else if(e.key==='ArrowUp'){e.preventDefault();idx=Math.max(idx-1,0);opts.forEach((o,i)=>o.classList.toggle('highlighted',i===idx));opts[idx]?.scrollIntoView({block:'nearest'});}
+  else if(e.key==='Enter'&&cur){e.preventDefault();cur.dispatchEvent(new MouseEvent('mousedown'));}
+  else if(e.key==='Escape'){dd.classList.remove('open');}
+}
+
+function awCheckNewEx(pfx){/* handled by awFilterEx */}
+
 function awGetExName(pfx){
-  const sel=document.getElementById(pfx+'-select');
-  if(!sel)return'';
-  if(sel.value==='__custom__'||sel.value===''){return(document.getElementById(pfx+'-custom')?.value||'').trim();}
-  return sel.value;
+  // Prefer hidden value (set by picker); fall back to typed text
+  const v=(document.getElementById(pfx+'-value')?.value||'').trim();
+  if(v)return v;
+  return(document.getElementById(pfx+'-search')?.value||'').trim();
 }
 
 function awAddExercise(pfx){
-  const name=(document.getElementById(pfx+'-custom')?.value||'').trim();
+  const name=(document.getElementById(pfx+'-search')?.value||'').trim();
   if(!name)return;
   const arr=loadCustomExercises();
   if(!arr.map(e=>e.toLowerCase()).includes(name.toLowerCase())){arr.push(name);saveCustomExercises(arr);}
-  const savedName=name;
-  renderAWForm();
-  setTimeout(()=>{
-    const s=document.getElementById(pfx+'-select');
-    if(s){for(let i=0;i<s.options.length;i++){if(s.options[i].value.toLowerCase()===savedName.toLowerCase()){s.selectedIndex=i;break;}}}
-  },50);
+  // Pick it immediately — no need to re-render
+  awPickEx(pfx,name,null);
+  document.getElementById(pfx+'-newex-row')?.classList.remove('visible');
 }
 
 // Movement block used by AMRAP / For Time
@@ -2775,6 +2973,7 @@ function awSave(){
   saveSavedWorkouts(awCurrentKey,arr);
   closeAWModal();
   refreshAWSection(awCurrentKey);
+  refreshDayVolume(awCurrentKey);
 }
 
 function deleteWorkout(awKey,idx){
@@ -2783,6 +2982,7 @@ function deleteWorkout(awKey,idx){
   arr.splice(idx,1);
   saveSavedWorkouts(awKey,arr);
   refreshAWSection(awKey);
+  refreshDayVolume(awKey);
 }
 
 function refreshAWSection(awKey){
@@ -2898,5 +3098,6 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
 
 
