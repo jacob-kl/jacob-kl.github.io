@@ -1254,7 +1254,9 @@ function renderCycle(cycle){
           html += `<div class="add-workout-section"><button class="add-workout-btn" onclick="openAWModal('${odAwKey}')">+ Add Workout</button></div>`;
           const odFKey=userKey(`kc_feeling_${currentRole==='admin'?'admin':'member'}_offday_${phase.id}_w${week.number}_off${slot.offset}`);
           const odFScope=`feel-off-${phase.id}-${week.number}-${slot.offset}`;
-          html += `<div class="day-notes-section"><button class="day-notes-toggle" id="${odBtnId}" onclick="toggleNotes(this,'${odNId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${odNId}"><textarea placeholder="Notes for this rest day\u2026" onchange="saveNote('${odKey}',this.value)" oninput="saveNote('${odKey}',this.value)">${odNote}</textarea>${feelingScaleHtml(odFKey,odFScope)}</div></div>`;
+          const odTKey=userKey(`kc_time_${currentView==='admin'?'admin':'member'}_offday_${phase.id}_w${week.number}_off${slot.offset}`);
+          const odMetScope=odAwKey.replace(/[^a-z0-9]/gi,'-');
+          html += `<div class="day-notes-section"><button class="day-notes-toggle" id="${odBtnId}" onclick="toggleNotes(this,'${odNId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${odNId}"><textarea placeholder="Notes for this rest day\u2026" onchange="saveNote('${odKey}',this.value)" oninput="saveNote('${odKey}',this.value)">${odNote}</textarea>${dayMetricsHtml(odAwKey,odTKey,odMetScope)}${feelingScaleHtml(odFKey,odFScope)}</div></div>`;
           html += '</div>';
 
         } else {
