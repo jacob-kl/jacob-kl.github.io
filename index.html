@@ -246,6 +246,8 @@ tr[data-ss="3"].ss-start td:first-child,tr[data-ss="3"].ss-mid td:first-child,tr
 .day-metric input{background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:100%;outline:none;padding:0;}
 .day-metric input::placeholder{color:var(--muted);font-size:13px;}
 .day-metric input:focus{color:var(--accent);}
+.day-metric input[type=number]::-webkit-inner-spin-button,
+.day-metric input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0;}
 .week-dot{display:inline-block;width:5px;height:5px;border-radius:50%;margin-left:5px;vertical-align:middle;}
 .week-dot.done{background:var(--accent2);}.week-dot.partial{background:var(--accent);}.week-dot.none{display:none;}
 .log-date-stamp{display:block;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);margin-top:3px;text-transform:uppercase;}
@@ -986,7 +988,10 @@ function dayMetricsHtml(awKey,tKey,scopeId){
   const vol=calcDayVolume(awKey);
   const volStr=vol>0?vol.toLocaleString()+' lbs':'—';
   const volCls=vol>0?'':'muted';
-  const timeVal=loadTimeWorked(tKey);
+  // Parse stored "H:MM" or "HH:MM" back into hr/min fields
+  const stored=loadTimeWorked(tKey);
+  let initH='',initM='';
+  if(stored){const parts=stored.split(':');initH=parts[0]||'';initM=parts[1]||'';}
   return `<div class="day-metrics-row">
     <div class="day-metric">
       <div class="day-metric-label">Total Volume</div>
@@ -994,12 +999,31 @@ function dayMetricsHtml(awKey,tKey,scopeId){
     </div>
     <div class="day-metric">
       <div class="day-metric-label">Time Worked</div>
-      <input class="day-metric-input" type="text" placeholder="e.g. 1:15" value="${timeVal}"
-        onchange="saveTimeWorked('${tKey}',this.value)"
-        style="background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:100%;outline:none;padding:0;"
-        onfocus="this.style.color='var(--accent)'" onblur="this.style.color='var(--text)'">
+      <div style="display:flex;align-items:baseline;gap:2px;">
+        <input type="number" min="0" max="9" placeholder="0"
+          value="${initH}"
+          id="time-h-${scopeId}"
+          oninput="saveTimeFields('${tKey}','time-h-${scopeId}','time-m-${scopeId}')"
+          style="background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:28px;outline:none;padding:0;-moz-appearance:textfield;"
+          onfocus="this.style.color='var(--accent)'" onblur="this.style.color='var(--text)'">
+        <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);">h</span>
+        <input type="number" min="0" max="59" placeholder="00"
+          value="${initM}"
+          id="time-m-${scopeId}"
+          oninput="saveTimeFields('${tKey}','time-h-${scopeId}','time-m-${scopeId}')"
+          style="background:none;border:none;color:var(--text);font-family:'DM Mono',monospace;font-size:15px;width:34px;outline:none;padding:0;margin-left:4px;-moz-appearance:textfield;"
+          onfocus="this.style.color='var(--accent)'" onblur="this.style.color='var(--text)'">
+        <span style="font-family:'DM Mono',monospace;font-size:13px;color:var(--muted);">m</span>
+      </div>
     </div>
   </div>`;
+}
+
+function saveTimeFields(tKey,hId,mId){
+  const h=(document.getElementById(hId)?.value||'').trim();
+  const m=(document.getElementById(mId)?.value||'').trim();
+  const val=(h||m)?`${h||'0'}:${(m||'0').padStart(2,'0')}`:'';
+  saveTimeWorked(tKey,val);
 }
 
 // Call after awSave to refresh volume display for the relevant day
