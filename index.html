@@ -1657,6 +1657,8 @@ function fpSetMode(mode){
           onblur="setTimeout(fpHideFoodSuggestions,180)" onfocusin="this.style.borderColor=\'var(--accent2)\'">
         <div id="fp-food-dropdown" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 3px);background:var(--surface);border:1px solid var(--border);border-radius:3px;z-index:9999;max-height:220px;overflow-y:auto;box-shadow:0 4px 16px rgba(0,0,0,.35);"></div>
       </div>
+
+      <!-- Shown when a DB food is selected -->
       <div id="fp-serving-row" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:8px 12px;">
         <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;">Serving Size</div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -1670,15 +1672,39 @@ function fpSetMode(mode){
           </div>
         </div>
       </div>
+
+      <!-- Shown when typing a NEW food not in DB -->
+      <div id="fp-new-food-row" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:10px 12px;">
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;">New Food</div>
+        <div style="margin-bottom:8px;">
+          <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Serving Size Label</div>
+          <input type="text" id="fp-new-serving" placeholder="e.g. 1 bowl, 8 oz, 1 cup" autocomplete="off"
+            style="${iS}font-size:12px;" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'">
+        </div>
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);line-height:1.6;">Enter nutrition below for <strong style="color:var(--text);">1 serving</strong>. After saving you can adjust servings.</div>
+      </div>
+
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Calories</div><input type="number" id="fp-cal" placeholder="kcal" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Protein g</div><input type="number" id="fp-pro" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Carbs g</div><input type="number" id="fp-carb" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Fat g</div><input type="number" id="fp-fat" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
       </div>
+
+      <!-- Save new food + servings multiplier (after saving) -->
       <div id="fp-save-food-row" style="display:none;align-items:center;gap:8px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;">
         <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent2);flex:1;">Save this food for next time?</span>
         <button id="fp-save-food-btn" onclick="fpSaveNewFood()" style="background:none;border:1px solid var(--accent2);color:var(--accent2);font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;cursor:pointer;white-space:nowrap;">Save food</button>
+      </div>
+      <!-- Servings multiplier shown AFTER a new food is saved -->
+      <div id="fp-new-servings-row" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:8px 12px;">
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;">How many servings?</div>
+        <div style="display:flex;align-items:center;gap:4px;">
+          <input type="number" id="fp-new-sv-count" value="1" min="0.1" step="0.25"
+            style="width:60px;background:var(--input-bg);border:1px solid var(--accent2);color:var(--text);font-family:\'DM Mono\',monospace;font-size:12px;padding:4px 8px;border-radius:2px;outline:none;"
+            oninput="fpApplyNewServings()">
+          <span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">servings</span>
+        </div>
       </div>
     </div>`;
     setTimeout(()=>document.getElementById('fp-name')?.focus(),80);
@@ -1766,6 +1792,9 @@ function fpSelectFood(idx){
   const inp = document.getElementById('fp-name');
   if(inp) inp.value = food.name;
   fpHideFoodSuggestions();
+  // Update serving label
+  const label = document.getElementById('fp-serving-label');
+  if(label) label.textContent = `Base: ${food.serving}`;
   // Reset servings to 1 and update UI
   const svInp = document.getElementById('fp-servings');
   if(svInp) svInp.value = '1';
@@ -1773,24 +1802,32 @@ function fpSelectFood(idx){
   fpApplyServings();
 }
 
-// Update serving row + save prompt based on current state
+// Update which rows are visible based on current state
 function fpUpdateUI(){
-  const row = document.getElementById('fp-serving-row');
-  const label = document.getElementById('fp-serving-label');
-  const saveRow = document.getElementById('fp-save-food-row');
-  if(!row) return;
+  const servingRow    = document.getElementById('fp-serving-row');
+  const newFoodRow    = document.getElementById('fp-new-food-row');
+  const saveRow       = document.getElementById('fp-save-food-row');
+  const newSvRow      = document.getElementById('fp-new-servings-row');
+  const name = (document.getElementById('fp-name')?.value||'').trim();
+
   if(_fpSelectedFood){
-    // Known food — show serving multiplier, hide save prompt
-    row.style.display = 'block';
-    if(label) label.textContent = `Base: ${_fpSelectedFood.serving}`;
-    if(saveRow) saveRow.style.display = 'none';
+    // Known DB/saved food selected
+    if(servingRow) servingRow.style.display = 'block';
+    if(newFoodRow) newFoodRow.style.display = 'none';
+    if(saveRow)    saveRow.style.display    = 'none';
+    if(newSvRow)   newSvRow.style.display   = 'none';
   } else {
-    // Custom / new food — hide serving row (user enters macros for 1 serving)
-    row.style.display = 'none';
-    // Check if name is non-empty and not in DB — show save prompt
-    const name = (document.getElementById('fp-name')?.value||'').trim();
+    // No food selected — typing a new name
+    if(servingRow) servingRow.style.display = 'none';
+    if(newSvRow)   newSvRow.style.display   = 'none';
     const inDB = name && getAllFoods().some(f => f.name.toLowerCase() === name.toLowerCase());
-    if(saveRow) saveRow.style.display = (name && !inDB) ? 'flex' : 'none';
+    if(name && !inDB){
+      if(newFoodRow) newFoodRow.style.display = 'block';
+      if(saveRow)    saveRow.style.display    = 'flex';
+    } else {
+      if(newFoodRow) newFoodRow.style.display = 'none';
+      if(saveRow)    saveRow.style.display    = 'none';
+    }
   }
 }
 
@@ -1800,52 +1837,78 @@ function fpApplyServings(){
   const f = _fpSelectedFood;
   const round = n => Math.round(n * sv * 10) / 10;
   const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val||''; };
-  set('fp-cal', round(f.cal));
-  set('fp-pro', round(f.pro));
+  set('fp-cal',  round(f.cal));
+  set('fp-pro',  round(f.pro));
   set('fp-carb', round(f.carb));
-  set('fp-fat', round(f.fat));
+  set('fp-fat',  round(f.fat));
+}
+
+// Called when the servings spinner changes for a newly-saved custom food
+function fpApplyNewServings(){
+  if(!_fpSelectedFood) return;
+  const sv = parseFloat(document.getElementById('fp-new-sv-count')?.value) || 1;
+  const f = _fpSelectedFood;
+  const round = n => Math.round(n * sv * 10) / 10;
+  const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val||''; };
+  set('fp-cal',  round(f.cal));
+  set('fp-pro',  round(f.pro));
+  set('fp-carb', round(f.carb));
+  set('fp-fat',  round(f.fat));
 }
 
 function fpSaveNewFood(){
   const name = (document.getElementById('fp-name')?.value||'').trim();
   if(!name) return;
-  const cal = parseFloat(document.getElementById('fp-cal')?.value)||0;
-  const pro = parseFloat(document.getElementById('fp-pro')?.value)||0;
-  const carb= parseFloat(document.getElementById('fp-carb')?.value)||0;
-  const fat = parseFloat(document.getElementById('fp-fat')?.value)||0;
-  // Save as custom food with "1 serving" as the base
-  const newFood = { name, serving:'1 serving', servingG:null, cal, pro, carb, fat };
+  const serving = (document.getElementById('fp-new-serving')?.value||'').trim() || '1 serving';
+  const cal  = parseFloat(document.getElementById('fp-cal')?.value)||0;
+  const pro  = parseFloat(document.getElementById('fp-pro')?.value)||0;
+  const carb = parseFloat(document.getElementById('fp-carb')?.value)||0;
+  const fat  = parseFloat(document.getElementById('fp-fat')?.value)||0;
+  const newFood = { name, serving, servingG: null, cal, pro, carb, fat };
   const arr = loadCustomFoods();
-  // Avoid duplicates (case-insensitive)
   if(!arr.some(f => f.name.toLowerCase()===name.toLowerCase())){
     arr.push(newFood);
     saveCustomFoods(arr);
   }
-  // Now select it so the multiplier row appears
+  // Select the newly saved food so the servings multiplier appears
   _fpSelectedFood = newFood;
   _fpCustomPerServing = null;
-  fpUpdateUI();
-  const svInp = document.getElementById('fp-servings');
+  // Show "how many servings" row, hide save/new-food rows
+  const saveRow   = document.getElementById('fp-save-food-row');
+  const newFoodRow= document.getElementById('fp-new-food-row');
+  const newSvRow  = document.getElementById('fp-new-servings-row');
+  if(saveRow)    saveRow.style.display    = 'none';
+  if(newFoodRow) newFoodRow.style.display = 'none';
+  if(newSvRow){  newSvRow.style.display   = 'block'; }
+  // Reset multiplier to 1 (macros already correct for 1 serving)
+  const svInp = document.getElementById('fp-new-sv-count');
   if(svInp) svInp.value = '1';
-  // Show confirmation
+  // Flash confirmation
   const saveBtn = document.getElementById('fp-save-food-btn');
-  if(saveBtn){ saveBtn.textContent='✓ Saved'; saveBtn.style.background='var(--accent2)'; setTimeout(()=>{ saveBtn.textContent='Save food'; saveBtn.style.background='none'; },1800); }
+  if(saveBtn){ saveBtn.textContent='✓ Saved!'; saveBtn.style.color='var(--accent2)'; }
 }
 
 function fpConfirm(){
-  if(fpMode!=='custom')return;
-  const name=(document.getElementById('fp-name')?.value||'').trim();
-  if(!name)return;
-  const sv = _fpSelectedFood ? (parseFloat(document.getElementById('fp-servings')?.value)||1) : 1;
-  const svSuffix = (_fpSelectedFood && sv !== 1) ? ` ×${parseFloat(sv.toFixed(2))}` : '';
-  const item={
+  if(fpMode!=='custom') return;
+  const name = (document.getElementById('fp-name')?.value||'').trim();
+  if(!name) return;
+  // Figure out servings multiplier
+  let sv = 1;
+  if(_fpSelectedFood){
+    // DB food uses fp-servings; newly-saved custom food uses fp-new-sv-count
+    const fromDB  = parseFloat(document.getElementById('fp-servings')?.value);
+    const fromNew = parseFloat(document.getElementById('fp-new-sv-count')?.value);
+    sv = fromNew || fromDB || 1;
+  }
+  const svSuffix = (_fpSelectedFood && Math.abs(sv - 1) > 0.001) ? ` ×${parseFloat(sv.toFixed(2))}` : '';
+  const item = {
     name: name + svSuffix,
-    cal: parseFloat(document.getElementById('fp-cal')?.value)||0,
-    pro: parseFloat(document.getElementById('fp-pro')?.value)||0,
-    carb: parseFloat(document.getElementById('fp-carb')?.value)||0,
-    fat: parseFloat(document.getElementById('fp-fat')?.value)||0
+    cal:  parseFloat(document.getElementById('fp-cal')?.value)  || 0,
+    pro:  parseFloat(document.getElementById('fp-pro')?.value)  || 0,
+    carb: parseFloat(document.getElementById('fp-carb')?.value) || 0,
+    fat:  parseFloat(document.getElementById('fp-fat')?.value)  || 0,
   };
-  if(nutTodayMeals[fpTargetMeal]){nutTodayMeals[fpTargetMeal].items.push(item);renderMealCards();saveTodayMeals();}
+  if(nutTodayMeals[fpTargetMeal]){ nutTodayMeals[fpTargetMeal].items.push(item); renderMealCards(); saveTodayMeals(); }
   closeFoodPicker();
 }
 function fpAddRecipe(ri){
@@ -3296,6 +3359,7 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
 
 
 
