@@ -1,0 +1,42 @@
+[
+  {
+    "cat": "Olympic",
+    "lifts": [
+      "Snatch", "Clean & Jerk", "Clean", "Jerk", "Split Jerk",
+      "Power Snatch", "Power Clean", "Hang Snatch", "Hang Clean",
+      "High Hang Snatch", "High Hang Clean", "Muscle Snatch", "Snatch Balance"
+    ]
+  },
+  {
+    "cat": "Squat",
+    "lifts": [
+      "Back Squat", "Front Squat", "Overhead Squat", "Box Squat",
+      "Pause Back Squat", "Pause Front Squat", "Zercher Squat",
+      "Goblet Squat", "Bulgarian Split Squat", "Hack Squat"
+    ]
+  },
+  {
+    "cat": "Hinge / Pull",
+    "lifts": [
+      "Deadlift", "Sumo Deadlift", "Romanian Deadlift", "Stiff Leg Deadlift",
+      "Good Morning", "Snatch Grip Deadlift", "Snatch Pull", "Clean Pull",
+      "Pendlay Row", "Bent Over Row", "Barbell Row", "T-Bar Row"
+    ]
+  },
+  {
+    "cat": "Press",
+    "lifts": [
+      "Bench Press", "Incline Bench", "Close Grip Bench", "Strict Press",
+      "Push Press", "Push Jerk", "Behind the Neck Press", "Floor Press",
+      "Dumbbell Press", "Incline Dumbbell Press"
+    ]
+  },
+  {
+    "cat": "Accessory",
+    "lifts": [
+      "Pull-up", "Chin-up", "Dip", "Cable Row", "Face Pull",
+      "Lateral Raise", "Barbell Curl", "Hammer Curl", "Reverse Curl",
+      "Skull Crushers", "Tricep Pushdown", "Wrist Curl", "Reverse Wrist Curl"
+    ]
+  }
+]
