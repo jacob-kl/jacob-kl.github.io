@@ -1429,13 +1429,26 @@ function saveWaveLog(){
 function openWaveLogFromRegistry(lk){const reg=window._waveRegistry&&window._waveRegistry[lk];if(!reg)return;openWaveLogModal(reg.baseName,reg.waveGroup,lk);}
 
 // ── ALL LIFTS ─────────────────────────────────────────────────────────────
-const ALL_LIFTS_DB=[
+// Loaded from lifts.json at startup — see loadExternalData()
+let ALL_LIFTS_DB=[
   {cat:'Olympic',lifts:['Snatch','Clean & Jerk','Clean','Jerk','Split Jerk','Power Snatch','Power Clean','Hang Snatch','Hang Clean','High Hang Snatch','High Hang Clean','Muscle Snatch','Snatch Balance']},
   {cat:'Squat',lifts:['Back Squat','Front Squat','Overhead Squat','Box Squat','Pause Back Squat','Pause Front Squat','Zercher Squat','Goblet Squat','Bulgarian Split Squat','Hack Squat']},
   {cat:'Hinge / Pull',lifts:['Deadlift','Sumo Deadlift','Romanian Deadlift','Stiff Leg Deadlift','Good Morning','Snatch Grip Deadlift','Snatch Pull','Clean Pull','Pendlay Row','Bent Over Row','Barbell Row','T-Bar Row']},
   {cat:'Press',lifts:['Bench Press','Incline Bench','Close Grip Bench','Strict Press','Push Press','Push Jerk','Behind the Neck Press','Floor Press','Dumbbell Press','Incline Dumbbell Press']},
   {cat:'Accessory',lifts:['Pull-up','Chin-up','Dip','Cable Row','Face Pull','Lateral Raise','Barbell Curl','Hammer Curl','Reverse Curl','Skull Crushers','Tricep Pushdown','Wrist Curl','Reverse Wrist Curl']},
 ];
+
+// ── FOOD DATABASE ─────────────────────────────────────────────────────────
+// Loaded from foods.json at startup — see loadExternalData()
+let FOODS_DB = [];
+
+// Load both external JSON files
+function loadExternalData(){
+  const p1 = fetch('lifts.json').then(r=>r.ok?r.json():null).then(data=>{if(data&&Array.isArray(data))ALL_LIFTS_DB=data;}).catch(()=>{});
+  const p2 = fetch('foods.json').then(r=>r.ok?r.json():null).then(data=>{if(data&&Array.isArray(data))FOODS_DB=data;}).catch(()=>{});
+  return Promise.all([p1,p2]);
+}
+loadExternalData();
 const ALL_LIFTS_SK='kc_all_lifts';
 function loadAllLiftsData(){try{return JSON.parse(localStorage.getItem(userKey(ALL_LIFTS_SK))||'{}');}catch(e){return{};}}
 function saveAllLiftsData(d){try{localStorage.setItem(userKey(ALL_LIFTS_SK),JSON.stringify(d));}catch(e){}}
@@ -1635,8 +1648,26 @@ function fpSetMode(mode){
   const body=document.getElementById('food-picker-body');
   if(mode==='custom'){
     body.innerHTML=`<div style="display:flex;flex-direction:column;gap:12px;">
-      <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Food Name</div>
-      <input type="text" id="fp-name" placeholder="e.g. Chicken Breast" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
+      <div style="position:relative;">
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Food Name</div>
+        <input type="text" id="fp-name" placeholder="Start typing to search foods…" autocomplete="off"
+          style="${iS}" onfocus="fpShowFoodSuggestions()" oninput="fpShowFoodSuggestions()"
+          onblur="setTimeout(fpHideFoodSuggestions,180)" onfocusin="this.style.borderColor=\'var(--accent2)\'">
+        <div id="fp-food-dropdown" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 3px);background:var(--surface);border:1px solid var(--border);border-radius:3px;z-index:9999;max-height:220px;overflow-y:auto;box-shadow:0 4px 16px rgba(0,0,0,.35);"></div>
+      </div>
+      <div id="fp-serving-row" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:8px 12px;">
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;">Suggested Serving</div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <span id="fp-serving-label" style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);flex:1;">—</span>
+          <div style="display:flex;align-items:center;gap:4px;">
+            <span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">×</span>
+            <input type="number" id="fp-servings" value="1" min="0.1" step="0.25"
+              style="width:60px;background:var(--input-bg);border:1px solid var(--accent2);color:var(--text);font-family:\'DM Mono\',monospace;font-size:12px;padding:4px 8px;border-radius:2px;outline:none;"
+              oninput="fpApplyServings()">
+            <span style="font-family:\'DM Mono\',monospace;font-size:9px;color:var(--muted);">servings</span>
+          </div>
+        </div>
+      </div>
       <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;">
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Calories</div><input type="number" id="fp-cal" placeholder="kcal" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Protein g</div><input type="number" id="fp-pro" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
@@ -1669,6 +1700,64 @@ function fpSetMode(mode){
     html+='</div>';body.innerHTML=html;
   }
 }
+// ── FOOD AUTOCOMPLETE ─────────────────────────────────────────────────────
+let _fpSelectedFood = null; // currently selected food from DB
+
+function fpShowFoodSuggestions(){
+  const inp = document.getElementById('fp-name');
+  if(!inp) return;
+  const q = inp.value.trim().toLowerCase();
+  const dd = document.getElementById('fp-food-dropdown');
+  if(!dd) return;
+  const matches = q.length < 1
+    ? FOODS_DB.slice(0, 30)
+    : FOODS_DB.filter(f => f.name.toLowerCase().includes(q));
+  if(!matches.length){ dd.style.display='none'; return; }
+  dd.innerHTML = matches.map((f,i) =>
+    `<div style="padding:9px 12px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid var(--border);"
+      onmousedown="fpSelectFood(${FOODS_DB.indexOf(f)})"
+      onmouseover="this.style.background='var(--surface2)'"
+      onmouseout="this.style.background=''"
+    >${f.name} <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:6px;">${f.serving}</span></div>`
+  ).join('');
+  dd.style.display='block';
+}
+
+function fpHideFoodSuggestions(){
+  const dd=document.getElementById('fp-food-dropdown');
+  if(dd) dd.style.display='none';
+}
+
+function fpSelectFood(idx){
+  const food = FOODS_DB[idx];
+  if(!food) return;
+  _fpSelectedFood = food;
+  const inp = document.getElementById('fp-name');
+  if(inp) inp.value = food.name;
+  fpHideFoodSuggestions();
+  // Show the serving row
+  const row = document.getElementById('fp-serving-row');
+  const label = document.getElementById('fp-serving-label');
+  if(row) row.style.display = 'block';
+  if(label) label.textContent = `Base: ${food.serving}`;
+  // Reset servings to 1 and autofill
+  const svInp = document.getElementById('fp-servings');
+  if(svInp) svInp.value = '1';
+  fpApplyServings();
+}
+
+function fpApplyServings(){
+  if(!_fpSelectedFood) return;
+  const sv = parseFloat(document.getElementById('fp-servings')?.value) || 1;
+  const f = _fpSelectedFood;
+  const r = n => Math.round(n * sv * 10) / 10;
+  const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val; };
+  set('fp-cal', r(f.cal));
+  set('fp-pro', r(f.pro));
+  set('fp-carb', r(f.carb));
+  set('fp-fat', r(f.fat));
+}
+
 function fpConfirm(){
   if(fpMode!=='custom')return;
   const name=(document.getElementById('fp-name')?.value||'').trim();if(!name)return;
@@ -3124,6 +3213,7 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
+
 
 
 
