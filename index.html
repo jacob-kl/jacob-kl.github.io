@@ -1647,16 +1647,18 @@ function fpSetMode(mode){
   const addBtn=document.getElementById('fp-add-btn');if(addBtn)addBtn.style.display=mode==='custom'?'block':'none';
   const body=document.getElementById('food-picker-body');
   if(mode==='custom'){
+    _fpSelectedFood = null;
+    _fpCustomPerServing = null;
     body.innerHTML=`<div style="display:flex;flex-direction:column;gap:12px;">
       <div style="position:relative;">
         <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Food Name</div>
         <input type="text" id="fp-name" placeholder="Start typing to search foods…" autocomplete="off"
-          style="${iS}" onfocus="fpShowFoodSuggestions()" oninput="fpShowFoodSuggestions()"
+          style="${iS}" onfocus="fpShowFoodSuggestions()" oninput="fpShowFoodSuggestions();fpUpdateUI();"
           onblur="setTimeout(fpHideFoodSuggestions,180)" onfocusin="this.style.borderColor=\'var(--accent2)\'">
         <div id="fp-food-dropdown" style="display:none;position:absolute;left:0;right:0;top:calc(100% + 3px);background:var(--surface);border:1px solid var(--border);border-radius:3px;z-index:9999;max-height:220px;overflow-y:auto;box-shadow:0 4px 16px rgba(0,0,0,.35);"></div>
       </div>
       <div id="fp-serving-row" style="display:none;background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:8px 12px;">
-        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;">Suggested Serving</div>
+        <div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:6px;">Serving Size</div>
         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
           <span id="fp-serving-label" style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);flex:1;">—</span>
           <div style="display:flex;align-items:center;gap:4px;">
@@ -1673,7 +1675,12 @@ function fpSetMode(mode){
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Protein g</div><input type="number" id="fp-pro" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent2)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Carbs g</div><input type="number" id="fp-carb" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
         <div><div style="font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:5px;">Fat g</div><input type="number" id="fp-fat" placeholder="g" min="0" style="${iS}" onfocus="this.style.borderColor=\'var(--accent)\'" onblur="this.style.borderColor=\'var(--border)\'"></div>
-      </div></div>`;
+      </div>
+      <div id="fp-save-food-row" style="display:none;align-items:center;gap:8px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;">
+        <span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--accent2);flex:1;">Save this food for next time?</span>
+        <button id="fp-save-food-btn" onclick="fpSaveNewFood()" style="background:none;border:1px solid var(--accent2);color:var(--accent2);font-family:\'DM Mono\',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:2px;cursor:pointer;white-space:nowrap;">Save food</button>
+      </div>
+    </div>`;
     setTimeout(()=>document.getElementById('fp-name')?.focus(),80);
   } else {
     const recipes=loadCookbook();
@@ -1701,7 +1708,18 @@ function fpSetMode(mode){
   }
 }
 // ── FOOD AUTOCOMPLETE ─────────────────────────────────────────────────────
-let _fpSelectedFood = null; // currently selected food from DB
+// Custom foods saved by the user to localStorage
+const CUSTOM_FOODS_SK = 'kc_custom_foods';
+function loadCustomFoods(){ try{ return JSON.parse(localStorage.getItem(userKey(CUSTOM_FOODS_SK))||'[]'); }catch(e){ return []; } }
+function saveCustomFoods(arr){ try{ localStorage.setItem(userKey(CUSTOM_FOODS_SK), JSON.stringify(arr)); }catch(e){} }
+
+// All foods = built-in DB + user-saved custom foods
+function getAllFoods(){ return [...FOODS_DB, ...loadCustomFoods()]; }
+
+// The food currently selected from the list (null = custom/new food)
+let _fpSelectedFood = null;
+// Per-serving nutrition entered by user (for new custom foods)
+let _fpCustomPerServing = null;
 
 function fpShowFoodSuggestions(){
   const inp = document.getElementById('fp-name');
@@ -1709,17 +1727,28 @@ function fpShowFoodSuggestions(){
   const q = inp.value.trim().toLowerCase();
   const dd = document.getElementById('fp-food-dropdown');
   if(!dd) return;
-  const matches = q.length < 1
-    ? FOODS_DB.slice(0, 30)
-    : FOODS_DB.filter(f => f.name.toLowerCase().includes(q));
+
+  // When user edits the name after selecting, clear the selection
+  if(_fpSelectedFood && inp.value !== _fpSelectedFood.name){
+    _fpSelectedFood = null;
+    _fpCustomPerServing = null;
+    fpUpdateUI();
+  }
+
+  const all = getAllFoods();
+  const matches = q.length < 1 ? all.slice(0,30) : all.filter(f => f.name.toLowerCase().includes(q));
   if(!matches.length){ dd.style.display='none'; return; }
-  dd.innerHTML = matches.map((f,i) =>
-    `<div style="padding:9px 12px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid var(--border);"
-      onmousedown="fpSelectFood(${FOODS_DB.indexOf(f)})"
+
+  dd.innerHTML = matches.map(f => {
+    const idx = all.indexOf(f);
+    const isCustom = idx >= FOODS_DB.length;
+    return `<div style="padding:9px 12px;font-size:13px;color:var(--text);cursor:pointer;border-bottom:1px solid var(--border);display:flex;align-items:baseline;justify-content:space-between;"
+      onmousedown="fpSelectFood(${idx})"
       onmouseover="this.style.background='var(--surface2)'"
       onmouseout="this.style.background=''"
-    >${f.name} <span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:6px;">${f.serving}</span></div>`
-  ).join('');
+    ><span>${f.name}${isCustom?` <span style="font-family:'DM Mono',monospace;font-size:8px;letter-spacing:1px;color:var(--accent2);background:rgba(79,195,161,.12);border:1px solid rgba(79,195,161,.25);padding:1px 5px;border-radius:2px;margin-left:5px;">SAVED</span>`:''}
+    </span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-left:8px;white-space:nowrap;">${f.serving}</span></div>`;
+  }).join('');
   dd.style.display='block';
 }
 
@@ -1729,39 +1758,93 @@ function fpHideFoodSuggestions(){
 }
 
 function fpSelectFood(idx){
-  const food = FOODS_DB[idx];
+  const all = getAllFoods();
+  const food = all[idx];
   if(!food) return;
   _fpSelectedFood = food;
+  _fpCustomPerServing = null;
   const inp = document.getElementById('fp-name');
   if(inp) inp.value = food.name;
   fpHideFoodSuggestions();
-  // Show the serving row
-  const row = document.getElementById('fp-serving-row');
-  const label = document.getElementById('fp-serving-label');
-  if(row) row.style.display = 'block';
-  if(label) label.textContent = `Base: ${food.serving}`;
-  // Reset servings to 1 and autofill
+  // Reset servings to 1 and update UI
   const svInp = document.getElementById('fp-servings');
   if(svInp) svInp.value = '1';
+  fpUpdateUI();
   fpApplyServings();
+}
+
+// Update serving row + save prompt based on current state
+function fpUpdateUI(){
+  const row = document.getElementById('fp-serving-row');
+  const label = document.getElementById('fp-serving-label');
+  const saveRow = document.getElementById('fp-save-food-row');
+  if(!row) return;
+  if(_fpSelectedFood){
+    // Known food — show serving multiplier, hide save prompt
+    row.style.display = 'block';
+    if(label) label.textContent = `Base: ${_fpSelectedFood.serving}`;
+    if(saveRow) saveRow.style.display = 'none';
+  } else {
+    // Custom / new food — hide serving row (user enters macros for 1 serving)
+    row.style.display = 'none';
+    // Check if name is non-empty and not in DB — show save prompt
+    const name = (document.getElementById('fp-name')?.value||'').trim();
+    const inDB = name && getAllFoods().some(f => f.name.toLowerCase() === name.toLowerCase());
+    if(saveRow) saveRow.style.display = (name && !inDB) ? 'flex' : 'none';
+  }
 }
 
 function fpApplyServings(){
   if(!_fpSelectedFood) return;
   const sv = parseFloat(document.getElementById('fp-servings')?.value) || 1;
   const f = _fpSelectedFood;
-  const r = n => Math.round(n * sv * 10) / 10;
-  const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val; };
-  set('fp-cal', r(f.cal));
-  set('fp-pro', r(f.pro));
-  set('fp-carb', r(f.carb));
-  set('fp-fat', r(f.fat));
+  const round = n => Math.round(n * sv * 10) / 10;
+  const set = (id, val) => { const el=document.getElementById(id); if(el) el.value=val||''; };
+  set('fp-cal', round(f.cal));
+  set('fp-pro', round(f.pro));
+  set('fp-carb', round(f.carb));
+  set('fp-fat', round(f.fat));
+}
+
+function fpSaveNewFood(){
+  const name = (document.getElementById('fp-name')?.value||'').trim();
+  if(!name) return;
+  const cal = parseFloat(document.getElementById('fp-cal')?.value)||0;
+  const pro = parseFloat(document.getElementById('fp-pro')?.value)||0;
+  const carb= parseFloat(document.getElementById('fp-carb')?.value)||0;
+  const fat = parseFloat(document.getElementById('fp-fat')?.value)||0;
+  // Save as custom food with "1 serving" as the base
+  const newFood = { name, serving:'1 serving', servingG:null, cal, pro, carb, fat };
+  const arr = loadCustomFoods();
+  // Avoid duplicates (case-insensitive)
+  if(!arr.some(f => f.name.toLowerCase()===name.toLowerCase())){
+    arr.push(newFood);
+    saveCustomFoods(arr);
+  }
+  // Now select it so the multiplier row appears
+  _fpSelectedFood = newFood;
+  _fpCustomPerServing = null;
+  fpUpdateUI();
+  const svInp = document.getElementById('fp-servings');
+  if(svInp) svInp.value = '1';
+  // Show confirmation
+  const saveBtn = document.getElementById('fp-save-food-btn');
+  if(saveBtn){ saveBtn.textContent='✓ Saved'; saveBtn.style.background='var(--accent2)'; setTimeout(()=>{ saveBtn.textContent='Save food'; saveBtn.style.background='none'; },1800); }
 }
 
 function fpConfirm(){
   if(fpMode!=='custom')return;
-  const name=(document.getElementById('fp-name')?.value||'').trim();if(!name)return;
-  const item={name,cal:parseFloat(document.getElementById('fp-cal')?.value)||0,pro:parseFloat(document.getElementById('fp-pro')?.value)||0,carb:parseFloat(document.getElementById('fp-carb')?.value)||0,fat:parseFloat(document.getElementById('fp-fat')?.value)||0};
+  const name=(document.getElementById('fp-name')?.value||'').trim();
+  if(!name)return;
+  const sv = _fpSelectedFood ? (parseFloat(document.getElementById('fp-servings')?.value)||1) : 1;
+  const svSuffix = (_fpSelectedFood && sv !== 1) ? ` ×${parseFloat(sv.toFixed(2))}` : '';
+  const item={
+    name: name + svSuffix,
+    cal: parseFloat(document.getElementById('fp-cal')?.value)||0,
+    pro: parseFloat(document.getElementById('fp-pro')?.value)||0,
+    carb: parseFloat(document.getElementById('fp-carb')?.value)||0,
+    fat: parseFloat(document.getElementById('fp-fat')?.value)||0
+  };
   if(nutTodayMeals[fpTargetMeal]){nutTodayMeals[fpTargetMeal].items.push(item);renderMealCards();saveTodayMeals();}
   closeFoodPicker();
 }
@@ -3213,7 +3296,6 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
 </script>
 </body>
 </html>
-
 
 
 
