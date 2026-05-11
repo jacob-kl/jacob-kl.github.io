@@ -568,8 +568,8 @@
                 {
                   "name": "Hang Snatch (above knee)",
                   "sets": "1×2",
-                  "load": "68–70%",
-                  "note": "Snatch accessory — back-off set"
+                  "load": "68–72%",
+                  "note": "Focus on speed under the bar, but also tempo on the pull and drop"
                 },
                 {
                   "name": "Snatch Pull",
@@ -607,8 +607,8 @@
                 {
                   "name": "Jerk from Rack",
                   "sets": "2×2",
-                  "load": "78%",
-                  "note": "Volume jerk work for confidence"
+                  "load": "85-88%",
+                  "note": "Volume jerk work for confidence. We're training the jerks heavier individually. If you clean it, you better not miss the jerk"
                 },
                 {
                   "name": "Clean Pull",
@@ -650,32 +650,32 @@
                   "name": "Snatch",
                   "sets": "3×1 + 2×1",
                   "load": "88% / 93%",
-                  "note": "4 at 80%, build to 2 singles at 85%",
+                  "note": "4 at 88%, build to 2 singles at 93%. I want you to start getting comfortable with consistently hitting heavy lifts",
                   "tag": "peak",
                   "tagText": "Phase 2"
                 },
                 {
                   "name": "Power Snatch",
                   "sets": "1×2",
-                  "load": "68–78%",
-                  "note": "Snatch accessory — speed under the bar"
+                  "load": "70–76%",
+                  "note": "Snatch accessory — Powerful leg drive, with proper hip contact"
                 },
                 {
                   "name": "Snatch Pull",
                   "sets": "3×2",
-                  "load": "105–105%",
+                  "load": "105–110%",
                   "note": ""
                 },
                 {
                   "name": "Hang Clean (above knee)",
                   "sets": "1×2",
-                  "load": "65–76%",
+                  "load": "70–76%",
                   "note": "Light clean accessory"
                 },
                 {
                   "name": "Front Squat",
                   "sets": "3×2",
-                  "load": "83–93%",
+                  "load": "85–93%",
                   "note": "Doubles now"
                 }
               ]
@@ -688,7 +688,7 @@
                 {
                   "name": "Clean & Jerk",
                   "sets": "2×1 + 2×1",
-                  "load": "88% / 85–94%",
+                  "load": "88% / 93%",
                   "note": "Same structure as snatch day",
                   "tag": "peak",
                   "tagText": "Phase 2"
@@ -696,24 +696,24 @@
                 {
                   "name": "Jerk from Rack",
                   "sets": "2×2",
-                  "load": "88%",
+                  "load": "95%",
                   "note": ""
                 },
                 {
                   "name": "Clean Pull",
                   "sets": "2×2",
-                  "load": "105–105%",
+                  "load": "105–110%",
                   "note": ""
                 },
                 {
                   "name": "Hang Snatch (above knee)",
                   "sets": "2×2",
-                  "load": "65–76%",
+                  "load": "70–76%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×2",
+                  "sets": "3×2",
                   "load": "85–95%",
                   "note": "Heavy doubles"
                 }
@@ -738,36 +738,36 @@
                 {
                   "name": "Snatch",
                   "sets": "2×1 + 3×1",
-                  "load": "98% / 88–105%",
-                  "note": "3 at 82%, 3 heavy singles. Beginners cap at 85%",
+                  "load": "92% / 95-98%",
+                  "note": "3 at 92%, 3 heavy singles. Beginners cap at 85%",
                   "tag": "hard",
-                  "tagText": "Advanced: 90%",
+                  "tagText": "Advanced: 95-98%. Should begin getting comfortable with your current 1RM",
                   "tag2": "beginner",
                   "tagText2": "Cap at 85%"
                 },
                 {
-                  "name": "Hang Snatch",
+                  "name": "Hang Power Snatch",
                   "sets": "2×2",
-                  "load": "70–88%",
-                  "note": "Snatch accessory — back-off"
+                  "load": "78–84%",
+                  "note": "Leg drive. Your legs beat your arms every time. Don't freak out and pull the bar"
                 },
                 {
                   "name": "Snatch Pull",
                   "sets": "4×2",
-                  "load": "108–105%",
+                  "load": "108–115%",
                   "note": "Peak pull intensity"
                 },
                 {
                   "name": "Clean (High Hang)",
                   "sets": "2×2",
-                  "load": "65–84%",
+                  "load": "75–84%",
                   "note": "Light clean accessory"
                 },
                 {
                   "name": "Front Squat",
                   "sets": "2×2 + 1×1",
-                  "load": "101% / 105%",
-                  "note": "Advanced: heavy single",
+                  "load": "95% / 105+%",
+                  "note": "Advanced: Go for a PR attempt on that 1rep",
                   "tag": "beginner",
                   "tagText": "3×2 only"
                 }
@@ -781,36 +781,36 @@
                 {
                   "name": "Clean & Jerk",
                   "sets": "2×1 + 3×1",
-                  "load": "98% / 88–105%",
+                  "load": "92% / 95-98%",
                   "note": "Most demanding session of the cycle",
                   "tag": "hard",
-                  "tagText": "Advanced: 90%",
+                  "tagText": "Just as the snatch day, I want you comfortable right near your max",
                   "tag2": "beginner",
                   "tagText2": "Cap at 85%"
                 },
                 {
                   "name": "Jerk from Rack",
                   "sets": "3×1",
-                  "load": "83–101%",
-                  "note": "Heavy jerk singles from rack"
+                  "load": "95–101%",
+                  "note": "Heavy jerk singles from rack. Drop it to the floor if you aren't comfortable reracking"
                 },
                 {
                   "name": "Clean Pull",
                   "sets": "3×2",
-                  "load": "108–105%",
+                  "load": "108–115%",
                   "note": ""
                 },
                 {
                   "name": "Power Snatch",
                   "sets": "2×2",
-                  "load": "67–86%",
+                  "load": "78–86%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "2×2 + 1×1",
-                  "load": "103% / 105%",
-                  "note": "Advanced: heavy single",
+                  "load": "95% / 105+%",
+                  "note": "Advanced: Go for a PR attempt on that 1rep",
                   "tag": "beginner",
                   "tagText": "3×2 only"
                 }
@@ -833,30 +833,30 @@
               "focus": "Snatch Focus",
               "exercises": [
                 {
-                  "name": "Snatch — Build to Heavy Single",
+                  "name": "Snatch — Working at 1RM",
                   "sets": "~6–8 singles",
-                  "load": "70→90–105%",
-                  "note": "Competition-style warm-up. Stop when bar slows.",
+                  "load": "98%%",
+                  "note": "Next week is a taper, chill out week. For this week, I want you repeatedly hitting just below (5-10lbs) your current 1RM",
                   "tag": "peak",
-                  "tagText": "Simulate meet"
+                  "tagText": "If 6 right below your 1RM feels good, you can do 2 at your 1RM. DO NOT EXCEED"
                 },
                 {
                   "name": "Power Snatch",
                   "sets": "6×2",
-                  "load": "65–85%",
-                  "note": "Snatch accessory — back-off set"
+                  "load": "80–88%",
+                  "note": "Work on technique here. This is your last week to work heavy technique"
                 },
                 {
                   "name": "Front Squat",
                   "sets": "6×2",
-                  "load": "82–102%",
-                  "note": "Reduced — preserve legs"
+                  "load": "88–92%",
+                  "note": "Reduced — preserve legs. We PRed last week, going ultra heavy on the squat is not the intent for today"
                 },
                 {
                   "name": "Back Extension",
                   "sets": "3×10",
                   "load": "Light",
-                  "note": "Recovery-minded"
+                  "note": "Recovery-minded. Do these slow and purposeful"
                 }
               ]
             },
@@ -866,30 +866,30 @@
               "focus": "Clean & Jerk Focus",
               "exercises": [
                 {
-                  "name": "Clean & Jerk — Build to Heavy Single",
+                  "name": "Clean & Jerk — Working at 1RM",
                   "sets": "~6–8 singles",
-                  "load": "70→90–105%",
-                  "note": "Same competition simulation structure",
+                  "load": "98%%",
+                  "note": "As with Thursday, go hard on these. I want you consistent right at your 1RM",
                   "tag": "peak",
-                  "tagText": "Simulate meet"
+                  "tagText": "Same thing, if the first 6 are good, you can do 2 at your 1RM"
                 },
                 {
                   "name": "Jerk from Rack",
                   "sets": "5×1",
-                  "load": "80–100%",
+                  "load": "88–95%",
                   "note": "Back-off jerk singles"
                 },
                 {
                   "name": "Hang Snatch (above knee)",
                   "sets": "5×2",
-                  "load": "63–83%",
+                  "load": "80–83%",
                   "note": "Light snatch accessory"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "5×2",
-                  "load": "82–102%",
-                  "note": "Reduced volume"
+                  "load": "88–92%",
+                  "note": "Just keeping your legs primed. No need for a full send here"
                 }
               ]
             }
@@ -915,7 +915,7 @@
                   "load": "80–85%",
                   "note": "Feel the lift. No grinding.",
                   "tag": "peak",
-                  "tagText": "Taper"
+                  "tagText": "Taper. If the lift feels slow AT ALL, back off"
                 },
                 {
                   "name": "Power Snatch",
@@ -927,7 +927,9 @@
                   "name": "Front Squat",
                   "sets": "3×1",
                   "load": "83–85%",
-                  "note": "Just enough to keep legs primed"
+                  "note": "Just enough to keep legs primed",
+                  "tag" : "hard",
+                  "tagText" : "4-5 second hold in the bottom of each squat"
                 }
               ]
             },
@@ -958,9 +960,11 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "2×2",
+                  "sets": "3×1",
                   "load": "75–78%",
-                  "note": "Keep legs fresh. That's it."
+                  "note": "Keep legs fresh. That's it.",
+                  "tag" : "hard",
+                  "tagText" : "4-5 second hold in the bottom of each squat"
                 }
               ]
             }
@@ -984,7 +988,7 @@
                   "name": "Snatch (light, perfect technique)",
                   "sets": "6×1",
                   "load": "65–70%",
-                  "note": "This is not about weight. Every rep should look textbook. Film each athlete.",
+                  "note": "This is not about weight. Every rep should look textbook.",
                   "tag": "peak",
                   "tagText": "Polish"
                 },
@@ -998,7 +1002,7 @@
                   "name": "Clean & Jerk (light, perfect technique)",
                   "sets": "4×1",
                   "load": "65–70%",
-                  "note": "Same intent as snatch. Clean the receipt, jerk with full commitment."
+                  "note": "Same intent as snatch. Control the clean, fast elbows, tight lats, quick feet in the jerk."
                 },
                 {
                   "name": "PVC Pipe Jerk Drill — Push Through",
