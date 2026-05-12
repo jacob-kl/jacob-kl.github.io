@@ -982,25 +982,24 @@ function calcDayVolume(awKey){
     });
   });
   // Also sum wave-logged weights for this day
+  // Wave log keys: userKey('kc_log_{role}_{awKey}_e{idx}')
   try{
     const role=currentView==='admin'?'admin':'member';
-    const prefix=userKey(`kc_log_${role}_`);
+    const dayPattern=userKey(`kc_log_${role}_${awKey}_e`);
     for(let i=0;i<localStorage.length;i++){
       const k=localStorage.key(i);
-      if(!k||!k.startsWith(prefix))continue;
-      const inner=k.slice(prefix.length);
-      if(!inner.startsWith(awKey+'_e'))continue;
+      if(!k||!k.startsWith(dayPattern))continue;
       const logData=JSON.parse(localStorage.getItem(k)||'{}')||{};
       Object.keys(logData).forEach(ek=>{
         if(!/^w\d+_s\d+$/.test(ek))return;
         const entry=logData[ek];
         if(!entry||!entry.weight)return;
         const wt=parseFloat(entry.weight)||0;
-        const reg=window._waveRegistry&&window._waveRegistry[k];
-        let reps=1;
-        if(reg){
-          const wm=ek.match(/^w(\d+)_s(\d+)$/);
-          if(wm){const wi=parseInt(wm[1]),si=parseInt(wm[2]);const wave=reg.waveGroup[wi];if(wave){const rc=parseWaveRepCounts(wave.sets);reps=rc[si]||1;}}
+        // reps stored in entry since fix; fall back to registry or 1
+        let reps=entry.reps||1;
+        if(!entry.reps){
+          const reg=window._waveRegistry&&window._waveRegistry[k];
+          if(reg){const wm=ek.match(/^w(\d+)_s(\d+)$/);if(wm){const wi=parseInt(wm[1]),si=parseInt(wm[2]);const wave=reg.waveGroup[wi];if(wave){const rc=parseWaveRepCounts(wave.sets);reps=rc[si]||1;}}}
         }
         total+=reps*wt;
       });
@@ -1312,7 +1311,7 @@ function renderCycle(cycle){
               const nameCell=`<div class="wave-name-cell"><span class="wave-base-name">${baseName||ex.name}</span></div>`;
               const setsCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`).join('')}</div>`;
               const loadCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-load" style="white-space:nowrap">${w.load}</span></div>`).join('')}</div>`;
-              const wtCell=`<div class="wave-group">${waveGroup.map(w=>{const max=getMaxForExercise(baseName||w.name);const u=getUnit();const exKey=(baseName||w.name).replace(/"/g,'&quot;');const pcts=w.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));const reps=parseWaveRepCounts(w.sets);if(pcts.length>=2&&pcts.length===reps.length){return pcts.map((pct,pi)=>{const wt=max?(u==='kg'?Math.round(pct/100*max/2.205)+' kg':Math.round(pct/100*max)+' lbs'):'';return`<div class="wave-line"><span class="ex-weight ${wt?'':'empty'} weight-cell" data-ex="${exKey}" data-load="${pct}%">${wt||'\u2014'}</span></div>`;}).join('');}const wt=calcWeight(w.load,max,baseName||w.name)||'\u2014';return`<div class="wave-line"><span class="ex-weight ${wt==='\u2014'?'empty':''} weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;}).join('')}</div>`;
+              const wtCell=`<div class="wave-group">${waveGroup.map(w=>{const max=getMaxForExercise(baseName||w.name);const u=getUnit();const exKey=(baseName||w.name).replace(/"/g,'&quot;');const pcts=w.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));if(pcts.length>=2&&max){const weights=pcts.map(pct=>u==='kg'?Math.round(pct/100*max/2.205):Math.round(pct/100*max));const wtStr=weights.join('\u2013')+' '+(u==='kg'?'kg':'lbs');return`<div class="wave-line"><span class="ex-weight weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wtStr}</span></div>`;}const wt=calcWeight(w.load,max,baseName||w.name)||'\u2014';return`<div class="wave-line"><span class="ex-weight ${wt==='\u2014'?'empty':''} weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;}).join('')}</div>`;
               if (!window._waveRegistry) window._waveRegistry = {}; window._waveRegistry[lk] = {baseName:baseName||ex.name,waveGroup};
               html += `<tr><td class="ex-name" style="vertical-align:middle">${nameCell}</td><td style="vertical-align:top">${setsCell}</td><td style="vertical-align:top">${loadCell}</td><td style="vertical-align:top">${wtCell}</td>${noteTD}<td style="vertical-align:middle"><button class="${lbc}" data-log-key="${lk}" onclick="openWaveLogFromRegistry('${lk}')">${lbi}</button></td></tr>`;
               continue;
@@ -1432,7 +1431,7 @@ function setWaveOutcome(wi,si,outcome){
 }
 function saveWaveLog(){
   const logData={};let maxW=0;const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  modalState.waveEntries.forEach((wave,wi)=>{wave.forEach((entry,si)=>{const w=parseFloat(document.getElementById(`wlog-${wi}-${si}`)?.value)||0;logData[`w${wi}_s${si}`]={outcome:entry.outcome,weight:w,date:today};if(entry.outcome==='made'&&w>maxW)maxW=w;});});
+  modalState.waveEntries.forEach((wave,wi)=>{const waveReps=parseWaveRepCounts(modalState.waveGroup[wi]?.sets||'1');wave.forEach((entry,si)=>{const w=parseFloat(document.getElementById(`wlog-${wi}-${si}`)?.value)||0;const reps=waveReps[si]||1;logData[`w${wi}_s${si}`]={outcome:entry.outcome,weight:w,reps,date:today};if(entry.outcome==='made'&&w>maxW)maxW=w;});});
   // Capture extras
   if(modalState.extras&&modalState.extras.length){
     modalState.extras.forEach((extra,ei)=>{extra.entries.forEach((e,si)=>{const inp=document.getElementById(`elog-${ei}-${si}`);if(inp)e.weight=parseFloat(inp.value)||0;if(e.outcome==='made'&&e.weight>maxW)maxW=e.weight;});});
