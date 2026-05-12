@@ -916,7 +916,7 @@ function saveLog(){
   if(modalState.isWave){saveWaveLog();return;}
   const count=modalState.currentCount||modalState.entries.length,logData={};let anyMade=false,maxW=0;xW=0;
   const today=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
-  for(let i=0;i<count;i++){const w=parseFloat(document.getElementById(`log-w-${i}`)?.value)||0;modalState.entries[i].weight=w;logData[i]={outcome:modalState.entries[i].outcome,weight:w,date:today};if(modalState.entries[i].outcome==='made'&&w>maxW){maxW=w;anyMade=true;}}
+  const totalSets=count;const setsStr=modalState.sets||'';const repArr=(()=>{const s=setsStr.trim();const m=s.match(/^(\d+)\s*[x×]\s*(\d+)/i);if(m)return Array(parseInt(m[1])).fill(parseInt(m[2]));const parts=s.split('-').map(Number).filter(n=>n>0);if(parts.length>1)return parts;return Array(totalSets).fill(1);})();for(let i=0;i<count;i++){const w=parseFloat(document.getElementById(`log-w-${i}`)?.value)||0;const reps=repArr[i]||repArr[0]||1;modalState.entries[i].weight=w;logData[i]={outcome:modalState.entries[i].outcome,weight:w,reps,date:today};if(modalState.entries[i].outcome==='made'&&w>maxW){maxW=w;anyMade=true;}}
   logData._date=today;try{localStorage.setItem(modalState.logKey,JSON.stringify(logData));}catch(e){}
   if(anyMade&&modalState.rmId&&!isNoPrExercise(modalState.exName)){const unit=getUnit(),wLbs=unit==='kg'?maxW*2.205:maxW,curMax=currentMaxes[modalState.rmId]||0;if(wLbs>curMax){currentMaxes[modalState.rmId]=Math.round(wLbs);try{localStorage.setItem(storageKey(),JSON.stringify(currentMaxes));}catch(e){}const el=document.getElementById(modalState.rmId);if(el)el.value=Math.round(wLbs);updateAllWeightCells();showPR(modalState.exName,maxW,unit);}}
   const oo=(()=>{const outcomes=Object.values(logData).map(e=>e.outcome).filter(Boolean);if(!outcomes.length)return null;if(outcomes.every(o=>o==='made'))return'made';if(outcomes.every(o=>o==='miss'))return'miss';return'mixed';})();
@@ -966,7 +966,7 @@ function loadTimeWorked(key){try{return localStorage.getItem(key)||'';}catch(e){
 function saveTimeWorked(key,val){try{if(val.trim())localStorage.setItem(key,val.trim());else localStorage.removeItem(key);}catch(e){}}
 
 function calcDayVolume(awKey){
-  // Sum sets[i].reps * parsed weight for all lift workouts on this day
+  // Sum from "Add Workout" logger
   const saved=loadSavedWorkouts(awKey);
   let total=0;
   saved.forEach(w=>{
@@ -981,8 +981,8 @@ function calcDayVolume(awKey){
       });
     });
   });
-  // Also sum wave-logged weights for this day
-  // Wave log keys: userKey('kc_log_{role}_{awKey}_e{idx}')
+  // Sum from per-exercise LOG buttons (both regular and wave) for this day
+  // Key pattern: userKey('kc_log_{role}_{awKey}_e{N}')
   try{
     const role=currentView==='admin'?'admin':'member';
     const dayPattern=userKey(`kc_log_${role}_${awKey}_e`);
@@ -991,13 +991,16 @@ function calcDayVolume(awKey){
       if(!k||!k.startsWith(dayPattern))continue;
       const logData=JSON.parse(localStorage.getItem(k)||'{}')||{};
       Object.keys(logData).forEach(ek=>{
-        if(!/^w\d+_s\d+$/.test(ek))return;
+        // Regular entries have numeric keys; wave entries have w{N}_s{N} keys
+        const isRegular=/^\d+$/.test(ek);
+        const isWave=/^w\d+_s\d+$/.test(ek);
+        if(!isRegular&&!isWave)return;
         const entry=logData[ek];
         if(!entry||!entry.weight)return;
         const wt=parseFloat(entry.weight)||0;
-        // reps stored in entry since fix; fall back to registry or 1
+        if(wt<=0)return;
         let reps=entry.reps||1;
-        if(!entry.reps){
+        if(!entry.reps&&isWave){
           const reg=window._waveRegistry&&window._waveRegistry[k];
           if(reg){const wm=ek.match(/^w(\d+)_s(\d+)$/);if(wm){const wi=parseInt(wm[1]),si=parseInt(wm[2]);const wave=reg.waveGroup[wi];if(wave){const rc=parseWaveRepCounts(wave.sets);reps=rc[si]||1;}}}
         }
@@ -1311,7 +1314,7 @@ function renderCycle(cycle){
               const nameCell=`<div class="wave-name-cell"><span class="wave-base-name">${baseName||ex.name}</span></div>`;
               const setsCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`).join('')}</div>`;
               const loadCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-load" style="white-space:nowrap">${w.load}</span></div>`).join('')}</div>`;
-              const wtCell=`<div class="wave-group">${waveGroup.map(w=>{const max=getMaxForExercise(baseName||w.name);const u=getUnit();const exKey=(baseName||w.name).replace(/"/g,'&quot;');const pcts=w.load.replace(/%/g,'').split('\u2013').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));if(pcts.length>=2&&max){const weights=pcts.map(pct=>u==='kg'?Math.round(pct/100*max/2.205):Math.round(pct/100*max));const wtStr=weights.join('\u2013')+' '+(u==='kg'?'kg':'lbs');return`<div class="wave-line"><span class="ex-weight weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wtStr}</span></div>`;}const wt=calcWeight(w.load,max,baseName||w.name)||'\u2014';return`<div class="wave-line"><span class="ex-weight ${wt==='\u2014'?'empty':''} weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;}).join('')}</div>`;
+              const wtCell=`<div class="wave-group">${waveGroup.map(w=>{const max=getMaxForExercise(baseName||w.name);const u=getUnit();const exKey=(baseName||w.name).replace(/"/g,'&quot;');const pcts=w.load.replace(/%/g,'').split('–').map(s=>parseFloat(s.trim())).filter(n=>!isNaN(n));if(pcts.length>=2&&max){const weights=pcts.map(pct=>u==='kg'?Math.round(pct/100*max/2.205):Math.round(pct/100*max));const wtStr=weights.join('–')+' '+(u==='kg'?'kg':'lbs');return`<div class="wave-line"><span class="ex-weight weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wtStr}</span></div>`;}const wt=calcWeight(w.load,max,baseName||w.name)||'\u2014';return`<div class="wave-line"><span class="ex-weight ${wt==='\u2014'?'empty':''} weight-cell" data-ex="${exKey}" data-load="${w.load.replace(/"/g,'&quot;')}">${wt}</span></div>`;}).join('')}</div>`;
               if (!window._waveRegistry) window._waveRegistry = {}; window._waveRegistry[lk] = {baseName:baseName||ex.name,waveGroup};
               html += `<tr><td class="ex-name" style="vertical-align:middle">${nameCell}</td><td style="vertical-align:top">${setsCell}</td><td style="vertical-align:top">${loadCell}</td><td style="vertical-align:top">${wtCell}</td>${noteTD}<td style="vertical-align:middle"><button class="${lbc}" data-log-key="${lk}" onclick="openWaveLogFromRegistry('${lk}')">${lbi}</button></td></tr>`;
               continue;
