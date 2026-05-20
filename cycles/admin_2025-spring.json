@@ -3025,6 +3025,12 @@
               "focus": "",
               "exercises": [
                 {
+                  "name": "Snatch Pull",
+                  "sets": "4×3",
+                  "load": "115%",
+                  "note": ""
+                }
+                {
                   "name": "Snatch — Wave 1",
                   "sets": "3-2-1",
                   "load": "84%–88%–92%",
@@ -3043,15 +3049,9 @@
                   "note": ""
                 },
                 {
-                  "name": "Clean",
-                  "sets": "10×2",
-                  "load": "62%",
-                  "note": "Light and fast"
-                },
-                {
-                  "name": "Jerk",
-                  "sets": "4×(1+2+2)",
-                  "load": "83%",
+                  "name": "Clean and Push Jerk",
+                  "sets": "6×(1+2)",
+                  "load": "70%",
                   "note": ""
                 },
                 {
@@ -3074,12 +3074,6 @@
                   "note": "",
                   "supersetEnd": true
                 },
-                {
-                  "name": "Snatch Pull",
-                  "sets": "4×3",
-                  "load": "115%",
-                  "note": ""
-                }
               ]
             },
             {
