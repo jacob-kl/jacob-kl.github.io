@@ -2565,15 +2565,9 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "6×2",
-                  "load": "80%",
-                  "note": "Volume before RM attempt"
-                },
-                {
-                  "name": "Front Squat — 4RM",
-                  "sets": "Build to 4RM",
-                  "load": "100%+",
-                  "note": ""
+                  "sets": "5×(1+1+1)",
+                  "load": "87%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Good Morning",
@@ -2608,15 +2602,9 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "13×3",
-                  "load": "80%",
-                  "note": ""
-                },
-                {
-                  "name": "Back Squat — 4RM",
-                  "sets": "Build to 4RM",
-                  "load": "100%+",
-                  "note": ""
+                  "sets": "5×(1+1+1)",
+                  "load": "87%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Snatch Pull",
@@ -2833,15 +2821,9 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "6×2",
-                  "load": "87%",
-                  "note": ""
-                },
-                {
-                  "name": "Front Squat — 3RM",
-                  "sets": "Build to 3RM",
-                  "load": "103%+",
-                  "note": ""
+                  "sets": "4×(1+1+1)",
+                  "load": "92%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Good Morning",
@@ -2876,15 +2858,9 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "12×4",
-                  "load": "87%",
-                  "note": ""
-                },
-                {
-                  "name": "Back Squat — 3RM",
-                  "sets": "Build to 3RM",
-                  "load": "103%+",
-                  "note": ""
+                  "sets": "4×(1+1+1)",
+                  "load": "92%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Snatch Pull",
@@ -3101,15 +3077,9 @@
                 },
                 {
                   "name": "Front Squat",
-                  "sets": "6×2",
-                  "load": "94%",
-                  "note": ""
-                },
-                {
-                  "name": "Front Squat — 2RM",
-                  "sets": "Build to 2RM",
-                  "load": "106%+",
-                  "note": ""
+                  "sets": "3×(1+1+1)",
+                  "load": "96%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Good Morning",
@@ -3144,15 +3114,9 @@
                 },
                 {
                   "name": "Back Squat",
-                  "sets": "12×4",
-                  "load": "94%",
-                  "note": ""
-                },
-                {
-                  "name": "Back Squat — 2RM",
-                  "sets": "Build to 2RM",
-                  "load": "106%+",
-                  "note": ""
+                  "sets": "3×(1+1+1)",
+                  "load": "96%",
+                  "note": "One rep every 20 seconds for a set. Rerack after each single"
                 },
                 {
                   "name": "Snatch Pull",
@@ -3242,11 +3206,13 @@
                   "note": "Stay confident under the bar"
                 },
                 {
-                  "name": "Front Squat",
-                  "sets": "2×2",
-                  "load": "72%",
-                  "note": "Keep legs primed, not taxed"
-                },
+                  "name": "Front Squat — 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "",
+                  "tag": "hard",
+                  "tagText": "1RM"
+                }
                 {
                   "name": "Hamstring Curl",
                   "sets": "2×8",
@@ -3281,11 +3247,13 @@
                   "note": "Light C&J work — stay sharp"
                 },
                 {
-                  "name": "Pause Back Squat",
-                  "sets": "2×3",
-                  "load": "68%",
-                  "note": "Enough to feel good, not enough to fatigue"
-                },
+                  "name": "Back Squat — 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "",
+                  "tag": "hard",
+                  "tagText": "1RM"
+                }
                 {
                   "name": "Bench Press",
                   "sets": "2×8",
@@ -3405,14 +3373,6 @@
                   "tag": "hard",
                   "tagText": "PR"
                 },
-                {
-                  "name": "Back Squat — 1RM",
-                  "sets": "Build",
-                  "load": "100%+",
-                  "note": "Go home after this.",
-                  "tag": "hard",
-                  "tagText": "1RM"
-                }
               ]
             }
           ]
