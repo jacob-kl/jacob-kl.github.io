@@ -699,7 +699,7 @@ function doLogin() {
   const pEl=document.getElementById('login-password');
   const err=document.getElementById('login-error');
   const u=uEl.value.trim().toLowerCase(), pw=pEl.value;
-  const hc={admin:{password:'olylift',role:'admin'},member:{password:'barbell',role:'member'}};
+  const hc={admin:{password:'olylift',role:'admin'},member:{password:'olylift',role:'member'}};
   let userData=null;
   if(hc[u]&&hc[u].password===pw){
     userData={role:hc[u].role,username:u,name:u==='admin'?'Admin':''};
