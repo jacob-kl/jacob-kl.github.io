@@ -1,7 +1,8 @@
 {
   "id": "admin_2025-summer",
   "name": "My Program",
-  "dates": "6/16 – 9/5",
+  "dates": "6/08 – 8/31",
+  "startDate": "2026-06-08",
   "days": "Mon / Tue / Wed / Fri / Sat",
   "goal": "Max Snatch + C&J · Squat + Deadlift Build",
   "phases": [
