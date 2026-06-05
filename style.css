@@ -102,7 +102,7 @@ h1 span{color:var(--accent);}
 .week-btn.active.m2{color:var(--meso2);border-bottom-color:var(--meso2);}
 .week-content{display:none;padding:32px 40px;}
 .week-content.visible{display:block;}
-.days-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.days-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;}
 .day-card{background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
 .day-card .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
 /* Future day — member view: blurred with UPCOMING overlay */
@@ -316,9 +316,3 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
 .aw-add-set-btn:hover{border-color:var(--accent);color:var(--accent);}
 .aw-set-col-labels{display:flex;gap:6px;margin-top:8px;padding-left:30px;}
 .aw-set-col-labels span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);flex:1;text-align:center;}
-
-/* ── Additional Styles ─────────────────────── */
-    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
-    *{box-sizing:border-box;}
-    body{font-family:'DM Sans',Arial,sans-serif;color:#1a1a1b;background:#fff;margin:0 auto;padding:40px 48px;max-width:760px;}
-    @media print{body{padding:16px;} @page{margin:15mm 18mm;size:A4;} .no-break{page-break-inside:avoid;}}
