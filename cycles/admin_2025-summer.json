@@ -1,7 +1,7 @@
 {
   "id": "admin_2025-summer",
   "name": "My Program",
-  "dates": "6/06 - 8-28",
+  "dates": "6/8 \u2013 8/28",
   "days": "Mon / Tue / Wed / Fri / Sat",
   "goal": "Max Snatch + C&J \u00b7 Squat + Deadlift Build",
   "phases": [
@@ -10,14 +10,14 @@
       "number": "01",
       "colorClass": "m1",
       "title": "MESOCYCLE 1 \u2014 STRENGTH BASE (CHINESE)",
-      "subtitle": "Weeks 1\u20134 \u00b7 6/16\u20137/11 \u00b7 High Frequency / Daily Squat / Pull Strength",
+      "subtitle": "Weeks 1\u20134 \u00b7 6/8\u20137/3 \u00b7 High Frequency / Daily Squat / Pull Strength",
       "weeks": [
         {
           "number": 1,
           "label": "Week 1",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 1 \u00b7 6/16\u20136/20",
+            "title": "Week 1 \u00b7 6/8\u20136/12",
             "text": "Establish Chinese-style frequency. Squat every training day. Heavy pull volume to rebuild back strength at the top of the pull and turnover. Snatch and clean to power above knee to drill the second pull."
           },
           "days": [
@@ -88,6 +88,12 @@
                   "sets": "5\u00d72",
                   "load": "75%",
                   "note": "Second-pull acceleration"
+                },
+                {
+                  "name": "Push Press + Split Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "72%",
+                  "note": "Jerk frequency \u2014 finish every C&J day with jerk work"
                 },
                 {
                   "name": "Front Squat",
@@ -190,6 +196,18 @@
                   "sets": "4\u00d78",
                   "load": "145 lbs",
                   "note": "Turnover / upper back"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "72%",
+                  "note": "Jerk frequency \u2014 reinforce receiving position"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "4\u00d76",
+                  "load": "95 lbs",
+                  "note": "Posterior chain / top of pull"
                 }
               ]
             },
@@ -224,6 +242,19 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "95 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "95 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d745s",
                   "load": "25 lbs",
@@ -239,7 +270,7 @@
           "label": "Week 2",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 2 \u00b7 6/23\u20136/27",
+            "title": "Week 2 \u00b7 6/15\u20136/19",
             "text": "Loading climbs. Pull percentages rise, squat volume holds. High pulls and Chinese pulls reinforce the top of the pull and turnover speed."
           },
           "days": [
@@ -310,6 +341,12 @@
                   "sets": "5\u00d72",
                   "load": "78%",
                   "note": "Second-pull acceleration"
+                },
+                {
+                  "name": "Push Press + Split Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "75%",
+                  "note": ""
                 },
                 {
                   "name": "Front Squat",
@@ -412,6 +449,18 @@
                   "sets": "4\u00d78",
                   "load": "150 lbs",
                   "note": "Turnover / upper back"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "75%",
+                  "note": ""
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "4\u00d76",
+                  "load": "105 lbs",
+                  "note": ""
                 }
               ]
             },
@@ -446,6 +495,19 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "105 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "95 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d745s",
                   "load": "25 lbs",
@@ -461,7 +523,7 @@
           "label": "Week 3",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 3 \u00b7 6/30\u20137/4",
+            "title": "Week 3 \u00b7 6/22\u20136/26",
             "text": "Peak loading week of meso 1. Heaviest pulls and deadlifts of the block. Squat volume at its highest frequency. Top-end pull and acceleration work at peak intensity."
           },
           "days": [
@@ -532,6 +594,12 @@
                   "sets": "5\u00d72",
                   "load": "80%",
                   "note": "Second-pull acceleration"
+                },
+                {
+                  "name": "Push Press + Split Jerk",
+                  "sets": "6\u00d7(1+1)",
+                  "load": "78%",
+                  "note": "Peak jerk volume for meso 1"
                 },
                 {
                   "name": "Front Squat",
@@ -634,6 +702,18 @@
                   "sets": "4\u00d78",
                   "load": "155 lbs",
                   "note": "Turnover / upper back"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "78%",
+                  "note": ""
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "4\u00d76",
+                  "load": "115 lbs",
+                  "note": ""
                 }
               ]
             },
@@ -668,6 +748,19 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "115 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "105 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d760s",
                   "load": "25 lbs",
@@ -683,7 +776,7 @@
           "label": "Week 4",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 4 \u00b7 7/7\u20137/11",
+            "title": "Week 4 \u00b7 6/29\u20137/3",
             "text": "Deload / transition. Drop volume significantly. Maintain intensity on key lifts. Prep for meso 2 force-acceleration block."
           },
           "days": [
@@ -762,6 +855,12 @@
                   "load": "30 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Push Press + Split Jerk",
+                  "sets": "3\u00d7(1+1)",
+                  "load": "70%",
+                  "note": "Deload \u2014 stay sharp"
                 }
               ]
             },
@@ -832,6 +931,18 @@
                   "sets": "3\u00d78",
                   "load": "135 lbs",
                   "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d72",
+                  "load": "70%",
+                  "note": "Deload \u2014 stay warm"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "95 lbs",
+                  "note": ""
                 }
               ]
             },
@@ -859,9 +970,9 @@
                   "note": "Light squat"
                 },
                 {
-                  "name": "Weighted Plank",
-                  "sets": "3\u00d745s",
-                  "load": "25 lbs",
+                  "name": "Good Morning",
+                  "sets": "2\u00d78",
+                  "load": "95 lbs",
                   "note": ""
                 }
               ]
@@ -875,14 +986,14 @@
       "number": "02",
       "colorClass": "m1",
       "title": "MESOCYCLE 2 \u2014 FORCE & ACCELERATION (CHINESE)",
-      "subtitle": "Weeks 5\u20138 \u00b7 7/14\u20138/8 \u00b7 Pull Acceleration / Power Variations / Strength Build",
+      "subtitle": "Weeks 5\u20138 \u00b7 7/6\u20137/31 \u00b7 Pull Acceleration / Power Variations / Strength Build",
       "weeks": [
         {
           "number": 5,
           "label": "Week 5",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 5 \u00b7 7/14\u20137/18",
+            "title": "Week 5 \u00b7 7/6\u20137/10",
             "text": "Acceleration block begins. Pulls from blocks/deficit to attack knee-to-extension. Heaving snatch balance and tall snatch hammer the lockout. Squat strength shifts toward heavy triples."
           },
           "days": [
@@ -973,6 +1084,12 @@
                   "load": "32 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "5\u00d71",
+                  "load": "75%",
+                  "note": "Pause jerk \u2014 own the dip, explode through"
                 }
               ]
             },
@@ -1055,6 +1172,18 @@
                   "sets": "4\u00d76",
                   "load": "155 lbs",
                   "note": "Explosive turnover"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "76%",
+                  "note": "Jerk frequency"
+                },
+                {
+                  "name": "Romanian Deadlift",
+                  "sets": "4\u00d76",
+                  "load": "70%",
+                  "note": "Posterior chain build"
                 }
               ]
             },
@@ -1089,9 +1218,22 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "115 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "105 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d745s",
-                  "load": "25 lbs",
+                  "load": "30 lbs",
                   "note": "",
                   "supersetEnd": true
                 }
@@ -1104,7 +1246,7 @@
           "label": "Week 6",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 6 \u00b7 7/21\u20137/25",
+            "title": "Week 6 \u00b7 7/13\u20137/17",
             "text": "Intensity climbs. Pull loads creep up, squats move to heavy doubles. Lockout and acceleration variations push percentages."
           },
           "days": [
@@ -1195,6 +1337,12 @@
                   "load": "32 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "5\u00d71",
+                  "load": "78%",
+                  "note": ""
                 }
               ]
             },
@@ -1277,6 +1425,18 @@
                   "sets": "4\u00d76",
                   "load": "160 lbs",
                   "note": "Explosive turnover"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "79%",
+                  "note": ""
+                },
+                {
+                  "name": "Romanian Deadlift",
+                  "sets": "4\u00d76",
+                  "load": "73%",
+                  "note": ""
                 }
               ]
             },
@@ -1311,6 +1471,19 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "125 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "115 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d745s",
                   "load": "30 lbs",
@@ -1326,7 +1499,7 @@
           "label": "Week 7",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 7 \u00b7 7/28\u20138/1",
+            "title": "Week 7 \u00b7 7/20\u20137/24",
             "text": "Peak loading week of meso 2. Heaviest pulls and squat singles of the block. Acceleration and lockout work at peak intensity before the deload."
           },
           "days": [
@@ -1417,6 +1590,12 @@
                   "load": "34 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "5\u00d71",
+                  "load": "81%",
+                  "note": "Peak pause jerk"
                 }
               ]
             },
@@ -1499,6 +1678,18 @@
                   "sets": "4\u00d76",
                   "load": "165 lbs",
                   "note": "Explosive turnover"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "83%",
+                  "note": "Heavy jerk from rack"
+                },
+                {
+                  "name": "Romanian Deadlift",
+                  "sets": "4\u00d76",
+                  "load": "76%",
+                  "note": "Peak"
                 }
               ]
             },
@@ -1533,6 +1724,19 @@
                   "superset": true
                 },
                 {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "135 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d78 (side)",
+                  "load": "115 lbs",
+                  "note": "",
+                  "superset": true
+                },
+                {
                   "name": "Weighted Plank",
                   "sets": "3\u00d760s",
                   "load": "30 lbs",
@@ -1548,7 +1752,7 @@
           "label": "Week 8",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 8 \u00b7 8/4\u20138/8",
+            "title": "Week 8 \u00b7 7/27\u20137/31",
             "text": "Deload / transition. Reduce volume, maintain intensity. Rest up before meso 3 wave loading and the peak begin."
           },
           "days": [
@@ -1627,6 +1831,12 @@
                   "load": "30 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "3\u00d71",
+                  "load": "72%",
+                  "note": "Deload \u2014 crisp"
                 }
               ]
             },
@@ -1697,6 +1907,18 @@
                   "sets": "3\u00d76",
                   "load": "145 lbs",
                   "note": ""
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d71",
+                  "load": "75%",
+                  "note": "Deload"
+                },
+                {
+                  "name": "Romanian Deadlift",
+                  "sets": "3\u00d76",
+                  "load": "68%",
+                  "note": ""
                 }
               ]
             },
@@ -1724,9 +1946,9 @@
                   "note": "Light double"
                 },
                 {
-                  "name": "Weighted Plank",
-                  "sets": "3\u00d745s",
-                  "load": "25 lbs",
+                  "name": "Good Morning",
+                  "sets": "2\u00d78",
+                  "load": "115 lbs",
                   "note": ""
                 }
               ]
@@ -1740,14 +1962,14 @@
       "number": "03",
       "colorClass": "m2",
       "title": "MESOCYCLE 3 \u2014 PEAK & TEST",
-      "subtitle": "Weeks 9\u201312 \u00b7 8/11\u20139/5 \u00b7 Wave Loading / RM Squats & Deadlifts / Olympic Total",
+      "subtitle": "Weeks 9\u201312 \u00b7 8/3\u20138/28 \u00b7 Wave Loading / RM Squats & Deadlifts / Olympic Total",
       "weeks": [
         {
           "number": 9,
           "label": "Week 9",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 9 \u00b7 8/11\u20138/15",
+            "title": "Week 9 \u00b7 8/3\u20138/7",
             "text": "Wave loading introduced on both snatch and C&J. RM squat and deadlift work begins on Friday. Competition lifts dominate Monday. Pull and lockout volume tapering."
           },
           "days": [
@@ -1850,6 +2072,12 @@
                   "load": "32 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "83%",
+                  "note": "Heavy jerk frequency"
                 }
               ]
             },
@@ -1910,6 +2138,12 @@
                   "note": "Stay sharp"
                 },
                 {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "83%",
+                  "note": "Stay warm in the jerk before squat work"
+                },
+                {
                   "name": "Back Squat \u2014 3RM",
                   "sets": "Build",
                   "load": "100%+",
@@ -1957,9 +2191,15 @@
                   "note": "Heavy triple"
                 },
                 {
-                  "name": "Weighted Plank",
-                  "sets": "3\u00d745s",
-                  "load": "25 lbs",
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "115 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d76 (side)",
+                  "load": "95 lbs",
                   "note": ""
                 }
               ]
@@ -1971,7 +2211,7 @@
           "label": "Week 10",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 10 \u00b7 8/18\u20138/22",
+            "title": "Week 10 \u00b7 8/10\u20138/14",
             "text": "Wave loading intensity climbs. 2RM squat and deadlift work. Competition lifts pushing toward 90%+."
           },
           "days": [
@@ -2074,6 +2314,12 @@
                   "load": "32 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "86%",
+                  "note": ""
                 }
               ]
             },
@@ -2134,6 +2380,12 @@
                   "note": "Stay sharp"
                 },
                 {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "86%",
+                  "note": ""
+                },
+                {
                   "name": "Back Squat \u2014 2RM",
                   "sets": "Build",
                   "load": "100%+",
@@ -2181,9 +2433,15 @@
                   "note": "Heavy double"
                 },
                 {
-                  "name": "Weighted Plank",
-                  "sets": "3\u00d760s",
-                  "load": "30 lbs",
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "125 lbs",
+                  "note": ""
+                },
+                {
+                  "name": "Reverse Lunge",
+                  "sets": "3\u00d76 (side)",
+                  "load": "95 lbs",
                   "note": ""
                 }
               ]
@@ -2195,7 +2453,7 @@
           "label": "Week 11",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 11 \u00b7 8/25\u20138/29",
+            "title": "Week 11 \u00b7 8/17\u20138/21",
             "text": "Peak intensity. Heaviest wave loading of the cycle. 1RM squat and deadlift work. Competition lifts at near-max. Intensity builds through the week then drops sharply on Saturday for a confident dress rehearsal."
           },
           "days": [
@@ -2298,6 +2556,12 @@
                   "load": "30 in",
                   "note": "",
                   "supersetEnd": true
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "88%",
+                  "note": "Near-max jerk singles"
                 }
               ]
             },
@@ -2358,6 +2622,12 @@
                   "note": "Stay sharp"
                 },
                 {
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d71",
+                  "load": "88%",
+                  "note": "Near-max \u2014 stay sharp for test week"
+                },
+                {
                   "name": "Back Squat \u2014 1RM",
                   "sets": "Build",
                   "load": "100%+",
@@ -2399,10 +2669,10 @@
                   "note": "Light \u2014 stay fresh for test week"
                 },
                 {
-                  "name": "Weighted Plank",
-                  "sets": "2\u00d745s",
-                  "load": "25 lbs",
-                  "note": ""
+                  "name": "Good Morning",
+                  "sets": "2\u00d76",
+                  "load": "115 lbs",
+                  "note": "Dress rehearsal \u2014 keep posterior chain fresh"
                 }
               ]
             }
@@ -2413,7 +2683,7 @@
           "label": "Week 12 \u2014 OLY TOTAL",
           "intent": {
             "colorClass": "peak",
-            "title": "Week 12 \u00b7 9/1\u20139/5 \ud83c\udfc6",
+            "title": "Week 12 \u00b7 8/24\u20138/28 \ud83c\udfc6",
             "text": "Max out week. Mon/Tue/Wed = light opener feel + light accessory to stay sharp without accumulating fatigue. Fri/Sat = Olympic Total. New 1RMs on snatch, C&J, back squat, and deadlift."
           },
           "days": [
@@ -2644,5 +2914,5 @@
       ]
     }
   ],
-  "startDate": "2026-06-16"
+  "startDate": "2026-06-08"
 }
