@@ -379,17 +379,11 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
       <div id="member-name-pill"></div>
       <div class="cycle-select-wrap" id="cycle-select-wrap">
         <label for="cycle-select">Cycle</label>
-        <select id="cycle-select" onchange="onCycleChange(this.value)">
-  <option value="2025-spring">Spring 2025</option>
-  <option value="2025-summer">Summer 2025</option>   <!-- ADD THIS -->
-</select>
+        <select id="cycle-select" onchange="onCycleChange(this.value)"><option value="2025-spring">Spring 2025</option></select>
       </div>
       <div class="cycle-select-wrap" id="admin-cycle-select-wrap" style="display:none;">
         <label for="admin-cycle-select">Cycle</label>
-        <select id="admin-cycle-select" onchange="onAdminCycleChange(this.value)">
-  <option value="admin_2025-spring">Spring 2025</option>
-  <option value="admin_2025-summer">Summer 2025</option>   <!-- ADD THIS -->
-</select>
+        <select id="admin-cycle-select" onchange="onAdminCycleChange(this.value)"><option value="admin_2025-spring">Spring 2025</option></select>
       </div>
     </div>
   </div>
@@ -1086,7 +1080,7 @@ function loadView(){
 function scrollToToday(){
   const today=new Date();today.setHours(0,0,0,0);
   const isAdminView=currentView==='admin';
-  const base=isAdminView?new Date(2026,2,16):new Date(2026,2,19);
+  const base=isAdminView?new Date(CYCLE_ADMIN_START):new Date(CYCLE_MEMBER_START);
   let targetCard=null;
   document.querySelectorAll('.week-content').forEach(weekEl=>{
     const m=weekEl.id.match(/-w(\d+)$/);if(!m)return;
@@ -1117,8 +1111,10 @@ const MEMBER_OFF_OFFSETS=[1,2,3,5,6];
 const ADMIN_DAY_OFFSETS=[0,1,2,4,5]; // Mon=0,Tue=1,Wed=2,Fri=4,Sat=5
 // Competitor off days from Mon base: Thu=3, Sun=6
 const ADMIN_OFF_OFFSETS=[3,6];
+let CYCLE_ADMIN_START=new Date(2026,2,16);
+let CYCLE_MEMBER_START=new Date(2026,2,19);
 function getDayDate(weekNum,dayIdx,isAdm){
-  const base=isAdm?new Date(2026,2,16):new Date(2026,2,19);
+  const base=isAdm?new Date(CYCLE_ADMIN_START):new Date(CYCLE_MEMBER_START);
   const d=new Date(base);d.setDate(d.getDate()+(weekNum-1)*7);
   const off=(isAdm?ADMIN_DAY_OFFSETS:MEMBER_DAY_OFFSETS)[dayIdx]??dayIdx;
   const dd=new Date(d);dd.setDate(dd.getDate()+off);
@@ -1204,6 +1200,7 @@ function renderVolumeChart(phase){
 }
 
 function renderCycle(cycle){
+  if(cycle.startDate){const[y,m,d]=cycle.startDate.split('-').map(Number);CYCLE_ADMIN_START=new Date(y,m-1,d);CYCLE_MEMBER_START=new Date(y,m-1,d+3);}
   document.getElementById('meta-days').innerHTML='<strong>'+cycle.days+'</strong>';
   document.getElementById('meta-goal').innerHTML='Goal: <strong>'+cycle.goal+'</strong>';
   document.getElementById('meta-dates').innerHTML='Dates: <strong>'+cycle.dates+'</strong>';
@@ -1225,14 +1222,14 @@ function renderCycle(cycle){
       const weekIsFuture=(()=>{
         if(currentRole==='admin') return false;
         const today=new Date(); today.setHours(0,0,0,0);
-        const base=new Date(2026,2,19);
+        const base=new Date(CYCLE_MEMBER_START);
         base.setDate(base.getDate()+(week.number-1)*7);
         return base>today;
       })();
       // For members, make the most recent past/current week the active default
       const isActiveDefault=(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
-        const b=currentView==='admin'?new Date(2026,2,16):new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        const b=currentView==='admin'?new Date(CYCLE_ADMIN_START):new Date(CYCLE_MEMBER_START);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       const futureTabStyle=weekIsFuture?'opacity:0.4;font-style:italic;':'';
@@ -1241,7 +1238,7 @@ function renderCycle(cycle){
     phase.weeks.forEach((week,wi)=>{
       const isCurrentWeek=(week.number===phase.weeks.filter(w=>{
         const today=new Date();today.setHours(0,0,0,0);
-        const b=currentView==='admin'?new Date(2026,2,16):new Date(2026,2,19);b.setDate(b.getDate()+(w.number-1)*7);
+        const b=currentView==='admin'?new Date(CYCLE_ADMIN_START):new Date(CYCLE_MEMBER_START);b.setDate(b.getDate()+(w.number-1)*7);
         return b<=today;
       }).reduce((last,w)=>w.number>last.number?w:last,phase.weeks[0]).number);
       html+=`<div class="week-content ${isCurrentWeek?'visible':''}" id="${phase.id}-w${week.number}">`;
@@ -1261,7 +1258,7 @@ function renderCycle(cycle){
       html += `<div class="days-grid" style="${gs}">`;
 
       slots.forEach(slot => {
-        const weekBase = new Date(isAdmin ? new Date(2026,2,16) : new Date(2026,2,19));
+        const weekBase = new Date(isAdmin ? CYCLE_ADMIN_START : CYCLE_MEMBER_START);
         weekBase.setDate(weekBase.getDate() + (week.number - 1) * 7);
         const slotDate = new Date(weekBase); slotDate.setDate(weekBase.getDate() + slot.offset);
         const slotDateStr = slotDate.toLocaleDateString('en-US', {weekday:'short',month:'short',day:'numeric'});
