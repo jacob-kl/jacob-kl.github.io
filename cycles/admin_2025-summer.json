@@ -1,0 +1,913 @@
+{
+  "id": "admin_2025-summer",
+  "name": "My Program",
+  "dates": "6/16 – 9/5",
+  "days": "Mon / Tue / Wed / Fri / Sat",
+  "goal": "Max Snatch + C&J · Squat + Deadlift Build",
+  "phases": [
+    {
+      "id": "a1",
+      "number": "01",
+      "colorClass": "m1",
+      "title": "MESOCYCLE 1 — STRENGTH BASE (CHINESE)",
+      "subtitle": "Weeks 1–4 · 6/16–7/11 · High Frequency / Daily Squat / Pull Strength",
+      "weeks": [
+        {
+          "number": 1,
+          "label": "Week 1",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 1 · 6/16–6/20",
+            "text": "Establish Chinese-style frequency. Squat every training day. Heavy pull volume to rebuild back strength at the top of the pull and turnover. Snatch and clean to power above knee to drill the second pull."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "PULL STRENGTH / TOP-END BACK",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "70%", "note": "Full lift, build positions" },
+                { "name": "Snatch Pull (3s to knee, accelerate)", "sets": "5×3", "load": "100%", "note": "Slow off floor, explode knee to extension" },
+                { "name": "Snatch High Pull from Power Position", "sets": "4×3", "load": "85%", "note": "Bar to sternum — top-end pull + turnover" },
+                { "name": "Back Squat", "sets": "5×5", "load": "75%", "note": "Daily squat — base volume" },
+                { "name": "Back Extension", "sets": "3×10", "load": "55 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / ACCELERATION",
+              "exercises": [
+                { "name": "Clean & Jerk", "sets": "5×1", "load": "70%", "note": "Full lift" },
+                { "name": "Clean Pull (3s to knee, accelerate)", "sets": "5×3", "load": "100%", "note": "Drill knee-to-extension drive" },
+                { "name": "Hang Clean (above knee)", "sets": "5×2", "load": "75%", "note": "Second-pull acceleration" },
+                { "name": "Front Squat", "sets": "5×3", "load": "78%", "note": "Daily squat" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "35 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "30 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "OVERHEAD / LOCKOUT",
+              "exercises": [
+                { "name": "Snatch Balance", "sets": "6×2", "load": "75%", "note": "Aggressive lockout — punch overhead" },
+                { "name": "Snatch Push Press + 2 Overhead Squat", "sets": "5×(1+2)", "load": "70%", "note": "Lockout strength + stability" },
+                { "name": "Power Snatch", "sets": "5×2", "load": "68%", "note": "Fast turnover, fix overhead receive" },
+                { "name": "Back Squat", "sets": "4×4", "load": "78%", "note": "Daily squat" },
+                { "name": "Bench Press", "sets": "3×8", "load": "60%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "64%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch (above knee hang)", "sets": "5×2", "load": "72%", "note": "Positional" },
+                { "name": "Clean Deadlift", "sets": "5×3", "load": "100%", "note": "Deadlift build — strict back position" },
+                { "name": "Snatch Grip Deadlift (slow eccentric)", "sets": "4×4", "load": "95%", "note": "Top-of-pull back strength" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "82%", "note": "" },
+                { "name": "Bent Over Row", "sets": "4×8", "load": "145 lbs", "note": "Turnover / upper back" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "8×2", "load": "78%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "8×1", "load": "76%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "5×3", "load": "80%", "note": "Daily squat — heaviest of week" },
+                { "name": "Med Ball GHD SU", "sets": "3×10", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "label": "Week 2",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 2 · 6/23–6/27",
+            "text": "Loading climbs. Pull percentages rise, squat volume holds. High pulls and Chinese pulls reinforce the top of the pull and turnover speed."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "PULL STRENGTH / TOP-END BACK",
+              "exercises": [
+                { "name": "Snatch", "sets": "6×2", "load": "73%", "note": "" },
+                { "name": "Snatch Pull (3s to knee, accelerate)", "sets": "5×3", "load": "103%", "note": "Slow off floor, explode knee to extension" },
+                { "name": "Snatch High Pull from Power Position", "sets": "4×3", "load": "88%", "note": "Bar to sternum" },
+                { "name": "Back Squat", "sets": "5×5", "load": "78%", "note": "Daily squat" },
+                { "name": "Back Extension", "sets": "3×10", "load": "65 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / ACCELERATION",
+              "exercises": [
+                { "name": "Clean & Jerk", "sets": "6×1", "load": "73%", "note": "" },
+                { "name": "Clean Pull (3s to knee, accelerate)", "sets": "5×3", "load": "103%", "note": "Knee-to-extension drive" },
+                { "name": "Hang Clean (above knee)", "sets": "5×2", "load": "78%", "note": "Second-pull acceleration" },
+                { "name": "Front Squat", "sets": "5×3", "load": "81%", "note": "Daily squat" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "OVERHEAD / LOCKOUT",
+              "exercises": [
+                { "name": "Snatch Balance", "sets": "6×2", "load": "78%", "note": "Aggressive lockout" },
+                { "name": "Snatch Push Press + 2 Overhead Squat", "sets": "5×(1+2)", "load": "73%", "note": "Lockout + stability" },
+                { "name": "Power Snatch", "sets": "5×2", "load": "70%", "note": "Fast turnover" },
+                { "name": "Back Squat", "sets": "4×4", "load": "81%", "note": "Daily squat" },
+                { "name": "Bench Press", "sets": "3×8", "load": "63%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "66%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch (above knee hang)", "sets": "5×2", "load": "75%", "note": "" },
+                { "name": "Clean Deadlift", "sets": "5×3", "load": "103%", "note": "Deadlift build" },
+                { "name": "Snatch Grip Deadlift (slow eccentric)", "sets": "4×4", "load": "98%", "note": "Top-of-pull back strength" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "84%", "note": "" },
+                { "name": "Bent Over Row", "sets": "4×8", "load": "150 lbs", "note": "Turnover / upper back" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "8×2", "load": "80%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "8×1", "load": "78%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "5×3", "load": "83%", "note": "Daily squat — heaviest of week" },
+                { "name": "Med Ball GHD SU", "sets": "3×10", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "label": "Week 3",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 3 · 6/30–7/4",
+            "text": "Peak loading week of meso 1. Heaviest pulls and deadlifts of the block. Squat volume at its highest frequency. Top-end pull and acceleration work at peak intensity."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "PULL STRENGTH / TOP-END BACK",
+              "exercises": [
+                { "name": "Snatch", "sets": "6×2", "load": "76%", "note": "" },
+                { "name": "Snatch Pull (3s to knee, accelerate)", "sets": "6×3", "load": "106%", "note": "Slow off floor, explode knee to extension" },
+                { "name": "Snatch High Pull from Power Position", "sets": "5×3", "load": "90%", "note": "Bar to sternum" },
+                { "name": "Back Squat", "sets": "6×5", "load": "80%", "note": "Daily squat — peak volume" },
+                { "name": "Back Extension", "sets": "3×12", "load": "70 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×12", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / ACCELERATION",
+              "exercises": [
+                { "name": "Clean & Jerk", "sets": "6×1", "load": "76%", "note": "" },
+                { "name": "Clean Pull (3s to knee, accelerate)", "sets": "6×3", "load": "106%", "note": "Knee-to-extension drive" },
+                { "name": "Hang Clean (above knee)", "sets": "5×2", "load": "80%", "note": "Second-pull acceleration" },
+                { "name": "Front Squat", "sets": "5×3", "load": "84%", "note": "Daily squat" },
+                { "name": "Hamstring Curl", "sets": "3×12", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "OVERHEAD / LOCKOUT",
+              "exercises": [
+                { "name": "Snatch Balance", "sets": "6×2", "load": "82%", "note": "Aggressive lockout" },
+                { "name": "Snatch Push Press + 2 Overhead Squat", "sets": "6×(1+2)", "load": "76%", "note": "Lockout + stability" },
+                { "name": "Power Snatch", "sets": "5×2", "load": "73%", "note": "Fast turnover" },
+                { "name": "Back Squat", "sets": "5×4", "load": "84%", "note": "Daily squat" },
+                { "name": "Bench Press", "sets": "3×8", "load": "65%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "68%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch (above knee hang)", "sets": "5×2", "load": "78%", "note": "" },
+                { "name": "Clean Deadlift", "sets": "5×3", "load": "106%", "note": "Deadlift build — peak" },
+                { "name": "Snatch Grip Deadlift (slow eccentric)", "sets": "4×4", "load": "101%", "note": "Top-of-pull back strength" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "86%", "note": "" },
+                { "name": "Bent Over Row", "sets": "4×8", "load": "155 lbs", "note": "Turnover / upper back" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "8×2", "load": "82%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "8×1", "load": "80%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "5×3", "load": "85%", "note": "Daily squat — heaviest of week" },
+                { "name": "Med Ball GHD SU", "sets": "3×12", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×60s", "load": "25 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "label": "Week 4",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 4 · 7/7–7/11",
+            "text": "Deload / transition. Drop volume significantly. Maintain intensity on key lifts. Prep for meso 2 force-acceleration block."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "PULL STRENGTH / TOP-END BACK",
+              "exercises": [
+                { "name": "Snatch", "sets": "3×2", "load": "72%", "note": "Stay sharp" },
+                { "name": "Snatch Pull (3s to knee, accelerate)", "sets": "3×3", "load": "100%", "note": "" },
+                { "name": "Back Squat", "sets": "3×4", "load": "75%", "note": "Reduced volume" },
+                { "name": "Back Extension", "sets": "2×10", "load": "55 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "2×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / ACCELERATION",
+              "exercises": [
+                { "name": "Clean & Jerk", "sets": "3×1", "load": "72%", "note": "Stay sharp" },
+                { "name": "Clean Pull (3s to knee, accelerate)", "sets": "3×3", "load": "100%", "note": "" },
+                { "name": "Front Squat", "sets": "3×3", "load": "78%", "note": "Reduced volume" },
+                { "name": "Hamstring Curl", "sets": "2×10", "load": "35 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "2×5", "load": "30 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "OVERHEAD / LOCKOUT",
+              "exercises": [
+                { "name": "Snatch Balance", "sets": "4×2", "load": "75%", "note": "Lockout sharp" },
+                { "name": "Power Snatch", "sets": "3×2", "load": "68%", "note": "Fast and clean" },
+                { "name": "Back Squat", "sets": "3×3", "load": "78%", "note": "Reduced volume" },
+                { "name": "Bench Press", "sets": "2×8", "load": "60%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "2×8", "load": "64%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Clean Deadlift", "sets": "3×3", "load": "100%", "note": "Maintain" },
+                { "name": "Snatch Grip Deadlift (slow eccentric)", "sets": "3×4", "load": "95%", "note": "" },
+                { "name": "Pause Front Squat", "sets": "2×3", "load": "82%", "note": "" },
+                { "name": "Bent Over Row", "sets": "3×8", "load": "135 lbs", "note": "" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "78%", "note": "Confident, fast" },
+                { "name": "Clean & Jerk", "sets": "5×1", "load": "76%", "note": "Sharp" },
+                { "name": "Back Squat", "sets": "3×3", "load": "80%", "note": "Light squat" },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a2",
+      "number": "02",
+      "colorClass": "m1",
+      "title": "MESOCYCLE 2 — FORCE & ACCELERATION (CHINESE)",
+      "subtitle": "Weeks 5–8 · 7/14–8/8 · Pull Acceleration / Power Variations / Strength Build",
+      "weeks": [
+        {
+          "number": 5,
+          "label": "Week 5",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 5 · 7/14–7/18",
+            "text": "Acceleration block begins. Pulls from blocks/deficit to attack knee-to-extension. Heaving snatch balance and tall snatch hammer the lockout. Squat strength shifts toward heavy triples."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DEFICIT PULL / ACCELERATION",
+              "exercises": [
+                { "name": "Deficit Snatch (1in)", "sets": "5×2", "load": "72%", "note": "Longer pull, build the drive" },
+                { "name": "Deficit Snatch Pull (1in)", "sets": "5×3", "load": "105%", "note": "Knee-to-extension acceleration" },
+                { "name": "Snatch High Pull from Power Position", "sets": "4×3", "load": "90%", "note": "Top-end pull + turnover" },
+                { "name": "Back Squat", "sets": "5×3", "load": "82%", "note": "Heavy triple base" },
+                { "name": "Back Extension", "sets": "3×10", "load": "65 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "BLOCK CLEAN / ACCELERATION",
+              "exercises": [
+                { "name": "Block Clean (below knee) + Jerk", "sets": "5×(1+1)", "load": "75%", "note": "Drive from the block" },
+                { "name": "Block Clean Pull (below knee)", "sets": "5×3", "load": "105%", "note": "Acceleration through extension" },
+                { "name": "Clean High Pull from Power Position", "sets": "4×3", "load": "92%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "5×3", "load": "83%", "note": "" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "LOCKOUT / OVERHEAD",
+              "exercises": [
+                { "name": "Tall Snatch", "sets": "5×2", "load": "60%", "note": "Pure turnover + lockout speed" },
+                { "name": "Heaving Snatch Balance", "sets": "5×2", "load": "85%", "note": "Aggressive overhead lockout" },
+                { "name": "Snatch Push Press + 2 OHS", "sets": "5×(1+2)", "load": "75%", "note": "Lockout strength" },
+                { "name": "Back Squat", "sets": "4×3", "load": "85%", "note": "" },
+                { "name": "Bench Press", "sets": "3×8", "load": "63%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "66%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "76%", "note": "Full lift" },
+                { "name": "Clean Deadlift (3s pause at knee)", "sets": "5×3", "load": "100%", "note": "Hold the position — back strength" },
+                { "name": "Snatch Grip RDL", "sets": "4×6", "load": "75%", "note": "Posterior chain / top of pull" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "85%", "note": "" },
+                { "name": "Pendlay Row", "sets": "4×6", "load": "155 lbs", "note": "Explosive turnover" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "7×2", "load": "82%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "7×1", "load": "80%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "4×3", "load": "86%", "note": "Heavy triple" },
+                { "name": "Med Ball GHD SU", "sets": "3×10", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "label": "Week 6",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 6 · 7/21–7/25",
+            "text": "Intensity climbs. Pull loads creep up, squats move to heavy doubles. Lockout and acceleration variations push percentages."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DEFICIT PULL / ACCELERATION",
+              "exercises": [
+                { "name": "Deficit Snatch (1in)", "sets": "5×2", "load": "75%", "note": "" },
+                { "name": "Deficit Snatch Pull (1in)", "sets": "5×3", "load": "108%", "note": "Knee-to-extension acceleration" },
+                { "name": "Snatch High Pull from Power Position", "sets": "4×3", "load": "92%", "note": "Top-end pull + turnover" },
+                { "name": "Back Squat", "sets": "5×2", "load": "85%", "note": "Heavy double" },
+                { "name": "Back Extension", "sets": "3×10", "load": "70 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "BLOCK CLEAN / ACCELERATION",
+              "exercises": [
+                { "name": "Block Clean (below knee) + Jerk", "sets": "5×(1+1)", "load": "78%", "note": "" },
+                { "name": "Block Clean Pull (below knee)", "sets": "5×3", "load": "108%", "note": "Acceleration through extension" },
+                { "name": "Clean High Pull from Power Position", "sets": "4×3", "load": "94%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "5×2", "load": "86%", "note": "" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "LOCKOUT / OVERHEAD",
+              "exercises": [
+                { "name": "Tall Snatch", "sets": "5×2", "load": "63%", "note": "Turnover + lockout speed" },
+                { "name": "Heaving Snatch Balance", "sets": "5×2", "load": "88%", "note": "Aggressive overhead lockout" },
+                { "name": "Snatch Push Press + 2 OHS", "sets": "5×(1+2)", "load": "78%", "note": "Lockout strength" },
+                { "name": "Back Squat", "sets": "4×2", "load": "88%", "note": "" },
+                { "name": "Bench Press", "sets": "3×8", "load": "65%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "68%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "78%", "note": "Full lift" },
+                { "name": "Clean Deadlift (3s pause at knee)", "sets": "5×3", "load": "103%", "note": "Hold the position" },
+                { "name": "Snatch Grip RDL", "sets": "4×6", "load": "78%", "note": "Posterior chain" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "87%", "note": "" },
+                { "name": "Pendlay Row", "sets": "4×6", "load": "160 lbs", "note": "Explosive turnover" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "7×2", "load": "84%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "7×1", "load": "82%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "4×2", "load": "89%", "note": "Heavy double" },
+                { "name": "Med Ball GHD SU", "sets": "3×10", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "30 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "label": "Week 7",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 7 · 7/28–8/1",
+            "text": "Peak loading week of meso 2. Heaviest pulls and squat singles of the block. Acceleration and lockout work at peak intensity before the deload."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DEFICIT PULL / ACCELERATION",
+              "exercises": [
+                { "name": "Deficit Snatch (1in)", "sets": "5×2", "load": "78%", "note": "" },
+                { "name": "Deficit Snatch Pull (1in)", "sets": "6×3", "load": "110%", "note": "Knee-to-extension acceleration" },
+                { "name": "Snatch High Pull from Power Position", "sets": "5×3", "load": "94%", "note": "Top-end pull + turnover" },
+                { "name": "Back Squat", "sets": "5×1", "load": "90%", "note": "Heavy single" },
+                { "name": "Back Extension", "sets": "3×12", "load": "70 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×12", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "BLOCK CLEAN / ACCELERATION",
+              "exercises": [
+                { "name": "Block Clean (below knee) + Jerk", "sets": "5×(1+1)", "load": "82%", "note": "" },
+                { "name": "Block Clean Pull (below knee)", "sets": "6×3", "load": "110%", "note": "Acceleration through extension" },
+                { "name": "Clean High Pull from Power Position", "sets": "5×3", "load": "96%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "5×1", "load": "90%", "note": "Heavy single" },
+                { "name": "Hamstring Curl", "sets": "3×12", "load": "45 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "34 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "LOCKOUT / OVERHEAD",
+              "exercises": [
+                { "name": "Tall Snatch", "sets": "5×2", "load": "65%", "note": "Turnover + lockout speed" },
+                { "name": "Heaving Snatch Balance", "sets": "5×2", "load": "92%", "note": "Aggressive overhead lockout" },
+                { "name": "Snatch Push Press + 2 OHS", "sets": "5×(1+2)", "load": "80%", "note": "Lockout strength" },
+                { "name": "Back Squat", "sets": "4×2", "load": "90%", "note": "" },
+                { "name": "Bench Press", "sets": "3×8", "load": "67%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "70%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "80%", "note": "Full lift" },
+                { "name": "Clean Deadlift (3s pause at knee)", "sets": "5×3", "load": "106%", "note": "Peak — hold the position" },
+                { "name": "Snatch Grip RDL", "sets": "4×6", "load": "80%", "note": "Posterior chain" },
+                { "name": "Pause Front Squat", "sets": "3×3", "load": "88%", "note": "" },
+                { "name": "Pendlay Row", "sets": "4×6", "load": "165 lbs", "note": "Explosive turnover" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "6×2", "load": "86%", "note": "2 reps / min" },
+                { "name": "Clean & Jerk", "sets": "6×1", "load": "84%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "3×2", "load": "91%", "note": "Heavy double" },
+                { "name": "Med Ball GHD SU", "sets": "3×12", "load": "20 lbs", "note": "", "superset": true },
+                { "name": "Weighted Plank", "sets": "3×60s", "load": "30 lbs", "note": "", "supersetEnd": true }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "label": "Week 8",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 8 · 8/4–8/8",
+            "text": "Deload / transition. Reduce volume, maintain intensity. Rest up before meso 3 wave loading and the peak begin."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DEFICIT PULL / ACCELERATION",
+              "exercises": [
+                { "name": "Deficit Snatch (1in)", "sets": "3×2", "load": "73%", "note": "Sharp" },
+                { "name": "Deficit Snatch Pull (1in)", "sets": "3×3", "load": "105%", "note": "" },
+                { "name": "Back Squat", "sets": "3×2", "load": "82%", "note": "Reduced" },
+                { "name": "Back Extension", "sets": "2×10", "load": "55 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "2×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "BLOCK CLEAN / ACCELERATION",
+              "exercises": [
+                { "name": "Block Clean (below knee) + Jerk", "sets": "3×(1+1)", "load": "75%", "note": "Sharp" },
+                { "name": "Block Clean Pull (below knee)", "sets": "3×3", "load": "105%", "note": "" },
+                { "name": "Front Squat", "sets": "3×2", "load": "83%", "note": "Reduced" },
+                { "name": "Hamstring Curl", "sets": "2×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "2×5", "load": "30 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "LOCKOUT / OVERHEAD",
+              "exercises": [
+                { "name": "Tall Snatch", "sets": "3×2", "load": "60%", "note": "Crisp turnover" },
+                { "name": "Heaving Snatch Balance", "sets": "3×2", "load": "85%", "note": "Lockout sharp" },
+                { "name": "Back Squat", "sets": "3×2", "load": "85%", "note": "Reduced" },
+                { "name": "Bench Press", "sets": "2×8", "load": "63%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "2×8", "load": "66%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "DEADLIFT BUILD / PULL",
+              "exercises": [
+                { "name": "Clean Deadlift (3s pause at knee)", "sets": "3×3", "load": "100%", "note": "Maintain" },
+                { "name": "Snatch Grip RDL", "sets": "3×6", "load": "72%", "note": "" },
+                { "name": "Pause Front Squat", "sets": "2×3", "load": "85%", "note": "" },
+                { "name": "Pendlay Row", "sets": "3×6", "load": "145 lbs", "note": "" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×2", "load": "80%", "note": "Confident, fast" },
+                { "name": "Clean & Jerk", "sets": "5×1", "load": "78%", "note": "Sharp" },
+                { "name": "Back Squat", "sets": "3×2", "load": "85%", "note": "Light double" },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "a3",
+      "number": "03",
+      "colorClass": "m2",
+      "title": "MESOCYCLE 3 — PEAK & TEST",
+      "subtitle": "Weeks 9–12 · 8/11–9/5 · Wave Loading / RM Squats & Deadlifts / Olympic Total",
+      "weeks": [
+        {
+          "number": 9,
+          "label": "Week 9",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 9 · 8/11–8/15",
+            "text": "Wave loading introduced on both snatch and C&J. RM squat and deadlift work begins on Friday. Competition lifts dominate Monday. Pull and lockout volume tapering."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                { "name": "Snatch — Wave 1", "sets": "1×2", "load": "78%", "note": "" },
+                { "name": "Snatch — Wave 2", "sets": "1×2", "load": "83%", "note": "" },
+                { "name": "Snatch — Wave 3", "sets": "2×1", "load": "88%", "note": "" },
+                { "name": "Snatch Pull", "sets": "4×3", "load": "105%", "note": "Top-end pull" },
+                { "name": "Back Squat", "sets": "4×3", "load": "85%", "note": "Daily squat" },
+                { "name": "Back Extension", "sets": "3×10", "load": "65 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                { "name": "Clean & Jerk — Wave 1", "sets": "1×1", "load": "78%", "note": "" },
+                { "name": "Clean & Jerk — Wave 2", "sets": "1×1", "load": "83%", "note": "" },
+                { "name": "Clean & Jerk — Wave 3", "sets": "2×1", "load": "88%", "note": "" },
+                { "name": "Clean Pull", "sets": "4×3", "load": "105%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "4×3", "load": "84%", "note": "" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "POWER / LOCKOUT",
+              "exercises": [
+                { "name": "Power Snatch", "sets": "5×1", "load": "78%", "note": "Fast, lockout sharp" },
+                { "name": "Power Clean + Push Jerk", "sets": "5×(1+1)", "load": "78%", "note": "" },
+                { "name": "Heaving Snatch Balance", "sets": "4×2", "load": "88%", "note": "Lockout" },
+                { "name": "Back Squat", "sets": "3×3", "load": "87%", "note": "" },
+                { "name": "Bench Press", "sets": "3×8", "load": "65%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "68%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "RM SQUAT & DEADLIFT",
+              "exercises": [
+                { "name": "Snatch", "sets": "4×1", "load": "82%", "note": "Stay sharp" },
+                { "name": "Back Squat — 3RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "3RM" },
+                { "name": "Clean Deadlift — 3RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "3RM" },
+                { "name": "Snatch Grip RDL", "sets": "3×6", "load": "78%", "note": "" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "6×1", "load": "85%", "note": "1 rep / min" },
+                { "name": "Clean & Jerk", "sets": "6×1", "load": "85%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "3×3", "load": "88%", "note": "Heavy triple" },
+                { "name": "Weighted Plank", "sets": "3×45s", "load": "25 lbs", "note": "" }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "label": "Week 10",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 10 · 8/18–8/22",
+            "text": "Wave loading intensity climbs. 2RM squat and deadlift work. Competition lifts pushing toward 90%+."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                { "name": "Snatch — Wave 1", "sets": "1×2", "load": "80%", "note": "" },
+                { "name": "Snatch — Wave 2", "sets": "1×1", "load": "86%", "note": "" },
+                { "name": "Snatch — Wave 3", "sets": "2×1", "load": "91%", "note": "" },
+                { "name": "Snatch Pull", "sets": "4×3", "load": "107%", "note": "Top-end pull" },
+                { "name": "Back Squat", "sets": "4×2", "load": "88%", "note": "Daily squat" },
+                { "name": "Back Extension", "sets": "3×10", "load": "70 lbs", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                { "name": "Clean & Jerk — Wave 1", "sets": "1×1", "load": "80%", "note": "" },
+                { "name": "Clean & Jerk — Wave 2", "sets": "1×1", "load": "86%", "note": "" },
+                { "name": "Clean & Jerk — Wave 3", "sets": "2×1", "load": "91%", "note": "" },
+                { "name": "Clean Pull", "sets": "4×3", "load": "107%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "4×2", "load": "87%", "note": "" },
+                { "name": "Hamstring Curl", "sets": "3×10", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "32 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "POWER / LOCKOUT",
+              "exercises": [
+                { "name": "Power Snatch", "sets": "5×1", "load": "80%", "note": "Lockout sharp" },
+                { "name": "Power Clean + Push Jerk", "sets": "5×(1+1)", "load": "80%", "note": "" },
+                { "name": "Heaving Snatch Balance", "sets": "4×1", "load": "92%", "note": "Lockout" },
+                { "name": "Back Squat", "sets": "3×2", "load": "90%", "note": "" },
+                { "name": "Bench Press", "sets": "3×8", "load": "67%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "3×8", "load": "70%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "RM SQUAT & DEADLIFT",
+              "exercises": [
+                { "name": "Snatch", "sets": "3×1", "load": "85%", "note": "Stay sharp" },
+                { "name": "Back Squat — 2RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "2RM" },
+                { "name": "Clean Deadlift — 2RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "2RM" },
+                { "name": "Snatch Grip RDL", "sets": "3×6", "load": "80%", "note": "" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION LIFTS",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×1", "load": "88%", "note": "1 rep / min" },
+                { "name": "Clean & Jerk", "sets": "5×1", "load": "88%", "note": "1 rep / min" },
+                { "name": "Back Squat", "sets": "3×2", "load": "90%", "note": "Heavy double" },
+                { "name": "Weighted Plank", "sets": "3×60s", "load": "30 lbs", "note": "" }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 11,
+          "label": "Week 11",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 11 · 8/25–8/29",
+            "text": "Peak intensity. Heaviest wave loading of the cycle. 1RM squat and deadlift work. Competition lifts at near-max. Intensity builds through the week then drops sharply on Saturday for a confident dress rehearsal."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                { "name": "Snatch — Wave 1", "sets": "1×1", "load": "83%", "note": "" },
+                { "name": "Snatch — Wave 2", "sets": "1×1", "load": "89%", "note": "" },
+                { "name": "Snatch — Wave 3", "sets": "2×1", "load": "93%", "note": "" },
+                { "name": "Snatch Pull", "sets": "5×2", "load": "108%", "note": "Top-end pull" },
+                { "name": "Back Squat", "sets": "3×2", "load": "90%", "note": "Daily squat" },
+                { "name": "Back Extension", "sets": "3×10", "load": "Light", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "3×10", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                { "name": "Clean & Jerk — Wave 1", "sets": "1×1", "load": "83%", "note": "" },
+                { "name": "Clean & Jerk — Wave 2", "sets": "1×1", "load": "89%", "note": "" },
+                { "name": "Clean & Jerk — Wave 3", "sets": "2×1", "load": "93%", "note": "" },
+                { "name": "Clean Pull", "sets": "5×2", "load": "108%", "note": "Top-end pull" },
+                { "name": "Front Squat", "sets": "3×2", "load": "89%", "note": "" },
+                { "name": "Hamstring Curl", "sets": "3×8", "load": "40 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "3×5", "load": "30 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "POWER / LOCKOUT",
+              "exercises": [
+                { "name": "Power Snatch", "sets": "4×1", "load": "82%", "note": "Lockout sharp" },
+                { "name": "Power Clean + Push Jerk", "sets": "4×(1+1)", "load": "82%", "note": "" },
+                { "name": "Heaving Snatch Balance", "sets": "3×1", "load": "95%", "note": "Lockout" },
+                { "name": "Back Squat", "sets": "2×2", "load": "92%", "note": "" },
+                { "name": "Bench Press", "sets": "2×8", "load": "65%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "2×8", "load": "68%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "RM SQUAT & DEADLIFT",
+              "exercises": [
+                { "name": "Snatch", "sets": "2×1", "load": "85%", "note": "Stay sharp" },
+                { "name": "Back Squat — 1RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "1RM" },
+                { "name": "Clean Deadlift — 1RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "1RM" }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "DRESS REHEARSAL",
+              "exercises": [
+                { "name": "Snatch", "sets": "5×1", "load": "88%", "note": "Heavy enough to feel authoritative — fast, confident, not maximal" },
+                { "name": "Clean & Jerk", "sets": "5×1", "load": "88%", "note": "Same — sharp singles, no grinders" },
+                { "name": "Back Squat", "sets": "2×2", "load": "85%", "note": "Light — stay fresh for test week" },
+                { "name": "Weighted Plank", "sets": "2×45s", "load": "25 lbs", "note": "" }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "label": "Week 12 — OLY TOTAL",
+          "intent": {
+            "colorClass": "peak",
+            "title": "Week 12 · 9/1–9/5 🏆",
+            "text": "Max out week. Mon/Tue/Wed = light opener feel + light accessory to stay sharp without accumulating fatigue. Fri/Sat = Olympic Total. New 1RMs on snatch, C&J, back squat, and deadlift."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "",
+              "exercises": [
+                { "name": "Snatch (opener feel)", "sets": "2×1", "load": "80–82%", "note": "Easy. Fast. Confident. Nothing heavier." },
+                { "name": "Clean & Jerk (opener feel)", "sets": "2×1", "load": "80–82%", "note": "Same — sharp and done." },
+                { "name": "Overhead Squat", "sets": "2×3", "load": "65%", "note": "Keep the groove warm" },
+                { "name": "Back Extension", "sets": "1×10", "load": "Light", "note": "", "superset": true },
+                { "name": "Glute Ham Raise", "sets": "1×8", "load": "Banded", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "TUESDAY",
+              "colorClass": "thu",
+              "focus": "",
+              "exercises": [
+                { "name": "Hang Snatch (above knee)", "sets": "3×2", "load": "68%", "note": "Technical — reinforce positions" },
+                { "name": "Jerk from Rack", "sets": "3×1", "load": "75%", "note": "Stay confident under the bar" },
+                { "name": "Front Squat — 1RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "1RM" },
+                { "name": "Hamstring Curl", "sets": "2×8", "load": "35 lbs", "note": "", "superset": true },
+                { "name": "Box Jump", "sets": "2×5", "load": "20 in", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "WEDNESDAY",
+              "colorClass": "mon",
+              "focus": "",
+              "exercises": [
+                { "name": "Power Snatch", "sets": "3×2", "load": "70%", "note": "Fast and technical. Last snatch before the total." },
+                { "name": "Power Clean + Push Jerk", "sets": "3×(1+1)", "load": "72%", "note": "Light C&J work — stay sharp" },
+                { "name": "Back Squat — 1RM", "sets": "Build", "load": "100%+", "note": "", "tag": "hard", "tagText": "1RM" },
+                { "name": "Bench Press", "sets": "2×8", "load": "60%", "note": "", "superset": true },
+                { "name": "Strict Press", "sets": "2×8", "load": "60%", "note": "", "supersetEnd": true }
+              ]
+            },
+            {
+              "label": "FRIDAY",
+              "colorClass": "thu",
+              "focus": "WARM-UP & MOBILITY",
+              "exercises": [
+                { "name": "Snatch (opener feel)", "sets": "3×1", "load": "72%", "note": "Easy. Just feel the movement." },
+                { "name": "Clean & Jerk (opener feel)", "sets": "3×1", "load": "72%", "note": "Same. Confident and done." },
+                { "name": "Clean Deadlift — 1RM", "sets": "Build", "load": "100%+", "note": "Test the deadlift build", "tag": "hard", "tagText": "1RM" },
+                { "name": "Thoracic Mobility", "sets": "3×10", "load": "BW", "note": "T-spine rotations, foam roll thoracic" },
+                { "name": "Hip 90/90 Mobility", "sets": "2×60s", "load": "BW", "note": "Each side. Open the hips." },
+                { "name": "Snatch Balance (empty bar)", "sets": "3×5", "load": "Bar", "note": "Reinforce the drop. Feel the overhead." }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "mon",
+              "focus": "OLYMPIC TOTAL",
+              "tableHeaders": ["Attempt", "Structure", "Target Load"],
+              "exercises": [
+                { "name": "Snatch Opener", "sets": "1", "load": "90%", "note": "Locked in.", "tag": "peak", "tagText": "Must make" },
+                { "name": "Snatch 2nd", "sets": "1", "load": "93%", "note": "" },
+                { "name": "Snatch 3rd", "sets": "1", "load": "96%+", "note": "", "tag": "hard", "tagText": "PR" },
+                { "name": "C&J Opener", "sets": "1", "load": "87%", "note": "", "tag": "peak", "tagText": "Must make" },
+                { "name": "C&J 2nd", "sets": "1", "load": "90%", "note": "" },
+                { "name": "C&J 3rd", "sets": "1", "load": "92%+", "note": "", "tag": "hard", "tagText": "PR" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
