@@ -219,8 +219,8 @@ function collapsibleSection(id, label, accentColor, rows) {
 }
 
 function renderWarmup(day, uid) {
-  const {complex, mobility} = dayWarmupExercises(day);
-  const allRows = [...complex, {name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility];
+  const {mobility, complex} = dayWarmupExercises(day);
+  const allRows = [{name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility, {name:'─── Barbell warmup ───', sets:'', load:'', note:''}, ...complex];
   return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
 }
 
