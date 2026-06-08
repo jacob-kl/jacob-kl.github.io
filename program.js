@@ -93,6 +93,101 @@ function renderVolumeChart(phase){
   return`<div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:16px 24px 16px;margin:0 40px 32px;overflow-x:auto;">${svg}<p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);margin-top:10px;line-height:1.6;">${cap}</p></div>`;
 }
 
+
+// ── WARMUP / COOLDOWN GENERATORS ─────────────────────────────────────────
+function dayWarmupExercises(day) {
+  const focus = (day.focus || '').toLowerCase();
+  const label = (day.label || '').toLowerCase();
+  const isComp = focus.includes('competition') || focus.includes('olympic total') || focus.includes('dress rehearsal');
+  const isSnatch = focus.includes('snatch') || focus.includes('overhead') || focus.includes('lockout');
+  const isClean = focus.includes('clean') || focus.includes('jerk') || focus.includes('acceleration');
+  const isPull = focus.includes('pull') || focus.includes('deadlift');
+
+  let complex = [];
+  if (isComp) {
+    complex = [
+      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
+      {name:'Overhead Squat',sets:'3×5',load:'Bar'},
+      {name:'Muscle Clean + Push Press',sets:'3×3',load:'Bar'},
+      {name:'Power Snatch',sets:'2×2',load:'50%'},
+      {name:'Power Clean + Push Jerk',sets:'2×(1+1)',load:'50%'},
+    ];
+  } else if (isSnatch) {
+    complex = [
+      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
+      {name:'Snatch Grip RDL',sets:'3×5',load:'Bar'},
+      {name:'Overhead Squat',sets:'3×5',load:'Bar'},
+      {name:'Snatch Balance',sets:'3×3',load:'Bar'},
+      {name:'Power Snatch',sets:'2×2',load:'50%'},
+    ];
+  } else if (isClean) {
+    complex = [
+      {name:'Muscle Clean',sets:'3×5',load:'Bar'},
+      {name:'Front Squat',sets:'3×5',load:'Bar'},
+      {name:'Push Press',sets:'3×5',load:'Bar'},
+      {name:'Tall Clean',sets:'3×3',load:'Bar'},
+      {name:'Power Clean + Push Jerk',sets:'2×(1+1)',load:'50%'},
+    ];
+  } else if (isPull) {
+    complex = [
+      {name:'Snatch Grip RDL',sets:'3×5',load:'Bar'},
+      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
+      {name:'Overhead Squat',sets:'3×3',load:'Bar'},
+      {name:'Snatch Pull',sets:'3×3',load:'Bar'},
+      {name:'Hang Power Snatch',sets:'2×2',load:'50%'},
+    ];
+  } else {
+    complex = [
+      {name:'Muscle Snatch',sets:'3×3',load:'Bar'},
+      {name:'Overhead Squat',sets:'3×3',load:'Bar'},
+      {name:'Snatch Grip RDL',sets:'3×3',load:'Bar'},
+      {name:'Power Snatch',sets:'2×2',load:'50%'},
+    ];
+  }
+  const mobility = [
+    {name:'Hip 90/90',sets:'2×60s',load:'BW',note:'Each side · 2 min total'},
+    {name:'Ankle Circles + Calf Stretch',sets:'2×10',load:'BW',note:'Each side'},
+    {name:'Thoracic Rotation',sets:'2×10',load:'BW',note:'Each side'},
+    {name:'Shoulder CARs',sets:'2×10',load:'BW',note:'Controlled articular rotations'},
+  ];
+  return {complex, mobility};
+}
+
+function dayCooldownExercises() {
+  return [
+    {name:'Pigeon Pose',sets:'2×60s',load:'BW',note:'Each side — hold, don\'t push'},
+    {name:'Hip Flexor Stretch',sets:'2×45s',load:'BW',note:'Each side · rear knee on mat'},
+    {name:'Thoracic Foam Roll',sets:'1×60s',load:'BW',note:'T-spine segment by segment'},
+    {name:'Dead Hang / Lat Stretch',sets:'2×20s',load:'BW',note:'Decompress the shoulder'},
+    {name:'Child\'s Pose',sets:'1×60s',load:'BW',note:'Arms extended, breathe into the floor'},
+  ];
+}
+
+function collapsibleSection(id, label, accentColor, rows) {
+  const rowsHTML = rows.map(r =>
+    `<tr><td class="wu-name">${r.name}</td><td class="wu-sets">${r.sets}</td><td class="wu-load">${r.load}</td><td class="wu-note">${r.note||''}</td></tr>`
+  ).join('');
+  return `<div class="wu-section"><button class="wu-toggle" onclick="toggleWU('${id}')"><span class="wu-toggle-label" style="color:${accentColor}">${label}</span><span class="wu-toggle-arrow">&#9660;</span></button><div class="wu-body" id="${id}"><table class="wu-table"><thead><tr><th>Exercise</th><th>Sets</th><th>Load</th><th>Note</th></tr></thead><tbody>${rowsHTML}</tbody></table></div></div>`;
+}
+
+function renderWarmup(day, uid) {
+  const {complex, mobility} = dayWarmupExercises(day);
+  const allRows = [...complex, {name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility];
+  return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
+}
+
+function renderCooldown(uid) {
+  return collapsibleSection('cd-'+uid, 'COOLDOWN + STRETCHING', 'var(--muted)', dayCooldownExercises());
+}
+
+function toggleWU(id) {
+  const el = document.getElementById(id);
+  const btn = el ? el.previousElementSibling : null;
+  if (!el) return;
+  const open = el.classList.toggle('open');
+  if (btn) btn.classList.toggle('open', open);
+}
+
 function renderCycle(cycle){
   if(cycle.startDate){const[y,m,d]=cycle.startDate.split('-').map(Number);CYCLE_ADMIN_START=new Date(y,m-1,d);CYCLE_MEMBER_START=new Date(y,m-1,d+3);}
   document.getElementById('meta-days').innerHTML='<strong>'+cycle.days+'</strong>';
@@ -186,11 +281,14 @@ function renderCycle(cycle){
         } else {
           // ── Program day card ─────────────────────────────────────────────
           const day = slot.day, di = slot.di;
-          const rawH = day.tableHeaders || (isAdmin ? ['Exercise','Sets\u00d7Reps','Load'] : ['Exercise','Sets\u00d7Reps','Load','Notes']);
+          const rawH = day.tableHeaders || ['Exercise','Sets\u00d7Reps','Load','Notes'];
           let headers = [...rawH]; const li = headers.indexOf('Load'); if (li !== -1) headers.splice(li+1,0,'Weight'); headers.push('\u2713');
           const focusHtml = day.focus ? `<div class="day-focus">${day.focus}</div>` : '';
           const isFutureDay = (currentRole !== 'admin') && isFuture;
-          html += `<div class="day-card${isFutureDay?' day-future':''}" style="${isFutureDay?'position:relative;':''}" data-day-offset="${slot.offset}"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div>${focusHtml}</div><div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
+          html += `<div class="day-card${isFutureDay?' day-future':''}" style="${isFutureDay?'position:relative;':''}" data-day-offset="${slot.offset}"><div class="day-header"><div style="display:flex;align-items:baseline;gap:12px;"><div class="day-label ${day.colorClass}">${day.label}</div><div style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted);">${slotDateStr}</div></div>${focusHtml}</div>`;
+          const wuUid = `${phase.id}-w${week.number}-d${di}`;
+          if (!slot.isOff) html += renderWarmup(day, wuUid);
+          html += `<div class="table-wrap"><table class="ex-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>`;
           const exercises = day.exercises; let i = 0, ssGroupIdx = -1, ssGroupCount = -1;
           while (i < exercises.length) {
             const ex = exercises[i];
@@ -207,7 +305,7 @@ function renderCycle(cycle){
               const anyMixed=anyMade&&anyMiss;
               const lbc=anyMixed?'log-btn logged-mixed':anyMade?'log-btn logged-made':anyMiss?'log-btn logged-miss':'log-btn';
               const lbi=anyMixed?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> MIXED`:anyMade?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,2"/></svg> LOGGED`:anyMiss?`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><line x1="1" y1="1" x2="11" y2="11"/><line x1="11" y1="1" x2="1" y2="11"/></svg> MISSED`:`<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="4"/><line x1="6" y1="4" x2="6" y2="6"/><line x1="6" y1="8" x2="6" y2="8.5"/></svg> LOG`;
-              const noteTD=!isAdmin?`<td class="ex-note">${ex.note||''}</td>`:'';
+              const noteTD=`<td class="ex-note">${ex.note||''}</td>`;
               const nameCell=`<div class="wave-name-cell"><span class="wave-base-name">${baseName||ex.name}</span></div>`;
               const setsCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-sets">${w.sets}</span></div>`).join('')}</div>`;
               const loadCell=`<div class="wave-group">${waveGroup.map(w=>`<div class="wave-line"><span class="wave-load" style="white-space:nowrap">${w.load}</span></div>`).join('')}</div>`;
@@ -228,7 +326,7 @@ function renderCycle(cycle){
             const safeEx=ex.name.replace(/"/g,'&quot;'),safeLoad=ex.load.replace(/"/g,'&quot;');
             const wTD=wr?`<td class="ex-weight weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">${wr}</td>`:`<td class="ex-weight empty weight-cell" data-ex="${safeEx}" data-load="${safeLoad}">\u2014</td>`;
             let noteHTML=ex.note||'';if(ex.tag)noteHTML+=`<div class="tag tag-${ex.tag}">${ex.tagText}</div>`;if(ex.tag2)noteHTML+=`<div class="tag tag-${ex.tag2}">${ex.tagText2}</div>`;
-            const noteTD=!isAdmin?`<td class="ex-note">${noteHTML}</td>`:'';
+            const noteTD=`<td class="ex-note">${noteHTML}</td>`;
             const lk=logKey(phase.id,week.number,di,i);
             const prevLog=(()=>{try{const v=localStorage.getItem(lk);return v?JSON.parse(v):{};}catch(e){return{};}})();
             const anyMade=Object.values(prevLog).some(e=>e&&typeof e==='object'&&e.outcome==='made');
@@ -253,6 +351,7 @@ function renderCycle(cycle){
           const fScopeId=`feel-${phase.id}-${week.number}-${di}`;
           const tKey=timeKey(phase.id,week.number,di);
           const metScopeId=awKey.replace(/[^a-z0-9]/gi,'-');
+          if (!slot.isOff) html += renderCooldown(wuUid);
           html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${dayMetricsHtml(awKey,tKey,metScopeId)}${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
           html += '</div>';
         }
@@ -398,4 +497,3 @@ function showLiftPR(pr,count){
   toast.style.transform='translateX(-50%) translateY(0)';toast.style.opacity='1';
   setTimeout(()=>{toast.style.transform='translateX(-50%) translateY(120px)';toast.style.opacity='0';},5000);
 }
-
