@@ -316,3 +316,25 @@ footer p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);lette
 .aw-add-set-btn:hover{border-color:var(--accent);color:var(--accent);}
 .aw-set-col-labels{display:flex;gap:6px;margin-top:8px;padding-left:30px;}
 .aw-set-col-labels span{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);flex:1;text-align:center;}
+
+
+/* ── WARMUP / COOLDOWN COLLAPSIBLE ───────────────────────────────────── */
+.wu-section{border-bottom:1px solid var(--border);}
+.wu-toggle{width:100%;background:none;border:none;padding:9px 16px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:background .15s;}
+.wu-toggle:hover{background:var(--surface2);}
+.wu-toggle-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+.wu-toggle-arrow{font-size:9px;color:var(--muted);transition:transform .2s;}
+.wu-toggle.open .wu-toggle-arrow{transform:rotate(180deg);}
+.wu-body{display:none;border-top:1px solid var(--border);}
+.wu-body.open{display:block;}
+.wu-table{width:100%;border-collapse:collapse;}
+.wu-table thead tr{background:var(--surface2);}
+.wu-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:6px 12px;text-align:left;font-weight:400;}
+.wu-table tbody tr{border-bottom:1px solid var(--border);}
+.wu-table tbody tr:last-child{border-bottom:none;}
+.wu-table tbody tr:hover{background:var(--surface2);}
+.wu-name{padding:7px 12px;font-size:12px;color:var(--muted);}
+.wu-sets{font-family:'DM Mono',monospace;font-size:11px;color:var(--accent2);padding:7px 12px;white-space:nowrap;}
+.wu-load{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);padding:7px 12px;white-space:nowrap;}
+.wu-note{font-size:10px;color:var(--muted);padding:7px 12px;opacity:.7;}
+.wu-table tr.wu-divider td{padding:3px 12px;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--border);border-bottom:1px solid var(--border);}
