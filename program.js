@@ -122,6 +122,10 @@ function dayWarmupExercises(day) {
     ];
   } else if (isClean) {
     complex = [
+      {name:'Clean Grip RDL',sets:'3×5',load:'Bar'},
+      {name:'Clean Pull (floor to knee)',sets:'3×5',load:'Bar'},
+      {name:'Clean Pull (knee to hip)',sets:'3×5',load:'Bar'},
+      {name:'Clean Pull',sets:'3×5',load:'Bar'},
       {name:'Muscle Clean',sets:'3×5',load:'Bar'},
       {name:'Front Squat',sets:'3×5',load:'Bar'},
       {name:'Push Press',sets:'3×5',load:'Bar'},
@@ -131,10 +135,14 @@ function dayWarmupExercises(day) {
   } else if (isPull) {
     complex = [
       {name:'Snatch Grip RDL',sets:'3×5',load:'Bar'},
+      {name:'Snatch Pull (floor to knee)',sets:'3×5',load:'Bar'},
+      {name:'Snatch Pull (knee to hip)',sets:'3×5',load:'Bar'},
+      {name:'Snatch Pull',sets:'3×5',load:'Bar'},
       {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
       {name:'Overhead Squat',sets:'3×3',load:'Bar'},
-      {name:'Snatch Pull',sets:'3×3',load:'Bar'},
+      {name:'Snatch High Pull',sets:'3×3',load:'Bar'},
       {name:'Hang Power Snatch',sets:'2×2',load:'50%'},
+      {name:'Tall Snatch', sets:'2×2',load:'50%'},
     ];
   } else {
     complex = [
