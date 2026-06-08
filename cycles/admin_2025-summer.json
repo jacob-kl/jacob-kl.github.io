@@ -42,13 +42,19 @@
                   "name": "Snatch High Pull from Power Position",
                   "sets": "4\u00d73",
                   "load": "85%",
-                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
+                  "note": "Bar to sternum, elbows high and wide \u2014 NO catch. Trains upper back and trap engagement at the very top of the pull. Completely separate from a power snatch. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "5\u00d75",
                   "load": "75%",
                   "note": "Daily squat \u2014 base volume \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "62%",
+                  "note": "DROP SET \u2014 straight off the bar from your last working set \u00b7 90s rest after"
                 },
                 {
                   "name": "Back Extension",
@@ -147,11 +153,23 @@
                   "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d710",
+                  "load": "65%",
+                  "note": "DROP SET \u2014 strip the pause, keep the bar \u00b7 immediately after pause sets"
+                },
+                {
                   "name": "Bench Press",
                   "sets": "3\u00d78",
                   "load": "60%",
                   "note": "75s rest (in superset)",
                   "superset": true
+                },
+                {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "50%",
+                  "note": "DROP SET \u2014 right off the bar, pump the chest \u00b7 no rest from working sets"
                 },
                 {
                   "name": "Strict Press",
@@ -186,10 +204,22 @@
                   "note": "2 min rest"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "4\u00d73",
+                  "load": "95%",
+                  "note": "Snatch-specific second pull. Start position = shin vertical. Drive through the floor. \u00b7 1 set / 90s"
+                },
+                {
                   "name": "Bent Over Row",
                   "sets": "4\u00d78",
                   "load": "145 lbs",
                   "note": "Turnover / upper back \u00b7 75s rest"
+                },
+                {
+                  "name": "Bent Over Row \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "125 lbs",
+                  "note": "DROP SET \u2014 lighter, faster, feel the lats \u00b7 no rest from working sets"
                 },
                 {
                   "name": "Jerk from Rack",
@@ -211,22 +241,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "75% \u2192 80% \u2192 83% \u2192 86% \u2192 88% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "75%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "72% \u2192 77% \u2192 80% \u2192 82% \u2192 84% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "86%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "88%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "72%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "77%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "84%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d73",
                   "load": "78%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "66%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -282,13 +366,19 @@
                   "name": "Snatch High Pull from Power Position",
                   "sets": "4\u00d73",
                   "load": "88%",
-                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
+                  "note": "Bar to sternum, elbows high and wide \u2014 NO catch. Trains upper back and trap engagement at the very top of the pull. Completely separate from a power snatch. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "5\u00d75",
                   "load": "78%",
                   "note": "Daily squat \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "65%",
+                  "note": "DROP SET \u2014 no rest from last set \u00b7 90s after"
                 },
                 {
                   "name": "Back Extension",
@@ -387,11 +477,23 @@
                   "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d710",
+                  "load": "68%",
+                  "note": "DROP SET \u00b7 immediately after"
+                },
+                {
                   "name": "Bench Press",
                   "sets": "3\u00d78",
                   "load": "63%",
                   "note": "75s rest (in superset)",
                   "superset": true
+                },
+                {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "52%",
+                  "note": "DROP SET \u2014 right off the bar, pump the chest \u00b7 no rest from working sets"
                 },
                 {
                   "name": "Strict Press",
@@ -426,10 +528,22 @@
                   "note": "2 min rest"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "4\u00d73",
+                  "load": "98%",
+                  "note": "1 set / 90s"
+                },
+                {
                   "name": "Bent Over Row",
                   "sets": "4\u00d78",
                   "load": "150 lbs",
                   "note": "Turnover / upper back \u00b7 75s rest"
+                },
+                {
+                  "name": "Bent Over Row \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "130 lbs",
+                  "note": "DROP SET"
                 },
                 {
                   "name": "Jerk from Rack",
@@ -451,22 +565,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "76% \u2192 80% \u2192 83% \u2192 85% \u2192 87% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "76%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d73",
                   "load": "81%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "69%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -522,13 +690,19 @@
                   "name": "Snatch High Pull from Power Position",
                   "sets": "5\u00d73",
                   "load": "90%",
-                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
+                  "note": "Bar to sternum, elbows high and wide \u2014 NO catch. Trains upper back and trap engagement at the very top of the pull. Completely separate from a power snatch. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "6\u00d75",
                   "load": "80%",
                   "note": "Daily squat \u2014 peak volume \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "68%",
+                  "note": "DROP SET \u00b7 90s after"
                 },
                 {
                   "name": "Back Extension",
@@ -627,11 +801,23 @@
                   "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "70%",
+                  "note": "DROP SET \u00b7 immediately after"
+                },
+                {
                   "name": "Bench Press",
                   "sets": "3\u00d78",
                   "load": "65%",
                   "note": "75s rest (in superset)",
                   "superset": true
+                },
+                {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "54%",
+                  "note": "DROP SET \u2014 right off the bar, pump the chest \u00b7 no rest from working sets"
                 },
                 {
                   "name": "Strict Press",
@@ -666,10 +852,22 @@
                   "note": "2 min rest"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "5\u00d73",
+                  "load": "100%",
+                  "note": "Peak load for the block. \u00b7 1 set / 2 min"
+                },
+                {
                   "name": "Bent Over Row",
                   "sets": "4\u00d78",
                   "load": "155 lbs",
                   "note": "Turnover / upper back \u00b7 75s rest"
+                },
+                {
+                  "name": "Bent Over Row \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "135 lbs",
+                  "note": "DROP SET"
                 },
                 {
                   "name": "Jerk from Rack",
@@ -691,22 +889,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "78% \u2192 82% \u2192 85% \u2192 88% \u2192 90% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "84%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "91%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "88%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "90%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "3\u00d72",
                   "load": "85%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "73%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -964,10 +1216,10 @@
                   "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Pause Snatch (3s at knee)",
+                  "name": "Pause Power Snatch (3s at knee)",
                   "sets": "4\u00d72",
                   "load": "67%",
-                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 own the receive, speed over depth the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -1003,10 +1255,10 @@
                   "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Pause Clean (3s at knee)",
+                  "name": "Pause Power Clean (3s at knee)",
                   "sets": "4\u00d72",
                   "load": "70%",
-                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 reinforce the high receive \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Split Jerk w/ 2s Pause in Dip",
@@ -1042,6 +1294,12 @@
               "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
                 {
+                  "name": "Tall Snatch",
+                  "sets": "5\u00d72",
+                  "load": "60%",
+                  "note": "Start standing, no leg drive \u2014 pure arm speed and turnover mechanics \u00b7 1 set / 60s"
+                },
+                {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "85%",
@@ -1073,6 +1331,12 @@
                   "superset": true
                 },
                 {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "52%",
+                  "note": "DROP SET \u00b7 no rest from working sets"
+                },
+                {
                   "name": "Strict Press",
                   "sets": "3\u00d78",
                   "load": "66%",
@@ -1099,6 +1363,12 @@
                   "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d73",
+                  "load": "100%",
+                  "note": "Second pull acceleration \u2014 no deficit, just speed. \u00b7 1 set / 90s"
+                },
+                {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d73",
                   "load": "84%",
@@ -1117,6 +1387,12 @@
                   "note": "Explosive turnover \u00b7 75s rest"
                 },
                 {
+                  "name": "Pendlay Row \u2014 Drop Set",
+                  "sets": "1\u00d710",
+                  "load": "130 lbs",
+                  "note": "DROP SET \u2014 switch to touch-and-go, chest to floor each rep \u00b7 no rest"
+                },
+                {
                   "name": "Good Morning",
                   "sets": "3\u00d76",
                   "load": "105 lbs",
@@ -1130,22 +1406,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "76% \u2192 80% \u2192 83% \u2192 85% \u2192 87% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "76%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d72",
                   "load": "83%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "71%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -1192,10 +1522,10 @@
                   "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Pause Snatch (3s at knee)",
+                  "name": "Pause Power Snatch (3s at knee)",
                   "sets": "4\u00d72",
                   "load": "70%",
-                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 own the receive, speed over depth the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -1231,10 +1561,10 @@
                   "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Pause Clean (3s at knee)",
+                  "name": "Pause Power Clean (3s at knee)",
                   "sets": "4\u00d72",
                   "load": "73%",
-                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 reinforce the high receive \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Split Jerk w/ 2s Pause in Dip",
@@ -1270,6 +1600,12 @@
               "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
                 {
+                  "name": "Tall Snatch",
+                  "sets": "5\u00d72",
+                  "load": "63%",
+                  "note": "Start standing, no leg drive \u2014 pure arm speed and turnover mechanics \u00b7 1 set / 60s"
+                },
+                {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "88%",
@@ -1301,6 +1637,12 @@
                   "superset": true
                 },
                 {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "54%",
+                  "note": "DROP SET \u00b7 no rest from working sets"
+                },
+                {
                   "name": "Strict Press",
                   "sets": "3\u00d78",
                   "load": "68%",
@@ -1327,6 +1669,12 @@
                   "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d73",
+                  "load": "103%",
+                  "note": "1 set / 90s"
+                },
+                {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d72",
                   "load": "88%",
@@ -1345,6 +1693,12 @@
                   "note": "Explosive turnover \u00b7 75s rest"
                 },
                 {
+                  "name": "Pendlay Row \u2014 Drop Set",
+                  "sets": "1\u00d710",
+                  "load": "135 lbs",
+                  "note": "DROP SET"
+                },
+                {
                   "name": "Good Morning",
                   "sets": "3\u00d76",
                   "load": "115 lbs",
@@ -1358,22 +1712,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "84%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "91%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "4\u00d72",
                   "load": "87%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "75%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -1420,10 +1828,10 @@
                   "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Pause Snatch (3s at knee)",
+                  "name": "Pause Power Snatch (3s at knee)",
                   "sets": "5\u00d72",
                   "load": "73%",
-                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 own the receive, speed over depth the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -1459,10 +1867,10 @@
                   "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Pause Clean (3s at knee)",
+                  "name": "Pause Power Clean (3s at knee)",
                   "sets": "5\u00d72",
                   "load": "76%",
-                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
+                  "note": "Catch in power position \u2014 reinforce the high receive \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Split Jerk w/ 2s Pause in Dip",
@@ -1498,6 +1906,12 @@
               "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
                 {
+                  "name": "Tall Snatch",
+                  "sets": "5\u00d72",
+                  "load": "65%",
+                  "note": "Start standing, no leg drive \u2014 pure arm speed and turnover mechanics \u00b7 1 set / 60s"
+                },
+                {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "92%",
@@ -1529,6 +1943,12 @@
                   "superset": true
                 },
                 {
+                  "name": "Bench Press \u2014 Drop Set",
+                  "sets": "1\u00d712",
+                  "load": "56%",
+                  "note": "DROP SET \u00b7 no rest from working sets"
+                },
+                {
                   "name": "Strict Press",
                   "sets": "3\u00d78",
                   "load": "70%",
@@ -1555,6 +1975,12 @@
                   "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d73",
+                  "load": "106%",
+                  "note": "1 set / 2 min"
+                },
+                {
                   "name": "Pause Back Squat",
                   "sets": "3\u00d71",
                   "load": "92%",
@@ -1573,6 +1999,12 @@
                   "note": "Explosive turnover \u00b7 75s rest"
                 },
                 {
+                  "name": "Pendlay Row \u2014 Drop Set",
+                  "sets": "1\u00d710",
+                  "load": "140 lbs",
+                  "note": "DROP SET"
+                },
+                {
                   "name": "Good Morning",
                   "sets": "3\u00d76",
                   "load": "125 lbs",
@@ -1586,22 +2018,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "82% \u2192 86% \u2192 89% \u2192 91% \u2192 93% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "86%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "91%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "93%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "84%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "91%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Pause Back Squat",
                   "sets": "3\u00d71",
                   "load": "91%",
-                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "79%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -1648,7 +2134,7 @@
                   "note": "1 set / 90s"
                 },
                 {
-                  "name": "Pause Snatch (3s at knee)",
+                  "name": "Pause Power Snatch (3s at knee)",
                   "sets": "3\u00d72",
                   "load": "68%",
                   "note": "1 set / 90s"
@@ -1687,10 +2173,10 @@
                   "note": "1 set / 2 min"
                 },
                 {
-                  "name": "Pause Clean (3s at knee)",
+                  "name": "Pause Power Clean (3s at knee)",
                   "sets": "3\u00d72",
                   "load": "70%",
-                  "note": "1 set / 90s"
+                  "note": "Catch in power position \u2014 reinforce the high receive \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Split Jerk w/ 2s Pause in Dip",
@@ -1725,6 +2211,12 @@
               "colorClass": "mon",
               "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
+                {
+                  "name": "Tall Snatch",
+                  "sets": "3\u00d72",
+                  "load": "60%",
+                  "note": "Start standing, no leg drive \u2014 pure arm speed and turnover mechanics \u00b7 1 set / 60s"
+                },
                 {
                   "name": "Heaving Snatch Balance",
                   "sets": "3\u00d72",
@@ -2041,22 +2533,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "82% \u2192 85% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "82%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "80% \u2192 83% \u2192 85% \u2192 87% \u2192 89% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "91%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "3\u00d73",
                   "load": "88%",
                   "note": "2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "76%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
@@ -2283,22 +2829,76 @@
               "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "85% \u2192 88% \u2192 90% \u2192 92% \u2192 94% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "2.5 min rest"
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "5\u00d71",
-                  "load": "Build",
-                  "note": "83% \u2192 86% \u2192 88% \u2192 90% \u2192 92% \u00b7 3 min between sets"
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "88%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "90%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "92%",
+                  "note": "2.5 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "94%",
+                  "note": "2.5 min rest \u00b7 no misses"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "86%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "1\u00d71",
+                  "load": "88%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 4",
+                  "sets": "1\u00d71",
+                  "load": "90%",
+                  "note": "3 min rest"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 5",
+                  "sets": "1\u00d71",
+                  "load": "92%",
+                  "note": "3 min rest \u00b7 commit to the jerk"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "3\u00d72",
                   "load": "91%",
                   "note": "2 min rest"
+                },
+                {
+                  "name": "Back Squat \u2014 Drop Set",
+                  "sets": "1\u00d78",
+                  "load": "79%",
+                  "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
                   "name": "Good Morning",
