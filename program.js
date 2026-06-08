@@ -163,6 +163,46 @@ function dayCooldownExercises() {
   ];
 }
 
+function dayPumpExercises(day) {
+  const focus = (day.focus || '').toLowerCase();
+  const isComp = focus.includes('competition') || focus.includes('olympic total') || focus.includes('dress rehearsal');
+  const isSnatch = focus.includes('snatch') || focus.includes('overhead') || focus.includes('lockout') || focus.includes('deficit');
+  const isClean = focus.includes('clean') || focus.includes('jerk') || focus.includes('acceleration') || focus.includes('block');
+  const isPull = focus.includes('pull') || focus.includes('deadlift');
+
+  if (isComp) return [
+    {name:'DB Curl',sets:'3×12',load:'Light',note:'60s rest · squeeze at top'},
+    {name:'Tricep Pushdown',sets:'3×15',load:'Cable/Band',note:'60s rest · full extension'},
+    {name:'Face Pull',sets:'3×15',load:'Band/Cable',note:'60s rest · external rotation at top'},
+    {name:'DB Lateral Raise',sets:'3×15',load:'Light',note:'45s rest · control the descent'},
+  ];
+  if (isSnatch) return [
+    {name:'Face Pull',sets:'3×15',load:'Band/Cable',note:'60s rest · rear delt + external rotation'},
+    {name:'Band Pull-Apart',sets:'3×20',load:'Light Band',note:'45s rest · pinch shoulder blades'},
+    {name:'DB Rear Delt Fly',sets:'3×15',load:'Light',note:'60s rest · chin tucked, slight elbow bend'},
+    {name:'Tricep Overhead Extension',sets:'3×12',load:'DB/Cable',note:'60s rest · lockout strength carryover'},
+  ];
+  if (isClean) return [
+    {name:'Tricep Pushdown',sets:'3×15',load:'Cable/Band',note:'60s rest · jerk lockout carryover'},
+    {name:'DB Lateral Raise',sets:'3×15',load:'Light',note:'45s rest · slow eccentric'},
+    {name:'Lat Pulldown',sets:'3×12',load:'Moderate',note:'75s rest · full hang at top'},
+    {name:'Band External Rotation',sets:'3×15',load:'Light Band',note:'45s rest · each side'},
+  ];
+  if (isPull) return [
+    {name:'Hip Thrust',sets:'3×15',load:'Moderate',note:'60s rest · posterior chain pump'},
+    {name:'Single Leg RDL',sets:'3×10',load:'Light DB',note:'60s rest · each side · own the balance'},
+    {name:'Glute Kickback',sets:'3×15',load:'Band',note:'45s rest · each side'},
+    {name:'Nordic Curl Negative',sets:'3×5',load:'BW',note:'90s rest · slow as possible on the way down'},
+  ];
+  // fallback
+  return [
+    {name:'DB Curl',sets:'3×12',load:'Light',note:'60s rest'},
+    {name:'Tricep Pushdown',sets:'3×15',load:'Cable/Band',note:'60s rest'},
+    {name:'Face Pull',sets:'3×15',load:'Band/Cable',note:'60s rest'},
+    {name:'DB Lateral Raise',sets:'3×15',load:'Light',note:'45s rest'},
+  ];
+}
+
 function collapsibleSection(id, label, accentColor, rows) {
   const rowsHTML = rows.map(r =>
     `<tr><td class="wu-name">${r.name}</td><td class="wu-sets">${r.sets}</td><td class="wu-load">${r.load}</td><td class="wu-note">${r.note||''}</td></tr>`
@@ -174,6 +214,10 @@ function renderWarmup(day, uid) {
   const {complex, mobility} = dayWarmupExercises(day);
   const allRows = [...complex, {name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility];
   return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
+}
+
+function renderPump(day, uid) {
+  return collapsibleSection('pump-'+uid, 'POST-CROSSFIT ACCESSORIES', 'var(--accent)', dayPumpExercises(day));
 }
 
 function renderCooldown(uid) {
@@ -351,6 +395,7 @@ function renderCycle(cycle){
           const fScopeId=`feel-${phase.id}-${week.number}-${di}`;
           const tKey=timeKey(phase.id,week.number,di);
           const metScopeId=awKey.replace(/[^a-z0-9]/gi,'-');
+          if (!slot.isOff) html += renderPump(day, wuUid);
           if (!slot.isOff) html += renderCooldown(wuUid);
           html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${dayMetricsHtml(awKey,tKey,metScopeId)}${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
           html += '</div>';
