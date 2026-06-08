@@ -36,13 +36,13 @@
                   "name": "Snatch Pull (3s to knee, accelerate)",
                   "sets": "5\u00d73",
                   "load": "100%",
-                  "note": "Slow off floor, explode knee to extension \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 builds back strength through full first-pull ROM. Different segment from the high pull below. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Snatch High Pull from Power Position",
                   "sets": "4\u00d73",
                   "load": "85%",
-                  "note": "Bar to sternum \u2014 top-end pull + turnover \u00b7 1 set / 75s"
+                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
@@ -81,7 +81,7 @@
                   "name": "Clean Pull (3s to knee, accelerate)",
                   "sets": "5\u00d73",
                   "load": "100%",
-                  "note": "Drill knee-to-extension drive \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 first pull strength, same logic as snatch pull \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Hang Clean (above knee)",
@@ -120,13 +120,13 @@
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "OVERHEAD / LOCKOUT",
+              "focus": "OVERHEAD + CLEAN / LOCKOUT",
               "exercises": [
                 {
                   "name": "Snatch Balance",
                   "sets": "6\u00d72",
                   "load": "75%",
-                  "note": "Aggressive lockout \u2014 punch overhead \u00b7 1 set / 75s"
+                  "note": "Aggressive lockout \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Snatch Push Press + 2 Overhead Squat",
@@ -135,16 +135,16 @@
                   "note": "Lockout strength + stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Power Snatch",
-                  "sets": "5\u00d72",
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
                   "load": "68%",
-                  "note": "Fast turnover, fix overhead receive \u00b7 1 set / 90s"
+                  "note": "Clean work on Wednesday \u2014 balancing the snatch overhead focus \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d74",
                   "load": "78%",
-                  "note": "Daily squat \u00b7 2 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -180,12 +180,6 @@
                   "note": "Deadlift build \u2014 strict back position \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip Deadlift (slow eccentric)",
-                  "sets": "4\u00d74",
-                  "load": "95%",
-                  "note": "Top-of-pull back strength \u00b7 1 set / 90s"
-                },
-                {
                   "name": "Pause Front Squat",
                   "sets": "3\u00d73",
                   "load": "82%",
@@ -214,32 +208,25 @@
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "8\u00d72",
-                  "load": "78%",
-                  "note": "2 reps / min \u00b7 1 set / 90s"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "75% \u2192 80% \u2192 83% \u2192 86% \u2192 88% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "8\u00d71",
-                  "load": "76%",
-                  "note": "1 rep / min \u00b7 1 set / 90s"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "72% \u2192 77% \u2192 80% \u2192 82% \u2192 84% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "5\u00d73",
-                  "load": "80%",
-                  "note": "Daily squat \u2014 heaviest of week \u00b7 2 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d710",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d73",
+                  "load": "78%",
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -251,7 +238,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "95 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -289,13 +276,13 @@
                   "name": "Snatch Pull (3s to knee, accelerate)",
                   "sets": "5\u00d73",
                   "load": "103%",
-                  "note": "Slow off floor, explode knee to extension \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 builds back strength through full first-pull ROM. Different segment from the high pull below. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Snatch High Pull from Power Position",
                   "sets": "4\u00d73",
                   "load": "88%",
-                  "note": "Bar to sternum \u00b7 1 set / 75s"
+                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
@@ -334,7 +321,7 @@
                   "name": "Clean Pull (3s to knee, accelerate)",
                   "sets": "5\u00d73",
                   "load": "103%",
-                  "note": "Knee-to-extension drive \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 first pull strength, same logic as snatch pull \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Hang Clean (above knee)",
@@ -373,7 +360,7 @@
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "OVERHEAD / LOCKOUT",
+              "focus": "OVERHEAD + CLEAN / LOCKOUT",
               "exercises": [
                 {
                   "name": "Snatch Balance",
@@ -385,19 +372,19 @@
                   "name": "Snatch Push Press + 2 Overhead Squat",
                   "sets": "5\u00d7(1+2)",
                   "load": "73%",
-                  "note": "Lockout + stability \u00b7 1 set / 75s"
+                  "note": "Lockout strength + stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Power Snatch",
-                  "sets": "5\u00d72",
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
                   "load": "70%",
-                  "note": "Fast turnover \u00b7 1 set / 90s"
+                  "note": "Clean work on Wednesday \u2014 balancing the snatch overhead focus \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d74",
                   "load": "81%",
-                  "note": "Daily squat \u00b7 2 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -433,12 +420,6 @@
                   "note": "Deadlift build \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip Deadlift (slow eccentric)",
-                  "sets": "4\u00d74",
-                  "load": "98%",
-                  "note": "Top-of-pull back strength \u00b7 1 set / 90s"
-                },
-                {
                   "name": "Pause Front Squat",
                   "sets": "3\u00d73",
                   "load": "84%",
@@ -467,32 +448,25 @@
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "8\u00d72",
-                  "load": "80%",
-                  "note": "2 reps / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "8\u00d71",
-                  "load": "78%",
-                  "note": "1 rep / min \u00b7 1 set / 90s"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "76% \u2192 80% \u2192 83% \u2192 85% \u2192 87% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "5\u00d73",
-                  "load": "83%",
-                  "note": "Daily squat \u2014 heaviest of week \u00b7 2 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d710",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d73",
+                  "load": "81%",
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -504,7 +478,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "95 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -542,13 +516,13 @@
                   "name": "Snatch Pull (3s to knee, accelerate)",
                   "sets": "6\u00d73",
                   "load": "106%",
-                  "note": "Slow off floor, explode knee to extension \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 builds back strength through full first-pull ROM. Different segment from the high pull below. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Snatch High Pull from Power Position",
                   "sets": "5\u00d73",
                   "load": "90%",
-                  "note": "Bar to sternum \u00b7 1 set / 75s"
+                  "note": "Starts at power position (hip) \u2014 trains turnover only. Same weakness, different segment. Both pulls stay. \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Back Squat",
@@ -587,7 +561,7 @@
                   "name": "Clean Pull (3s to knee, accelerate)",
                   "sets": "6\u00d73",
                   "load": "106%",
-                  "note": "Knee-to-extension drive \u00b7 1 set / 75s"
+                  "note": "Supramaximal \u2014 first pull strength, same logic as snatch pull \u00b7 1 set / 75s"
                 },
                 {
                   "name": "Hang Clean (above knee)",
@@ -626,7 +600,7 @@
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "OVERHEAD / LOCKOUT",
+              "focus": "OVERHEAD + CLEAN / LOCKOUT",
               "exercises": [
                 {
                   "name": "Snatch Balance",
@@ -638,19 +612,19 @@
                   "name": "Snatch Push Press + 2 Overhead Squat",
                   "sets": "6\u00d7(1+2)",
                   "load": "76%",
-                  "note": "Lockout + stability \u00b7 1 set / 75s"
+                  "note": "Lockout strength + stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Power Snatch",
-                  "sets": "5\u00d72",
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
                   "load": "73%",
-                  "note": "Fast turnover \u00b7 1 set / 90s"
+                  "note": "Clean work on Wednesday \u2014 balancing the snatch overhead focus \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "5\u00d74",
                   "load": "84%",
-                  "note": "Daily squat \u00b7 2 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -686,12 +660,6 @@
                   "note": "Deadlift build \u2014 peak \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip Deadlift (slow eccentric)",
-                  "sets": "4\u00d74",
-                  "load": "101%",
-                  "note": "Top-of-pull back strength \u00b7 1 set / 2 min"
-                },
-                {
                   "name": "Pause Front Squat",
                   "sets": "3\u00d73",
                   "load": "86%",
@@ -720,32 +688,25 @@
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "8\u00d72",
-                  "load": "82%",
-                  "note": "2 reps / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "8\u00d71",
-                  "load": "80%",
-                  "note": "1 rep / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "78% \u2192 82% \u2192 85% \u2192 88% \u2192 90% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "5\u00d73",
+                  "name": "Pause Back Squat",
+                  "sets": "3\u00d72",
                   "load": "85%",
-                  "note": "Daily squat \u2014 heaviest of week \u00b7 2 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d712",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -757,7 +718,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "105 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -915,12 +876,6 @@
                   "note": "Maintain \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip Deadlift (slow eccentric)",
-                  "sets": "3\u00d74",
-                  "load": "95%",
-                  "note": "1 set / 90s"
-                },
-                {
                   "name": "Pause Front Squat",
                   "sets": "2\u00d73",
                   "load": "82%",
@@ -1000,31 +955,25 @@
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "DEFICIT PULL / ACCELERATION",
+              "focus": "DEFICIT SNATCH / PAUSE SNATCH",
               "exercises": [
                 {
                   "name": "Deficit Snatch (1in)",
                   "sets": "5\u00d72",
                   "load": "72%",
-                  "note": "Longer pull, build the drive \u00b7 1 set / 90s"
+                  "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Deficit Snatch Pull (1in)",
-                  "sets": "5\u00d73",
-                  "load": "105%",
-                  "note": "Knee-to-extension acceleration \u00b7 1 set / 75s"
+                  "name": "Pause Snatch (3s at knee)",
+                  "sets": "4\u00d72",
+                  "load": "67%",
+                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Snatch High Pull from Power Position",
-                  "sets": "4\u00d73",
-                  "load": "90%",
-                  "note": "Top-end pull + turnover \u00b7 1 set / 75s"
-                },
-                {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "5\u00d73",
                   "load": "82%",
-                  "note": "Heavy triple base \u00b7 2 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Back Extension",
@@ -1045,31 +994,31 @@
             {
               "label": "TUESDAY",
               "colorClass": "thu",
-              "focus": "BLOCK CLEAN / ACCELERATION",
+              "focus": "BLOCK CLEAN / PAUSE CLEAN",
               "exercises": [
                 {
                   "name": "Block Clean (below knee) + Jerk",
                   "sets": "5\u00d7(1+1)",
                   "load": "75%",
-                  "note": "Drive from the block \u00b7 1 set / 90s"
+                  "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Block Clean Pull (below knee)",
-                  "sets": "5\u00d73",
-                  "load": "105%",
-                  "note": "Acceleration through extension \u00b7 1 set / 75s"
+                  "name": "Pause Clean (3s at knee)",
+                  "sets": "4\u00d72",
+                  "load": "70%",
+                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Clean High Pull from Power Position",
-                  "sets": "4\u00d73",
-                  "load": "92%",
-                  "note": "Top-end pull \u00b7 1 set / 75s"
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "5\u00d71",
+                  "load": "75%",
+                  "note": "Pause jerk \u2014 own the dip, explode through \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Front Squat",
+                  "name": "Pause Front Squat",
                   "sets": "5\u00d73",
                   "load": "83%",
-                  "note": "2 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Hamstring Curl",
@@ -1084,43 +1033,37 @@
                   "load": "32 in",
                   "note": "45s rest (in superset)",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Split Jerk w/ 2s Pause in Dip",
-                  "sets": "5\u00d71",
-                  "load": "75%",
-                  "note": "Pause jerk \u2014 own the dip, explode through \u00b7 1 set / 90s"
                 }
               ]
             },
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "LOCKOUT / OVERHEAD",
+              "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
-                {
-                  "name": "Tall Snatch",
-                  "sets": "5\u00d72",
-                  "load": "60%",
-                  "note": "Pure turnover + lockout speed \u00b7 1 set / 60s"
-                },
                 {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "85%",
-                  "note": "Aggressive overhead lockout \u00b7 1 set / 75s"
+                  "note": "Aggressive overhead lockout \u2014 punch hard \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "75%",
+                  "note": "Clean work on Wednesday \u2014 both lifts represented \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Snatch Push Press + 2 OHS",
                   "sets": "5\u00d7(1+2)",
                   "load": "75%",
-                  "note": "Lockout strength \u00b7 1 set / 75s"
+                  "note": "Lockout strength + overhead stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d73",
-                  "load": "85%",
-                  "note": "2 min rest"
+                  "load": "83%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -1141,37 +1084,25 @@
             {
               "label": "FRIDAY",
               "colorClass": "thu",
-              "focus": "DEADLIFT BUILD / PULL",
+              "focus": "DEADLIFT + PAUSE SQUAT",
               "exercises": [
                 {
                   "name": "Snatch",
                   "sets": "5\u00d72",
                   "load": "76%",
-                  "note": "Full lift \u00b7 1 set / 90s"
+                  "note": "Full lift \u00b7 1 set / 2 min"
                 },
                 {
                   "name": "Clean Deadlift (3s pause at knee)",
                   "sets": "5\u00d73",
                   "load": "100%",
-                  "note": "Hold the position \u2014 back strength \u00b7 1 set / 2 min"
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "4\u00d76",
-                  "load": "75%",
-                  "note": "Posterior chain / top of pull \u00b7 1 set / 90s"
-                },
-                {
-                  "name": "Pause Front Squat",
-                  "sets": "3\u00d73",
-                  "load": "85%",
-                  "note": "2 min rest"
-                },
-                {
-                  "name": "Pendlay Row",
-                  "sets": "4\u00d76",
-                  "load": "155 lbs",
-                  "note": "Explosive turnover \u00b7 75s rest"
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d73",
+                  "load": "84%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Jerk from Rack",
@@ -1180,42 +1111,41 @@
                   "note": "Jerk frequency \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Romanian Deadlift",
+                  "name": "Pendlay Row",
                   "sets": "4\u00d76",
-                  "load": "70%",
-                  "note": "Posterior chain build \u00b7 1 set / 90s"
+                  "load": "155 lbs",
+                  "note": "Explosive turnover \u00b7 75s rest"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "105 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
                 }
               ]
             },
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "7\u00d72",
-                  "load": "82%",
-                  "note": "2 reps / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "7\u00d71",
-                  "load": "80%",
-                  "note": "1 rep / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "76% \u2192 80% \u2192 83% \u2192 85% \u2192 87% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "4\u00d73",
-                  "load": "86%",
-                  "note": "Heavy triple \u00b7 2 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d710",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d72",
+                  "load": "83%",
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -1227,7 +1157,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "105 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -1253,31 +1183,25 @@
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "DEFICIT PULL / ACCELERATION",
+              "focus": "DEFICIT SNATCH / PAUSE SNATCH",
               "exercises": [
                 {
                   "name": "Deficit Snatch (1in)",
                   "sets": "5\u00d72",
                   "load": "75%",
-                  "note": "1 set / 90s"
+                  "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Deficit Snatch Pull (1in)",
-                  "sets": "5\u00d73",
-                  "load": "108%",
-                  "note": "Knee-to-extension acceleration \u00b7 1 set / 75s"
+                  "name": "Pause Snatch (3s at knee)",
+                  "sets": "4\u00d72",
+                  "load": "70%",
+                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Snatch High Pull from Power Position",
-                  "sets": "4\u00d73",
-                  "load": "92%",
-                  "note": "Top-end pull + turnover \u00b7 1 set / 75s"
-                },
-                {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "5\u00d72",
-                  "load": "85%",
-                  "note": "Heavy double \u00b7 2.5 min rest"
+                  "load": "86%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Back Extension",
@@ -1298,31 +1222,31 @@
             {
               "label": "TUESDAY",
               "colorClass": "thu",
-              "focus": "BLOCK CLEAN / ACCELERATION",
+              "focus": "BLOCK CLEAN / PAUSE CLEAN",
               "exercises": [
                 {
                   "name": "Block Clean (below knee) + Jerk",
                   "sets": "5\u00d7(1+1)",
                   "load": "78%",
-                  "note": "1 set / 90s"
+                  "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Block Clean Pull (below knee)",
-                  "sets": "5\u00d73",
-                  "load": "108%",
-                  "note": "Acceleration through extension \u00b7 1 set / 75s"
+                  "name": "Pause Clean (3s at knee)",
+                  "sets": "4\u00d72",
+                  "load": "73%",
+                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Clean High Pull from Power Position",
-                  "sets": "4\u00d73",
-                  "load": "94%",
-                  "note": "Top-end pull \u00b7 1 set / 75s"
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "5\u00d71",
+                  "load": "78%",
+                  "note": "Pause jerk \u2014 own the dip, explode through \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Front Squat",
+                  "name": "Pause Front Squat",
                   "sets": "5\u00d72",
-                  "load": "86%",
-                  "note": "2.5 min rest"
+                  "load": "87%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Hamstring Curl",
@@ -1337,43 +1261,37 @@
                   "load": "32 in",
                   "note": "45s rest (in superset)",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Split Jerk w/ 2s Pause in Dip",
-                  "sets": "5\u00d71",
-                  "load": "78%",
-                  "note": "1 set / 90s"
                 }
               ]
             },
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "LOCKOUT / OVERHEAD",
+              "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
-                {
-                  "name": "Tall Snatch",
-                  "sets": "5\u00d72",
-                  "load": "63%",
-                  "note": "Turnover + lockout speed \u00b7 1 set / 60s"
-                },
                 {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "88%",
-                  "note": "Aggressive overhead lockout \u00b7 1 set / 75s"
+                  "note": "Aggressive overhead lockout \u2014 punch hard \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "78%",
+                  "note": "Clean work on Wednesday \u2014 both lifts represented \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Snatch Push Press + 2 OHS",
                   "sets": "5\u00d7(1+2)",
                   "load": "78%",
-                  "note": "Lockout strength \u00b7 1 set / 75s"
+                  "note": "Lockout strength + overhead stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d72",
-                  "load": "88%",
-                  "note": "2.5 min rest"
+                  "load": "87%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -1394,31 +1312,31 @@
             {
               "label": "FRIDAY",
               "colorClass": "thu",
-              "focus": "DEADLIFT BUILD / PULL",
+              "focus": "DEADLIFT + PAUSE SQUAT",
               "exercises": [
                 {
                   "name": "Snatch",
                   "sets": "5\u00d72",
                   "load": "78%",
-                  "note": "Full lift \u00b7 1 set / 90s"
+                  "note": "Full lift \u00b7 1 set / 2 min"
                 },
                 {
                   "name": "Clean Deadlift (3s pause at knee)",
                   "sets": "5\u00d73",
                   "load": "103%",
-                  "note": "Hold the position \u00b7 1 set / 2 min"
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "4\u00d76",
-                  "load": "78%",
-                  "note": "Posterior chain \u00b7 1 set / 90s"
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d72",
+                  "load": "88%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
-                  "name": "Pause Front Squat",
-                  "sets": "3\u00d73",
-                  "load": "87%",
-                  "note": "2 min rest"
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "79%",
+                  "note": "Jerk frequency \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Pendlay Row",
@@ -1427,48 +1345,35 @@
                   "note": "Explosive turnover \u00b7 75s rest"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "4\u00d72",
-                  "load": "79%",
-                  "note": "1 set / 90s"
-                },
-                {
-                  "name": "Romanian Deadlift",
-                  "sets": "4\u00d76",
-                  "load": "73%",
-                  "note": "1 set / 90s"
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "115 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
                 }
               ]
             },
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "7\u00d72",
-                  "load": "84%",
-                  "note": "2 reps / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "7\u00d71",
-                  "load": "82%",
-                  "note": "1 rep / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "78% \u2192 82% \u2192 85% \u2192 87% \u2192 89% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d72",
-                  "load": "89%",
-                  "note": "Heavy double \u00b7 2.5 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d710",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "load": "87%",
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -1480,7 +1385,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "115 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -1506,42 +1411,36 @@
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "DEFICIT PULL / ACCELERATION",
+              "focus": "DEFICIT SNATCH / PAUSE SNATCH",
               "exercises": [
                 {
                   "name": "Deficit Snatch (1in)",
                   "sets": "5\u00d72",
                   "load": "78%",
-                  "note": "1 set / 90s"
+                  "note": "Longer pull builds knee-to-extension drive \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Deficit Snatch Pull (1in)",
-                  "sets": "6\u00d73",
-                  "load": "110%",
-                  "note": "Knee-to-extension acceleration \u00b7 1 set / 75s"
+                  "name": "Pause Snatch (3s at knee)",
+                  "sets": "5\u00d72",
+                  "load": "73%",
+                  "note": "Hold the position the deficit built \u2014 own it \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Snatch High Pull from Power Position",
-                  "sets": "5\u00d73",
-                  "load": "94%",
-                  "note": "Top-end pull + turnover \u00b7 1 set / 75s"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "5\u00d71",
-                  "load": "90%",
-                  "note": "Heavy single \u00b7 3 min rest"
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d71",
+                  "load": "91%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Back Extension",
-                  "sets": "3\u00d712",
+                  "sets": "3\u00d710",
                   "load": "70 lbs",
                   "note": "60s rest (in superset)",
                   "superset": true
                 },
                 {
                   "name": "Glute Ham Raise",
-                  "sets": "3\u00d712",
+                  "sets": "3\u00d710",
                   "load": "Banded",
                   "note": "60s rest (in superset)",
                   "supersetEnd": true
@@ -1551,35 +1450,35 @@
             {
               "label": "TUESDAY",
               "colorClass": "thu",
-              "focus": "BLOCK CLEAN / ACCELERATION",
+              "focus": "BLOCK CLEAN / PAUSE CLEAN",
               "exercises": [
                 {
                   "name": "Block Clean (below knee) + Jerk",
                   "sets": "5\u00d7(1+1)",
                   "load": "82%",
-                  "note": "1 set / 90s"
+                  "note": "Drive from the block \u2014 attack the extension \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Block Clean Pull (below knee)",
-                  "sets": "6\u00d73",
-                  "load": "110%",
-                  "note": "Acceleration through extension \u00b7 1 set / 75s"
+                  "name": "Pause Clean (3s at knee)",
+                  "sets": "5\u00d72",
+                  "load": "76%",
+                  "note": "Own the position the block work builds \u2014 no rushing \u00b7 1 set / 90s"
                 },
                 {
-                  "name": "Clean High Pull from Power Position",
-                  "sets": "5\u00d73",
-                  "load": "96%",
-                  "note": "Top-end pull \u00b7 1 set / 75s"
-                },
-                {
-                  "name": "Front Squat",
+                  "name": "Split Jerk w/ 2s Pause in Dip",
                   "sets": "5\u00d71",
-                  "load": "90%",
-                  "note": "Heavy single \u00b7 3 min rest"
+                  "load": "81%",
+                  "note": "Pause jerk \u2014 own the dip, explode through \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Pause Front Squat",
+                  "sets": "5\u00d71",
+                  "load": "91%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Hamstring Curl",
-                  "sets": "3\u00d712",
+                  "sets": "3\u00d710",
                   "load": "45 lbs",
                   "note": "60s rest (in superset)",
                   "superset": true
@@ -1590,43 +1489,37 @@
                   "load": "34 in",
                   "note": "45s rest (in superset)",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Split Jerk w/ 2s Pause in Dip",
-                  "sets": "5\u00d71",
-                  "load": "81%",
-                  "note": "Peak pause jerk \u00b7 1 set / 90s"
                 }
               ]
             },
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "LOCKOUT / OVERHEAD",
+              "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
-                {
-                  "name": "Tall Snatch",
-                  "sets": "5\u00d72",
-                  "load": "65%",
-                  "note": "Turnover + lockout speed \u00b7 1 set / 60s"
-                },
                 {
                   "name": "Heaving Snatch Balance",
                   "sets": "5\u00d72",
                   "load": "92%",
-                  "note": "Aggressive overhead lockout \u00b7 1 set / 75s"
+                  "note": "Aggressive overhead lockout \u2014 punch hard \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "82%",
+                  "note": "Clean work on Wednesday \u2014 both lifts represented \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Snatch Push Press + 2 OHS",
-                  "sets": "5\u00d7(1+2)",
+                  "sets": "4\u00d7(1+2)",
                   "load": "80%",
-                  "note": "Lockout strength \u00b7 1 set / 75s"
+                  "note": "Lockout strength + overhead stability \u00b7 1 set / 75s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "4\u00d72",
                   "load": "90%",
-                  "note": "2.5 min rest"
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -1647,7 +1540,7 @@
             {
               "label": "FRIDAY",
               "colorClass": "thu",
-              "focus": "DEADLIFT BUILD / PULL",
+              "focus": "DEADLIFT + PAUSE SQUAT",
               "exercises": [
                 {
                   "name": "Snatch",
@@ -1659,19 +1552,19 @@
                   "name": "Clean Deadlift (3s pause at knee)",
                   "sets": "5\u00d73",
                   "load": "106%",
-                  "note": "Peak \u2014 hold the position \u00b7 1 set / 2 min"
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "4\u00d76",
-                  "load": "80%",
-                  "note": "Posterior chain \u00b7 1 set / 90s"
+                  "name": "Pause Back Squat",
+                  "sets": "3\u00d71",
+                  "load": "92%",
+                  "note": "3s pause at bottom \u00b7 2 min rest"
                 },
                 {
-                  "name": "Pause Front Squat",
-                  "sets": "3\u00d73",
-                  "load": "88%",
-                  "note": "2 min rest"
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "83%",
+                  "note": "Jerk frequency \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Pendlay Row",
@@ -1680,48 +1573,35 @@
                   "note": "Explosive turnover \u00b7 75s rest"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "4\u00d71",
-                  "load": "83%",
-                  "note": "Heavy jerk from rack \u00b7 1 set / 2.5 min"
-                },
-                {
-                  "name": "Romanian Deadlift",
-                  "sets": "4\u00d76",
-                  "load": "76%",
-                  "note": "Peak \u00b7 1 set / 90s"
+                  "name": "Good Morning",
+                  "sets": "3\u00d76",
+                  "load": "125 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
                 }
               ]
             },
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "6\u00d72",
-                  "load": "86%",
-                  "note": "2 reps / min \u00b7 1 set / 2.5 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "82% \u2192 86% \u2192 89% \u2192 91% \u2192 93% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6\u00d71",
-                  "load": "84%",
-                  "note": "1 rep / min \u00b7 1 set / 2 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "80% \u2192 84% \u2192 87% \u2192 89% \u2192 91% \u00b7 3 min between sets"
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "3\u00d72",
+                  "name": "Pause Back Squat",
+                  "sets": "3\u00d71",
                   "load": "91%",
-                  "note": "Heavy double \u00b7 2.5 min rest"
-                },
-                {
-                  "name": "Med Ball GHD SU",
-                  "sets": "3\u00d712",
-                  "load": "20 lbs",
-                  "note": "60s rest (in superset)",
-                  "superset": true
+                  "note": "2 min rest \u00b7 3s down, 3s hold, explode"
                 },
                 {
                   "name": "Good Morning",
@@ -1733,7 +1613,7 @@
                   "name": "Reverse Lunge",
                   "sets": "3\u00d78 (side)",
                   "load": "115 lbs",
-                  "note": "75s rest",
+                  "note": "75s rest (in superset)",
                   "superset": true
                 },
                 {
@@ -1765,19 +1645,19 @@
                   "name": "Deficit Snatch (1in)",
                   "sets": "3\u00d72",
                   "load": "73%",
-                  "note": "Sharp \u00b7 1 set / 90s"
+                  "note": "1 set / 90s"
                 },
                 {
-                  "name": "Deficit Snatch Pull (1in)",
-                  "sets": "3\u00d73",
-                  "load": "105%",
-                  "note": "1 set / 75s"
+                  "name": "Pause Snatch (3s at knee)",
+                  "sets": "3\u00d72",
+                  "load": "68%",
+                  "note": "1 set / 90s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Pause Back Squat",
                   "sets": "3\u00d72",
                   "load": "82%",
-                  "note": "Reduced \u00b7 2.5 min rest"
+                  "note": "3s pause \u00b7 2 min rest"
                 },
                 {
                   "name": "Back Extension",
@@ -1804,19 +1684,25 @@
                   "name": "Block Clean (below knee) + Jerk",
                   "sets": "3\u00d7(1+1)",
                   "load": "75%",
-                  "note": "Sharp \u00b7 1 set / 90s"
+                  "note": "1 set / 2 min"
                 },
                 {
-                  "name": "Block Clean Pull (below knee)",
-                  "sets": "3\u00d73",
-                  "load": "105%",
-                  "note": "1 set / 75s"
+                  "name": "Pause Clean (3s at knee)",
+                  "sets": "3\u00d72",
+                  "load": "70%",
+                  "note": "1 set / 90s"
                 },
                 {
-                  "name": "Front Squat",
+                  "name": "Split Jerk w/ 2s Pause in Dip",
+                  "sets": "3\u00d71",
+                  "load": "72%",
+                  "note": "1 set / 90s"
+                },
+                {
+                  "name": "Pause Front Squat",
                   "sets": "3\u00d72",
                   "load": "83%",
-                  "note": "Reduced \u00b7 2.5 min rest"
+                  "note": "3s pause \u00b7 2 min rest"
                 },
                 {
                   "name": "Hamstring Curl",
@@ -1831,37 +1717,31 @@
                   "load": "30 in",
                   "note": "45s rest (in superset)",
                   "supersetEnd": true
-                },
-                {
-                  "name": "Split Jerk w/ 2s Pause in Dip",
-                  "sets": "3\u00d71",
-                  "load": "72%",
-                  "note": "Deload \u2014 crisp \u00b7 1 set / 90s"
                 }
               ]
             },
             {
               "label": "WEDNESDAY",
               "colorClass": "mon",
-              "focus": "LOCKOUT / OVERHEAD",
+              "focus": "OVERHEAD + CLEAN / BOTH LIFTS",
               "exercises": [
-                {
-                  "name": "Tall Snatch",
-                  "sets": "3\u00d72",
-                  "load": "60%",
-                  "note": "Crisp turnover \u00b7 1 set / 60s"
-                },
                 {
                   "name": "Heaving Snatch Balance",
                   "sets": "3\u00d72",
                   "load": "85%",
-                  "note": "Lockout sharp \u00b7 1 set / 75s"
+                  "note": "1 set / 90s"
                 },
                 {
-                  "name": "Back Squat",
+                  "name": "Power Clean + Push Jerk",
+                  "sets": "3\u00d7(1+1)",
+                  "load": "75%",
+                  "note": "1 set / 90s"
+                },
+                {
+                  "name": "Pause Back Squat",
                   "sets": "3\u00d72",
-                  "load": "85%",
-                  "note": "Reduced \u00b7 2.5 min rest"
+                  "load": "83%",
+                  "note": "3s pause \u00b7 2 min rest"
                 },
                 {
                   "name": "Bench Press",
@@ -1882,7 +1762,7 @@
             {
               "label": "FRIDAY",
               "colorClass": "thu",
-              "focus": "DEADLIFT BUILD / PULL",
+              "focus": "DEADLIFT + PAUSE SQUAT",
               "exercises": [
                 {
                   "name": "Clean Deadlift (3s pause at knee)",
@@ -1891,34 +1771,22 @@
                   "note": "Maintain \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "3\u00d76",
-                  "load": "72%",
-                  "note": "1 set / 90s"
+                  "name": "Pause Back Squat",
+                  "sets": "3\u00d72",
+                  "load": "85%",
+                  "note": "3s pause \u00b7 2 min rest"
                 },
                 {
-                  "name": "Pause Front Squat",
-                  "sets": "2\u00d73",
-                  "load": "85%",
-                  "note": "2 min rest"
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d71",
+                  "load": "75%",
+                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Pendlay Row",
                   "sets": "3\u00d76",
                   "load": "145 lbs",
                   "note": "75s rest"
-                },
-                {
-                  "name": "Jerk from Rack",
-                  "sets": "2\u00d71",
-                  "load": "75%",
-                  "note": "Deload \u00b7 1 set / 90s"
-                },
-                {
-                  "name": "Romanian Deadlift",
-                  "sets": "3\u00d76",
-                  "load": "68%",
-                  "note": "1 set / 90s"
                 }
               ]
             },
@@ -2170,25 +2038,25 @@
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
-                  "sets": "6\u00d71",
-                  "load": "85%",
-                  "note": "1 rep / min \u00b7 1 set / 2.5 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "82% \u2192 85% \u2192 87% \u2192 89% \u2192 91% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
-                  "sets": "6\u00d71",
-                  "load": "85%",
-                  "note": "1 rep / min \u00b7 1 set / 2.5 min"
+                  "sets": "5\u00d71",
+                  "load": "Build",
+                  "note": "80% \u2192 83% \u2192 85% \u2192 87% \u2192 89% \u00b7 3 min between sets"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "3\u00d73",
                   "load": "88%",
-                  "note": "Heavy triple \u00b7 2 min rest"
+                  "note": "2 min rest"
                 },
                 {
                   "name": "Good Morning",
@@ -2412,25 +2280,25 @@
             {
               "label": "SATURDAY",
               "colorClass": "mon",
-              "focus": "COMPETITION LIFTS",
+              "focus": "HEAVY SINGLES BUILD",
               "exercises": [
                 {
                   "name": "Snatch",
                   "sets": "5\u00d71",
-                  "load": "88%",
-                  "note": "1 rep / min \u00b7 1 set / 2.5 min"
+                  "load": "Build",
+                  "note": "85% \u2192 88% \u2192 90% \u2192 92% \u2192 94% \u00b7 no misses \u2014 stop if form breaks \u00b7 2.5 min between"
                 },
                 {
                   "name": "Clean & Jerk",
                   "sets": "5\u00d71",
-                  "load": "88%",
-                  "note": "1 rep / min \u00b7 1 set / 2.5 min"
+                  "load": "Build",
+                  "note": "83% \u2192 86% \u2192 88% \u2192 90% \u2192 92% \u00b7 3 min between sets"
                 },
                 {
                   "name": "Back Squat",
                   "sets": "3\u00d72",
-                  "load": "90%",
-                  "note": "Heavy double \u00b7 2.5 min rest"
+                  "load": "91%",
+                  "note": "2 min rest"
                 },
                 {
                   "name": "Good Morning",
