@@ -1,0 +1,1189 @@
+{
+  "id": "2025-summer",
+  "name": "Class Program",
+  "startDate": "2026-06-08",
+  "dates": "6/11 \u2013 8/31",
+  "days": "Thu / Mon",
+  "goal": "Snatch + C&J \u00b7 Technical Development",
+  "phases": [
+    {
+      "id": "c1",
+      "number": "01",
+      "colorClass": "m1",
+      "title": "BLOCK 1 \u2014 POSITIONS & DRILLS",
+      "subtitle": "Weeks 1\u20134 \u00b7 6/11\u20137/6 \u00b7 Establish positions, fix faults at the root",
+      "weeks": [
+        {
+          "number": 1,
+          "label": "Week 1",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 1 \u00b7 6/11\u20136/15",
+            "text": "Establish positions. Thursday: drill the clean rack (elbows forward, not down) and the jerk split (back heel up, toes forward). Monday: build pull speed through the knee and start locking out the snatch overhead."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / RACK + JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Elbows PUNCH forward and UP from hip to rack \u2014 if your elbows are pointing down you have no rack \u00b7 45s rest"
+                },
+                {
+                  "name": "Pause Clean (3s in hole)",
+                  "sets": "4\u00d72",
+                  "load": "65%",
+                  "note": "Feel your foot position in the hole \u2014 hip-width, parallel tracks, not sumo. Elbows high throughout. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Clean + 3 Front Squats",
+                  "sets": "4\u00d7(1+3)",
+                  "load": "62%",
+                  "note": "Hold the front rack actively on all 3 squats \u2014 elbows forward, no dropping \u00b7 2 min rest"
+                },
+                {
+                  "name": "Split Jerk (3s hold in split)",
+                  "sets": "4\u00d71",
+                  "load": "62%",
+                  "note": "BACK FOOT: heel UP, toes pointing forward \u2014 not sideways. Hold 3 seconds and check before standing. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4\u00d74",
+                  "load": "70%",
+                  "note": "Active front rack every rep \u2014 elbows chase the wall in front of you \u00b7 2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d75",
+                  "load": "58%",
+                  "note": "Reinforce overhead position \u2014 drives the elbow-up habit \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH / PULL SPEED + OVERHEAD LOCK",
+              "exercises": [
+                {
+                  "name": "Overhead Squat",
+                  "sets": "4\u00d75",
+                  "load": "60%",
+                  "note": "Arms locked OUT before you descend \u2014 press the bar into the sky, don't let it sit on a bent arm \u00b7 90s rest"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar/Light",
+                  "note": "Arms lock overhead BEFORE the bar stops moving \u2014 if you're catching bent, you turned over too slow \u00b7 60s rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "4\u00d72",
+                  "load": "65%",
+                  "note": "Starting above the knee means you CANNOT stop at the knee \u2014 use this. Accelerate to the hip. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "4\u00d73",
+                  "load": "90%",
+                  "note": "Bar sweeps CONTINUOUSLY off the floor \u2014 no speed bump at the knee. Think \"sweep to hip.\" \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4\u00d75",
+                  "load": "70%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "105 lbs",
+                  "note": "Back strength for the pull \u00b7 75s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "label": "Week 2",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 2 \u00b7 6/18\u20136/22",
+            "text": "Load climbs slightly. Maintain the technical focus from week 1 \u2014 speed through the knee on pulls, active front rack on all cleans, back foot check on every jerk."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / RACK + JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Elbows PUNCH forward and UP from hip to rack \u2014 if your elbows are pointing down you have no rack \u00b7 45s rest"
+                },
+                {
+                  "name": "Pause Clean (3s in hole)",
+                  "sets": "5\u00d72",
+                  "load": "68%",
+                  "note": "Feel your foot position in the hole \u2014 hip-width, parallel tracks, not sumo. Elbows high throughout. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Clean + 3 Front Squats",
+                  "sets": "4\u00d7(1+3)",
+                  "load": "65%",
+                  "note": "Hold the front rack actively on all 3 squats \u2014 elbows forward, no dropping \u00b7 2 min rest"
+                },
+                {
+                  "name": "Split Jerk (3s hold in split)",
+                  "sets": "5\u00d71",
+                  "load": "65%",
+                  "note": "BACK FOOT: heel UP, toes pointing forward \u2014 not sideways. Hold 3 seconds and check before standing. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4\u00d74",
+                  "load": "73%",
+                  "note": "Active front rack every rep \u2014 elbows chase the wall in front of you \u00b7 2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d75",
+                  "load": "60%",
+                  "note": "Reinforce overhead position \u2014 drives the elbow-up habit \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH / PULL SPEED + OVERHEAD LOCK",
+              "exercises": [
+                {
+                  "name": "Overhead Squat",
+                  "sets": "4\u00d75",
+                  "load": "62%",
+                  "note": "Arms locked OUT before you descend \u2014 press the bar into the sky, don't let it sit on a bent arm \u00b7 90s rest"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar/Light",
+                  "note": "Arms lock overhead BEFORE the bar stops moving \u2014 if you're catching bent, you turned over too slow \u00b7 60s rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5\u00d72",
+                  "load": "68%",
+                  "note": "Starting above the knee means you CANNOT stop at the knee \u2014 use this. Accelerate to the hip. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "5\u00d73",
+                  "load": "93%",
+                  "note": "Bar sweeps CONTINUOUSLY off the floor \u2014 no speed bump at the knee. Think \"sweep to hip.\" \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4\u00d75",
+                  "load": "73%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "110 lbs",
+                  "note": "Back strength for the pull \u00b7 75s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "label": "Week 3",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 3 \u00b7 6/25\u20136/29",
+            "text": "Peak loading week of the positional block. Heavier cleans and snatches \u2014 the technique habits must hold when the bar gets heavier."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK / RACK + JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Elbows PUNCH forward and UP from hip to rack \u2014 if your elbows are pointing down you have no rack \u00b7 45s rest"
+                },
+                {
+                  "name": "Pause Clean (3s in hole)",
+                  "sets": "5\u00d72",
+                  "load": "72%",
+                  "note": "Feel your foot position in the hole \u2014 hip-width, parallel tracks, not sumo. Elbows high throughout. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Clean + 3 Front Squats",
+                  "sets": "4\u00d7(1+3)",
+                  "load": "68%",
+                  "note": "Hold the front rack actively on all 3 squats \u2014 elbows forward, no dropping \u00b7 2 min rest"
+                },
+                {
+                  "name": "Split Jerk (3s hold in split)",
+                  "sets": "5\u00d71",
+                  "load": "68%",
+                  "note": "BACK FOOT: heel UP, toes pointing forward \u2014 not sideways. Hold 3 seconds and check before standing. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "5\u00d74",
+                  "load": "76%",
+                  "note": "Active front rack every rep \u2014 elbows chase the wall in front of you \u00b7 2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d75",
+                  "load": "63%",
+                  "note": "Reinforce overhead position \u2014 drives the elbow-up habit \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH / PULL SPEED + OVERHEAD LOCK",
+              "exercises": [
+                {
+                  "name": "Overhead Squat",
+                  "sets": "4\u00d75",
+                  "load": "65%",
+                  "note": "Arms locked OUT before you descend \u2014 press the bar into the sky, don't let it sit on a bent arm \u00b7 90s rest"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar/Light",
+                  "note": "Arms lock overhead BEFORE the bar stops moving \u2014 if you're catching bent, you turned over too slow \u00b7 60s rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5\u00d72",
+                  "load": "72%",
+                  "note": "Starting above the knee means you CANNOT stop at the knee \u2014 use this. Accelerate to the hip. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "5\u00d73",
+                  "load": "96%",
+                  "note": "Bar sweeps CONTINUOUSLY off the floor \u2014 no speed bump at the knee. Think \"sweep to hip.\" \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5\u00d75",
+                  "load": "76%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "115 lbs",
+                  "note": "Back strength for the pull \u00b7 75s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "label": "Week 4",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 4 \u00b7 7/2\u20137/6",
+            "text": "Deload. Volume drops significantly. Keep the intensity on key positions but no grinding. Prep for the power block."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "DELOAD \u2014 CLEAN & JERK",
+              "exercises": [
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Elbows PUNCH forward and UP from hip to rack \u2014 if your elbows are pointing down you have no rack \u00b7 45s rest"
+                },
+                {
+                  "name": "Pause Clean (3s in hole)",
+                  "sets": "3\u00d72",
+                  "load": "62%",
+                  "note": "Feel your foot position in the hole \u2014 hip-width, parallel tracks, not sumo. Elbows high throughout. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Clean + 3 Front Squats",
+                  "sets": "3\u00d7(1+3)",
+                  "load": "58%",
+                  "note": "Hold the front rack actively on all 3 squats \u2014 elbows forward, no dropping \u00b7 2 min rest"
+                },
+                {
+                  "name": "Split Jerk (3s hold in split)",
+                  "sets": "3\u00d71",
+                  "load": "58%",
+                  "note": "BACK FOOT: heel UP, toes pointing forward \u2014 not sideways. Hold 3 seconds and check before standing. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "3\u00d73",
+                  "load": "68%",
+                  "note": "Active front rack every rep \u2014 elbows chase the wall in front of you \u00b7 2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d75",
+                  "load": "55%",
+                  "note": "Reinforce overhead position \u2014 drives the elbow-up habit \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DELOAD \u2014 SNATCH",
+              "exercises": [
+                {
+                  "name": "Overhead Squat",
+                  "sets": "4\u00d75",
+                  "load": "58%",
+                  "note": "Arms locked OUT before you descend \u2014 press the bar into the sky, don't let it sit on a bent arm \u00b7 90s rest"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar/Light",
+                  "note": "Arms lock overhead BEFORE the bar stops moving \u2014 if you're catching bent, you turned over too slow \u00b7 60s rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "3\u00d72",
+                  "load": "62%",
+                  "note": "Starting above the knee means you CANNOT stop at the knee \u2014 use this. Accelerate to the hip. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "3\u00d73",
+                  "load": "88%",
+                  "note": "Bar sweeps CONTINUOUSLY off the floor \u2014 no speed bump at the knee. Think \"sweep to hip.\" \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3\u00d74",
+                  "load": "68%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "100 lbs",
+                  "note": "Back strength for the pull \u00b7 75s rest"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "number": "02",
+      "colorClass": "m1",
+      "title": "BLOCK 2 \u2014 POWER & SPEED",
+      "subtitle": "Weeks 5\u20138 \u00b7 7/9\u20138/3 \u00b7 Power variations force correct positions under speed",
+      "weeks": [
+        {
+          "number": 5,
+          "label": "Week 5",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 5 \u00b7 7/9\u20137/13",
+            "text": "Power block begins. Power clean forces a narrow, deliberate landing \u2014 no room to go wide in a power catch. Power snatch forces the arm lockout on contact. Every power variation is a position drill."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "POWER CLEAN / JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Tall Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Stand tall, arms long \u2014 drive elbows UP and around at the very top. Pure second-pull mechanics with no setup. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Clean",
+                  "sets": "5\u00d72",
+                  "load": "70%",
+                  "note": "NARROW landing \u2014 hip-width only. Power catch forces you to land deliberately, not wide. Elbows forward and high. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Power Clean + Split Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "68%",
+                  "note": "Jerk: CHECK back foot before every single rep. Heel up, toe forward. Don't let it sneak back to flat. \u00b7 2.5 min rest"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d72",
+                  "load": "65%",
+                  "note": "Back foot drill \u2014 sole focus is heel up, toes 12 o'clock. Use these sets as pure foot placement reps. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Front Squat",
+                  "sets": "4\u00d73",
+                  "load": "76%",
+                  "note": "3s pause \u2014 check elbow height and foot position while you're stuck in the hole \u00b7 2 min rest"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "95 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "POWER SNATCH / PULL LOADING",
+              "exercises": [
+                {
+                  "name": "Tall Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "No legs \u2014 pure arm speed. Arms LOCK before the bar stops. If they're soft at the top here, they're soft in the full lift. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "5\u00d72",
+                  "load": "65%",
+                  "note": "Straight arms in the catch \u2014 press the bar overhead, don't receive it. Narrow feet. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "4\u00d72",
+                  "load": "70%",
+                  "note": "Drill: above-knee start removes the option to slow at the knee. Be explosive from the very start. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "5\u00d73",
+                  "load": "100%",
+                  "note": "Supramaximal load \u2014 sweep through the knee, don't park there. Faster at the hip than at the floor. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d73",
+                  "load": "78%",
+                  "note": "3s pause \u00b7 2 min rest"
+                },
+                {
+                  "name": "Face Pull",
+                  "sets": "3\u00d715",
+                  "load": "Band/Cable",
+                  "note": "Rear delt and external rotation \u2014 healthy shoulders for overhead work \u00b7 60s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "label": "Week 6",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 6 \u00b7 7/16\u20137/20",
+            "text": "Load climbs in the power variations. The technical demands stay: narrow landing, elbows high in the clean rack, straight arms in the snatch receive, back foot every jerk."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "POWER CLEAN / JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Tall Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Stand tall, arms long \u2014 drive elbows UP and around at the very top. Pure second-pull mechanics with no setup. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Clean",
+                  "sets": "5\u00d72",
+                  "load": "73%",
+                  "note": "NARROW landing \u2014 hip-width only. Power catch forces you to land deliberately, not wide. Elbows forward and high. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Power Clean + Split Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "70%",
+                  "note": "Jerk: CHECK back foot before every single rep. Heel up, toe forward. Don't let it sneak back to flat. \u00b7 2.5 min rest"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "68%",
+                  "note": "Back foot drill \u2014 sole focus is heel up, toes 12 o'clock. Use these sets as pure foot placement reps. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Front Squat",
+                  "sets": "4\u00d73",
+                  "load": "80%",
+                  "note": "3s pause \u2014 check elbow height and foot position while you're stuck in the hole \u00b7 2 min rest"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "100 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "POWER SNATCH / PULL LOADING",
+              "exercises": [
+                {
+                  "name": "Tall Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "No legs \u2014 pure arm speed. Arms LOCK before the bar stops. If they're soft at the top here, they're soft in the full lift. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "5\u00d72",
+                  "load": "68%",
+                  "note": "Straight arms in the catch \u2014 press the bar overhead, don't receive it. Narrow feet. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "4\u00d72",
+                  "load": "73%",
+                  "note": "Drill: above-knee start removes the option to slow at the knee. Be explosive from the very start. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "5\u00d73",
+                  "load": "103%",
+                  "note": "Supramaximal load \u2014 sweep through the knee, don't park there. Faster at the hip than at the floor. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d73",
+                  "load": "82%",
+                  "note": "3s pause \u00b7 2 min rest"
+                },
+                {
+                  "name": "Face Pull",
+                  "sets": "3\u00d715",
+                  "load": "Band/Cable",
+                  "note": "Rear delt and external rotation \u2014 healthy shoulders for overhead work \u00b7 60s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 7,
+          "label": "Week 7",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 7 \u00b7 7/23\u20137/27",
+            "text": "Peak of the power block. Heaviest pulls of the cycle. The speed built here carries directly into the competition lift block."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "POWER CLEAN / JERK MECHANICS",
+              "exercises": [
+                {
+                  "name": "Tall Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Stand tall, arms long \u2014 drive elbows UP and around at the very top. Pure second-pull mechanics with no setup. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Clean",
+                  "sets": "5\u00d72",
+                  "load": "77%",
+                  "note": "NARROW landing \u2014 hip-width only. Power catch forces you to land deliberately, not wide. Elbows forward and high. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Power Clean + Split Jerk",
+                  "sets": "5\u00d7(1+1)",
+                  "load": "73%",
+                  "note": "Jerk: CHECK back foot before every single rep. Heel up, toe forward. Don't let it sneak back to flat. \u00b7 2.5 min rest"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "72%",
+                  "note": "Back foot drill \u2014 sole focus is heel up, toes 12 o'clock. Use these sets as pure foot placement reps. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Front Squat",
+                  "sets": "4\u00d72",
+                  "load": "84%",
+                  "note": "3s pause \u2014 check elbow height and foot position while you're stuck in the hole \u00b7 2 min rest"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "105 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "POWER SNATCH / PULL LOADING",
+              "exercises": [
+                {
+                  "name": "Tall Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "No legs \u2014 pure arm speed. Arms LOCK before the bar stops. If they're soft at the top here, they're soft in the full lift. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "5\u00d72",
+                  "load": "72%",
+                  "note": "Straight arms in the catch \u2014 press the bar overhead, don't receive it. Narrow feet. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "4\u00d72",
+                  "load": "77%",
+                  "note": "Drill: above-knee start removes the option to slow at the knee. Be explosive from the very start. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "5\u00d73",
+                  "load": "106%",
+                  "note": "Supramaximal load \u2014 sweep through the knee, don't park there. Faster at the hip than at the floor. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Back Squat",
+                  "sets": "4\u00d72",
+                  "load": "86%",
+                  "note": "3s pause \u00b7 2 min rest"
+                },
+                {
+                  "name": "Face Pull",
+                  "sets": "3\u00d715",
+                  "load": "Band/Cable",
+                  "note": "Rear delt and external rotation \u2014 healthy shoulders for overhead work \u00b7 60s rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "label": "Week 8",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 8 \u00b7 7/30\u20138/3",
+            "text": "Deload. Maintain sharpness. Entering the competition lift block next week."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "DELOAD \u2014 CLEAN & JERK",
+              "exercises": [
+                {
+                  "name": "Tall Clean",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "Stand tall, arms long \u2014 drive elbows UP and around at the very top. Pure second-pull mechanics with no setup. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Clean",
+                  "sets": "3\u00d72",
+                  "load": "68%",
+                  "note": "NARROW landing \u2014 hip-width only. Power catch forces you to land deliberately, not wide. Elbows forward and high. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Power Clean + Split Jerk",
+                  "sets": "3\u00d7(1+1)",
+                  "load": "65%",
+                  "note": "Jerk: CHECK back foot before every single rep. Heel up, toe forward. Don't let it sneak back to flat. \u00b7 2.5 min rest"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d72",
+                  "load": "62%",
+                  "note": "Back foot drill \u2014 sole focus is heel up, toes 12 o'clock. Use these sets as pure foot placement reps. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Front Squat",
+                  "sets": "3\u00d72",
+                  "load": "73%",
+                  "note": "3s pause \u2014 check elbow height and foot position while you're stuck in the hole \u00b7 2 min rest"
+                },
+                {
+                  "name": "Good Morning",
+                  "sets": "3\u00d78",
+                  "load": "90 lbs",
+                  "note": "Posterior chain \u00b7 75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "DELOAD \u2014 SNATCH",
+              "exercises": [
+                {
+                  "name": "Tall Snatch",
+                  "sets": "4\u00d73",
+                  "load": "Bar",
+                  "note": "No legs \u2014 pure arm speed. Arms LOCK before the bar stops. If they're soft at the top here, they're soft in the full lift. \u00b7 45s rest"
+                },
+                {
+                  "name": "Power Snatch",
+                  "sets": "3\u00d72",
+                  "load": "62%",
+                  "note": "Straight arms in the catch \u2014 press the bar overhead, don't receive it. Narrow feet. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "3\u00d72",
+                  "load": "67%",
+                  "note": "Drill: above-knee start removes the option to slow at the knee. Be explosive from the very start. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Snatch Pull (no stop at knee)",
+                  "sets": "3\u00d73",
+                  "load": "98%",
+                  "note": "Supramaximal load \u2014 sweep through the knee, don't park there. Faster at the hip than at the floor. \u00b7 90s rest"
+                },
+                {
+                  "name": "Pause Back Squat",
+                  "sets": "3\u00d72",
+                  "load": "75%",
+                  "note": "3s pause \u00b7 2 min rest"
+                },
+                {
+                  "name": "Face Pull",
+                  "sets": "3\u00d715",
+                  "load": "Band/Cable",
+                  "note": "Rear delt and external rotation \u2014 healthy shoulders for overhead work \u00b7 60s rest"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "c3",
+      "number": "03",
+      "colorClass": "m2",
+      "title": "BLOCK 3 \u2014 COMPETITION BUILDS",
+      "subtitle": "Weeks 9\u201312 \u00b7 8/6\u20138/31 \u00b7 Wave loading to max \u00b7 1RM test on 8/31",
+      "weeks": [
+        {
+          "number": 9,
+          "label": "Week 9",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 9 \u00b7 8/6\u20138/10",
+            "text": "Wave loading on competition lifts. Every rep is a check on all five technical points. The waves give you multiple exposures to heavier loads in one session."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "3 min rest \u00b7 elbows forward in the rack, back foot on every jerk"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest \u00b7 elbows forward in the rack, back foot on every jerk"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "87%",
+                  "note": "3 min rest \u00b7 elbows forward in the rack, back foot on every jerk"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "82%",
+                  "note": "Continue the back foot drill on every jerk \u00b7 3 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4\u00d73",
+                  "load": "82%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d74",
+                  "load": "72%",
+                  "note": "75s rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "135 lbs",
+                  "note": "75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                {
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d72",
+                  "load": "80%",
+                  "note": "2.5 min rest \u00b7 arms locked before the bar stops, every rep"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "2.5 min rest \u00b7 arms locked before the bar stops, every rep"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "88%",
+                  "note": "2.5 min rest \u00b7 arms locked before the bar stops, every rep"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d73",
+                  "load": "105%",
+                  "note": "Keep the drill \u2014 no stop at the knee \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3\u00d73",
+                  "load": "85%",
+                  "note": "2 min rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "label": "Week 10",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 10 \u00b7 8/13\u20138/17",
+            "text": "Intensity climbs. Waves push toward 90%+. The technical work is now habit \u2014 trust it under heavier loads."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "80%",
+                  "note": "3 min rest \u00b7 all cues apply"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "85%",
+                  "note": "3 min rest \u00b7 all cues apply"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "89%",
+                  "note": "3 min rest \u00b7 all cues apply"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d71",
+                  "load": "86%",
+                  "note": "Back foot check every rep \u00b7 3 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "4\u00d72",
+                  "load": "86%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d74",
+                  "load": "76%",
+                  "note": "75s rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "140 lbs",
+                  "note": "75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                {
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d72",
+                  "load": "82%",
+                  "note": "2.5 min rest \u00b7 trust the arm speed"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "87%",
+                  "note": "2.5 min rest \u00b7 trust the arm speed"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "91%",
+                  "note": "2.5 min rest \u00b7 trust the arm speed"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d73",
+                  "load": "107%",
+                  "note": "Keep the drill \u2014 no stop at the knee \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "3\u00d72",
+                  "load": "88%",
+                  "note": "2 min rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 11,
+          "label": "Week 11",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 11 \u00b7 8/20\u20138/24",
+            "text": "Near-max waves. Heaviest competition lifts of the cycle. All 5 technical cues apply on every rep. This is the peak before the taper."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "COMPETITION C&J / WAVE",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "83%",
+                  "note": "3 min rest \u00b7 every technical habit you've built shows here"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "88%",
+                  "note": "3 min rest \u00b7 every technical habit you've built shows here"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "91%",
+                  "note": "3 min rest \u00b7 every technical habit you've built shows here"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "89%",
+                  "note": "Trust the position \u2014 you've drilled it \u00b7 3 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "3\u00d72",
+                  "load": "88%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d74",
+                  "load": "78%",
+                  "note": "75s rest"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "145 lbs",
+                  "note": "75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "COMPETITION SNATCH / WAVE",
+              "exercises": [
+                {
+                  "name": "Snatch \u2014 Wave 1",
+                  "sets": "1\u00d71",
+                  "load": "84%",
+                  "note": "3 min rest \u00b7 commit to the catch"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "89%",
+                  "note": "3 min rest \u00b7 commit to the catch"
+                },
+                {
+                  "name": "Snatch \u2014 Wave 3",
+                  "sets": "2\u00d71",
+                  "load": "92%",
+                  "note": "3 min rest \u00b7 commit to the catch"
+                },
+                {
+                  "name": "Snatch Pull",
+                  "sets": "4\u00d72",
+                  "load": "108%",
+                  "note": "Keep the drill \u2014 no stop at the knee \u00b7 90s rest"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "2\u00d72",
+                  "load": "90%",
+                  "note": "2 min rest"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "label": "Week 12",
+          "intent": {
+            "colorClass": "peak",
+            "title": "Week 12 \u00b7 8/27\u20138/31 \ud83c\udfc6",
+            "text": "Test week. Thursday is opener feel on both lifts. Monday is 1RM day: Snatch, C&J, and Back Squat. Everything you've built \u2014 elbows, foot width, arm lock, pull speed, back foot \u2014 shows up here."
+          },
+          "days": [
+            {
+              "label": "THURSDAY",
+              "colorClass": "thu",
+              "focus": "OPENER FEEL",
+              "exercises": [
+                {
+                  "name": "Clean & Jerk \u2014 Wave 1",
+                  "sets": "2\u00d71",
+                  "load": "72%",
+                  "note": "2 min rest \u00b7 easy, feel the lift"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 Wave 2",
+                  "sets": "1\u00d71",
+                  "load": "78%",
+                  "note": "2 min rest \u00b7 easy, feel the lift"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d71",
+                  "load": "75%",
+                  "note": "Opener feel. Easy jerk. \u00b7 2 min rest"
+                },
+                {
+                  "name": "Front Squat",
+                  "sets": "2\u00d73",
+                  "load": "72%",
+                  "note": "2 min rest"
+                },
+                {
+                  "name": "Push Press",
+                  "sets": "3\u00d74",
+                  "load": "65%",
+                  "note": "75s rest"
+                }
+              ]
+            },
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "1RM TEST DAY",
+              "exercises": [
+                {
+                  "name": "Snatch",
+                  "sets": "3\u00d71",
+                  "load": "80%",
+                  "note": "Opener feel. Lock arms before the bar stops. \u00b7 3 min rest"
+                },
+                {
+                  "name": "Snatch \u2014 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "Work up: 85%\u00d71, 90%\u00d71, 93%\u00d71, then go \u00b7 4 min between attempts",
+                  "tag": "hard",
+                  "tagText": "1RM"
+                },
+                {
+                  "name": "Clean & Jerk \u2014 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "Work up: 85%\u00d71, 90%\u00d71, then go \u00b7 4 min between attempts \u00b7 all cues: elbows, width, back foot",
+                  "tag": "hard",
+                  "tagText": "1RM"
+                },
+                {
+                  "name": "Back Squat \u2014 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "85%\u00d71, 90%\u00d71, 95%\u00d71, then attempt \u00b7 4 min rest",
+                  "tag": "hard",
+                  "tagText": "1RM"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
