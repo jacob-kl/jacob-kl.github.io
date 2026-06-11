@@ -97,70 +97,73 @@ function renderVolumeChart(phase){
 // ── WARMUP / COOLDOWN GENERATORS ─────────────────────────────────────────
 function dayWarmupExercises(day) {
   const focus = (day.focus || '').toLowerCase();
-  const label = (day.label || '').toLowerCase();
-  const isComp = focus.includes('competition') || focus.includes('olympic total') || focus.includes('dress rehearsal');
-  const isSnatch = focus.includes('snatch') || focus.includes('overhead') || focus.includes('lockout');
-  const isClean = focus.includes('clean') || focus.includes('jerk') || focus.includes('acceleration');
-  const isPull = focus.includes('pull') || focus.includes('deadlift');
+  const isComp    = focus.includes('competition') || focus.includes('olympic total') || focus.includes('dress rehearsal');
+  const isSnatch  = focus.includes('snatch') || focus.includes('overhead') || focus.includes('lockout') || focus.includes('deficit');
+  const isClean   = focus.includes('clean') || focus.includes('jerk') || focus.includes('acceleration') || focus.includes('block');
+  const isPull    = focus.includes('pull') || focus.includes('deadlift');
 
+  // Flow: RDL → pull floor-to-knee → pull knee-to-hip → pull full → muscle → technique
   let complex = [];
   if (isComp) {
     complex = [
-      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
-      {name:'Overhead Squat',sets:'3×5',load:'Bar'},
-      {name:'Muscle Clean + Push Press',sets:'3×3',load:'Bar'},
-      {name:'Power Snatch',sets:'2×2',load:'50%'},
-      {name:'Power Clean + Push Jerk',sets:'2×(1+1)',load:'50%'},
+      {name:'Snatch Grip RDL',              sets:'3×5', load:'Bar', note:'Hinge from the hip, bar stays in contact down the leg'},
+      {name:'Snatch Deadlift to Knee',       sets:'3×5', load:'Bar', note:'Bar from floor to knee only — pause 1s, feel the position'},
+      {name:'Snatch Hang Pull (above knee)', sets:'3×5', load:'Bar', note:'Knee to full extension — drive the hips through'},
+      {name:'Snatch Pull',                   sets:'3×3', load:'Bar', note:'Full pull floor to extension'},
+      {name:'Muscle Snatch',                 sets:'3×3', load:'Bar', note:'Arms straight overhead before the bar stops'},
+      {name:'Overhead Squat',                sets:'2×3', load:'Bar', note:'Press into the bar in the hole'},
+      {name:'Clean Grip RDL',                sets:'2×5', load:'Bar', note:''},
+      {name:'Muscle Clean',                  sets:'3×3', load:'Bar', note:'Elbows punch forward and up'},
+      {name:'Power Clean + Push Jerk',       sets:'2×(1+1)', load:'50%', note:'Feel the lift before the working sets'},
     ];
   } else if (isSnatch) {
     complex = [
-      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
-      {name:'Snatch Grip RDL',sets:'3×5',load:'Bar'},
-      {name:'Overhead Squat',sets:'3×5',load:'Bar'},
-      {name:'Snatch Balance',sets:'3×3',load:'Bar'},
-      {name:'Power Snatch',sets:'2×2',load:'50%'},
+      {name:'Snatch Grip RDL',              sets:'3×5', load:'Bar', note:'Hinge from the hip, bar in contact down the leg'},
+      {name:'Snatch Deadlift to Knee',       sets:'3×5', load:'Bar', note:'Floor to knee, pause 1s'},
+      {name:'Snatch Hang Pull (above knee)', sets:'3×5', load:'Bar', note:'Knee to full extension — accelerate'},
+      {name:'Snatch Pull',                   sets:'3×3', load:'Bar', note:'Full pull, floor to extension'},
+      {name:'Muscle Snatch',                 sets:'3×3', load:'Bar', note:'Lock arms before the bar stops'},
+      {name:'Overhead Squat',                sets:'3×5', load:'Bar', note:'Press into the bar'},
+      {name:'Snatch Balance',                sets:'3×3', load:'Bar', note:'Punch under, hit the position'},
     ];
   } else if (isClean) {
     complex = [
-      {name:'Clean Grip RDL',sets:'3×5',load:'Bar'},
-      {name:'Clean Pull (floor to knee)',sets:'3×5',load:'Bar'},
-      {name:'Clean Pull (knee to hip)',sets:'3×5',load:'Bar'},
-      {name:'Clean Pull',sets:'3×5',load:'Bar'},
-      {name:'Muscle Clean',sets:'3×5',load:'Bar'},
-      {name:'Front Squat',sets:'3×5',load:'Bar'},
-      {name:'Push Press',sets:'3×5',load:'Bar'},
-      {name:'Tall Clean',sets:'3×3',load:'Bar'},
-      {name:'Power Clean + Push Jerk',sets:'2×(1+1)',load:'50%'},
+      {name:'Clean Grip RDL',               sets:'3×5', load:'Bar', note:'Hinge from the hip, stay over the bar'},
+      {name:'Clean Deadlift to Knee',        sets:'3×5', load:'Bar', note:'Floor to knee, pause 1s — own the position'},
+      {name:'Clean Hang Pull (above knee)',  sets:'3×5', load:'Bar', note:'Knee to full extension — drive the hips'},
+      {name:'Clean Pull',                    sets:'3×3', load:'Bar', note:'Full pull, floor to extension'},
+      {name:'Muscle Clean',                  sets:'3×3', load:'Bar', note:'Elbows punch forward and up at the top'},
+      {name:'Front Squat',                   sets:'3×5', load:'Bar', note:'Active front rack throughout'},
+      {name:'Push Press',                    sets:'3×5', load:'Bar', note:'Reinforce the high-elbow drive'},
     ];
   } else if (isPull) {
     complex = [
-      {name:'Snatch Grip RDL',sets:'3×5',load:'Bar'},
-      {name:'Snatch Pull (floor to knee)',sets:'3×5',load:'Bar'},
-      {name:'Snatch Pull (knee to hip)',sets:'3×5',load:'Bar'},
-      {name:'Snatch Pull',sets:'3×5',load:'Bar'},
-      {name:'Muscle Snatch',sets:'3×5',load:'Bar'},
-      {name:'Overhead Squat',sets:'3×3',load:'Bar'},
-      {name:'Snatch High Pull',sets:'3×3',load:'Bar'},
-      {name:'Hang Power Snatch',sets:'2×2',load:'50%'},
-      {name:'Tall Snatch', sets:'2×2',load:'50%'},
+      {name:'Snatch Grip RDL',              sets:'3×5', load:'Bar', note:'Hip hinge — bar stays in contact'},
+      {name:'Snatch Deadlift to Knee',       sets:'3×5', load:'Bar', note:'Floor to knee, pause 1s'},
+      {name:'Snatch Hang Pull (above knee)', sets:'3×5', load:'Bar', note:'Knee to full extension'},
+      {name:'Snatch Pull',                   sets:'3×3', load:'Bar', note:'Full pull'},
+      {name:'Muscle Snatch',                 sets:'3×3', load:'Bar', note:'Arms locked overhead'},
+      {name:'Overhead Squat',               sets:'3×3', load:'Bar', note:''},
     ];
   } else {
     complex = [
-      {name:'Muscle Snatch',sets:'3×3',load:'Bar'},
-      {name:'Overhead Squat',sets:'3×3',load:'Bar'},
-      {name:'Snatch Grip RDL',sets:'3×3',load:'Bar'},
-      {name:'Power Snatch',sets:'2×2',load:'50%'},
+      {name:'Snatch Grip RDL',              sets:'3×5', load:'Bar', note:''},
+      {name:'Snatch Deadlift to Knee',       sets:'3×3', load:'Bar', note:'Floor to knee, pause 1s'},
+      {name:'Snatch Hang Pull (above knee)', sets:'3×3', load:'Bar', note:'Knee to extension'},
+      {name:'Snatch Pull',                   sets:'3×3', load:'Bar', note:'Full pull'},
+      {name:'Muscle Snatch',                 sets:'3×3', load:'Bar', note:''},
+      {name:'Overhead Squat',               sets:'3×3', load:'Bar', note:''},
     ];
   }
   const mobility = [
-    {name:'Hip 90/90',sets:'2×60s',load:'BW',note:'Each side · 2 min total'},
-    {name:'Ankle Circles + Calf Stretch',sets:'2×10',load:'BW',note:'Each side'},
-    {name:'Thoracic Rotation',sets:'2×10',load:'BW',note:'Each side'},
-    {name:'Shoulder CARs',sets:'2×10',load:'BW',note:'Controlled articular rotations'},
+    {name:'Hip 90/90',                   sets:'2×60s', load:'BW',         note:'Each side · 2 min total'},
+    {name:'Ankle Circles + Calf Stretch',sets:'2×10',  load:'BW',         note:'Each side'},
+    {name:'Thoracic Rotation',           sets:'2×10',  load:'BW',         note:'Each side'},
+    {name:'Shoulder CARs',               sets:'2×10',  load:'BW',         note:'Controlled articular rotations'},
+    {name:'Lu Raises',                   sets:'2×10',  load:'Light Plate', note:'Slow and controlled — shoulder health'},
   ];
   return {complex, mobility};
 }
-
 function dayCooldownExercises() {
   return [
     {name:'Pigeon Pose',sets:'2×60s',load:'BW',note:'Each side — hold, don\'t push'},
@@ -219,8 +222,8 @@ function collapsibleSection(id, label, accentColor, rows) {
 }
 
 function renderWarmup(day, uid) {
-  const {mobility, complex} = dayWarmupExercises(day);
-  const allRows = [{name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility, {name:'─── Barbell warmup ───', sets:'', load:'', note:''}, ...complex];
+  const {complex, mobility} = dayWarmupExercises(day);
+  const allRows = [...complex, {name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility];
   return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
 }
 
@@ -403,7 +406,7 @@ function renderCycle(cycle){
           const fScopeId=`feel-${phase.id}-${week.number}-${di}`;
           const tKey=timeKey(phase.id,week.number,di);
           const metScopeId=awKey.replace(/[^a-z0-9]/gi,'-');
-          if (!slot.isOff) html += renderPump(day, wuUid);
+          if (!slot.isOff && currentView==='admin') html += renderPump(day, wuUid);
           if (!slot.isOff) html += renderCooldown(wuUid);
           html+=`<div class="day-notes-section"><button class="day-notes-toggle" id="${btnId}" onclick="toggleNotes(this,'${nId}')"><span>Day Notes</span><span class="arrow">&#9660;</span></button><div class="day-notes-body" id="${nId}"><textarea placeholder="${ph}" onchange="saveNote('${nKey}',this.value)" oninput="saveNote('${nKey}',this.value)">${nVal}</textarea>${dayMetricsHtml(awKey,tKey,metScopeId)}${feelingScaleHtml(fKey,fScopeId)}</div></div>`;
           html += '</div>';
