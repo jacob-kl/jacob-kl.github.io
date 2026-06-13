@@ -268,7 +268,21 @@ function loadView(){
   if(currentView==='admin'){
     document.getElementById('cycle-select-wrap').style.display='none';
     document.getElementById('admin-cycle-select-wrap').style.display='flex';
-    const adminCycleId=document.getElementById('admin-cycle-select').value;
+    // Auto-select the most recent cycle whose start date is on or before today,
+    // but only if the user hasn't manually changed it this session
+    const sel=document.getElementById('admin-cycle-select');
+    if(!sel.dataset.manuallySet){
+      const today=new Date();today.setHours(0,0,0,0);
+      let bestVal=null,bestDate=null;
+      Array.from(sel.options).forEach(opt=>{
+        const s=opt.dataset.start;
+        if(!s)return;
+        const d=new Date(s);
+        if(d<=today&&(!bestDate||d>bestDate)){bestDate=d;bestVal=opt.value;}
+      });
+      if(bestVal)sel.value=bestVal;
+    }
+    const adminCycleId=sel.value;
     fetch('cycles/'+adminCycleId+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{renderCycle(data);requestAnimationFrame(()=>requestAnimationFrame(scrollToToday));}).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load admin program. Run from a web server.</div>';});
   } else {
     document.getElementById('cycle-select-wrap').style.display='flex';
@@ -302,4 +316,3 @@ function scrollToToday(){
 }
 function onCycleChange(v){if(currentView==='member')loadCycle(v);}
 function loadCycle(id){document.getElementById('program-body').innerHTML='<div class="state-message">Loading program\u2026</div>';fetch('cycles/'+id+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{renderCycle(data);requestAnimationFrame(()=>requestAnimationFrame(scrollToToday));}).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load cycle. Requires web server. Run: python3 -m http.server 8080</div>';});}
-
