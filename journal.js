@@ -440,6 +440,8 @@ function showWeek(phaseId,weekNum,btn,colorClass){
 }
 // ══ ADMIN CYCLE SELECT ══
 function onAdminCycleChange(v){
+  const sel=document.getElementById('admin-cycle-select');
+  if(sel)sel.dataset.manuallySet='1';
   if(currentView==='admin') loadView();
 }
 
@@ -1079,4 +1081,3 @@ function getAWHtmlForJournalEntry(phaseId,weekNum,dayIdx){
   html+='</div>';
   return html;
 }
-
