@@ -192,6 +192,12 @@
                   "note": "Positional \u00b7 1 set / 90s"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "4\u00d73",
+                  "load": "95%",
+                  "note": "Snatch-specific second pull. Start position = shin vertical. Drive through the floor. \u00b7 1 set / 90s"
+                },
+                {
                   "name": "Clean Deadlift",
                   "sets": "5\u00d73",
                   "load": "100%",
@@ -204,10 +210,10 @@
                   "note": "2 min rest"
                 },
                 {
-                  "name": "Snatch Pull from Blocks (below knee)",
-                  "sets": "4\u00d73",
-                  "load": "95%",
-                  "note": "Snatch-specific second pull. Start position = shin vertical. Drive through the floor. \u00b7 1 set / 90s"
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "72%",
+                  "note": "Jerk frequency \u2014 reinforce receiving position \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Bent Over Row",
@@ -220,12 +226,6 @@
                   "sets": "1\u00d712",
                   "load": "125 lbs",
                   "note": "DROP SET \u2014 lighter, faster, feel the lats \u00b7 no rest from working sets"
-                },
-                {
-                  "name": "Jerk from Rack",
-                  "sets": "4\u00d72",
-                  "load": "72%",
-                  "note": "Jerk frequency \u2014 reinforce receiving position \u00b7 1 set / 90s"
                 },
                 {
                   "name": "Good Morning",
@@ -313,9 +313,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "95 lbs",
+                  "load": "135 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -516,6 +516,12 @@
                   "note": "1 set / 90s"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "4\u00d73",
+                  "load": "98%",
+                  "note": "1 set / 90s"
+                },
+                {
                   "name": "Clean Deadlift",
                   "sets": "5\u00d73",
                   "load": "103%",
@@ -528,9 +534,9 @@
                   "note": "2 min rest"
                 },
                 {
-                  "name": "Snatch Pull from Blocks (below knee)",
-                  "sets": "4\u00d73",
-                  "load": "98%",
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "75%",
                   "note": "1 set / 90s"
                 },
                 {
@@ -544,12 +550,6 @@
                   "sets": "1\u00d712",
                   "load": "130 lbs",
                   "note": "DROP SET"
-                },
-                {
-                  "name": "Jerk from Rack",
-                  "sets": "4\u00d72",
-                  "load": "75%",
-                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Good Morning",
@@ -637,9 +637,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "105 lbs",
+                  "load": "155 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -840,6 +840,12 @@
                   "note": "1 set / 90s"
                 },
                 {
+                  "name": "Snatch Pull from Blocks (below knee)",
+                  "sets": "5\u00d73",
+                  "load": "100%",
+                  "note": "Peak load for the block. \u00b7 1 set / 2 min"
+                },
+                {
                   "name": "Clean Deadlift",
                   "sets": "5\u00d73",
                   "load": "106%",
@@ -852,10 +858,10 @@
                   "note": "2 min rest"
                 },
                 {
-                  "name": "Snatch Pull from Blocks (below knee)",
-                  "sets": "5\u00d73",
-                  "load": "100%",
-                  "note": "Peak load for the block. \u00b7 1 set / 2 min"
+                  "name": "Jerk from Rack",
+                  "sets": "4\u00d72",
+                  "load": "78%",
+                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Bent Over Row",
@@ -868,12 +874,6 @@
                   "sets": "1\u00d712",
                   "load": "135 lbs",
                   "note": "DROP SET"
-                },
-                {
-                  "name": "Jerk from Rack",
-                  "sets": "4\u00d72",
-                  "load": "78%",
-                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Good Morning",
@@ -961,9 +961,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "115 lbs",
+                  "load": "165 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -1134,16 +1134,16 @@
                   "note": "2 min rest"
                 },
                 {
-                  "name": "Bent Over Row",
-                  "sets": "3\u00d78",
-                  "load": "135 lbs",
-                  "note": "75s rest"
-                },
-                {
                   "name": "Jerk from Rack",
                   "sets": "2\u00d72",
                   "load": "70%",
                   "note": "Deload \u2014 stay warm \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Bent Over Row",
+                  "sets": "3\u00d78",
+                  "load": "135 lbs",
+                  "note": "75s rest"
                 },
                 {
                   "name": "Good Morning",
@@ -1177,9 +1177,9 @@
                   "note": "Light squat \u00b7 2 min rest"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "2\u00d78",
-                  "load": "95 lbs",
+                  "load": "115 lbs",
                   "note": "75s rest"
                 }
               ]
@@ -1357,16 +1357,16 @@
                   "note": "Full lift \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Clean Deadlift (3s pause at knee)",
-                  "sets": "5\u00d73",
-                  "load": "100%",
-                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
-                },
-                {
                   "name": "Snatch Pull",
                   "sets": "4\u00d73",
                   "load": "100%",
                   "note": "Second pull acceleration \u2014 no deficit, just speed. \u00b7 1 set / 90s"
+                },
+                {
+                  "name": "Clean Deadlift (3s pause at knee)",
+                  "sets": "5\u00d73",
+                  "load": "100%",
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -1478,9 +1478,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "115 lbs",
+                  "load": "175 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -1663,16 +1663,16 @@
                   "note": "Full lift \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Clean Deadlift (3s pause at knee)",
-                  "sets": "5\u00d73",
-                  "load": "103%",
-                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
-                },
-                {
                   "name": "Snatch Pull",
                   "sets": "4\u00d73",
                   "load": "103%",
                   "note": "1 set / 90s"
+                },
+                {
+                  "name": "Clean Deadlift (3s pause at knee)",
+                  "sets": "5\u00d73",
+                  "load": "103%",
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -1784,9 +1784,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "125 lbs",
+                  "load": "185 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -1969,16 +1969,16 @@
                   "note": "Full lift \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Clean Deadlift (3s pause at knee)",
-                  "sets": "5\u00d73",
-                  "load": "106%",
-                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
-                },
-                {
                   "name": "Snatch Pull",
                   "sets": "4\u00d73",
                   "load": "106%",
                   "note": "1 set / 2 min"
+                },
+                {
+                  "name": "Clean Deadlift (3s pause at knee)",
+                  "sets": "5\u00d73",
+                  "load": "106%",
+                  "note": "Hold the position \u2014 back strength at the top of the pull \u00b7 1 set / 2 min"
                 },
                 {
                   "name": "Pause Back Squat",
@@ -2090,9 +2090,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d78",
-                  "load": "135 lbs",
+                  "load": "195 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -2306,9 +2306,9 @@
                   "note": "Light double \u00b7 2.5 min rest"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "2\u00d78",
-                  "load": "115 lbs",
+                  "load": "145 lbs",
                   "note": "75s rest"
                 }
               ]
@@ -2498,18 +2498,10 @@
                   "note": "Stay sharp \u00b7 1 set / 2 min"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "3\u00d71",
-                  "load": "83%",
-                  "note": "Stay warm in the jerk before squat work \u00b7 1 set / 2.5 min"
-                },
-                {
-                  "name": "Back Squat \u2014 3RM",
-                  "sets": "Build",
-                  "load": "100%+",
-                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
-                  "tag": "hard",
-                  "tagText": "3RM"
+                  "name": "Snatch Grip RDL",
+                  "sets": "3\u00d76",
+                  "load": "78%",
+                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Clean Deadlift \u2014 3RM",
@@ -2520,10 +2512,18 @@
                   "tagText": "3RM"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "3\u00d76",
-                  "load": "78%",
-                  "note": "1 set / 90s"
+                  "name": "Back Squat \u2014 3RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
+                  "tag": "hard",
+                  "tagText": "3RM"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "83%",
+                  "note": "Stay warm in the jerk before squat work \u00b7 1 set / 2.5 min"
                 }
               ]
             },
@@ -2605,9 +2605,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d76",
-                  "load": "115 lbs",
+                  "load": "175 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -2794,18 +2794,10 @@
                   "note": "Stay sharp \u00b7 1 set / 2.5 min"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "3\u00d71",
-                  "load": "86%",
-                  "note": "1 set / 2.5 min"
-                },
-                {
-                  "name": "Back Squat \u2014 2RM",
-                  "sets": "Build",
-                  "load": "100%+",
-                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
-                  "tag": "hard",
-                  "tagText": "2RM"
+                  "name": "Snatch Grip RDL",
+                  "sets": "3\u00d76",
+                  "load": "80%",
+                  "note": "1 set / 90s"
                 },
                 {
                   "name": "Clean Deadlift \u2014 2RM",
@@ -2816,10 +2808,18 @@
                   "tagText": "2RM"
                 },
                 {
-                  "name": "Snatch Grip RDL",
-                  "sets": "3\u00d76",
-                  "load": "80%",
-                  "note": "1 set / 90s"
+                  "name": "Back Squat \u2014 2RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
+                  "tag": "hard",
+                  "tagText": "2RM"
+                },
+                {
+                  "name": "Jerk from Rack",
+                  "sets": "3\u00d71",
+                  "load": "86%",
+                  "note": "1 set / 2.5 min"
                 }
               ]
             },
@@ -2901,9 +2901,9 @@
                   "note": "DROP SET \u2014 immediate, no pause, no rest between \u00b7 burns out what the pause left"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "3\u00d76",
-                  "load": "125 lbs",
+                  "load": "185 lbs",
                   "note": "75s rest"
                 },
                 {
@@ -3090,10 +3090,12 @@
                   "note": "Stay sharp \u00b7 1 set / 2.5 min"
                 },
                 {
-                  "name": "Jerk from Rack",
-                  "sets": "2\u00d71",
-                  "load": "88%",
-                  "note": "Near-max \u2014 stay sharp for test week \u00b7 1 set / 3 min"
+                  "name": "Clean Deadlift \u2014 1RM",
+                  "sets": "Build",
+                  "load": "100%+",
+                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
+                  "tag": "hard",
+                  "tagText": "1RM"
                 },
                 {
                   "name": "Back Squat \u2014 1RM",
@@ -3104,12 +3106,10 @@
                   "tagText": "1RM"
                 },
                 {
-                  "name": "Clean Deadlift \u2014 1RM",
-                  "sets": "Build",
-                  "load": "100%+",
-                  "note": "Work up: 50%\u00d73, 65%\u00d72, 75%\u00d71, 85%\u00d71, then build to max \u00b7 3\u20135 min between top attempts",
-                  "tag": "hard",
-                  "tagText": "1RM"
+                  "name": "Jerk from Rack",
+                  "sets": "2\u00d71",
+                  "load": "88%",
+                  "note": "Near-max \u2014 stay sharp for test week \u00b7 1 set / 3 min"
                 }
               ]
             },
@@ -3137,9 +3137,9 @@
                   "note": "Light \u2014 stay fresh for test week \u00b7 2.5 min rest"
                 },
                 {
-                  "name": "Good Morning",
+                  "name": "Hip Thrust",
                   "sets": "2\u00d76",
-                  "load": "115 lbs",
+                  "load": "155 lbs",
                   "note": "Dress rehearsal \u2014 keep posterior chain fresh \u00b7 75s rest"
                 }
               ]
