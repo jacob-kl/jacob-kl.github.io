@@ -55,7 +55,7 @@ function updateAllWeightCells(){document.querySelectorAll('.weight-cell').forEac
 
 // ── LOG MODAL ────────────────────────────────────────────────────────────
 let modalState={exName:'',sets:'',load:'',rmId:null,entries:[]};
-function parseSetCount(s){if(/^\d+-\d+-\d+$/.test(s.trim()))return 1;const groups=s.split(/[+\/]/).map(g=>g.trim()).filter(Boolean);let total=0;for(const g of groups){const m=g.match(/^(\d+)[x\u00d7]/i);if(m)total+=parseInt(m[1]);else total+=1;}return Math.min(total,12);}
+function parseSetCount(s){if(/^\d+-\d+-\d+$/.test(s.trim()))return 1;const groups=s.split('/').map(g=>g.trim()).filter(Boolean);let total=0;for(const g of groups){const mParen=g.match(/^(\d+)\s*[x\u00d7]\s*\(/i);if(mParen){total+=parseInt(mParen[1]);continue;}const m=g.match(/^(\d+)[x\u00d7]/i);if(m)total+=parseInt(m[1]);else total+=1;}return Math.min(total,12);}
 function openLogModal(exName,setsStr,loadStr,rmId,lk){
   modalState={exName,sets:setsStr,load:loadStr,rmId,logKey:lk,entries:[],isWave:false};
   document.getElementById('modal-ex-name').textContent=exName;
