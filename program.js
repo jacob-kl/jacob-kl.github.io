@@ -1,7 +1,12 @@
 // ── RENDERER ─────────────────────────────────────────────────────────────
-const MEMBER_DAY_OFFSETS=[0,4]; // Thu=0, Mon=4
+// Member day/off-day offsets and the member start-date shift are per-cycle —
+// a cycle JSON can override them via memberDayOffsets / memberOffOffsets /
+// memberStartShift (see renderCycle). Defaults below match the legacy
+// Thu/Mon class schedule used by cycles that don't specify their own.
+let MEMBER_DAY_OFFSETS=[0,4]; // Thu=0, Mon=4
 // Member off days from Thu base: Fri=1,Sat=2,Sun=3,Tue=5,Wed=6
-const MEMBER_OFF_OFFSETS=[1,2,3,5,6];
+let MEMBER_OFF_OFFSETS=[1,2,3,5,6];
+let MEMBER_START_SHIFT=3;
 const ADMIN_DAY_OFFSETS=[0,1,2,4,5]; // Mon=0,Tue=1,Wed=2,Fri=4,Sat=5
 // Competitor off days from Mon base: Thu=3, Sun=6
 const ADMIN_OFF_OFFSETS=[3,6];
@@ -244,7 +249,10 @@ function toggleWU(id) {
 }
 
 function renderCycle(cycle){
-  if(cycle.startDate){const[y,m,d]=cycle.startDate.split('-').map(Number);CYCLE_ADMIN_START=new Date(y,m-1,d);CYCLE_MEMBER_START=new Date(y,m-1,d+3);}
+  MEMBER_DAY_OFFSETS=Array.isArray(cycle.memberDayOffsets)?cycle.memberDayOffsets:[0,4];
+  MEMBER_OFF_OFFSETS=Array.isArray(cycle.memberOffOffsets)?cycle.memberOffOffsets:[1,2,3,5,6];
+  MEMBER_START_SHIFT=(typeof cycle.memberStartShift==='number')?cycle.memberStartShift:3;
+  if(cycle.startDate){const[y,m,d]=cycle.startDate.split('-').map(Number);CYCLE_ADMIN_START=new Date(y,m-1,d);CYCLE_MEMBER_START=new Date(y,m-1,d+MEMBER_START_SHIFT);}
   document.getElementById('meta-days').innerHTML='<strong>'+cycle.days+'</strong>';
   document.getElementById('meta-goal').innerHTML='Goal: <strong>'+cycle.goal+'</strong>';
   document.getElementById('meta-dates').innerHTML='Dates: <strong>'+cycle.dates+'</strong>';

@@ -1,0 +1,1088 @@
+{
+  "id": "2026-fall",
+  "name": "2026 Fall — Catch, Footwork & Speed",
+  "startDate": "2026-09-14",
+  "dates": "9/14 – 12/5",
+  "days": "Mon / Sat",
+  "goal": "Fix the catch (elbows, knees, feet) and first-pull knee position before adding speed and lockout",
+  "memberStartShift": 0,
+  "memberDayOffsets": [
+    0,
+    5
+  ],
+  "memberOffOffsets": [
+    1,
+    2,
+    3,
+    4,
+    6
+  ],
+  "phases": [
+    {
+      "id": "m1",
+      "number": "01",
+      "colorClass": "m1",
+      "title": "MESOCYCLE 1 — CATCH, FOOTWORK & FIRST-PULL POSITION",
+      "subtitle": "Weeks 1–6 · 9/14–10/24 · Feet too wide on landing, knees out in catch, knees forward in the first pull (some athletes), split jerk footwork (light maintenance)",
+      "weeks": [
+        {
+          "number": 1,
+          "label": "Week 1",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 1 · 9/14–9/19",
+            "text": "Positions are rebuilt away from the floor first. No-feet snatch/clean forces a disciplined, narrow catch by removing foot movement entirely; muscle snatch/clean removes the leg re-bend that lets the knees-forward habit sneak in; paused deadlifts drill the knee-back reversal directly. No full lift from the floor yet."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Snatch Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "60%",
+                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                },
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×3",
+                  "load": "Bar–30%",
+                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                },
+                {
+                  "name": "Snatch Balance",
+                  "sets": "4×3",
+                  "load": "50%",
+                  "note": "Land soft, same footprint as start — no stepping out"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "40%",
+                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "70%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Clean Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "60%",
+                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                },
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×3",
+                  "load": "Bar–30%",
+                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "2s pause at bottom — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "40%",
+                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
+                },
+                {
+                  "name": "Split Jerk Footwork Drill",
+                  "sets": "4×3",
+                  "load": "Bar",
+                  "note": "Front heel down first, back foot on the ball — light and crisp"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "70%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 2,
+          "label": "Week 2",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 2 · 9/21–9/26",
+            "text": "Positions are rebuilt away from the floor first. No-feet snatch/clean forces a disciplined, narrow catch by removing foot movement entirely; muscle snatch/clean removes the leg re-bend that lets the knees-forward habit sneak in; paused deadlifts drill the knee-back reversal directly. No full lift from the floor yet."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Snatch Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "60%",
+                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                },
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×3",
+                  "load": "Bar–30%",
+                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                },
+                {
+                  "name": "Snatch Balance",
+                  "sets": "4×3",
+                  "load": "50%",
+                  "note": "Land soft, same footprint as start — no stepping out"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "40%",
+                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "70%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Clean Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "60%",
+                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                },
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×3",
+                  "load": "Bar–30%",
+                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "2s pause at bottom — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "40%",
+                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
+                },
+                {
+                  "name": "Split Jerk Footwork Drill",
+                  "sets": "4×3",
+                  "load": "Bar",
+                  "note": "Front heel down first, back foot on the ball — light and crisp"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "70%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 3,
+          "label": "Week 3",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 3 · 9/28–10/3",
+            "text": "Pull work moves to blocks below the knee — full extension returns, but still without a floor start. No-feet and muscle snatch/clean continue as the footwork and turnover pieces, now at slightly higher load."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Snatch Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "Knee-back reversal cue"
+                },
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×3",
+                  "load": "35–40%",
+                  "note": "Feet stay in the pull stance the whole rep"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "45%",
+                  "note": "Turnover speed, no leg re-bend"
+                },
+                {
+                  "name": "Snatch from Blocks (below knee)",
+                  "sets": "5×2",
+                  "load": "65–68%",
+                  "note": "Knees back off the blocks, then punch through — no floor start yet"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "72–75%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Clean Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "Knee-back reversal cue"
+                },
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×3",
+                  "load": "35–40%",
+                  "note": "Feet stay in the pull stance the whole rep"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "68–70%",
+                  "note": "2s pause — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45%",
+                  "note": "Turnover speed, no leg re-bend"
+                },
+                {
+                  "name": "Clean from Blocks (below knee)",
+                  "sets": "5×2",
+                  "load": "65–68%",
+                  "note": "Knees back off the blocks, then punch through — no floor start yet"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "4×2",
+                  "load": "60–65%",
+                  "note": "Front heel down first — light, focus on the feet only"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "72–75%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 4,
+          "label": "Week 4",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 4 · 10/5–10/10",
+            "text": "Pull work moves to blocks below the knee — full extension returns, but still without a floor start. No-feet and muscle snatch/clean continue as the footwork and turnover pieces, now at slightly higher load."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Snatch Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "Knee-back reversal cue"
+                },
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×3",
+                  "load": "35–40%",
+                  "note": "Feet stay in the pull stance the whole rep"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "45%",
+                  "note": "Turnover speed, no leg re-bend"
+                },
+                {
+                  "name": "Snatch from Blocks (below knee)",
+                  "sets": "5×2",
+                  "load": "65–68%",
+                  "note": "Knees back off the blocks, then punch through — no floor start yet"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "72–75%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "Clean Deadlift (pause below knee)",
+                  "sets": "4×3",
+                  "load": "65%",
+                  "note": "Knee-back reversal cue"
+                },
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×3",
+                  "load": "35–40%",
+                  "note": "Feet stay in the pull stance the whole rep"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "68–70%",
+                  "note": "2s pause — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45%",
+                  "note": "Turnover speed, no leg re-bend"
+                },
+                {
+                  "name": "Clean from Blocks (below knee)",
+                  "sets": "5×2",
+                  "load": "65–68%",
+                  "note": "Knees back off the blocks, then punch through — no floor start yet"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "4×2",
+                  "load": "60–65%",
+                  "note": "Front heel down first — light, focus on the feet only"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×5",
+                  "load": "72–75%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 5,
+          "label": "Week 5",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 5 · 10/12–10/17 · Checkpoint Week",
+            "text": "Full snatch/clean from the floor returns for the first time this block, now that the knee pattern and catch width have been grooved away from the floor. No-feet work opens the session as a final reminder before the full lift. This week is a checkpoint, not a max-out — watch feet, knees, and first-pull knee direction if you can get it on video."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×2",
+                  "load": "40–45%",
+                  "note": "Last footwork reminder before the full lift"
+                },
+                {
+                  "name": "Snatch Balance",
+                  "sets": "4×2",
+                  "load": "62–65%",
+                  "note": "Land soft, same footprint"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Maintains the knee/hip sequencing under the full lift"
+                },
+                {
+                  "name": "Snatch (full lift, floor start)",
+                  "sets": "6×2",
+                  "load": "70–75%",
+                  "note": "First floor pull of the block — knees back off the floor, feet and knees live",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "75–78%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×2",
+                  "load": "40–45%",
+                  "note": "Last footwork reminder before the full lift"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "72–75%",
+                  "note": "2s pause — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Maintains the knee/hip sequencing under the full lift"
+                },
+                {
+                  "name": "Clean & Jerk (full lift, floor start)",
+                  "sets": "6×2",
+                  "load": "70–75%",
+                  "note": "First floor pull of the block — knees back off the floor, feet, knees, and elbows live",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "65–70%",
+                  "note": "Front heel down first, same line"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "75–78%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 6,
+          "label": "Week 6",
+          "intent": {
+            "colorClass": "m1",
+            "title": "Week 6 · 10/19–10/24 · Checkpoint Week",
+            "text": "Full snatch/clean from the floor returns for the first time this block, now that the knee pattern and catch width have been grooved away from the floor. No-feet work opens the session as a final reminder before the full lift. This week is a checkpoint, not a max-out — watch feet, knees, and first-pull knee direction if you can get it on video."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "No-Feet Snatch",
+                  "sets": "4×2",
+                  "load": "40–45%",
+                  "note": "Last footwork reminder before the full lift"
+                },
+                {
+                  "name": "Snatch Balance",
+                  "sets": "4×2",
+                  "load": "62–65%",
+                  "note": "Land soft, same footprint"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Maintains the knee/hip sequencing under the full lift"
+                },
+                {
+                  "name": "Snatch (full lift, floor start)",
+                  "sets": "6×2",
+                  "load": "70–75%",
+                  "note": "First floor pull of the block — knees back off the floor, feet and knees live",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "75–78%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "exercises": [
+                {
+                  "name": "No-Feet Clean",
+                  "sets": "4×2",
+                  "load": "40–45%",
+                  "note": "Last footwork reminder before the full lift"
+                },
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "72–75%",
+                  "note": "2s pause — elbows up and forward"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Maintains the knee/hip sequencing under the full lift"
+                },
+                {
+                  "name": "Clean & Jerk (full lift, floor start)",
+                  "sets": "6×2",
+                  "load": "70–75%",
+                  "note": "First floor pull of the block — knees back off the floor, feet, knees, and elbows live",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "65–70%",
+                  "note": "Front heel down first, same line"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×3",
+                  "load": "75–78%",
+                  "note": "Knees out through the whole rep"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2",
+      "number": "02",
+      "colorClass": "m2",
+      "title": "MESOCYCLE 2 — SPEED & LOCKOUT",
+      "subtitle": "Weeks 7–12 · 10/26–12/5 · Speed above the knee, clean catch elbows, snatch lockout (feet width, knee tracking, split jerk feet as light maintenance)",
+      "weeks": [
+        {
+          "number": 7,
+          "label": "Week 7",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 7 · 10/26–10/31",
+            "text": "Speed above the knee and snatch lockout become the priority. Pull work stays off the floor (hang, above the knee) so the speed cue doesn't drag the knees-forward habit back in. No-feet snatch/clean becomes the single warmup piece carrying the feet/knee maintenance cue."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "No-Feet Snatch (maintenance)",
+                  "sets": "3×2",
+                  "load": "45%",
+                  "note": "Feet stay in the pull stance — maintenance only, not a focus piece anymore"
+                },
+                {
+                  "name": "Heaving Snatch Balance",
+                  "sets": "4×2",
+                  "load": "55%",
+                  "note": "Push the floor away, shrug into the bar — active lockout"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "3×3",
+                  "load": "45%",
+                  "note": "Maintenance for knee/hip sequencing"
+                },
+                {
+                  "name": "Snatch Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "80–85%",
+                  "note": "Jump, don't muscle — violent extension once past the knee"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5×2",
+                  "load": "70%",
+                  "note": "Same speed cue as the pull, into a narrow landing"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "75%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "No-Feet Clean (maintenance)",
+                  "sets": "3×2",
+                  "load": "45%",
+                  "note": "Feet stay in the pull stance — maintenance only, not a focus piece anymore"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Elbows up and around — whip, not muscle up"
+                },
+                {
+                  "name": "Clean Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "80–85%",
+                  "note": "Jump, don't muscle — violent extension once past the knee"
+                },
+                {
+                  "name": "Hang Clean (above knee)",
+                  "sets": "5×2",
+                  "load": "70%",
+                  "note": "Elbow speed carries from the muscle clean work"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "70–73%",
+                  "note": "Maintenance — front heel down first"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "75%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 8,
+          "label": "Week 8",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 8 · 11/2–11/7",
+            "text": "Speed above the knee and snatch lockout become the priority. Pull work stays off the floor (hang, above the knee) so the speed cue doesn't drag the knees-forward habit back in. No-feet snatch/clean becomes the single warmup piece carrying the feet/knee maintenance cue."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "No-Feet Snatch (maintenance)",
+                  "sets": "3×2",
+                  "load": "45%",
+                  "note": "Feet stay in the pull stance — maintenance only, not a focus piece anymore"
+                },
+                {
+                  "name": "Heaving Snatch Balance",
+                  "sets": "4×2",
+                  "load": "55%",
+                  "note": "Push the floor away, shrug into the bar — active lockout"
+                },
+                {
+                  "name": "Muscle Snatch",
+                  "sets": "3×3",
+                  "load": "45%",
+                  "note": "Maintenance for knee/hip sequencing"
+                },
+                {
+                  "name": "Snatch Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "80–85%",
+                  "note": "Jump, don't muscle — violent extension once past the knee"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5×2",
+                  "load": "70%",
+                  "note": "Same speed cue as the pull, into a narrow landing"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "75%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "No-Feet Clean (maintenance)",
+                  "sets": "3×2",
+                  "load": "45%",
+                  "note": "Feet stay in the pull stance — maintenance only, not a focus piece anymore"
+                },
+                {
+                  "name": "Muscle Clean",
+                  "sets": "4×3",
+                  "load": "45–50%",
+                  "note": "Elbows up and around — whip, not muscle up"
+                },
+                {
+                  "name": "Clean Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "80–85%",
+                  "note": "Jump, don't muscle — violent extension once past the knee"
+                },
+                {
+                  "name": "Hang Clean (above knee)",
+                  "sets": "5×2",
+                  "load": "70%",
+                  "note": "Elbow speed carries from the muscle clean work"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "70–73%",
+                  "note": "Maintenance — front heel down first"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "75%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 9,
+          "label": "Week 9",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 9 · 11/9–11/14",
+            "text": "Load builds on the speed pulls and lockout pieces. This is the heaviest pull-speed work of the cycle."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Snatch Push Press + OHS",
+                  "sets": "4×(2+1)",
+                  "load": "60–65%",
+                  "note": "Push the floor away, shrug into the bar"
+                },
+                {
+                  "name": "Snatch Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "85–90%",
+                  "note": "Violent extension — speed doesn't drop as load rises"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Same speed cue, narrow landing"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "77–80%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "75–78%",
+                  "note": "Elbows up and forward — heavier than Meso 1 top end"
+                },
+                {
+                  "name": "Clean Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "85–90%",
+                  "note": "Violent extension — speed doesn't drop as load rises"
+                },
+                {
+                  "name": "Hang Clean (above knee)",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Elbow speed under more load"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Maintenance — front heel down first"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "77–80%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 10,
+          "label": "Week 10",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 10 · 11/16–11/21",
+            "text": "Load builds on the speed pulls and lockout pieces. This is the heaviest pull-speed work of the cycle."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Snatch Push Press + OHS",
+                  "sets": "4×(2+1)",
+                  "load": "60–65%",
+                  "note": "Push the floor away, shrug into the bar"
+                },
+                {
+                  "name": "Snatch Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "85–90%",
+                  "note": "Violent extension — speed doesn't drop as load rises"
+                },
+                {
+                  "name": "Hang Snatch (above knee)",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Same speed cue, narrow landing"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "77–80%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Front Squat (pause)",
+                  "sets": "4×3",
+                  "load": "75–78%",
+                  "note": "Elbows up and forward — heavier than Meso 1 top end"
+                },
+                {
+                  "name": "Clean Pull (above knee, speed)",
+                  "sets": "5×3",
+                  "load": "85–90%",
+                  "note": "Violent extension — speed doesn't drop as load rises"
+                },
+                {
+                  "name": "Hang Clean (above knee)",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Elbow speed under more load"
+                },
+                {
+                  "name": "Split Jerk",
+                  "sets": "5×2",
+                  "load": "73–75%",
+                  "note": "Maintenance — front heel down first"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "4×4",
+                  "load": "77–80%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 11,
+          "label": "Week 11",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 11 · 11/23–11/28 · Checkpoint Week",
+            "text": "Full lifts from the floor carry every cue at once. This week closes the cycle — treat it as a technique checkpoint across all seven faults, not a max-out day."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Tall Snatch (2s overhead hold)",
+                  "sets": "4×2",
+                  "load": "45%",
+                  "note": "Active lockout check before the lift goes heavy"
+                },
+                {
+                  "name": "Snatch (full lift, floor start, all cues live)",
+                  "sets": "6×2",
+                  "load": "75–80%",
+                  "note": "Feet, knees (both catch and first pull), speed, and lockout together",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×2",
+                  "load": "80–82%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Tall Clean (strict elbow finish)",
+                  "sets": "4×2",
+                  "load": "45%",
+                  "note": "Elbow position check before the lift goes heavy"
+                },
+                {
+                  "name": "Clean & Jerk (full lift, floor start, all cues live)",
+                  "sets": "6×2",
+                  "load": "75–80%",
+                  "note": "Feet, knees, elbows, and lockout together",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×2",
+                  "load": "80–82%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "number": 12,
+          "label": "Week 12",
+          "intent": {
+            "colorClass": "m2",
+            "title": "Week 12 · 11/30–12/5 · Checkpoint Week",
+            "text": "Full lifts from the floor carry every cue at once. This week closes the cycle — treat it as a technique checkpoint across all seven faults, not a max-out day."
+          },
+          "days": [
+            {
+              "label": "MONDAY",
+              "colorClass": "mon",
+              "focus": "SNATCH — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Tall Snatch (2s overhead hold)",
+                  "sets": "4×2",
+                  "load": "45%",
+                  "note": "Active lockout check before the lift goes heavy"
+                },
+                {
+                  "name": "Snatch (full lift, floor start, all cues live)",
+                  "sets": "6×2",
+                  "load": "75–80%",
+                  "note": "Feet, knees (both catch and first pull), speed, and lockout together",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×2",
+                  "load": "80–82%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            },
+            {
+              "label": "SATURDAY",
+              "colorClass": "thu",
+              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "exercises": [
+                {
+                  "name": "Tall Clean (strict elbow finish)",
+                  "sets": "4×2",
+                  "load": "45%",
+                  "note": "Elbow position check before the lift goes heavy"
+                },
+                {
+                  "name": "Clean & Jerk (full lift, floor start, all cues live)",
+                  "sets": "6×2",
+                  "load": "75–80%",
+                  "note": "Feet, knees, elbows, and lockout together",
+                  "tag": "hard",
+                  "tagText": "Checkpoint"
+                },
+                {
+                  "name": "Back Squat",
+                  "sets": "5×2",
+                  "load": "80–82%",
+                  "note": "Maintenance knee-out cue only"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -287,7 +287,21 @@ function loadView(){
   } else {
     document.getElementById('cycle-select-wrap').style.display='flex';
     document.getElementById('admin-cycle-select-wrap').style.display='none';
-    loadCycle(document.getElementById('cycle-select').value);
+    // Auto-select the most recent cycle whose start date is on or before today,
+    // but only if the user hasn't manually changed it this session
+    const msel=document.getElementById('cycle-select');
+    if(!msel.dataset.manuallySet){
+      const today=new Date();today.setHours(0,0,0,0);
+      let bestVal=null,bestDate=null;
+      Array.from(msel.options).forEach(opt=>{
+        const s=opt.dataset.start;
+        if(!s)return;
+        const d=new Date(s);
+        if(d<=today&&(!bestDate||d>bestDate)){bestDate=d;bestVal=opt.value;}
+      });
+      if(bestVal)msel.value=bestVal;
+    }
+    loadCycle(msel.value);
   }
 }
 function scrollToToday(){
@@ -314,5 +328,5 @@ function scrollToToday(){
     setTimeout(()=>{targetCard.style.boxShadow='';},2000);
   }
 }
-function onCycleChange(v){if(currentView==='member')loadCycle(v);}
+function onCycleChange(v){const sel=document.getElementById('cycle-select');if(sel)sel.dataset.manuallySet='1';if(currentView==='member')loadCycle(v);}
 function loadCycle(id){document.getElementById('program-body').innerHTML='<div class="state-message">Loading program\u2026</div>';fetch('cycles/'+id+'.json').then(r=>{if(!r.ok)throw new Error();return r.json();}).then(data=>{renderCycle(data);requestAnimationFrame(()=>requestAnimationFrame(scrollToToday));}).catch(()=>{document.getElementById('program-body').innerHTML='<div class="state-message error">Could not load cycle. Requires web server. Run: python3 -m http.server 8080</div>';});}
