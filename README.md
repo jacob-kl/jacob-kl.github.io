@@ -4,7 +4,7 @@ A web-based training platform for Olympic weightlifting. Manages multi-week macr
 
 ---
 
-## Running Locally
+## Running Locally 
 
 ```bash
 python3 -m http.server 8080
