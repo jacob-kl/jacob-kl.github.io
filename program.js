@@ -166,6 +166,7 @@ function dayWarmupExercises(day) {
     {name:'Thoracic Rotation',           sets:'2×10',  load:'BW',         note:'Each side'},
     {name:'Shoulder CARs',               sets:'2×10',  load:'BW',         note:'Controlled articular rotations'},
     {name:'Lu Raises',                   sets:'2×10',  load:'Light Plate', note:'Slow and controlled — shoulder health'},
+    {name:'Lateral band walk',           sets:'2×10',  load:'Hip band',   note:'Slow and controlled, in squat position\nRight\\left,Forward\\backward'}
   ];
   // Cycle-specific warm-up choices appear inside the existing collapsed section.
   // The original barbell complexes and the original mobility menu above are unchanged.
@@ -245,10 +246,11 @@ function renderWarmup(day, uid) {
   const hasFocus = focusedPrimer.length || focusedMobility.length;
   const divider = name => ({name:`─── ${name} ───`,sets:'',load:'',note:''});
   const allRows = hasFocus
-    ? [divider('Barbell Primer'), ...complex,
-       ...(focusedPrimer.length ? [divider('Today’s Technique Primer'), ...focusedPrimer] : []),
-       ...(focusedMobility.length ? [divider('Today’s Mobility / Activation'), ...focusedMobility] : []),
-       divider('More Mobility Options'), ...mobility]
+    ? [
+       ...(focusedMobility.length ? [divider('Today\'s Mobility / Activation'), ...focusedMobility] : []),
+       divider('More Mobility Options'), ...mobility,
+       divider('Barbell Primer'), ...complex,
+      ]
     : [...complex, divider('Mobility'), ...mobility];
   return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
 }

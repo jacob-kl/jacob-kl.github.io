@@ -40,10 +40,23 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
+                  "name": "Drop snatch (PVC / empty bar) + OHS",
+                  "sets": "1–2×(2+2)",
+                  "load": "PVC / empty bar",
+                  "note": "PVC or empty bar by control; hold the catch for 2 sec.",
+                  "video": "https://www.youtube.com/watch?v=DCJLYWGEdzo"
+                },
+                {
                   "name": "High-hang power snatch + OHS",
                   "sets": "6×(1+1)",
                   "load": "45–60%",
                   "note": "Finish the leg drive; lock arms immediately and squat without jumping wider. · Based on SN 1RM · Beginner: PVC or empty bar, high-hang power receive then controlled squat. Do not force a deep catch."
+                },
+                {
+                  "name": "Overhead squat hold, light (2 sec)",
+                  "sets": "1×3 holds",
+                  "load": "~50% snatch",
+                  "note": "Lock elbows; bar over mid-foot. Light load (~50% snatch) — enough to feel real overhead stability before squatting heavier."
                 },
                 {
                   "name": "Back squat, 3-sec eccentric",
@@ -52,36 +65,20 @@
                   "note": "Stable whole foot; knees follow toes throughout the descent. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "PVC overhead squat hold (2 sec)",
-                  "sets": "1×3 holds",
-                  "load": "Optional / light",
-                  "note": "Lock elbows; bar over mid‐foot. Optional if time remains. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Back extension + hollow hold (superset)",
+                  "sets": "2 rounds: 10 back ext + 20s hollow hold",
+                  "load": "Bodyweight",
+                  "note": "Superset: controlled back extensions into a hollow body hold. Keep it light and clean — quality over fatigue."
                 }
               ],
               "warmup": {
                 "mobility": [
-                  {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Stay in control; shoulders rotate without shrugging.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
                   {
                     "name": "Band W rows",
                     "sets": "1×8",
                     "load": "BW / light band",
                     "note": "Elbows high, rotate forearms up",
                     "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Drop snatch (PVC / empty bar) + OHS",
-                    "sets": "1–2×(2+2)",
-                    "load": "PVC / empty bar",
-                    "note": "PVC or empty bar by control; hold the catch for 2 sec.",
-                    "video": "https://www.youtube.com/watch?v=DCJLYWGEdzo"
                   }
                 ]
               }
@@ -92,10 +89,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "High-hang clean + split jerk",
-                  "sets": "6×(1+1)",
+                  "name": "Tall clean + unloaded split freeze",
+                  "sets": "2×3 each",
+                  "load": "PVC / empty bar",
+                  "note": "Fast elbows, then balanced feet; mark landing positions."
+                },
+                {
+                  "name": "High-hang clean",
+                  "sets": "5×2",
                   "load": "45–60%",
-                  "note": "Secure rack before dipping; split and hold 2 sec. · Based on CJ 1RM · Beginner: high-hang power clean + front squat; practice jerk footwork with PVC separately."
+                  "note": "Secure the rack before standing; elbows fast, whole foot down. · Based on CJ 1RM · Beginner: high-hang power clean + front squat."
+                },
+                {
+                  "name": "Split jerk, 2-sec split hold",
+                  "sets": "5×1",
+                  "load": "45–60%",
+                  "note": "Vertical dip, punch and split together; hold the split 2 sec before recovering. · Based on CJ 1RM · Beginner: PVC or empty bar; footwork first, load second."
                 },
                 {
                   "name": "Front squat, 3-sec eccentric",
@@ -104,35 +113,19 @@
                   "note": "Elbows high; knees travel in line with feet. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Light DB front-rack march",
-                  "sets": "1-2×20 sec",
-                  "load": "Optional / light",
-                  "note": "Brace, no torso sway; optional. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "DB Bulgarian split squat + ring row (superset)",
+                  "sets": "3 rounds: 8/side split squat + 8 ring rows",
+                  "load": "Light–moderate DBs / BW",
+                  "note": "Superset: single-leg strength and stability, then horizontal pull for upper back. Upright torso, full range."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Two distinct tracks, not tightrope; front foot lands flat.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Split jerk footwork steps",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Two tracks, stick the landing",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + unloaded split freeze",
-                    "sets": "2×3 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Fast elbows, then balanced feet; mark landing positions."
+                    "name": "Banded RDL (long-arm pull)",
+                    "sets": "1×8",
+                    "load": "Light band around forearms / empty bar",
+                    "note": "Band looped around forearms behind the back; hinge keeping arms long and lats engaged — grooves the strong-back finish for the clean pull."
                   }
                 ]
               }
@@ -154,10 +147,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Below-knee hang snatch, knee pause",
-                  "sets": "6×1",
+                  "name": "Segment snatch pull to knee",
+                  "sets": "2×3",
+                  "load": "PVC / empty bar",
+                  "note": "One-second knee pause; long arms and bar close."
+                },
+                {
+                  "name": "Low hang snatch",
+                  "sets": "5×1",
                   "load": "55–68%",
-                  "note": "Pause 1 sec balanced at knee; push and accelerate to hip. · Based on SN 1RM · Beginner: work above knee. If the bar drifts, reset at high hang rather than adding weight."
+                  "note": "Low hang (below knee); push and accelerate straight to the hip, no pause. · Based on SN 1RM · Beginner: work above knee. If the bar drifts, reset at high hang rather than adding weight."
+                },
+                {
+                  "name": "Snatch pull, 1-sec knee pause",
+                  "sets": "3×3",
+                  "load": "75–85%",
+                  "note": "Pause balanced over the bar at the knee, then drive to full extension. No arm bend. · Based on SN 1RM · Beginner: use snatch load, not pull load; position over weight."
                 },
                 {
                   "name": "Back squat",
@@ -166,34 +171,19 @@
                   "note": "Own the bottom; smooth ascent with no knee collapse. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "DB RDL (light)",
-                  "sets": "1-2×6",
-                  "load": "Optional / light",
-                  "note": "Feel leg drive and controlled hinge; optional. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Pendlay row + dead bug (superset)",
+                  "sets": "3 rounds: 6 rows + 8/side dead bug",
+                  "load": "Moderate barbell / BW",
+                  "note": "Superset: strict rows from the floor for lats and upper back, then anti-extension core. Flat back, no hip drive on rows."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Knees track; feel even pressure beneath both feet.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Ankle rocks",
                     "sets": "1×4/side",
                     "load": "BW / light band",
                     "note": "Heel down, smooth range"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Segment snatch pull to knee",
-                    "sets": "2×3",
-                    "load": "light bar",
-                    "note": "One-second knee pause; long arms and bar close."
                   }
                 ]
               }
@@ -204,10 +194,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
+                  "name": "Paused clean pull + muscle clean + split-foot steps",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Arms long through knee; add a muscle clean to finish the pull upright before landing on separate tracks."
+                },
+                {
                   "name": "Pause-at-knee clean + split jerk",
-                  "sets": "6×(1+1)",
+                  "sets": "5×(1+1)",
                   "load": "55–68%",
                   "note": "Patient to knee, aggressive leg drive, fast elbows, vertical dip. · Based on CJ 1RM · Beginner: above-knee clean and empty-bar split rehearsal if the pause disrupts balance."
+                },
+                {
+                  "name": "Clean pull, 1-sec knee pause",
+                  "sets": "3×3",
+                  "load": "75–85%",
+                  "note": "Same knee position as the clean; finish tall, shrug, no early arm pull. · Based on CJ 1RM · Beginner: stay at clean load and nail the pause."
                 },
                 {
                   "name": "Front squat",
@@ -216,35 +218,19 @@
                   "note": "Elbows lead up; chest remains supported. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Jerk split recovery rehearsal",
-                  "sets": "1×4 smooth",
-                  "load": "Optional / light",
-                  "note": "Practice confident, balanced recovery; sandbag was in warm‐up. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Goblet reverse lunge + single-leg calf raise (superset)",
+                  "sets": "3 rounds: 8/side lunge + 10/side calf raise",
+                  "load": "Moderate KB / DB",
+                  "note": "Superset: quads and glutes through a long step back, then ankle stiffness for the jerk drive."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Sandbag: legs first, close load, finish tall; med‐ball scoop toss if needed.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Light sandbag clean",
-                    "sets": "2×2",
-                    "load": "Light sandbag",
-                    "note": "Leg drive first. Scale to med-ball scoop toss (2×2) if needed.",
-                    "video": "https://www.youtube.com/watch?v=dHJhVwwP--M"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Paused clean pull + split-foot steps",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Arms long through knee; land on separate tracks."
+                    "name": "Barbell front-rack stretch",
+                    "sets": "1×30 sec",
+                    "load": "Empty bar in rack",
+                    "note": "Fingertips on bar, drive elbows up and forward; open lats and wrists for a relaxed rack."
                   }
                 ]
               }
@@ -266,10 +252,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Hang snatch + floor snatch",
+                  "name": "Tall snatch + 2-sec overhead hold",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Fast turnover, full elbow lock, no unnecessary foot jump."
+                },
+                {
+                  "name": "Hang snatch + snatch",
                   "sets": "5×(1+1)",
                   "load": "62–72%",
                   "note": "Recreate the same footprint and complete extension in both starts. · Based on SN 1RM · Beginner: two high-hang singles rather than a floor combination until both catches are committed."
+                },
+                {
+                  "name": "Snatch high pull",
+                  "sets": "3×3",
+                  "load": "60–70%",
+                  "note": "Full leg extension first, then elbows high and out; bar stays close. · Based on SN 1RM · Beginner: stop at the shrug (snatch pull) if arms bend early."
                 },
                 {
                   "name": "Back squat",
@@ -278,35 +276,20 @@
                   "note": "Deliberate lower; track knees through the sticking point. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Side plank + top-leg lift",
-                  "sets": "1×6/side",
-                  "load": "Optional / light",
-                  "note": "Pelvis level; short optional hip-control dose. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Seated DB strict press + Nordic hamstring curl (superset)",
+                  "sets": "3 rounds: 8 press + 4 Nordics (eccentric)",
+                  "load": "Moderate DBs / BW",
+                  "note": "Superset: overhead strength with no leg drive, then eccentric hamstring strength. Ribs down on the press; lower slow on Nordics."
                 }
               ],
               "warmup": {
                 "mobility": [
-                  {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Wake up hips and shoulders without fatigue.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
                   {
                     "name": "Thoracic reaches",
                     "sets": "1×4/side",
                     "load": "BW / light band",
                     "note": "Controlled upper-back rotation",
                     "video": "https://www.youtube.com/watch?v=Cn43k8-7iik"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall snatch + 2-sec overhead hold",
-                    "sets": "2×2",
-                    "load": "PVC/light",
-                    "note": "Fast turnover, full elbow lock, no unnecessary foot jump."
                   }
                 ]
               }
@@ -317,10 +300,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Hang clean + floor clean + jerk",
-                  "sets": "5×(1+1+1)",
+                  "name": "Tall clean + rack hold",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Turn elbows around quickly; stand only after a balanced catch."
+                },
+                {
+                  "name": "Hang clean + clean",
+                  "sets": "5×(1+1)",
                   "load": "62–72%",
-                  "note": "Two clean receives, one deliberate split; shorten complex if needed. · Based on CJ 1RM · Beginner: one hang clean followed by an unloaded split; no complex beyond attention span."
+                  "note": "Two clean receives, same rack and footprint each time. · Based on CJ 1RM · Beginner: one hang clean per set until the floor start is consistent."
+                },
+                {
+                  "name": "Push press + split jerk",
+                  "sets": "4×(2+1)",
+                  "load": "60–70%",
+                  "note": "Same dip for both; drive the press, then punch and split decisively on the jerk. · Based on CJ 1RM · Beginner: empty bar or light; prioritize two-track feet."
                 },
                 {
                   "name": "Front squat",
@@ -329,35 +324,19 @@
                   "note": "Keep elbows high while driving out of the hole. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Suitcase carry",
-                  "sets": "1×20 m/side",
-                  "load": "Optional / light",
-                  "note": "Light, steady torso; optional. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "DB box step-up + chest-supported DB row (superset)",
+                  "sets": "3 rounds: 8/side step-up + 10 rows",
+                  "load": "Moderate DBs",
+                  "note": "Superset: drive through the whole front foot without pushing off the back leg, then squeeze shoulder blades on the row."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Foot angle and rear-knee bend remain consistent.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Split jerk recovery steps",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Recover front foot halfway back, then bring rear foot forward",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + rack hold",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Turn elbows around quickly; stand only after a balanced catch."
+                    "name": "Kneeling hip flexor stretch",
+                    "sets": "1×30 sec/side",
+                    "load": "BW",
+                    "note": "Squeeze the back-leg glute, ribs down; opens the rear-leg position for the split jerk."
                   }
                 ]
               }
@@ -379,10 +358,23 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
+                  "name": "PVC snatch balance + OHS hold",
+                  "sets": "2×(2+1)",
+                  "load": "PVC / empty bar",
+                  "note": "Punch to locked elbows; hold 2 sec in the bottom.",
+                  "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
+                },
+                {
                   "name": "No-foot power snatch",
-                  "sets": "5×2",
+                  "sets": "4×2",
                   "load": "45–60%",
                   "note": "Use the drill to eliminate backward kicks, not to eliminate normal foot movement forever. · Based on SN 1RM · Beginner: PVC or empty bar; film a successful landing and compare with Week 1."
+                },
+                {
+                  "name": "Snatch-grip RDL",
+                  "sets": "3×5",
+                  "load": "60–70%",
+                  "note": "Deload: smooth hinge, lats on, bar brushing the thighs. Easy positional work. · Based on SN 1RM · Beginner: empty bar or light."
                 },
                 {
                   "name": "Back squat",
@@ -391,35 +383,19 @@
                   "note": "Easy speed; no grind or positional compensation. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Controlled DB overhead hold",
-                  "sets": "1-2×15 sec/side",
-                  "load": "Optional / light",
-                  "note": "Only if pain-free; otherwise scapular band work. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Prone Y-T-W raise + side plank (superset)",
+                  "sets": "2 rounds: 6 each Y/T/W + 20 sec/side",
+                  "load": "Light plates / BW",
+                  "note": "Superset: deload: lower-trap and rear-delt endurance for overhead position, then lateral trunk. Easy effort."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Stay balanced on mid-foot; do not force extra range.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Supported hip airplanes",
                     "sets": "1×4/side",
                     "load": "BW / light band",
                     "note": "Small, balanced range of motion"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "PVC snatch balance + OHS hold",
-                    "sets": "2×(2+1)",
-                    "load": "PVC / empty bar / light",
-                    "note": "Punch to locked elbows; hold 2 sec in the bottom.",
-                    "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
                   }
                 ]
               }
@@ -430,10 +406,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean + 2-sec catch hold + jerk",
-                  "sets": "5×(1+1)",
+                  "name": "Tall clean + jerk footwork on tape",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Fast elbows and steady split geometry."
+                },
+                {
+                  "name": "Clean, 2-sec catch hold",
+                  "sets": "4×1",
                   "load": "50–60%",
-                  "note": "Freeze rack before dip; move confidently to the split. · Based on CJ 1RM · Beginner: use power catch + controlled squat; separate footwork from jerk loading."
+                  "note": "Freeze the rack in the bottom 2 sec, then stand. Deload — film one rep. · Based on CJ 1RM · Beginner: power catch + controlled squat."
+                },
+                {
+                  "name": "Split jerk, 2-sec split hold",
+                  "sets": "4×1",
+                  "load": "50–60%",
+                  "note": "Freeze rack before dip; move confidently to the split and confirm two tracks on video. · Based on CJ 1RM · Beginner: separate footwork from jerk loading."
                 },
                 {
                   "name": "Front squat",
@@ -442,35 +430,19 @@
                   "note": "Smooth descent; full foot remains planted. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Jerk split recovery + video note",
-                  "sets": "1×4 easy",
-                  "load": "Optional / light",
-                  "note": "No extra squat volume; confirm two‐track split on video. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Single-leg glute bridge + tempo push-up (superset)",
+                  "sets": "2 rounds: 10/side bridge + 6 push-ups (3-sec down)",
+                  "load": "BW",
+                  "note": "Superset: deload: glute activation and controlled pressing. Leave plenty in the tank."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. 1 light set each; W row = high row then rotate forearms up.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Band W rows",
-                    "sets": "1×8",
-                    "load": "BW / light band",
-                    "note": "Elbows high, rotate forearms up",
-                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + jerk footwork on tape",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Fast elbows and steady split geometry."
+                    "name": "Goblet squat pry",
+                    "sets": "1×30 sec",
+                    "load": "Light KB",
+                    "note": "Sit in the bottom, elbows push knees out, shift side to side; own the bottom position."
                   }
                 ]
               }
@@ -492,10 +464,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch from floor",
-                  "sets": "6×1",
+                  "name": "No-foot high-hang snatch",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Finish vertical drive without the feet shooting backward."
+                },
+                {
+                  "name": "Snatch",
+                  "sets": "5×1",
                   "load": "70–82%",
                   "note": "Long arms to extension; receive in the same balanced footprint. · Based on SN 1RM · Beginner: high hang or blocks. Successful confident receiving beats a heavier floor rep."
+                },
+                {
+                  "name": "Snatch pull",
+                  "sets": "3×3",
+                  "load": "85–95%",
+                  "note": "Same start and posture as the snatch; finish tall and fast. · Based on SN 1RM · Beginner: snatch-weight pulls only."
                 },
                 {
                   "name": "Back squat",
@@ -504,34 +488,19 @@
                   "note": "Leave 1-3 clean reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Light band external rotation",
-                  "sets": "1-2×10",
-                  "load": "Optional / light",
-                  "note": "Shoulder maintenance; optional. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Snatch-grip behind-the-neck press + single-leg DB RDL (superset)",
+                  "sets": "3 rounds: 6 press + 8/side RDL",
+                  "load": "Light barbell / moderate DB",
+                  "note": "Superset: overhead pressing strength in the snatch receiving position, then hinge balance and hamstrings. Press from a stable trunk."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Track knees, ribs stacked beneath bar.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Overhead reaches",
                     "sets": "1×4",
                     "load": "BW / light band",
                     "note": "Reach without flaring ribs"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "No-foot high-hang snatch",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Finish vertical drive without the feet shooting backward."
                   }
                 ]
               }
@@ -542,10 +511,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean & split jerk from floor",
-                  "sets": "6×(1+1)",
+                  "name": "Tall clean + tall jerk drill",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Fast rack then rapid arms without an excessive press-out."
+                },
+                {
+                  "name": "Clean & split jerk",
+                  "sets": "5×(1+1)",
                   "load": "70–80%",
                   "note": "Finish through upper thigh; stand and reset before a decisive jerk. · Based on CJ 1RM · Beginner: power clean + clean front squat at controllable load; PVC/empty-bar jerk."
+                },
+                {
+                  "name": "Clean pull",
+                  "sets": "3×3",
+                  "load": "85–95%",
+                  "note": "Patient off the floor, full extension, bar close. · Based on CJ 1RM · Beginner: clean-weight pulls only."
                 },
                 {
                   "name": "Front squat",
@@ -554,35 +535,19 @@
                   "note": "Strong rack; evenly loaded feet. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "DB front-rack hold",
-                  "sets": "1×30 sec",
-                  "load": "Optional / light",
-                  "note": "Optional easy bracing, not a fatigue test. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "KB front-rack walking lunge + ab wheel rollout (superset)",
+                  "sets": "3 rounds: 20 m lunge + 8 rollouts",
+                  "load": "Moderate KBs / ab wheel",
+                  "note": "Superset: front-rack posture under fatigue in the legs, then anti-extension core. Elbows up, no ribs flaring."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
+                    "name": "90/90 hip switches",
                     "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Preview rear-foot landing; two tracks.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Split jerk footwork steps",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Two tracks, stick the landing",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + tall jerk drill",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Fast rack then rapid arms without an excessive press-out."
+                    "load": "BW",
+                    "note": "Tall torso, rotate through the hips; prepares hips for a deep, upright receive."
                   }
                 ]
               }
@@ -604,10 +569,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
+                  "name": "Tall snatch + bottom freeze",
+                  "sets": "2×(1+1)",
+                  "load": "PVC / empty bar",
+                  "note": "Fast elbows, firm lockout, committed receiving."
+                },
+                {
                   "name": "Snatch: BUILD TO HEAVY",
                   "sets": "Build to heavy",
                   "load": "Technique-limited",
-                  "note": "Build only while lockout, width and confidence remain excellent; no prescribed %. · Beginner: build to a best repeatable technical rep, even if it is an empty bar. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
+                  "note": "Build only while lockout, width and confidence remain excellent; no prescribed %. Coach films/records the best made rep. · Beginner: build to a best repeatable technical rep, even if it is an empty bar. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
+                },
+                {
+                  "name": "Snatch pull",
+                  "sets": "3×2",
+                  "load": "~100% of today's top snatch",
+                  "note": "Use today's best snatch as the load; fast, tall finish. · Beginner: same load as your best rep today."
                 },
                 {
                   "name": "Back squat, light technique sets",
@@ -616,34 +593,19 @@
                   "note": "Smooth and fast, several reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Coach technique notes",
-                  "sets": "After top rep",
-                  "load": "Unloaded",
-                  "note": "Film / record best made rep and the quality of catch, lockout, feet and extension."
+                  "name": "Strict pull-up + reverse hyper (superset)",
+                  "sets": "2 rounds: 5 pull-ups + 12 reverse hypers",
+                  "load": "BW / light",
+                  "note": "Superset: build-to-heavy day, so short and crisp: vertical pull for lats, then posterior chain decompression. Band-assist pull-ups as needed."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Calm, familiar setup and full-foot balance.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Squat-to-stand",
                     "sets": "1×4",
                     "load": "BW / light band",
                     "note": "Balance at midfoot"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall snatch + bottom freeze",
-                    "sets": "2×(1+1)",
-                    "load": "light",
-                    "note": "Fast elbows, firm lockout, committed receiving."
                   }
                 ]
               }
@@ -654,10 +616,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
+                  "name": "Tall clean + split freeze",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Elbows through; stable split and straight arms."
+                },
+                {
                   "name": "Clean & jerk: BUILD TO HEAVY",
                   "sets": "Build to heavy",
                   "load": "Technique-limited",
-                  "note": "Only increase with decisive rack, clear jerk lockout and stable split. · Beginner: use high-hang clean and an appropriate jerk variation; stop at first loss of confidence. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
+                  "note": "Only increase with decisive rack, clear jerk lockout and stable split. Coach films/records the best made rep. · Beginner: use high-hang clean and an appropriate jerk variation; stop at first loss of confidence. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
+                },
+                {
+                  "name": "Clean pull",
+                  "sets": "3×2",
+                  "load": "~100% of today's top clean",
+                  "note": "Use today's best clean as the load; fast, tall finish. · Beginner: same load as your best rep today."
                 },
                 {
                   "name": "Front squat, light technique sets",
@@ -666,35 +640,19 @@
                   "note": "No grind. Strength is not the benchmark today. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Coach technique notes",
-                  "sets": "After top rep",
-                  "load": "Unloaded",
-                  "note": "Film / record best made rep and the quality of catch, lockout, feet and extension."
+                  "name": "Goblet Cossack squat + half-kneeling KB press (superset)",
+                  "sets": "2 rounds: 6/side Cossack + 8/side press",
+                  "load": "Light–moderate KB",
+                  "note": "Superset: lateral hip strength and adductor range, then single-arm overhead press with a level pelvis."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Find front foot and heel position before warming.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Jerk track steps",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Repeat front and rear foot landing",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + split freeze",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Elbows through; stable split and straight arms."
+                    "name": "Barbell front-rack stretch",
+                    "sets": "1×30 sec",
+                    "load": "Empty bar in rack",
+                    "note": "Fingertips on bar, drive elbows up and forward; open lats and wrists for a relaxed rack."
                   }
                 ]
               }
@@ -725,10 +683,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "High-hang snatch + floor snatch",
+                  "name": "Tall snatch into 2-sec hold",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Instant lockout; feet land quietly."
+                },
+                {
+                  "name": "High-hang snatch + snatch",
                   "sets": "5×(1+1)",
                   "load": "60–70%",
-                  "note": "Match catch width and receiving confidence in both positions. · Based on SN 1RM · Beginner: high-hang power snatch + OHS, then separate light singles."
+                  "note": "Match catch width and receiving confidence in both positions. · Based on SN 1RM · Beginner: high-hang power snatch + OHS."
+                },
+                {
+                  "name": "Snatch balance",
+                  "sets": "4×2",
+                  "load": "55–70%",
+                  "note": "Fast drop under, punch to lockout, ride to the bottom. · Based on SN 1RM · Beginner: PVC/empty bar or pressing snatch balance."
                 },
                 {
                   "name": "Back squat",
@@ -737,35 +707,19 @@
                   "note": "Rebuild volume; steady tempo with 2+ reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Light DB waiter carry",
-                  "sets": "1×15 m/side",
-                  "load": "Optional / light",
-                  "note": "Only if overhead is stable and pain-free. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Barbell good morning + hanging knee raise (superset)",
+                  "sets": "3 rounds: 8 good mornings + 10 knee raises",
+                  "load": "Light–moderate barbell / BW",
+                  "note": "Superset: spinal erector and hamstring strength for holding back angle in the pull, then hip flexor and lower-ab strength. Soft knees, neutral spine."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Warm hips and rotator cuff without fatigue.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Band W rows",
-                    "sets": "1×8",
+                    "name": "Dynamic lat stretch",
+                    "sets": "1×4",
                     "load": "BW / light band",
-                    "note": "Elbows high, rotate forearms up",
-                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall snatch into 2-sec hold",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Instant lockout; feet land quietly."
+                    "note": "Gentle overhead reach without fatigue"
                   }
                 ]
               }
@@ -776,10 +730,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "High-hang clean + split jerk",
-                  "sets": "6×(1+1)",
+                  "name": "Tall clean + dry split jerk",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Fast elbows and simultaneous punch/feet."
+                },
+                {
+                  "name": "High-hang clean",
+                  "sets": "5×2",
                   "load": "60–70%",
-                  "note": "No unnecessary kick-back; secure rack and commit to the split. · Based on CJ 1RM · Beginner: high-hang power clean then jerk step-to-split without load."
+                  "note": "No unnecessary kick-back; meet the bar and secure the rack. · Based on CJ 1RM · Beginner: high-hang power clean + front squat."
+                },
+                {
+                  "name": "Jerk dip + split jerk",
+                  "sets": "4×(1+1)",
+                  "load": "60–70%",
+                  "note": "Pause-free dip and drive, then the full jerk; vertical torso throughout. · Based on CJ 1RM · Beginner: empty bar step-to-split."
                 },
                 {
                   "name": "Front squat",
@@ -788,35 +754,19 @@
                   "note": "Smooth front rack; controlled volume. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Light DB front-rack carry",
-                  "sets": "1×20 m/side",
-                  "load": "Optional / light",
-                  "note": "Optional: ribs over pelvis, no lean. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Front-foot-elevated split squat + DB bench press (superset)",
+                  "sets": "3 rounds: 8/side split squat + 8 bench",
+                  "load": "Moderate DBs",
+                  "note": "Superset: deep front-knee range for clean recovery and split strength, then horizontal pressing for balance. Control the bottom of each rep."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Two-track landing and front-foot balance.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Line split steps",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Two-track split",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + dry split jerk",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Fast elbows and simultaneous punch/feet."
+                    "name": "Kneeling hip flexor stretch",
+                    "sets": "1×30 sec/side",
+                    "load": "BW",
+                    "note": "Squeeze the back-leg glute, ribs down; opens the rear-leg position for the split jerk."
                   }
                 ]
               }
@@ -838,10 +788,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
+                  "name": "Snatch-grip segment pull",
+                  "sets": "2×3",
+                  "load": "PVC / empty bar",
+                  "note": "Patient to knee, long arms, finish tall."
+                },
+                {
                   "name": "Above-knee hang snatch",
-                  "sets": "6×1",
+                  "sets": "5×1",
                   "load": "68–76%",
                   "note": "Violent leg drive without an early curl; pull under as bar rises. · Based on SN 1RM · Beginner: high hang or power catch, then controlled overhead squat."
+                },
+                {
+                  "name": "Snatch pull from above knee",
+                  "sets": "3×3",
+                  "load": "85–95%",
+                  "note": "Same hang position; aggressive hip finish, then shrug. · Based on SN 1RM · Beginner: snatch-weight pulls only."
                 },
                 {
                   "name": "Back squat",
@@ -850,34 +812,19 @@
                   "note": "Repeat depth and stable knee line. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Banded face pull",
-                  "sets": "1-2×10",
-                  "load": "Optional / light",
-                  "note": "Optional light upper-back activity. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Barbell hip thrust + bottoms-up KB press (superset)",
+                  "sets": "3 rounds: 10 hip thrusts + 6/side press",
+                  "load": "Moderate barbell / light KB",
+                  "note": "Superset: glute strength for the hip finish, then shoulder stability through a strict overhead press. Squeeze at the top of every thrust."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Controlled hips, open shoulders.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Dynamic lat stretch",
                     "sets": "1×4",
                     "load": "BW / light band",
                     "note": "Gentle overhead reach without fatigue"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Snatch-grip segment pull",
-                    "sets": "2×3",
-                    "load": "50–60%",
-                    "note": "Patient to knee, long arms, finish tall."
                   }
                 ]
               }
@@ -888,10 +835,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
+                  "name": "Clean high-pull shape + muscle clean + tape-track split",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Finish legs before arms; add a muscle clean to finish the pull upright, then split — do not jump back."
+                },
+                {
                   "name": "Above-knee hang clean + split jerk",
-                  "sets": "6×(1+1)",
+                  "sets": "5×(1+1)",
                   "load": "68–76%",
                   "note": "Bar close to upper thigh, fast elbow turnover, vertical jerk. · Based on CJ 1RM · Beginner: muscle clean / high-hang catch with light jerk footwork."
+                },
+                {
+                  "name": "Clean high pull",
+                  "sets": "3×3",
+                  "load": "70–80%",
+                  "note": "Legs finish first, then elbows high; keep the bar close. · Based on CJ 1RM · Beginner: stop at the shrug if arms bend early."
                 },
                 {
                   "name": "Front squat",
@@ -900,35 +859,19 @@
                   "note": "Avoid elbow drop on last rep. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Jerk footwork quality review",
-                  "sets": "1×4 easy",
-                  "load": "Optional / light",
-                  "note": "Sandbag clean is in the warm‐up; keep finish low fatigue. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Single-leg KB RDL + strict chin-up (superset)",
+                  "sets": "3 rounds: 8/side RDL + 5 chin-ups",
+                  "load": "Moderate KB / BW",
+                  "note": "Superset: single-leg hinge strength, then lats and biceps for keeping the bar close. Band-assist chin-ups as needed."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Finish leg extension before pulling under; scale to med‐ball scoop toss.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Light sandbag clean",
-                    "sets": "2×2",
-                    "load": "Light sandbag",
-                    "note": "Leg drive first. Scale to med-ball scoop toss (2×2) if needed.",
-                    "video": "https://www.youtube.com/watch?v=dHJhVwwP--M"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Clean high-pull shape + tape-track split",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Finish legs before arms; do not jump back."
+                    "name": "Barbell front-rack stretch",
+                    "sets": "1×30 sec",
+                    "load": "Empty bar in rack",
+                    "note": "Fingertips on bar, drive elbows up and forward; open lats and wrists for a relaxed rack."
                   }
                 ]
               }
@@ -950,10 +893,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch from floor, 1-sec knee pause",
-                  "sets": "6×1",
+                  "name": "Pause-at-knee snatch deadlift",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Hold knee position 1 sec, then extend without curling."
+                },
+                {
+                  "name": "Snatch, 1-sec knee pause",
+                  "sets": "5×1",
                   "load": "73–80%",
-                  "note": "Stay over bar, push through legs, no wild foot spread. · Based on SN 1RM · Beginner: below-knee hang with the same pause; no loaded position they cannot hold."
+                  "note": "Stay over bar, push through legs, no wild foot spread. · Based on SN 1RM · Beginner: below-knee hang; no loaded position they cannot hold."
+                },
+                {
+                  "name": "Halting snatch deadlift",
+                  "sets": "3×3",
+                  "load": "85–95%",
+                  "note": "Lift to just above the knee and hold 2 sec — shoulders over bar, back locked. Lower under control. · Based on SN 1RM · Beginner: snatch-weight; position over load."
                 },
                 {
                   "name": "Back squat",
@@ -962,34 +917,19 @@
                   "note": "Strong ascent; stop before form changes. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Short side plank",
-                  "sets": "1×20 sec/side",
-                  "load": "Optional / light",
-                  "note": "Optional trunk control. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Weighted chin-up + GHD sit-up (superset)",
+                  "sets": "3 rounds: 4 chin-ups + 8 GHD sit-ups",
+                  "load": "Light vest or DB / BW",
+                  "note": "Superset: heavier vertical pull, then trunk flexion through range. Partial-range or AbMat sit-ups for anyone new to the GHD."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Hips steady; feel mid-foot pressure.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Supported single-leg hinge",
                     "sets": "1×4/side",
                     "load": "BW / light band",
                     "note": "Steady hip and foot pressure"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Pause-at-knee snatch deadlift",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Hold knee position 1 sec, then extend without curling."
                   }
                 ]
               }
@@ -1000,10 +940,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean from floor, 1-sec pause + jerk",
-                  "sets": "6×(1+1)",
+                  "name": "Pause-at-knee clean pull + tall clean",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "No rushed knee passage; elbows are fast after extension."
+                },
+                {
+                  "name": "Clean, 1-sec knee pause",
+                  "sets": "5×1",
                   "load": "73–80%",
-                  "note": "Balance through the knee, elbows through, commit to jerk. · Based on CJ 1RM · Beginner: clean above knee, then light split drill; no compromised pause."
+                  "note": "Balance through the knee, then aggressive leg drive and fast elbows. · Based on CJ 1RM · Beginner: clean above knee; no compromised pause."
+                },
+                {
+                  "name": "Push press + split jerk",
+                  "sets": "4×(2+1)",
+                  "load": "65–75%",
+                  "note": "Same dip for both; commit to the split and lock out. · Based on CJ 1RM · Beginner: empty bar or light jerk footwork."
                 },
                 {
                   "name": "Front squat",
@@ -1012,35 +964,19 @@
                   "note": "Drive tall with elbows high. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Light DB front-rack carry",
-                  "sets": "1×15 m/side",
-                  "load": "Optional / light",
-                  "note": "Optional no-side-bend bracing. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "DB lateral lunge + Pallof press (superset)",
+                  "sets": "3 rounds: 6/side lunge + 8/side Pallof",
+                  "load": "Moderate DB / band",
+                  "note": "Superset: frontal-plane leg strength and adductors, then anti-rotation core. Sit back into the hip, knee tracks toes."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Match knees with feet and repeat landing spots.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Split-foot stick drills",
-                    "sets": "1×4",
+                    "name": "Ankle rocks",
+                    "sets": "1×4/side",
                     "load": "BW / light band",
-                    "note": "Quiet, balanced landing",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Pause-at-knee clean pull + tall clean",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "No rushed knee passage; elbows are fast after extension."
+                    "note": "Heel down, smooth range"
                   }
                 ]
               }
@@ -1062,10 +998,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch from floor",
-                  "sets": "6×1",
+                  "name": "Tall snatch, lockout freeze",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Quick punch under, no soft elbows."
+                },
+                {
+                  "name": "Snatch",
+                  "sets": "5×1",
                   "load": "78–85%",
                   "note": "Push from floor; bar accelerates past knee; finish and receive. · Based on SN 1RM · Beginner: use 60-70% or RPE 6, even if established lifters progress past 80%."
+                },
+                {
+                  "name": "Power snatch",
+                  "sets": "3×2",
+                  "load": "65–72%",
+                  "note": "Speed work: fast, high finish and a crisp power receive. · Based on SN 1RM · Beginner: hang power snatch, light."
                 },
                 {
                   "name": "Back squat",
@@ -1074,35 +1022,20 @@
                   "note": "Keep 1-2 reps in reserve; zero grinding. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Band pull-apart",
-                  "sets": "1×12",
-                  "load": "Optional / light",
-                  "note": "Low-fatigue optional finish. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Barbell strict press + single-leg hip thrust (superset)",
+                  "sets": "3 rounds: 5 press + 8/side hip thrust",
+                  "load": "Moderate barbell / BW",
+                  "note": "Superset: strict overhead strength, then glute strength one side at a time. No leg drive on the press."
                 }
               ],
               "warmup": {
                 "mobility": [
-                  {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Knee alignment + shoulder external‐rotation control.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
                   {
                     "name": "Band W rows",
                     "sets": "1×8",
                     "load": "BW / light band",
                     "note": "Elbows high, rotate forearms up",
                     "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall snatch, lockout freeze",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Quick punch under, no soft elbows."
                   }
                 ]
               }
@@ -1113,10 +1046,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean & split jerk from floor",
-                  "sets": "6×(1+1)",
+                  "name": "Tall clean + empty-bar jerk dip",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Fast elbows; straight vertical dip."
+                },
+                {
+                  "name": "Clean & split jerk",
+                  "sets": "5×(1+1)",
                   "load": "78–85%",
                   "note": "No arm pull early. Rack securely before split, punch to lock. · Based on CJ 1RM · Beginner: high-hang clean + light jerk; meet the bar and stand decisively."
+                },
+                {
+                  "name": "Clean pull",
+                  "sets": "3×2",
+                  "load": "90–100%",
+                  "note": "Fast through the knee, full extension; low reps, high quality. · Based on CJ 1RM · Beginner: clean-weight pulls only."
                 },
                 {
                   "name": "Front squat",
@@ -1125,35 +1070,19 @@
                   "note": "Full-foot pressure under a stable rack. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Controlled step-down",
-                  "sets": "1×6/side",
-                  "load": "Optional / light",
-                  "note": "Light, optional; track knee over mid-foot. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Weighted back extension + hanging L-sit hold (superset)",
+                  "sets": "3 rounds: 8 back ext + 15 sec hold",
+                  "load": "Plate / BW",
+                  "note": "Superset: loaded spinal erectors, then compression strength. Tuck the knees on the L-sit if needed."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Balanced front foot, rear knee slightly bent.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Split jerk recovery rehearsal",
-                    "sets": "1×4",
-                    "load": "BW / light band",
-                    "note": "Return to standing in sequence",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + empty-bar jerk dip",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Fast elbows; straight vertical dip."
+                    "name": "Goblet squat pry",
+                    "sets": "1×30 sec",
+                    "load": "Light KB",
+                    "note": "Sit in the bottom, elbows push knees out, shift side to side; own the bottom position."
                   }
                 ]
               }
@@ -1175,10 +1104,22 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch from floor",
+                  "name": "No-foot high-hang snatch",
+                  "sets": "2×2",
+                  "load": "PVC / empty bar",
+                  "note": "Reinforce a quiet, repeatable receiving footprint."
+                },
+                {
+                  "name": "Snatch",
                   "sets": "5×1",
                   "load": "82–90%",
                   "note": "Advance only on completely stable makes; no grinding or press-out. · Based on SN 1RM · Beginner: RPE 6-7 with repeatable catches; skip near-max percentages."
+                },
+                {
+                  "name": "Snatch pull",
+                  "sets": "2×2",
+                  "load": "90–100%",
+                  "note": "Low volume, fast and tall; arrive fresh for total week. · Based on SN 1RM · Beginner: snatch-weight pulls only."
                 },
                 {
                   "name": "Back squat",
@@ -1187,35 +1128,20 @@
                   "note": "Fast reps, at least 2 reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Easy external rotation",
-                  "sets": "1×10",
-                  "load": "Optional / light",
-                  "note": "Optional only; arrive fresh for total week. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Ring dip + side plank hip dip (superset)",
+                  "sets": "2 rounds: 6 dips + 8/side hip dips",
+                  "load": "BW / band-assisted",
+                  "note": "Superset: heavy-singles week, so low volume: triceps and shoulder strength for the lockout, then obliques."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Use light tension only before heavy singles.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Band W rows",
-                    "sets": "1×8",
+                    "name": "Thoracic reaches",
+                    "sets": "1×4/side",
                     "load": "BW / light band",
-                    "note": "Elbows high, rotate forearms up",
-                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "No-foot high-hang snatch",
-                    "sets": "2×2",
-                    "load": "light",
-                    "note": "Reinforce a quiet, repeatable receiving footprint."
+                    "note": "Controlled upper-back rotation",
+                    "video": "https://www.youtube.com/watch?v=Cn43k8-7iik"
                   }
                 ]
               }
@@ -1226,10 +1152,22 @@
               "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean & split jerk from floor",
+                  "name": "Tall clean + dry split jerk",
+                  "sets": "2×2 each",
+                  "load": "PVC / empty bar",
+                  "note": "Confidence under the bar and crisp feet."
+                },
+                {
+                  "name": "Clean & split jerk",
                   "sets": "5×(1+1)",
                   "load": "82–90%",
                   "note": "No hesitation in rack or jerk; sharp lockout. · Based on CJ 1RM · Beginner: RPE 6-7 and well-controlled receiving; no pressure to reach 90%."
+                },
+                {
+                  "name": "Split jerk from rack",
+                  "sets": "3×1",
+                  "load": "80–88%",
+                  "note": "Heavy jerk confidence before the total: one dip, one drive, stick the split. · Based on CJ 1RM · Beginner: RPE 6-7 jerk you can stick every time."
                 },
                 {
                   "name": "Front squat",
@@ -1238,35 +1176,19 @@
                   "note": "Clean positions, 2+ reps in reserve. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Easy suitcase carry",
-                  "sets": "1×20 m/side",
-                  "load": "Optional / light",
-                  "note": "Optional low-fatigue finish. · OPTIONAL if class time allows; skip before rushing primary work."
+                  "name": "Chest-supported T-bar row + Copenhagen plank (superset)",
+                  "sets": "2 rounds: 8 rows + 15 sec/side",
+                  "load": "Moderate / BW",
+                  "note": "Superset: mid-back thickness for a solid rack, then adductor strength. Short-lever Copenhagen (knee on bench) for most."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Same two tracks; no stiff back leg.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
-                    "name": "Light split steps",
+                    "name": "Squat-to-stand",
                     "sets": "1×4",
                     "load": "BW / light band",
-                    "note": "No bar required",
-                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall clean + dry split jerk",
-                    "sets": "2×2 each",
-                    "load": "PVC / empty bar / light",
-                    "note": "Confidence under the bar and crisp feet."
+                    "note": "Balance at midfoot"
                   }
                 ]
               }
@@ -1288,10 +1210,23 @@
               "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Fast snatch singles from floor",
+                  "name": "Tall snatch + OHS hold",
+                  "sets": "2×(1+1)",
+                  "load": "PVC / empty bar",
+                  "note": "Set stance and punch to a decisive lockout.",
+                  "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
+                },
+                {
+                  "name": "Fast snatch singles",
                   "sets": "4×1",
                   "load": "55–70%",
                   "note": "Crisp and easy: all makes, no heavy attempts, no missed reps. · Based on SN 1RM"
+                },
+                {
+                  "name": "Snatch pull, fast",
+                  "sets": "2×2",
+                  "load": "70–80%",
+                  "note": "Speed only; leave the gym fresh. Plan warm-up jumps and openers with your coach after. · Based on SN 1RM"
                 },
                 {
                   "name": "Back squat, very easy",
@@ -1300,35 +1235,19 @@
                   "note": "Explosive intent, minimal fatigue; skip if needed. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Attempt planning / mobility",
-                  "sets": "~12–15 min",
-                  "load": "Unloaded",
-                  "note": "Plan warm-up jumps and openers; keep Monday easy. Optional low-fatigue mobility."
+                  "name": "Band face pull + dead bug (superset)",
+                  "sets": "2 rounds: 15 face pulls + 6/side dead bug",
+                  "load": "Light band / BW",
+                  "note": "Superset: taper week: easy shoulder health and core control. No fatigue before Saturday."
                 }
               ],
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "Short, level steps; knees follow toes. Finish warm, not tired. Skip any irritating range.",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
-                  },
-                  {
                     "name": "Overhead reach + ankle rocks",
                     "sets": "1×4 each",
                     "load": "BW / light band",
                     "note": "Gentle range only"
-                  }
-                ],
-                "primer": [
-                  {
-                    "name": "Tall snatch + OHS hold",
-                    "sets": "2×(1+1)",
-                    "load": "PVC/light",
-                    "note": "Set stance and punch to a decisive lockout.",
-                    "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
                   }
                 ]
               }
@@ -1338,6 +1257,12 @@
               "colorClass": "thu",
               "focus": "OLYMPIC TOTAL — SNATCH + CLEAN & JERK",
               "exercises": [
+                {
+                  "name": "Tall snatch + tall clean",
+                  "sets": "2×(1+1)",
+                  "load": "PVC / empty bar",
+                  "note": "Empty bar openers: snap under, find your footprint, then start warm-ups."
+                },
                 {
                   "name": "Snatch — official attempts",
                   "sets": "3×1",
@@ -1354,14 +1279,12 @@
               "warmup": {
                 "mobility": [
                   {
-                    "name": "Lateral band walk",
-                    "sets": "1×6/side",
-                    "load": "Light mini-band",
-                    "note": "A little warmth, no fatigue; test-day prep",
-                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                    "name": "Overhead reach + ankle rocks",
+                    "sets": "1×4 each",
+                    "load": "BW / light band",
+                    "note": "Gentle range only"
                   }
-                ],
-                "primer": []
+                ]
               }
             }
           ]
