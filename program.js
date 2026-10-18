@@ -167,7 +167,15 @@ function dayWarmupExercises(day) {
     {name:'Shoulder CARs',               sets:'2×10',  load:'BW',         note:'Controlled articular rotations'},
     {name:'Lu Raises',                   sets:'2×10',  load:'Light Plate', note:'Slow and controlled — shoulder health'},
   ];
-  return {complex, mobility};
+  // Cycle-specific warm-up choices appear inside the existing collapsed section.
+  // The original barbell complexes and the original mobility menu above are unchanged.
+  const focused = day.warmup || {};
+  return {
+    complex,
+    mobility,
+    focusedPrimer: Array.isArray(focused.primer) ? focused.primer : [],
+    focusedMobility: Array.isArray(focused.mobility) ? focused.mobility : []
+  };
 }
 function dayCooldownExercises() {
   return [
@@ -220,15 +228,28 @@ function dayPumpExercises(day) {
 }
 
 function collapsibleSection(id, label, accentColor, rows) {
-  const rowsHTML = rows.map(r =>
-    `<tr><td class="wu-name">${r.name}</td><td class="wu-sets">${r.sets}</td><td class="wu-load">${r.load}</td><td class="wu-note">${r.note||''}</td></tr>`
-  ).join('');
+  const rowsHTML = rows.map(r => {
+    // Only approved YouTube watch URLs can become demo links.
+    const video = typeof r.video === 'string' && /^https:\/\/www\.youtube\.com\/watch\?v=[A-Za-z0-9_-]{11}$/.test(r.video)
+      ? ` <a href="${r.video}" target="_blank" rel="noopener noreferrer" style="color:var(--accent2);white-space:nowrap;">▶ Demo</a>`
+      : '';
+    return `<tr><td class="wu-name">${r.name}</td><td class="wu-sets">${r.sets}</td><td class="wu-load">${r.load}</td><td class="wu-note">${r.note||''}${video}</td></tr>`;
+  }).join('');
   return `<div class="wu-section"><button class="wu-toggle" onclick="toggleWU('${id}')"><span class="wu-toggle-label" style="color:${accentColor}">${label}</span><span class="wu-toggle-arrow">&#9660;</span></button><div class="wu-body" id="${id}"><table class="wu-table"><thead><tr><th>Exercise</th><th>Sets</th><th>Load</th><th>Note</th></tr></thead><tbody>${rowsHTML}</tbody></table></div></div>`;
 }
 
 function renderWarmup(day, uid) {
-  const {complex, mobility} = dayWarmupExercises(day);
-  const allRows = [...complex, {name:'─── Mobility ───', sets:'', load:'', note:''}, ...mobility];
+  const {complex, mobility, focusedPrimer, focusedMobility} = dayWarmupExercises(day);
+  // Old cycles still render identically. New cycles insert day-specific moves
+  // into this SAME dropdown; nothing is removed from the barbell primer.
+  const hasFocus = focusedPrimer.length || focusedMobility.length;
+  const divider = name => ({name:`─── ${name} ───`,sets:'',load:'',note:''});
+  const allRows = hasFocus
+    ? [divider('Barbell Primer'), ...complex,
+       ...(focusedPrimer.length ? [divider('Today’s Technique Primer'), ...focusedPrimer] : []),
+       ...(focusedMobility.length ? [divider('Today’s Mobility / Activation'), ...focusedMobility] : []),
+       divider('More Mobility Options'), ...mobility]
+    : [...complex, divider('Mobility'), ...mobility];
   return collapsibleSection('wu-'+uid, 'BARBELL WARMUP + MOBILITY', 'var(--accent2)', allRows);
 }
 

@@ -4,6 +4,7 @@ const ADMIN_FIELDS=[{id:'rm-snatch',label:'Snatch'},{id:'rm-cj',label:'Clean & J
 function buildRmPanel(){const fields=currentView==='admin'?ADMIN_FIELDS:MEMBER_FIELDS;document.getElementById('rm-grid').innerHTML=fields.map(f=>`<div class="rm-field"><label>${f.label}</label><input type="number" id="${f.id}" placeholder="lbs" min="0"></div>`).join('');}
 
 const RM_MAP=[
+  {keys:['high-hang power snatch + ohs'],id:'rm-snatch'}, // Compound lift is prescribed as % of snatch max, not OHS max
   {keys:['snatch pull','snatch grip stage','front banded snatch','block snatch high pull','snatch high pull','snatch high hang high pull'],id:'rm-snatch'},
   {keys:['clean pull','front banded clean pull','block clean high pull','stage clean deadlift'],id:'rm-cj'},
   {keys:['split jerk','push jerk','jerk dip','jerk from rack','jerk (from rack)','2 jerk dip'],id:'rm-cj'},

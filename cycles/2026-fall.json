@@ -1,10 +1,10 @@
 {
-  "id": "2026-fall",
-  "name": "2026 Fall — Catch, Footwork & Speed",
-  "startDate": "2026-09-14",
-  "dates": "9/14 – 12/5",
+  "id": "2026-27-technique-to-platform",
+  "name": "Technique to Platform · 2026–27",
+  "startDate": "2026-10-19",
+  "dates": "Oct 19, 2026 – Jan 9, 2027",
   "days": "Mon / Sat",
-  "goal": "Fix the catch (elbows, knees, feet) and first-pull knee position, build speed above the knee and lockout, then test with a Week 6 max-out and a Week 12 Olympic Total",
+  "goal": "Receiving positions → speed → Olympic total",
   "memberStartShift": 0,
   "memberDayOffsets": [
     0,
@@ -19,100 +19,123 @@
   ],
   "phases": [
     {
-      "id": "m1",
+      "id": "technical-2026-m1",
       "number": "01",
       "colorClass": "m1",
-      "title": "MESOCYCLE 1 — CATCH, FOOTWORK & FIRST-PULL POSITION",
-      "subtitle": "Weeks 1–6 · 9/14–10/24 · Build through Week 5, then Week 6 Saturday is a max-out test on both lifts (Week 6 Monday is light prep)",
+      "title": "Mesocycle 1 — Rebuild the Catch",
+      "subtitle": "Weeks 1–6: receiving positions, full extension, confident turnover and repeatable footwork. Week 6 builds to heavy with technique as the limit.",
       "weeks": [
         {
           "number": 1,
           "label": "Week 1",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 1 · 9/14–9/19",
-            "text": "Positions are rebuilt away from the floor first. No-feet snatch/clean forces a disciplined, narrow catch by removing foot movement entirely; muscle snatch/clean removes the leg re-bend that lets the knees-forward habit sneak in; paused deadlifts drill the knee-back reversal directly. No full lift from the floor yet."
+            "title": "Week 1 · Build the Receiving Shape",
+            "text": "Catch width, lockout and confident receiving. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "60%",
-                  "note": "Pause below the knee with shins pulled to vertical and knees pushed out, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                  "name": "High-hang power snatch + OHS",
+                  "sets": "6×(1+1)",
+                  "load": "45–60%",
+                  "note": "Finish the leg drive; lock arms immediately and squat without jumping wider. · Based on SN 1RM · Beginner: PVC or empty bar, high-hang power receive then controlled squat. Do not force a deep catch."
                 },
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "4×3",
-                  "load": "Bar–30%",
-                  "note": "Feet stay in the catch stance the whole rep — no jump, no reset — this is the landing-width fix"
+                  "name": "Back squat, 3-sec eccentric",
+                  "sets": "4×4",
+                  "load": "60–67%",
+                  "note": "Stable whole foot; knees follow toes throughout the descent. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch Balance",
-                  "sets": "4×3",
-                  "load": "50%",
-                  "note": "Land soft, think push under the bar, not dropping"
-                },
-                {
-                  "name": "Muscle Snatch",
-                  "sets": "4×3",
-                  "load": "40%",
-                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "70%",
-                  "note": "Knees out through the whole rep"
+                  "name": "PVC overhead squat hold (2 sec)",
+                  "sets": "1×3 holds",
+                  "load": "Optional / light",
+                  "note": "Lock elbows; bar over mid‐foot. Optional if time remains. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Stay in control; shoulders rotate without shrugging.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Band W rows",
+                    "sets": "1×8",
+                    "load": "BW / light band",
+                    "note": "Elbows high, rotate forearms up",
+                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Drop snatch (PVC / empty bar) + OHS",
+                    "sets": "1–2×(2+2)",
+                    "load": "PVC / empty bar",
+                    "note": "PVC or empty bar by control; hold the catch for 2 sec.",
+                    "video": "https://www.youtube.com/watch?v=DCJLYWGEdzo"
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "60%",
-                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                  "name": "High-hang clean + split jerk",
+                  "sets": "6×(1+1)",
+                  "load": "45–60%",
+                  "note": "Secure rack before dipping; split and hold 2 sec. · Based on CJ 1RM · Beginner: high-hang power clean + front squat; practice jerk footwork with PVC separately."
                 },
                 {
-                  "name": "No-Feet Clean",
-                  "sets": "4×3",
-                  "load": "Bar–30%",
-                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                  "name": "Front squat, 3-sec eccentric",
+                  "sets": "4×4",
+                  "load": "60–67%",
+                  "note": "Elbows high; knees travel in line with feet. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Front Squat (pause)",
-                  "sets": "4×3",
-                  "load": "65%",
-                  "note": "2s pause at bottom — elbows up and forward"
-                },
-                {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "40%",
-                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
-                },
-                {
-                  "name": "Split Jerk Footwork Drill",
-                  "sets": "4×3",
-                  "load": "Bar",
-                  "note": "Front heel down first, back foot on the ball — light and crisp"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "70%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Light DB front-rack march",
+                  "sets": "1-2×20 sec",
+                  "load": "Optional / light",
+                  "note": "Brace, no torso sway; optional. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Two distinct tracks, not tightrope; front foot lands flat.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Split jerk footwork steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Two tracks, stick the landing",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + unloaded split freeze",
+                    "sets": "2×3 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Fast elbows, then balanced feet; mark landing positions."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -121,89 +144,110 @@
           "label": "Week 2",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 2 · 9/21–9/26",
-            "text": "Positions are rebuilt away from the floor first. No-feet snatch/clean forces a disciplined, narrow catch by removing foot movement entirely; muscle snatch/clean removes the leg re-bend that lets the knees-forward habit sneak in; paused deadlifts drill the knee-back reversal directly. No full lift from the floor yet."
+            "title": "Week 2 · Own the Knee Transition",
+            "text": "Knee transition and leg-driven speed. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "60%",
-                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                  "name": "Below-knee hang snatch, knee pause",
+                  "sets": "6×1",
+                  "load": "55–68%",
+                  "note": "Pause 1 sec balanced at knee; push and accelerate to hip. · Based on SN 1RM · Beginner: work above knee. If the bar drifts, reset at high hang rather than adding weight."
                 },
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "4×3",
-                  "load": "Bar–30%",
-                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                  "name": "Back squat",
+                  "sets": "4×4",
+                  "load": "67–72%",
+                  "note": "Own the bottom; smooth ascent with no knee collapse. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch Balance",
-                  "sets": "4×3",
-                  "load": "50%",
-                  "note": "Land soft, same footprint as start — no stepping out"
-                },
-                {
-                  "name": "Muscle Snatch",
-                  "sets": "4×3",
-                  "load": "40%",
-                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "70%",
-                  "note": "Knees out through the whole rep"
+                  "name": "DB RDL (light)",
+                  "sets": "1-2×6",
+                  "load": "Optional / light",
+                  "note": "Feel leg drive and controlled hinge; optional. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Knees track; feel even pressure beneath both feet.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Ankle rocks",
+                    "sets": "1×4/side",
+                    "load": "BW / light band",
+                    "note": "Heel down, smooth range"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Segment snatch pull to knee",
+                    "sets": "2×3",
+                    "load": "light bar",
+                    "note": "One-second knee pause; long arms and bar close."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "60%",
-                  "note": "Pause, then consciously reverse the knees back before continuing — this is the knees-forward fix"
+                  "name": "Pause-at-knee clean + split jerk",
+                  "sets": "6×(1+1)",
+                  "load": "55–68%",
+                  "note": "Patient to knee, aggressive leg drive, fast elbows, vertical dip. · Based on CJ 1RM · Beginner: above-knee clean and empty-bar split rehearsal if the pause disrupts balance."
                 },
                 {
-                  "name": "No-Feet Clean",
-                  "sets": "4×3",
-                  "load": "Bar–30%",
-                  "note": "Feet stay in the pull stance the whole rep — no jump, no reset — this is the landing-width fix"
+                  "name": "Front squat",
+                  "sets": "4×4",
+                  "load": "67–72%",
+                  "note": "Elbows lead up; chest remains supported. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Front Squat (pause)",
-                  "sets": "4×3",
-                  "load": "65%",
-                  "note": "2s pause at bottom — elbows up and forward"
-                },
-                {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "40%",
-                  "note": "No leg re-bend — forces correct knee/hip sequencing instead of a floor pull"
-                },
-                {
-                  "name": "Split Jerk Footwork Drill",
-                  "sets": "4×3",
-                  "load": "Bar",
-                  "note": "Front heel down first, back foot on the ball — light and crisp"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "70%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Jerk split recovery rehearsal",
+                  "sets": "1×4 smooth",
+                  "load": "Optional / light",
+                  "note": "Practice confident, balanced recovery; sandbag was in warm‐up. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Sandbag: legs first, close load, finish tall; med‐ball scoop toss if needed.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Light sandbag clean",
+                    "sets": "2×2",
+                    "load": "Light sandbag",
+                    "note": "Leg drive first. Scale to med-ball scoop toss (2×2) if needed.",
+                    "video": "https://www.youtube.com/watch?v=dHJhVwwP--M"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Paused clean pull + split-foot steps",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Arms long through knee; land on separate tracks."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -212,95 +256,111 @@
           "label": "Week 3",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 3 · 9/28–10/3",
-            "text": "Pull work moves to blocks below the knee — full extension returns, but still without a floor start. No-feet and muscle snatch/clean continue as the footwork and turnover pieces, now at slightly higher load."
+            "title": "Week 3 · Extend, Then Commit",
+            "text": "Long arms, fast turnover and a predictable landing. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Deadlift (pause below knee)",
+                  "name": "Hang snatch + floor snatch",
+                  "sets": "5×(1+1)",
+                  "load": "62–72%",
+                  "note": "Recreate the same footprint and complete extension in both starts. · Based on SN 1RM · Beginner: two high-hang singles rather than a floor combination until both catches are committed."
+                },
+                {
+                  "name": "Back squat",
                   "sets": "4×3",
-                  "load": "65%",
-                  "note": "Knee-back reversal cue"
+                  "load": "72–77%",
+                  "note": "Deliberate lower; track knees through the sticking point. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "4×3",
-                  "load": "35–40%",
-                  "note": "Feet stay in the pull stance the whole rep"
-                },
-                {
-                  "name": "Muscle Snatch",
-                  "sets": "4×3",
-                  "load": "45%",
-                  "note": "Turnover speed, no leg re-bend"
-                },
-                {
-                  "name": "Snatch from Blocks (below knee)",
-                  "sets": "5×2",
-                  "load": "65–68%",
-                  "note": "Knees back off the blocks, then punch through — no floor start yet"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "72–75%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Side plank + top-leg lift",
+                  "sets": "1×6/side",
+                  "load": "Optional / light",
+                  "note": "Pelvis level; short optional hip-control dose. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Wake up hips and shoulders without fatigue.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Thoracic reaches",
+                    "sets": "1×4/side",
+                    "load": "BW / light band",
+                    "note": "Controlled upper-back rotation",
+                    "video": "https://www.youtube.com/watch?v=Cn43k8-7iik"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall snatch + 2-sec overhead hold",
+                    "sets": "2×2",
+                    "load": "PVC/light",
+                    "note": "Fast turnover, full elbow lock, no unnecessary foot jump."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean Deadlift (pause below knee)",
+                  "name": "Hang clean + floor clean + jerk",
+                  "sets": "5×(1+1+1)",
+                  "load": "62–72%",
+                  "note": "Two clean receives, one deliberate split; shorten complex if needed. · Based on CJ 1RM · Beginner: one hang clean followed by an unloaded split; no complex beyond attention span."
+                },
+                {
+                  "name": "Front squat",
                   "sets": "4×3",
-                  "load": "65%",
-                  "note": "Knee-back reversal cue"
+                  "load": "72–77%",
+                  "note": "Keep elbows high while driving out of the hole. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "No-Feet Clean",
-                  "sets": "4×3",
-                  "load": "35–40%",
-                  "note": "Feet stay in the pull stance the whole rep"
-                },
-                {
-                  "name": "Front Squat (pause)",
-                  "sets": "4×3",
-                  "load": "68–70%",
-                  "note": "2s pause — elbows up and forward"
-                },
-                {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "45%",
-                  "note": "Turnover speed, no leg re-bend"
-                },
-                {
-                  "name": "Clean from Blocks (below knee)",
-                  "sets": "5×2",
-                  "load": "65–68%",
-                  "note": "Knees back off the blocks, then punch through — no floor start yet"
-                },
-                {
-                  "name": "Split Jerk",
-                  "sets": "4×2",
-                  "load": "60–65%",
-                  "note": "Front heel down first — light, focus on the feet only"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "72–75%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Suitcase carry",
+                  "sets": "1×20 m/side",
+                  "load": "Optional / light",
+                  "note": "Light, steady torso; optional. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Foot angle and rear-knee bend remain consistent.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Split jerk recovery steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Recover front foot halfway back, then bring rear foot forward",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + rack hold",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Turn elbows around quickly; stand only after a balanced catch."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -309,95 +369,111 @@
           "label": "Week 4",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 4 · 10/5–10/10",
-            "text": "Pull work moves to blocks below the knee — full extension returns, but still without a floor start. No-feet and muscle snatch/clean continue as the footwork and turnover pieces, now at slightly higher load."
+            "title": "Week 4 · Consolidate / Deload",
+            "text": "Low-stress technique and video review. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "65%",
-                  "note": "Knee-back reversal cue"
-                },
-                {
-                  "name": "No-Feet Snatch",
-                  "sets": "4×3",
-                  "load": "35–40%",
-                  "note": "Feet stay in the pull stance the whole rep"
-                },
-                {
-                  "name": "Muscle Snatch",
-                  "sets": "4×3",
-                  "load": "45%",
-                  "note": "Turnover speed, no leg re-bend"
-                },
-                {
-                  "name": "Snatch from Blocks (below knee)",
+                  "name": "No-foot power snatch",
                   "sets": "5×2",
-                  "load": "65–68%",
-                  "note": "Knees back off the blocks, then punch through — no floor start yet"
+                  "load": "45–60%",
+                  "note": "Use the drill to eliminate backward kicks, not to eliminate normal foot movement forever. · Based on SN 1RM · Beginner: PVC or empty bar; film a successful landing and compare with Week 1."
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "72–75%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Back squat",
+                  "sets": "3×3",
+                  "load": "60–65%",
+                  "note": "Easy speed; no grind or positional compensation. · Based on BS 1RM · Independent self-paced work (coach circulates)."
+                },
+                {
+                  "name": "Controlled DB overhead hold",
+                  "sets": "1-2×15 sec/side",
+                  "load": "Optional / light",
+                  "note": "Only if pain-free; otherwise scapular band work. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Stay balanced on mid-foot; do not force extra range.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Supported hip airplanes",
+                    "sets": "1×4/side",
+                    "load": "BW / light band",
+                    "note": "Small, balanced range of motion"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "PVC snatch balance + OHS hold",
+                    "sets": "2×(2+1)",
+                    "load": "PVC / empty bar / light",
+                    "note": "Punch to locked elbows; hold 2 sec in the bottom.",
+                    "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Clean Deadlift (pause below knee)",
-                  "sets": "4×3",
-                  "load": "65%",
-                  "note": "Knee-back reversal cue"
+                  "name": "Clean + 2-sec catch hold + jerk",
+                  "sets": "5×(1+1)",
+                  "load": "50–60%",
+                  "note": "Freeze rack before dip; move confidently to the split. · Based on CJ 1RM · Beginner: use power catch + controlled squat; separate footwork from jerk loading."
                 },
                 {
-                  "name": "No-Feet Clean",
-                  "sets": "4×3",
-                  "load": "35–40%",
-                  "note": "Feet stay in the pull stance the whole rep"
-                },
-                {
-                  "name": "Front Squat (pause)",
-                  "sets": "4×3",
-                  "load": "68–70%",
-                  "note": "2s pause — elbows up and forward"
-                },
-                {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "45%",
-                  "note": "Turnover speed, no leg re-bend"
-                },
-                {
-                  "name": "Clean from Blocks (below knee)",
-                  "sets": "5×2",
-                  "load": "65–68%",
-                  "note": "Knees back off the blocks, then punch through — no floor start yet"
-                },
-                {
-                  "name": "Split Jerk",
-                  "sets": "4×2",
+                  "name": "Front squat",
+                  "sets": "3×3",
                   "load": "60–65%",
-                  "note": "Front heel down first — light, focus on the feet only"
+                  "note": "Smooth descent; full foot remains planted. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Back Squat",
-                  "sets": "4×5",
-                  "load": "72–75%",
-                  "note": "Knees out through the whole rep"
+                  "name": "Jerk split recovery + video note",
+                  "sets": "1×4 easy",
+                  "load": "Optional / light",
+                  "note": "No extra squat volume; confirm two‐track split on video. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. 1 light set each; W row = high row then rotate forearms up.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Band W rows",
+                    "sets": "1×8",
+                    "load": "BW / light band",
+                    "note": "Elbows high, rotate forearms up",
+                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + jerk footwork on tape",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Fast elbows and steady split geometry."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -406,89 +482,110 @@
           "label": "Week 5",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 5 · 10/12–10/17 · Peak Build Week",
-            "text": "Full snatch/clean from the floor returns and load builds toward the Meso 1 test. This is the last full training week before Saturday's max effort in Week 6 — push it here, then Week 6 backs off."
+            "title": "Week 5 · Return to the Full Lift",
+            "text": "Full-lift transfer and controlled intensity. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "4×2",
-                  "load": "40–45%",
-                  "note": "Last footwork reminder before the full lift"
+                  "name": "Snatch from floor",
+                  "sets": "6×1",
+                  "load": "70–82%",
+                  "note": "Long arms to extension; receive in the same balanced footprint. · Based on SN 1RM · Beginner: high hang or blocks. Successful confident receiving beats a heavier floor rep."
                 },
                 {
-                  "name": "Snatch Balance",
-                  "sets": "4×2",
-                  "load": "62–65%",
-                  "note": "Land soft, same footprint"
-                },
-                {
-                  "name": "Muscle Snatch",
+                  "name": "Back squat",
                   "sets": "4×3",
-                  "load": "45–50%",
-                  "note": "Maintains the knee/hip sequencing under the full lift"
+                  "load": "76–80%",
+                  "note": "Leave 1-3 clean reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch (full lift, floor start)",
-                  "sets": "6×2",
-                  "load": "70–75%",
-                  "note": "Knees back off the floor, feet and knees live — building toward Saturday's test"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "5×3",
-                  "load": "75–78%",
-                  "note": "Knees out through the whole rep — heaviest squat of Meso 1"
+                  "name": "Light band external rotation",
+                  "sets": "1-2×10",
+                  "load": "Optional / light",
+                  "note": "Shoulder maintenance; optional. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Track knees, ribs stacked beneath bar.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Overhead reaches",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Reach without flaring ribs"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "No-foot high-hang snatch",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Finish vertical drive without the feet shooting backward."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — CATCH, KNEES & FIRST-PULL POSITION",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "No-Feet Clean",
-                  "sets": "4×2",
-                  "load": "40–45%",
-                  "note": "Last footwork reminder before the full lift"
+                  "name": "Clean & split jerk from floor",
+                  "sets": "6×(1+1)",
+                  "load": "70–80%",
+                  "note": "Finish through upper thigh; stand and reset before a decisive jerk. · Based on CJ 1RM · Beginner: power clean + clean front squat at controllable load; PVC/empty-bar jerk."
                 },
                 {
-                  "name": "Front Squat (pause)",
+                  "name": "Front squat",
                   "sets": "4×3",
-                  "load": "72–75%",
-                  "note": "2s pause — elbows up and forward"
+                  "load": "76–80%",
+                  "note": "Strong rack; evenly loaded feet. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "45–50%",
-                  "note": "Maintains the knee/hip sequencing under the full lift"
-                },
-                {
-                  "name": "Clean & Jerk (full lift, floor start)",
-                  "sets": "6×2",
-                  "load": "70–75%",
-                  "note": "Feet, knees, and elbows live — building toward next week's test"
-                },
-                {
-                  "name": "Split Jerk",
-                  "sets": "5×2",
-                  "load": "65–70%",
-                  "note": "Front heel down first, same line"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "5×3",
-                  "load": "75–78%",
-                  "note": "Knees out through the whole rep — heaviest squat of Meso 1"
+                  "name": "DB front-rack hold",
+                  "sets": "1×30 sec",
+                  "load": "Optional / light",
+                  "note": "Optional easy bracing, not a fatigue test. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Preview rear-foot landing; two tracks.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Split jerk footwork steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Two tracks, stick the landing",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + tall jerk drill",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Fast rack then rapid arms without an excessive press-out."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -497,162 +594,232 @@
           "label": "Week 6",
           "intent": {
             "colorClass": "m1",
-            "title": "Week 6 · 10/19–10/24 · Test Week",
-            "text": "Monday is deliberately light — technique touches only, no strength stimulus — so you walk into Saturday fresh. Saturday is a Meso 1 max test on both lifts: a dress rehearsal for the Week 12 total."
+            "title": "Week 6 · Build to Heavy",
+            "text": "Heaviest technically excellent lift, not a max-out. A PR or an 80% lift with excellent form are equally successful; no required max."
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH & CLEAN & JERK — LIGHT PREP FOR THE MESO 1 TEST",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Balance",
-                  "sets": "3×2",
-                  "load": "50%",
-                  "note": "Crisp catch reminder — this isn't a strength day"
+                  "name": "Snatch: BUILD TO HEAVY",
+                  "sets": "Build to heavy",
+                  "load": "Technique-limited",
+                  "note": "Build only while lockout, width and confidence remain excellent; no prescribed %. · Beginner: build to a best repeatable technical rep, even if it is an empty bar. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
                 },
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "3×2",
-                  "load": "40%",
-                  "note": "Footwork reminder ahead of tomorrow's test"
+                  "name": "Back squat, light technique sets",
+                  "sets": "2×3",
+                  "load": "65–72%",
+                  "note": "Smooth and fast, several reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch (light openers)",
-                  "sets": "3×2",
-                  "load": "60–65%",
-                  "note": "Prime the pattern, don't chase fatigue"
-                },
-                {
-                  "name": "Tall Clean (strict elbow finish)",
-                  "sets": "2×2",
-                  "load": "40%",
-                  "note": "Elbow reminder for tomorrow's clean"
+                  "name": "Coach technique notes",
+                  "sets": "After top rep",
+                  "load": "Unloaded",
+                  "note": "Film / record best made rep and the quality of catch, lockout, feet and extension."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Calm, familiar setup and full-foot balance.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Squat-to-stand",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Balance at midfoot"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall snatch + bottom freeze",
+                    "sets": "2×(1+1)",
+                    "load": "light",
+                    "note": "Fast elbows, firm lockout, committed receiving."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "SNATCH & CLEAN & JERK — MESO 1 MAX TEST (DRESS REHEARSAL FOR THE TOTAL)",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "50%×3 → 65%×2 → 75%×1 → 85%×1",
-                  "load": "Build",
-                  "note": "Standard progression into your opener"
+                  "name": "Clean & jerk: BUILD TO HEAVY",
+                  "sets": "Build to heavy",
+                  "load": "Technique-limited",
+                  "note": "Only increase with decisive rack, clear jerk lockout and stable split. · Beginner: use high-hang clean and an appropriate jerk variation; stop at first loss of confidence. · A great rep at 80% is as successful as a great PR. Stop before form deteriorates."
                 },
                 {
-                  "name": "Snatch — 1RM Attempt",
-                  "sets": "3 attempts",
-                  "load": "Max",
-                  "note": "Take 2–3 min between attempts; call your opener off today's warmup",
-                  "tag": "peak",
-                  "tagText": "MAX"
+                  "name": "Front squat, light technique sets",
+                  "sets": "2×3",
+                  "load": "65–72%",
+                  "note": "No grind. Strength is not the benchmark today. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Clean & Jerk",
-                  "sets": "50%×3 → 65%×2 → 75%×1 → 85%×1",
-                  "load": "Build",
-                  "note": "Standard progression into your opener"
-                },
-                {
-                  "name": "Clean & Jerk — 1RM Attempt",
-                  "sets": "3 attempts",
-                  "load": "Max",
-                  "note": "Take 2–3 min between attempts",
-                  "tag": "peak",
-                  "tagText": "MAX"
+                  "name": "Coach technique notes",
+                  "sets": "After top rep",
+                  "load": "Unloaded",
+                  "note": "Film / record best made rep and the quality of catch, lockout, feet and extension."
                 }
               ],
-              "tableHeaders": [
-                "Attempt",
-                "Structure",
-                "Target Load"
-              ]
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Find front foot and heel position before warming.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Jerk track steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Repeat front and rear foot landing",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + split freeze",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Elbows through; stable split and straight arms."
+                  }
+                ]
+              }
             }
           ]
         }
       ]
     },
     {
-      "id": "m2",
+      "id": "technical-2026-m2",
       "number": "02",
       "colorClass": "m2",
-      "title": "MESOCYCLE 2 — SPEED & LOCKOUT",
-      "subtitle": "Weeks 7–12 · 10/26–12/5 · Back off Week 7, rebuild through Week 11, then Week 12 Saturday is the Olympic Total (Week 12 Monday is light prep)",
+      "title": "Mesocycle 2 — Express the Lift",
+      "subtitle": "Weeks 7–12: faster pull-under, consistent catch positions, meaningful loads and a true same-day Olympic total.",
       "weeks": [
         {
           "number": 7,
           "label": "Week 7",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 7 · 10/26–10/31 · Back-Off Week",
-            "text": "A slight back-off after the Week 6 max test. Same speed/lockout priorities as the rest of Meso 2, but load drops back so the body recovers before building again."
+            "title": "Week 7 · Reset for Reactive Speed",
+            "text": "React and receive at moderate loads. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — SPEED & LOCKOUT",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Heaving Snatch Balance",
-                  "sets": "3×2",
-                  "load": "50%",
-                  "note": "Push the floor away, shrug into the bar — lighter than last week's test, this is recovery-minded"
+                  "name": "High-hang snatch + floor snatch",
+                  "sets": "5×(1+1)",
+                  "load": "60–70%",
+                  "note": "Match catch width and receiving confidence in both positions. · Based on SN 1RM · Beginner: high-hang power snatch + OHS, then separate light singles."
                 },
                 {
-                  "name": "Muscle Snatch",
-                  "sets": "3×3",
-                  "load": "40%",
-                  "note": "Maintenance for knee/hip sequencing"
+                  "name": "Back squat",
+                  "sets": "4×5",
+                  "load": "65–70%",
+                  "note": "Rebuild volume; steady tempo with 2+ reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch Pull (above knee, speed)",
-                  "sets": "4×3",
-                  "load": "70–73%",
-                  "note": "Jump, don't muscle — light enough to move fast the week after a max effort"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "3×4",
-                  "load": "65%",
-                  "note": "Light — recovery, not a strength stimulus this week"
+                  "name": "Light DB waiter carry",
+                  "sets": "1×15 m/side",
+                  "load": "Optional / light",
+                  "note": "Only if overhead is stable and pain-free. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Warm hips and rotator cuff without fatigue.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Band W rows",
+                    "sets": "1×8",
+                    "load": "BW / light band",
+                    "note": "Elbows high, rotate forearms up",
+                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall snatch into 2-sec hold",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Instant lockout; feet land quietly."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "40–45%",
-                  "note": "Elbows up and around — whip, not muscle up"
+                  "name": "High-hang clean + split jerk",
+                  "sets": "6×(1+1)",
+                  "load": "60–70%",
+                  "note": "No unnecessary kick-back; secure rack and commit to the split. · Based on CJ 1RM · Beginner: high-hang power clean then jerk step-to-split without load."
                 },
                 {
-                  "name": "Clean Pull (above knee, speed)",
-                  "sets": "4×3",
-                  "load": "70–73%",
-                  "note": "Jump, don't muscle — light enough to move fast"
+                  "name": "Front squat",
+                  "sets": "4×5",
+                  "load": "65–70%",
+                  "note": "Smooth front rack; controlled volume. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Split Jerk",
-                  "sets": "4×2",
-                  "load": "65–68%",
-                  "note": "Maintenance — front heel down first"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "3×4",
-                  "load": "65%",
-                  "note": "Light — recovery week"
+                  "name": "Light DB front-rack carry",
+                  "sets": "1×20 m/side",
+                  "load": "Optional / light",
+                  "note": "Optional: ribs over pelvis, no lean. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Two-track landing and front-foot balance.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Line split steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Two-track split",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + dry split jerk",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Fast elbows and simultaneous punch/feet."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -661,83 +828,110 @@
           "label": "Week 8",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 8 · 11/2–11/7",
-            "text": "Rebuilding — load climbs back toward and past where Meso 1 left off, now with the added speed and lockout emphasis."
+            "title": "Week 8 · Power Through the Hip",
+            "text": "Speed above knee and a completed hip finish. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — SPEED & LOCKOUT",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Heaving Snatch Balance",
-                  "sets": "4×2",
-                  "load": "55%",
-                  "note": "Push the floor away, shrug into the bar"
+                  "name": "Above-knee hang snatch",
+                  "sets": "6×1",
+                  "load": "68–76%",
+                  "note": "Violent leg drive without an early curl; pull under as bar rises. · Based on SN 1RM · Beginner: high hang or power catch, then controlled overhead squat."
                 },
                 {
-                  "name": "Muscle Snatch",
-                  "sets": "3×3",
-                  "load": "45%",
-                  "note": "Maintenance for knee/hip sequencing"
-                },
-                {
-                  "name": "Snatch Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "78–82%",
-                  "note": "Jump, don't muscle — building back toward peak"
-                },
-                {
-                  "name": "Hang Snatch (above knee)",
-                  "sets": "5×2",
-                  "load": "68–70%",
-                  "note": "Same speed cue, narrow landing"
-                },
-                {
-                  "name": "Back Squat",
+                  "name": "Back squat",
                   "sets": "4×4",
-                  "load": "72–75%",
-                  "note": "Maintenance knee-out cue only"
+                  "load": "72–76%",
+                  "note": "Repeat depth and stable knee line. · Based on BS 1RM · Independent self-paced work (coach circulates)."
+                },
+                {
+                  "name": "Banded face pull",
+                  "sets": "1-2×10",
+                  "load": "Optional / light",
+                  "note": "Optional light upper-back activity. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Controlled hips, open shoulders.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Dynamic lat stretch",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Gentle overhead reach without fatigue"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Snatch-grip segment pull",
+                    "sets": "2×3",
+                    "load": "50–60%",
+                    "note": "Patient to knee, long arms, finish tall."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Muscle Clean",
-                  "sets": "4×3",
-                  "load": "45–50%",
-                  "note": "Elbows up and around — whip, not muscle up"
+                  "name": "Above-knee hang clean + split jerk",
+                  "sets": "6×(1+1)",
+                  "load": "68–76%",
+                  "note": "Bar close to upper thigh, fast elbow turnover, vertical jerk. · Based on CJ 1RM · Beginner: muscle clean / high-hang catch with light jerk footwork."
                 },
                 {
-                  "name": "Clean Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "78–82%",
-                  "note": "Jump, don't muscle — building back toward peak"
-                },
-                {
-                  "name": "Hang Clean (above knee)",
-                  "sets": "5×2",
-                  "load": "68–70%",
-                  "note": "Elbow speed carries from the muscle clean work"
-                },
-                {
-                  "name": "Split Jerk",
-                  "sets": "5×2",
-                  "load": "70–73%",
-                  "note": "Maintenance — front heel down first"
-                },
-                {
-                  "name": "Back Squat",
+                  "name": "Front squat",
                   "sets": "4×4",
-                  "load": "72–75%",
-                  "note": "Maintenance knee-out cue only"
+                  "load": "72–76%",
+                  "note": "Avoid elbow drop on last rep. · Based on FS 1RM · Independent self-paced work (coach circulates)."
+                },
+                {
+                  "name": "Jerk footwork quality review",
+                  "sets": "1×4 easy",
+                  "load": "Optional / light",
+                  "note": "Sandbag clean is in the warm‐up; keep finish low fatigue. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Finish leg extension before pulling under; scale to med‐ball scoop toss.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Light sandbag clean",
+                    "sets": "2×2",
+                    "load": "Light sandbag",
+                    "note": "Leg drive first. Scale to med-ball scoop toss (2×2) if needed.",
+                    "video": "https://www.youtube.com/watch?v=dHJhVwwP--M"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Clean high-pull shape + tape-track split",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Finish legs before arms; do not jump back."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -746,83 +940,110 @@
           "label": "Week 9",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 9 · 11/9–11/14",
-            "text": "Rebuilding — load climbs back toward and past where Meso 1 left off, now with the added speed and lockout emphasis."
+            "title": "Week 9 · Control the Transition",
+            "text": "Patient start, powerful transition. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — SPEED & LOCKOUT",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Heaving Snatch Balance",
-                  "sets": "4×2",
-                  "load": "55%",
-                  "note": "Push the floor away, shrug into the bar"
+                  "name": "Snatch from floor, 1-sec knee pause",
+                  "sets": "6×1",
+                  "load": "73–80%",
+                  "note": "Stay over bar, push through legs, no wild foot spread. · Based on SN 1RM · Beginner: below-knee hang with the same pause; no loaded position they cannot hold."
                 },
                 {
-                  "name": "Muscle Snatch",
-                  "sets": "3×3",
-                  "load": "45%",
-                  "note": "Maintenance for knee/hip sequencing"
-                },
-                {
-                  "name": "Snatch Pull (above knee, speed)",
-                  "sets": "5×3",
+                  "name": "Back squat",
+                  "sets": "4×3",
                   "load": "78–82%",
-                  "note": "Jump, don't muscle — building back toward peak"
+                  "note": "Strong ascent; stop before form changes. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Hang Snatch (above knee)",
-                  "sets": "5×2",
-                  "load": "68–70%",
-                  "note": "Same speed cue, narrow landing"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×4",
-                  "load": "72–75%",
-                  "note": "Maintenance knee-out cue only"
+                  "name": "Short side plank",
+                  "sets": "1×20 sec/side",
+                  "load": "Optional / light",
+                  "note": "Optional trunk control. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Hips steady; feel mid-foot pressure.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Supported single-leg hinge",
+                    "sets": "1×4/side",
+                    "load": "BW / light band",
+                    "note": "Steady hip and foot pressure"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Pause-at-knee snatch deadlift",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Hold knee position 1 sec, then extend without curling."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Muscle Clean",
+                  "name": "Clean from floor, 1-sec pause + jerk",
+                  "sets": "6×(1+1)",
+                  "load": "73–80%",
+                  "note": "Balance through the knee, elbows through, commit to jerk. · Based on CJ 1RM · Beginner: clean above knee, then light split drill; no compromised pause."
+                },
+                {
+                  "name": "Front squat",
                   "sets": "4×3",
-                  "load": "45–50%",
-                  "note": "Elbows up and around — whip, not muscle up"
-                },
-                {
-                  "name": "Clean Pull (above knee, speed)",
-                  "sets": "5×3",
                   "load": "78–82%",
-                  "note": "Jump, don't muscle — building back toward peak"
+                  "note": "Drive tall with elbows high. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Hang Clean (above knee)",
-                  "sets": "5×2",
-                  "load": "68–70%",
-                  "note": "Elbow speed carries from the muscle clean work"
-                },
-                {
-                  "name": "Split Jerk",
-                  "sets": "5×2",
-                  "load": "70–73%",
-                  "note": "Maintenance — front heel down first"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×4",
-                  "load": "72–75%",
-                  "note": "Maintenance knee-out cue only"
+                  "name": "Light DB front-rack carry",
+                  "sets": "1×15 m/side",
+                  "load": "Optional / light",
+                  "note": "Optional no-side-bend bracing. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Match knees with feet and repeat landing spots.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Split-foot stick drills",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Quiet, balanced landing",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Pause-at-knee clean pull + tall clean",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "No rushed knee passage; elbows are fast after extension."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -831,71 +1052,111 @@
           "label": "Week 10",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 10 · 11/16–11/21 · Peak Build Week",
-            "text": "Peak build. This is the heaviest pull and squat work of the entire cycle, with full lifts reintegrated under load."
+            "title": "Week 10 · Fast Full Lifts",
+            "text": "Full-lift speed with consistent positions. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — SPEED & LOCKOUT",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Push Press + OHS",
-                  "sets": "4×(2+1)",
-                  "load": "60–65%",
-                  "note": "Push the floor away, shrug into the bar"
+                  "name": "Snatch from floor",
+                  "sets": "6×1",
+                  "load": "78–85%",
+                  "note": "Push from floor; bar accelerates past knee; finish and receive. · Based on SN 1RM · Beginner: use 60-70% or RPE 6, even if established lifters progress past 80%."
                 },
                 {
-                  "name": "Snatch Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "85–90%",
-                  "note": "Violent extension — speed doesn't drop as load rises"
-                },
-                {
-                  "name": "Snatch (full lift, floor start)",
-                  "sets": "5×2",
-                  "load": "78–82%",
-                  "note": "All cues live — feet, knees, speed, lockout"
-                },
-                {
-                  "name": "Back Squat",
+                  "name": "Back squat",
                   "sets": "4×3",
-                  "load": "80–82%",
-                  "note": "Heaviest squat of the cycle"
+                  "load": "80–84%",
+                  "note": "Keep 1-2 reps in reserve; zero grinding. · Based on BS 1RM · Independent self-paced work (coach circulates)."
+                },
+                {
+                  "name": "Band pull-apart",
+                  "sets": "1×12",
+                  "load": "Optional / light",
+                  "note": "Low-fatigue optional finish. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Knee alignment + shoulder external‐rotation control.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Band W rows",
+                    "sets": "1×8",
+                    "load": "BW / light band",
+                    "note": "Elbows high, rotate forearms up",
+                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall snatch, lockout freeze",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Quick punch under, no soft elbows."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Front Squat (pause)",
+                  "name": "Clean & split jerk from floor",
+                  "sets": "6×(1+1)",
+                  "load": "78–85%",
+                  "note": "No arm pull early. Rack securely before split, punch to lock. · Based on CJ 1RM · Beginner: high-hang clean + light jerk; meet the bar and stand decisively."
+                },
+                {
+                  "name": "Front squat",
                   "sets": "4×3",
-                  "load": "78–80%",
-                  "note": "Elbows up and forward"
+                  "load": "80–84%",
+                  "note": "Full-foot pressure under a stable rack. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Clean Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "85–90%",
-                  "note": "Violent extension — speed doesn't drop as load rises"
-                },
-                {
-                  "name": "Clean & Jerk (full lift, floor start)",
-                  "sets": "5×2",
-                  "load": "78–82%",
-                  "note": "All cues live — feet, knees, elbows, lockout"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×3",
-                  "load": "80–82%",
-                  "note": "Heaviest squat of the cycle"
+                  "name": "Controlled step-down",
+                  "sets": "1×6/side",
+                  "load": "Optional / light",
+                  "note": "Light, optional; track knee over mid-foot. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Balanced front foot, rear knee slightly bent.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Split jerk recovery rehearsal",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "Return to standing in sequence",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + empty-bar jerk dip",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Fast elbows; straight vertical dip."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -904,71 +1165,111 @@
           "label": "Week 11",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 11 · 11/23–11/28 · Peak Build Week",
-            "text": "Peak build. This is the heaviest pull and squat work of the entire cycle, with full lifts reintegrated under load."
+            "title": "Week 11 · Heavy, Confident Singles",
+            "text": "Heavy singles without costly misses. "
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH — SPEED & LOCKOUT",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Push Press + OHS",
-                  "sets": "4×(2+1)",
-                  "load": "60–65%",
-                  "note": "Push the floor away, shrug into the bar"
+                  "name": "Snatch from floor",
+                  "sets": "5×1",
+                  "load": "82–90%",
+                  "note": "Advance only on completely stable makes; no grinding or press-out. · Based on SN 1RM · Beginner: RPE 6-7 with repeatable catches; skip near-max percentages."
                 },
                 {
-                  "name": "Snatch Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "85–90%",
-                  "note": "Violent extension — speed doesn't drop as load rises"
+                  "name": "Back squat",
+                  "sets": "3×2",
+                  "load": "75–82%",
+                  "note": "Fast reps, at least 2 reps in reserve. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch (full lift, floor start)",
-                  "sets": "5×2",
-                  "load": "78–82%",
-                  "note": "All cues live — feet, knees, speed, lockout"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×3",
-                  "load": "80–82%",
-                  "note": "Heaviest squat of the cycle"
+                  "name": "Easy external rotation",
+                  "sets": "1×10",
+                  "load": "Optional / light",
+                  "note": "Optional only; arrive fresh for total week. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Use light tension only before heavy singles.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Band W rows",
+                    "sets": "1×8",
+                    "load": "BW / light band",
+                    "note": "Elbows high, rotate forearms up",
+                    "video": "https://www.youtube.com/watch?v=aePkwVQ1yLw"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "No-foot high-hang snatch",
+                    "sets": "2×2",
+                    "load": "light",
+                    "note": "Reinforce a quiet, repeatable receiving footprint."
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "CLEAN & JERK — SPEED & LOCKOUT",
+              "focus": "CLEAN & JERK + FRONT SQUAT",
               "exercises": [
                 {
-                  "name": "Front Squat (pause)",
-                  "sets": "4×3",
-                  "load": "78–80%",
-                  "note": "Elbows up and forward"
+                  "name": "Clean & split jerk from floor",
+                  "sets": "5×(1+1)",
+                  "load": "82–90%",
+                  "note": "No hesitation in rack or jerk; sharp lockout. · Based on CJ 1RM · Beginner: RPE 6-7 and well-controlled receiving; no pressure to reach 90%."
                 },
                 {
-                  "name": "Clean Pull (above knee, speed)",
-                  "sets": "5×3",
-                  "load": "85–90%",
-                  "note": "Violent extension — speed doesn't drop as load rises"
+                  "name": "Front squat",
+                  "sets": "3×2",
+                  "load": "75–82%",
+                  "note": "Clean positions, 2+ reps in reserve. · Based on FS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Clean & Jerk (full lift, floor start)",
-                  "sets": "5×2",
-                  "load": "78–82%",
-                  "note": "All cues live — feet, knees, elbows, lockout"
-                },
-                {
-                  "name": "Back Squat",
-                  "sets": "4×3",
-                  "load": "80–82%",
-                  "note": "Heaviest squat of the cycle"
+                  "name": "Easy suitcase carry",
+                  "sets": "1×20 m/side",
+                  "load": "Optional / light",
+                  "note": "Optional low-fatigue finish. · OPTIONAL if class time allows; skip before rushing primary work."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Same two tracks; no stiff back leg.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Light split steps",
+                    "sets": "1×4",
+                    "load": "BW / light band",
+                    "note": "No bar required",
+                    "video": "https://www.youtube.com/watch?v=wicSB9z7IzU"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall clean + dry split jerk",
+                    "sets": "2×2 each",
+                    "load": "PVC / empty bar / light",
+                    "note": "Confidence under the bar and crisp feet."
+                  }
+                ]
+              }
             }
           ]
         },
@@ -977,88 +1278,91 @@
           "label": "Week 12",
           "intent": {
             "colorClass": "m2",
-            "title": "Week 12 · 11/30–12/5 · Test Week — Olympic Total",
-            "text": "Monday is deliberately light — technique touches only — so you walk into Saturday fresh. Saturday is the Week 12 Olympic Total: best Snatch + best Clean & Jerk attempts, the culmination of the cycle."
+            "title": "Week 12 · Taper + Saturday Total",
+            "text": "Monday primer and Saturday same-day Olympic total. Monday prepares; Saturday scores best snatch + best clean & jerk on the same day."
           },
           "days": [
             {
               "label": "MONDAY",
               "colorClass": "mon",
-              "focus": "SNATCH & CLEAN & JERK — LIGHT PREP FOR THE TOTAL",
+              "focus": "SNATCH + BACK SQUAT",
               "exercises": [
                 {
-                  "name": "Snatch Balance",
-                  "sets": "3×2",
-                  "load": "50%",
-                  "note": "Lockout reminder — this isn't a strength day"
+                  "name": "Fast snatch singles from floor",
+                  "sets": "4×1",
+                  "load": "55–70%",
+                  "note": "Crisp and easy: all makes, no heavy attempts, no missed reps. · Based on SN 1RM"
                 },
                 {
-                  "name": "No-Feet Snatch",
-                  "sets": "3×2",
-                  "load": "40%",
-                  "note": "Footwork reminder ahead of tomorrow's total"
+                  "name": "Back squat, very easy",
+                  "sets": "2×2",
+                  "load": "50–60%",
+                  "note": "Explosive intent, minimal fatigue; skip if needed. · Based on BS 1RM · Independent self-paced work (coach circulates)."
                 },
                 {
-                  "name": "Snatch (light openers)",
-                  "sets": "3×2",
-                  "load": "65–70%",
-                  "note": "Prime the pattern, don't chase fatigue"
-                },
-                {
-                  "name": "Muscle Clean",
-                  "sets": "2×3",
-                  "load": "45%",
-                  "note": "Elbow speed reminder for tomorrow's clean"
+                  "name": "Attempt planning / mobility",
+                  "sets": "~12–15 min",
+                  "load": "Unloaded",
+                  "note": "Plan warm-up jumps and openers; keep Monday easy. Optional low-fatigue mobility."
                 }
-              ]
+              ],
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "Short, level steps; knees follow toes. Finish warm, not tired. Skip any irritating range.",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  },
+                  {
+                    "name": "Overhead reach + ankle rocks",
+                    "sets": "1×4 each",
+                    "load": "BW / light band",
+                    "note": "Gentle range only"
+                  }
+                ],
+                "primer": [
+                  {
+                    "name": "Tall snatch + OHS hold",
+                    "sets": "2×(1+1)",
+                    "load": "PVC/light",
+                    "note": "Set stance and punch to a decisive lockout.",
+                    "video": "https://www.youtube.com/watch?v=m_fvfJi94D8"
+                  }
+                ]
+              }
             },
             {
               "label": "SATURDAY",
               "colorClass": "thu",
-              "focus": "SNATCH & CLEAN & JERK — WEEK 12 OLYMPIC TOTAL",
+              "focus": "OLYMPIC TOTAL — SNATCH + CLEAN & JERK",
               "exercises": [
                 {
-                  "name": "Snatch",
-                  "sets": "50%×3 → 65%×2 → 75%×1 → 85%×1",
-                  "load": "Build",
-                  "note": "Standard progression into your opener"
+                  "name": "Snatch — official attempts",
+                  "sets": "3×1",
+                  "load": "Self-selected",
+                  "note": "17–31 min: up to 3 official attempts, after snatch warm-ups (08–17 min). Best made snatch counts toward Saturday total. No forced misses."
                 },
                 {
-                  "name": "Snatch — 1RM Attempt",
-                  "sets": "3 attempts",
-                  "load": "Max",
-                  "note": "Take 2–3 min between attempts; call your opener off today's warmup",
-                  "tag": "peak",
-                  "tagText": "MAX"
-                },
-                {
-                  "name": "Clean & Jerk",
-                  "sets": "50%×3 → 65%×2 → 75%×1 → 85%×1",
-                  "load": "Build",
-                  "note": "Standard progression into your opener"
-                },
-                {
-                  "name": "Clean & Jerk — 1RM Attempt",
-                  "sets": "3 attempts",
-                  "load": "Max",
-                  "note": "Take 2–3 min between attempts",
-                  "tag": "peak",
-                  "tagText": "MAX"
-                },
-                {
-                  "name": "Olympic Total",
-                  "sets": "Best Sn + Best C&J",
-                  "load": "Total",
-                  "note": "Add your best Snatch to your best Clean & Jerk — that's the cycle's total (PR if it beats your last one)",
-                  "tag": "peak",
-                  "tagText": "TOTAL"
+                  "name": "Clean & Jerk — official attempts",
+                  "sets": "3×1",
+                  "load": "Self-selected",
+                  "note": "40–57 min: up to 3 official attempts after C&J warm-ups (31–40 min). Add best made C&J to best made snatch. No squats."
                 }
               ],
-              "tableHeaders": [
-                "Attempt",
-                "Structure",
-                "Target Load"
-              ]
+              "warmup": {
+                "mobility": [
+                  {
+                    "name": "Lateral band walk",
+                    "sets": "1×6/side",
+                    "load": "Light mini-band",
+                    "note": "A little warmth, no fatigue; test-day prep",
+                    "video": "https://www.youtube.com/watch?v=ReT_5fnUe6k"
+                  }
+                ],
+                "primer": []
+              }
             }
           ]
         }
