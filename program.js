@@ -161,12 +161,12 @@ function dayWarmupExercises(day) {
     ];
   }
   const mobility = [
-    {name:'Hip 90/90',                   sets:'2×60s', load:'BW',         note:'Each side · 2 min total'},
+    {name:'Hip 90/90',                   sets:'2×60s', load:'BW',         note:'Each side · 2 min total\nhttps://www.youtube.com/watch?v=qq_Z7sAmVrA'},
     {name:'Ankle Circles + Calf Stretch',sets:'2×10',  load:'BW',         note:'Each side'},
-    {name:'Thoracic Rotation',           sets:'2×10',  load:'BW',         note:'Each side'},
-    {name:'Shoulder CARs',               sets:'2×10',  load:'BW',         note:'Controlled articular rotations'},
-    {name:'Lu Raises',                   sets:'2×10',  load:'Light Plate', note:'Slow and controlled — shoulder health'},
-    {name:'Lateral band walk',           sets:'2×10',  load:'Hip band',   note:'Slow and controlled, in squat position\nRight\\left,Forward\\backward'}
+    {name:'Thoracic Rotation',           sets:'2×10',  load:'BW',         note:'https://www.youtube.com/watch?v=N-oI3eMLk30'},
+    {name:'Shoulder CARs',               sets:'2×10',  load:'BW',         note:'Controlled articular rotations\nhttps://www.youtube.com/shorts/QRmjqjGlIGI'},
+    {name:'Lu Raises',                   sets:'2×10',  load:'Light Plate', note:'Slow and controlled — shoulder health\nhttps://www.youtube.com/shorts/crXBkWN8cn8'},
+    {name:'Lateral band walk',           sets:'2×10',  load:'Hip band',   note:'Slow and controlled, in squat position\nRight\\left set 1\nForward\\backward set 2'}
   ];
   // Cycle-specific warm-up choices appear inside the existing collapsed section.
   // The original barbell complexes and the original mobility menu above are unchanged.

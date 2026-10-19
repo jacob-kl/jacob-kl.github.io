@@ -43,8 +43,7 @@
                   "name": "Drop snatch (PVC / empty bar) + OHS",
                   "sets": "1–2×(2+2)",
                   "load": "PVC / empty bar",
-                  "note": "PVC or empty bar by control; hold the catch for 2 sec.",
-                  "video": "https://www.youtube.com/watch?v=DCJLYWGEdzo"
+                  "note": "PVC or empty bar by control; hold the catch for 2 sec.\nhttps://www.youtube.com/watch?v=DCJLYWGEdzo"
                 },
                 {
                   "name": "High-hang power snatch + OHS",
@@ -77,8 +76,7 @@
                     "name": "Band YTW",
                     "sets": "1×8",
                     "load": "BW / light band",
-                    "note": "",
-                    "video": "https://www.youtube.com/shorts/_G7r3UEI8nk"
+                    "note": "https://www.youtube.com/shorts/_G7r3UEI8nk"
                   }
                 ]
               }
@@ -115,7 +113,7 @@
                 {
                   "name": "DB Bulgarian split squat + ring row (superset)",
                   "sets": "3 rounds: 8/side split squat + 8 ring rows",
-                  "load": "Light–moderate DBs / BW",
+                  "load": "Moderate DBs / BW",
                   "note": "Superset: single-leg strength and stability, then horizontal pull for upper back. Upright torso, full range."
                 }
               ],
