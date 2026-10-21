@@ -41,7 +41,7 @@
               "exercises": [
                 {
                   "name": "Drop snatch (PVC / empty bar) + OHS",
-                  "sets": "1–2×(2+2)",
+                  "sets": "2×(2+2)",
                   "load": "PVC / empty bar",
                   "note": "PVC or empty bar by control; hold the catch for 2 sec.\nhttps://www.youtube.com/watch?v=DCJLYWGEdzo"
                 },
@@ -52,8 +52,8 @@
                   "note": "Finish the leg drive; lock arms immediately and squat without jumping wider. · Based on SN 1RM · Beginner: PVC or empty bar, high-hang power receive then controlled squat. Do not force a deep catch."
                 },
                 {
-                  "name": "Overhead squat hold, light (2 sec)",
-                  "sets": "1×3 holds",
+                  "name": "Overhead squat hold, light (10 sec)",
+                  "sets": "3×1 holds",
                   "load": "~50% snatch",
                   "note": "Lock elbows; bar over mid-foot. Light load (~50% snatch) — enough to feel real overhead stability before squatting heavier."
                 },
